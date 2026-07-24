@@ -130,8 +130,8 @@ img {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 16px 0;
-    background: rgba(9, 12, 18, 0.90);
+    padding: 12px 0;
+    background: rgba(9, 12, 18, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-gold);
@@ -139,11 +139,11 @@ img {
 }
 
 [data-theme="light"] .navbar {
-    background: rgba(248, 250, 252, 0.92);
+    background: rgba(248, 250, 252, 0.94);
 }
 
 .navbar.scrolled {
-    padding: 10px 0;
+    padding: 8px 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -156,6 +156,7 @@ img {
     justify-content: space-between;
 }
 
+/* Dual Logo Wrapper & Smooth 250ms Theme Transition */
 .brand-logo {
     display: inline-flex;
     align-items: center;
@@ -165,63 +166,60 @@ img {
 .logo-wrapper {
     position: relative;
     display: inline-block;
-    height: 64px;
-    width: 220px;
-    vertical-align: middle;
-}
-
-.footer-logo-wrapper {
-    height: 72px;
-    width: 250px;
+    height: 74px;
 }
 
 .logo-img {
+    height: 74px;
+    width: auto;
+    max-width: 320px;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.25s ease-in-out;
+}
+
+/* Dark Theme Logo Visibility (main no bg) */
+[data-theme="dark"] .logo-dark,
+body.dark-theme .logo-dark {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+[data-theme="dark"] .logo-light,
+body.dark-theme .logo-light {
+    opacity: 0;
+    visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    object-position: left center;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: opacity, visibility;
+    pointer-events: none;
 }
 
-/* Dark Mode Logo Switch */
-[data-theme="dark"] .logo-dark-mode,
-body.dark-theme .logo-dark-mode {
+/* Light Theme Logo Visibility (black no bg) */
+[data-theme="light"] .logo-light,
+body.light-theme .logo-light {
     opacity: 1;
     visibility: visible;
+    position: relative;
 }
 
-[data-theme="dark"] .logo-light-mode,
-body.dark-theme .logo-light-mode {
+[data-theme="light"] .logo-dark,
+body.light-theme .logo-dark {
     opacity: 0;
     visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
 }
 
-/* Light Mode Logo Switch */
-[data-theme="light"] .logo-dark-mode,
-body.light-theme .logo-dark-mode {
-    opacity: 0;
-    visibility: hidden;
+.footer-logo-wrapper {
+    height: 82px;
 }
 
-[data-theme="light"] .logo-light-mode,
-body.light-theme .logo-light-mode {
-    opacity: 1;
-    visibility: visible;
-}
-
-@media (max-width: 768px) {
-    .logo-wrapper {
-        height: 52px;
-        width: 180px;
-    }
-    .footer-logo-wrapper {
-        height: 58px;
-        width: 200px;
-    }
+.footer-logo-img {
+    height: 82px;
 }
 
 .nav-links {
@@ -1383,4 +1381,7 @@ body.light-theme .logo-light-mode {
     .gallery-main { height: 280px; }
     .specs-bar { grid-template-columns: 1fr 1fr; }
     .footer-container { grid-template-columns: 1fr; }
+    .logo-wrapper { height: 54px; }
+    .logo-img { height: 54px; max-width: 220px; }
+    .footer-logo-wrapper, .footer-logo-img { height: 60px; }
 }
