@@ -1,0 +1,215 @@
+{% extends 'rentals/base.html' %}
+{% load static %}
+
+{% block title %}{{ property.title }} | RENTORA Kerala{% endblock %}
+
+{% block content %}
+<!-- Property Header -->
+<div class="property-header-section">
+    <div class="section-container">
+        <a href="{% url 'properties' %}" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Properties</a>
+        <div class="header-content">
+            <div>
+                <span class="badge-gold">{{ property.get_property_type_display }}</span>
+                <h1 class="property-main-title">{{ property.title }}</h1>
+                <p class="property-location-str"><i class="fa-solid fa-location-dot"></i> {{ property.location_display_name }}</p>
+            </div>
+            <div class="header-rating-box">
+                <div class="rating-score"><i class="fa-solid fa-star"></i> {{ property.rating }}</div>
+                <div class="rating-count">{{ property.reviews_count }} Verified Guest Reviews</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Gallery Grid -->
+<section class="gallery-section">
+    <div class="section-container">
+        <div class="gallery-grid">
+            <div class="gallery-main">
+                <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage">
+            </div>
+            <div class="gallery-thumbs">
+                {% for img in property.gallery_json %}
+                <div class="thumb-item" onclick="changeMainImage('{{ img }}')">
+                    <img src="{{ img }}" alt="Property View {{ forloop.counter }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Detail Body Layout -->
+<section class="section detail-body-section">
+    <div class="section-container detail-layout">
+        
+        <!-- Left Content -->
+        <div class="detail-main-content">
+            
+            <!-- Quick Specs Row -->
+            <div class="specs-bar">
+                <div class="spec-bar-item">
+                    <i class="fa-solid fa-bed"></i>
+                    <div>
+                        <span class="spec-val">{{ property.bedrooms }} Bedrooms</span>
+                        <span class="spec-lbl">Luxury En-suite</span>
+                    </div>
+                </div>
+                <div class="spec-bar-item">
+                    <i class="fa-solid fa-bath"></i>
+                    <div>
+                        <span class="spec-val">{{ property.bathrooms }} Bathrooms</span>
+                        <span class="spec-lbl">Rain Showers</span>
+                    </div>
+                </div>
+                <div class="spec-bar-item">
+                    <i class="fa-solid fa-users"></i>
+                    <div>
+                        <span class="spec-val">Up to {{ property.max_guests }} Guests</span>
+                        <span class="spec-lbl">Full Privacy</span>
+                    </div>
+                </div>
+                <div class="spec-bar-item">
+                    <i class="fa-solid fa-hand-sparkles"></i>
+                    <div>
+                        <span class="spec-val">Dedicated Host</span>
+                        <span class="spec-lbl">24/7 On-site Service</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description Box -->
+            <div class="content-block">
+                <h2>About This Luxury Estate</h2>
+                <p class="description-text">{{ property.description }}</p>
+            </div>
+
+            <!-- Amenities Grid -->
+            <div class="content-block">
+                <h2>Bespoke Amenities</h2>
+                <div class="amenities-grid">
+                    {% for amenity in property.amenities_json %}
+                    <div class="amenity-chip">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>{{ amenity }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Host & Security Card -->
+            <div class="host-card">
+                <div class="host-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                <div class="host-details">
+                    <h3>Managed by Rentora Concierge Service</h3>
+                    <p>Verified luxury host with 100% response rate within 15 minutes. Sanitized, private security, and private chef on demand.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Booking Inquiry Sticky Card -->
+        <aside class="booking-sidebar">
+            <div class="booking-card">
+                <div class="booking-price-header">
+                    <div>
+                        <span class="b-price">₹{{ property.price_per_night|floatformat:0 }}</span>
+                        <span class="b-unit">/ night</span>
+                    </div>
+                    <div class="b-rating"><i class="fa-solid fa-star"></i> {{ property.rating }}</div>
+                </div>
+
+                <form method="POST" action="{% url 'property_detail' property.slug %}" class="booking-form">
+                    {% csrf_token %}
+                    <h4 class="form-title">Reserve or Inquire</h4>
+
+                    <div class="form-group">
+                        <label>Your Full Name</label>
+                        <input type="text" name="name" class="form-control" value="{% if user.is_authenticated %}{{ user.first_name|default:user.username }}{% endif %}" placeholder="e.g. Alexander Wright" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" class="form-control" value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone / WhatsApp Number</label>
+                        <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Check-In Date</label>
+                            <input type="date" name="check_in" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Check-Out Date</label>
+                            <input type="date" name="check_out" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Number of Guests</label>
+                        <select name="guests" class="form-control">
+                            {% for i in "12345678910"|make_list %}
+                            <option value="{{ i }}" {% if i == "2" %}selected{% endif %}>{{ i }} Guests</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Special Requirements / Requests</label>
+                        <textarea name="message" class="form-control" rows="2" placeholder="Private chef preferences, airport pickup, dietary needs..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-gold btn-full">
+                        <i class="fa-solid fa-calendar-check"></i> Submit Booking Inquiry
+                    </button>
+                    <p class="form-note"><i class="fa-solid fa-lock"></i> No payment required now. Our concierge will confirm dates instantly.</p>
+                </form>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<!-- Similar Properties -->
+{% if similar_properties %}
+<section class="section similar-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2>Similar Luxury Stays in {{ property.get_location_display }}</h2>
+        </div>
+        <div class="property-grid">
+            {% for prop in similar_properties %}
+            <div class="property-card">
+                <div class="card-image-wrap">
+                    <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
+                    <div class="card-badge">{{ prop.get_property_type_display }}</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
+                    <div class="card-footer">
+                        <div class="card-price">
+                            <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
+                            <span class="price-unit">/ night</span>
+                        </div>
+                        <a href="{% url 'property_detail' prop.slug %}" class="btn btn-gold btn-sm">Explore</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function changeMainImage(url) {
+    const mainImg = document.getElementById('mainGalleryImage');
+    mainImg.src = url;
+}
+</script>
+{% endblock %}

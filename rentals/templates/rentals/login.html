@@ -1,0 +1,45 @@
+{% extends 'rentals/base.html' %}
+{% load static %}
+
+{% block title %}Sign In | RENTORA Kerala{% endblock %}
+
+{% block content %}
+<div class="auth-page-container">
+    <div class="auth-box">
+        <div class="auth-box-header">
+            <span class="sub-heading text-gold">WELCOME BACK</span>
+            <h2>Member Sign In</h2>
+            <p>Enter your credentials to access your luxury rental account.</p>
+        </div>
+
+        <form method="POST" action="{% url 'login' %}" class="auth-standalone-form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            <div class="form-error-box">
+                {% for err in form.non_field_errors %}
+                <p>{{ err }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for err in field.errors %}
+                <small class="field-error">{{ err }}</small>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary btn-full mt-2">
+                <i class="fa-solid fa-right-to-bracket"></i> Sign In
+            </button>
+        </form>
+
+        <div class="auth-box-footer">
+            <p>Don't have an account yet? <a href="{% url 'register' %}">Create VIP Account</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

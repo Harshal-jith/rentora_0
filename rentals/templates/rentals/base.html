@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RENTORA | Premium Property Rentals in Kerala{% endblock %}</title>
+    <meta name="description" content="Discover and book luxury private villas, heritage backwater houseboats, tea estate manors, and oceanfront cottages across Kerala.">
+    <meta name="keywords" content="Kerala luxury rentals, Alleppey houseboat, Munnar villa, Fort Kochi bungalow, Rentora Kerala">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Django Flash Messages -->
+    {% if messages %}
+    <div class="toast-container" id="toastContainer">
+        {% for message in messages %}
+        <div class="toast toast-{{ message.tags }}">
+            <i class="fa-solid {% if message.tags == 'success' %}fa-circle-check{% elif message.tags == 'error' %}fa-circle-exclamation{% else %}fa-circle-info{% endif %}"></i>
+            <span>{{ message }}</span>
+            <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Top Navigation Header -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="{% url 'home' %}" class="brand-logo">
+                <span class="logo-mark"><i class="fa-solid fa-leaf"></i></span>
+                <span class="logo-text">RENTORA <span class="logo-sub">KERALA</span></span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Explore Properties</a>
+                <a href="{% url 'home' %}#services" class="nav-link">Our Services</a>
+                <a href="{% url 'home' %}#features" class="nav-link">Why Rentora</a>
+                <a href="{% url 'home' %}#contact" class="nav-link">Concierge</a>
+            </nav>
+
+            <div class="nav-auth">
+                {% if user.is_authenticated %}
+                <div class="user-badge">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Hello, <strong>{{ user.username }}</strong></span>
+                </div>
+                <a href="{% url 'logout' %}" class="btn btn-outline btn-sm">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline btn-sm">Sign In</a>
+                <a href="{% url 'register' %}" class="btn btn-gold btn-sm">Become a Member</a>
+                {% endif %}
+            </div>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Body Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="{% url 'home' %}" class="brand-logo footer-logo">
+                    <span class="logo-mark"><i class="fa-solid fa-leaf"></i></span>
+                    <span class="logo-text">RENTORA <span class="logo-sub">LUXURY</span></span>
+                </a>
+                <p class="footer-desc">
+                    Kerala’s premier luxury property rental platform. Handpicked backwater villas, tea plantation manors, and private sea-view residences.
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Destinations</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'properties' %}?location=alleppey">Alleppey Backwaters</a></li>
+                    <li><a href="{% url 'properties' %}?location=munnar">Munnar Tea Hills</a></li>
+                    <li><a href="{% url 'properties' %}?location=varkala">Varkala Cliffside</a></li>
+                    <li><a href="{% url 'properties' %}?location=fort_kochi">Fort Kochi Heritage</a></li>
+                    <li><a href="{% url 'properties' %}?location=wayanad">Wayanad Rainforest</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">Property Types</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'properties' %}?property_type=villa">Private Infinity Villas</a></li>
+                    <li><a href="{% url 'properties' %}?property_type=houseboat">Presidential Houseboats</a></li>
+                    <li><a href="{% url 'properties' %}?property_type=estate">Plantation Estates</a></li>
+                    <li><a href="{% url 'properties' %}?property_type=bungalow">Colonial Heritage Mansions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-heading">24/7 Concierge</h4>
+                <p class="contact-item"><i class="fa-solid fa-phone"></i> +91 (484) 299-8800</p>
+                <p class="contact-item"><i class="fa-solid fa-envelope"></i> concierge@rentora.in</p>
+                <p class="contact-item"><i class="fa-solid fa-location-dot"></i> Fort Kochi Heritage Zone, Kerala 682001</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 RENTORA Luxury Rentals Kerala. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

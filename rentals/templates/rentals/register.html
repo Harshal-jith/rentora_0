@@ -1,0 +1,48 @@
+{% extends 'rentals/base.html' %}
+{% load static %}
+
+{% block title %}Register VIP Membership | RENTORA Kerala{% endblock %}
+
+{% block content %}
+<div class="auth-page-container">
+    <div class="auth-box">
+        <div class="auth-box-header">
+            <span class="sub-heading text-gold">JOIN RENTORA LUXURY</span>
+            <h2>Create Your Member Account</h2>
+            <p>Access exclusive verified Kerala estates and member privileges.</p>
+        </div>
+
+        <form method="POST" action="{% url 'register' %}" class="auth-standalone-form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            <div class="form-error-box">
+                {% for err in form.non_field_errors %}
+                <p>{{ err }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                <small class="field-help">{{ field.help_text }}</small>
+                {% endif %}
+                {% for err in field.errors %}
+                <small class="field-error">{{ err }}</small>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-gold btn-full mt-2">
+                <i class="fa-solid fa-user-plus"></i> Complete Registration
+            </button>
+        </form>
+
+        <div class="auth-box-footer">
+            <p>Already have an account? <a href="{% url 'login' %}">Sign In Here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

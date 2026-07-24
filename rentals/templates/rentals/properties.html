@@ -1,0 +1,114 @@
+{% extends 'rentals/base.html' %}
+{% load static %}
+
+{% block title %}All Luxury Properties | RENTORA Kerala{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="page-header-container">
+        <h1 class="page-title">Explore Luxury Kerala Rentals</h1>
+        <p class="page-subtitle">Handpicked estates, private backwater villas, and oceanfront sanctuaries.</p>
+    </div>
+</div>
+
+<section class="section catalog-section">
+    <div class="section-container catalog-layout">
+        
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+            <div class="filter-card">
+                <h3 class="filter-title"><i class="fa-solid fa-sliders"></i> Filter Estates</h3>
+                <form method="GET" action="{% url 'properties' %}" id="filterForm">
+                    
+                    <div class="form-group">
+                        <label>Search Keyword</label>
+                        <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Villa, pool, sunset...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <select name="location" class="form-control">
+                            <option value="">All Regions</option>
+                            {% for code, name in locations %}
+                            <option value="{{ code }}" {% if selected_location == code %}selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Property Style</label>
+                        <select name="property_type" class="form-control">
+                            <option value="">All Types</option>
+                            {% for code, name in property_types %}
+                            <option value="{{ code }}" {% if selected_type == code %}selected{% endif %}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Max Price / Night (₹)</label>
+                        <input type="number" name="max_price" value="{{ max_price }}" class="form-control" placeholder="e.g. 50000">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Minimum Guests</label>
+                        <input type="number" name="guests" value="{{ guests }}" class="form-control" placeholder="e.g. 4">
+                    </div>
+
+                    <button type="submit" class="btn btn-gold btn-full mt-2">
+                        <i class="fa-solid fa-filter"></i> Apply Filters
+                    </button>
+                    <a href="{% url 'properties' %}" class="btn btn-outline btn-full mt-1 text-center">Reset</a>
+                </form>
+            </div>
+        </aside>
+
+        <!-- Main Property Results Grid -->
+        <main class="catalog-results">
+            <div class="results-header">
+                <span class="results-count">Showing <strong>{{ properties|length }}</strong> available luxury property stays</span>
+            </div>
+
+            {% if properties %}
+            <div class="property-grid">
+                {% for prop in properties %}
+                <div class="property-card">
+                    <div class="card-image-wrap">
+                        <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
+                        <div class="card-badge">{{ prop.get_property_type_display }}</div>
+                        <div class="card-rating"><i class="fa-solid fa-star"></i> {{ prop.rating }} ({{ prop.reviews_count }})</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</div>
+                        <h3 class="card-title"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
+                        <p class="card-desc">{{ prop.short_description|truncatewords:15 }}</p>
+                        
+                        <div class="card-specs">
+                            <span><i class="fa-solid fa-bed"></i> {{ prop.bedrooms }} Beds</span>
+                            <span><i class="fa-solid fa-bath"></i> {{ prop.bathrooms }} Baths</span>
+                            <span><i class="fa-solid fa-users"></i> Up to {{ prop.max_guests }} Guests</span>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="card-price">
+                                <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
+                                <span class="price-unit">/ night</span>
+                            </div>
+                            <a href="{% url 'property_detail' prop.slug %}" class="btn btn-gold btn-sm">Explore <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-results-box">
+                <i class="fa-solid fa-house-circle-xmark"></i>
+                <h3>No Properties Match Your Search</h3>
+                <p>Try broadening your filters or location criteria to see available luxury estates.</p>
+                <a href="{% url 'properties' %}" class="btn btn-gold">View All Estates</a>
+            </div>
+            {% endif %}
+        </main>
+    </div>
+</section>
+{% endblock %}

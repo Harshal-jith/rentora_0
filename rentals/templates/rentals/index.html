@@ -1,0 +1,346 @@
+{% extends 'rentals/base.html' %}
+{% load static %}
+
+{% block title %}RENTORA | Kerala's Finest Luxury Property Rentals{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Integrated Sign Up / Sign In Tabbed Card -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-container">
+        
+        <!-- Left Hero Copy -->
+        <div class="hero-text-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-crown"></i> Exclusive Kerala Property Collection
+            </div>
+            <h1 class="hero-title">Experience Kerala in <span class="highlight-gold">Unmatched Luxury</span></h1>
+            <p class="hero-subtitle">
+                Private infinity villas, heritage 5-star backwater houseboats, and colonial tea estate manors across Alleppey, Munnar, Varkala & Fort Kochi.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-label">Verified Estates</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">4.96★</span>
+                    <span class="stat-label">Guest Rating</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">24/7</span>
+                    <span class="stat-label">Private Concierge</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Hero Registration & Sign-In Card -->
+        <div class="hero-auth-card">
+            {% if user.is_authenticated %}
+            <div class="member-welcome-box">
+                <div class="member-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <h3>Welcome Back, {{ user.username }}!</h3>
+                <p>As a Rentora VIP Member, you have full access to our complete collection of private luxury estates in Kerala.</p>
+                <div class="member-actions">
+                    <a href="{% url 'properties' %}" class="btn btn-gold btn-full">
+                        <i class="fa-solid fa-compass"></i> Explore All Properties
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" onclick="switchAuthTab('register')">Register / Sign Up</button>
+                <button class="auth-tab-btn" onclick="switchAuthTab('login')">Member Sign In</button>
+            </div>
+
+            <!-- Registration Form directly on Hero -->
+            <form method="POST" action="{% url 'home' %}" class="auth-form active" id="registerForm">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="register">
+                <div class="form-header">
+                    <h4>Create Your VIP Account</h4>
+                    <p>Unlock instant booking & exclusive private listings</p>
+                </div>
+                <div class="form-group">
+                    <label for="reg_username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="reg_username" name="username" class="form-control" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg_pass1"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="reg_pass1" name="password1" class="form-control" placeholder="Minimum 8 characters" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg_pass2"><i class="fa-solid fa-check-double"></i> Confirm Password</label>
+                    <input type="password" id="reg_pass2" name="password2" class="form-control" placeholder="Re-enter password" required>
+                </div>
+                <button type="submit" class="btn btn-gold btn-full">
+                    <i class="fa-solid fa-user-plus"></i> Join Rentora & View Properties
+                </button>
+            </form>
+
+            <!-- Login Form directly on Hero -->
+            <form method="POST" action="{% url 'home' %}" class="auth-form" id="loginForm">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="login">
+                <div class="form-header">
+                    <h4>Welcome Back</h4>
+                    <p>Sign in to access your reserved bookings</p>
+                </div>
+                <div class="form-group">
+                    <label for="login_username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="login_username" name="username" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login_password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="login_password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In to Account
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Quick Search Widget -->
+    <div class="search-widget-container">
+        <form action="{% url 'properties' %}" method="GET" class="search-widget-form">
+            <div class="search-field">
+                <label><i class="fa-solid fa-location-dot"></i> Destination</label>
+                <select name="location" class="search-input">
+                    <option value="">All Destinations (Kerala)</option>
+                    {% for code, name in locations %}
+                    <option value="{{ code }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="search-field">
+                <label><i class="fa-solid fa-house"></i> Property Style</label>
+                <select name="property_type" class="search-input">
+                    <option value="">All Luxury Styles</option>
+                    {% for code, name in property_types %}
+                    <option value="{{ code }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="search-field">
+                <label><i class="fa-solid fa-users"></i> Guests</label>
+                <select name="guests" class="search-input">
+                    <option value="">Any Guests</option>
+                    <option value="2">2+ Guests</option>
+                    <option value="4">4+ Guests</option>
+                    <option value="6">6+ Guests</option>
+                    <option value="8">8+ Guests</option>
+                </select>
+            </div>
+
+            <button type="submit" class="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i> Find Luxury Stay
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Company Services & Features Section -->
+<section class="section services-section" id="services">
+    <div class="section-container">
+        <div class="section-header text-center">
+            <span class="sub-heading">THE RENTORA STANDARDS</span>
+            <h2 class="section-title">Bespoke Services for the Discerning Traveler</h2>
+            <p class="section-subtitle">We go beyond ordinary holiday rentals to deliver complete private luxury experiences in God’s Own Country.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>100% Handpicked & Verified</h3>
+                <p>Every single villa, houseboat, and plantation estate undergoes rigorous 80-point quality inspections to ensure unmatched standards.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-utensils"></i></div>
+                <h3>Private Culinary Chefs</h3>
+                <p>Enjoy authentic Malabar feasts, fresh sea-to-table grills, and custom international dining prepared right inside your private kitchen.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-ship"></i></div>
+                <h3>Private Backwater Cruisers</h3>
+                <p>Step directly from your private villa deck onto custom motorboats and luxury houseboats reserved exclusively for your party.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
+                <h3>In-Villa Ayurvedic Wellness</h3>
+                <p>Rejuvenate with custom authentic Ayurvedic therapies and massage treatments conducted by master practitioners in private therapy rooms.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-helicopter"></i></div>
+                <h3>Helicopter & Airport Transfers</h3>
+                <p>Seamless luxury transfers from Cochin International Airport directly to estate helipads or private luxury SUVs.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>Dedicated 24/7 Personal Host</h3>
+                <p>Your dedicated local host is on standby 24 hours a day to fulfill every request, excursion, or custom event.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Properties Showcase Section -->
+<section class="section properties-section" id="features">
+    <div class="section-container">
+        <div class="section-header flex-header">
+            <div>
+                <span class="sub-heading">CURATED PORTFOLIO</span>
+                <h2 class="section-title">Featured Luxury Estates</h2>
+            </div>
+            <a href="{% url 'properties' %}" class="btn btn-outline">View All Estates <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="property-grid">
+            {% for prop in featured_properties %}
+            <div class="property-card">
+                <div class="card-image-wrap">
+                    <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
+                    <div class="card-badge">{{ prop.get_property_type_display }}</div>
+                    <div class="card-rating"><i class="fa-solid fa-star"></i> {{ prop.rating }} ({{ prop.reviews_count }})</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</div>
+                    <h3 class="card-title"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
+                    <p class="card-desc">{{ prop.short_description|truncatewords:15 }}</p>
+                    
+                    <div class="card-specs">
+                        <span><i class="fa-solid fa-bed"></i> {{ prop.bedrooms }} Beds</span>
+                        <span><i class="fa-solid fa-bath"></i> {{ prop.bathrooms }} Baths</span>
+                        <span><i class="fa-solid fa-users"></i> Up to {{ prop.max_guests }} Guests</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="card-price">
+                            <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
+                            <span class="price-unit">/ night</span>
+                        </div>
+                        <a href="{% url 'property_detail' prop.slug %}" class="btn btn-gold btn-sm">Explore <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Kerala Destinations Showcase -->
+<section class="section destinations-section">
+    <div class="section-container">
+        <div class="section-header text-center">
+            <span class="sub-heading">EXPLORE KERALA</span>
+            <h2 class="section-title">Iconic Destinations</h2>
+        </div>
+
+        <div class="destinations-grid">
+            <a href="{% url 'properties' %}?location=alleppey" class="dest-card">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Alleppey">
+                <div class="dest-overlay">
+                    <h3>Alleppey Backwaters</h3>
+                    <p>Serene lake villas & luxury houseboats</p>
+                </div>
+            </a>
+
+            <a href="{% url 'properties' %}?location=munnar" class="dest-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Munnar">
+                <div class="dest-overlay">
+                    <h3>Munnar Hills</h3>
+                    <p>Misty tea estate colonial manors</p>
+                </div>
+            </a>
+
+            <a href="{% url 'properties' %}?location=varkala" class="dest-card">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Varkala">
+                <div class="dest-overlay">
+                    <h3>Varkala Cliffside</h3>
+                    <p>Arabian Sea oceanfront sanctuaries</p>
+                </div>
+            </a>
+
+            <a href="{% url 'properties' %}?location=fort_kochi" class="dest-card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Fort Kochi">
+                <div class="dest-overlay">
+                    <h3>Fort Kochi</h3>
+                    <p>300-year-old Dutch-Portuguese bungalows</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Direct Concierge Inquiry Section -->
+<section class="section contact-section" id="contact">
+    <div class="section-container">
+        <div class="contact-box">
+            <div class="contact-info">
+                <span class="sub-heading text-gold">PERSONALIZED BOOKING</span>
+                <h2>Planning a Custom Kerala Retreat?</h2>
+                <p>Our senior concierge team will tailor a private portfolio matching your exact group size, dietary preferences, and travel dates.</p>
+                <div class="contact-highlights">
+                    <div><i class="fa-solid fa-check-circle"></i> Direct Estate Access</div>
+                    <div><i class="fa-solid fa-check-circle"></i> Custom Houseboat Charters</div>
+                    <div><i class="fa-solid fa-check-circle"></i> Confidential VIP Stays</div>
+                </div>
+            </div>
+
+            <form method="POST" action="{% url 'home' %}" class="contact-form">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="inquiry">
+                <h3>Contact Senior Concierge</h3>
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" class="form-control" placeholder="Phone / WhatsApp" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" class="form-control" rows="3" placeholder="Tell us your dates, preferred location, or special requests..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-gold btn-full">
+                    <i class="fa-solid fa-paper-plane"></i> Send Concierge Request
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function switchAuthTab(tab) {
+    const regForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
+    const btns = document.querySelectorAll('.auth-tab-btn');
+
+    btns.forEach(btn => btn.classList.remove('active'));
+
+    if (tab === 'register') {
+        regForm.classList.add('active');
+        loginForm.classList.remove('active');
+        btns[0].classList.add('active');
+    } else {
+        loginForm.classList.add('active');
+        regForm.classList.remove('active');
+        btns[1].classList.add('active');
+    }
+}
+</script>
+{% endblock %}
