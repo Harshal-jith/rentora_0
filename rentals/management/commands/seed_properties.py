@@ -163,9 +163,21 @@ SAMPLE_PROPERTIES = [
 ]
 
 class Command(BaseCommand):
-    help = 'Seeds initial luxury properties into database'
+    help = 'Seeds initial luxury properties into database and ensures admin superuser'
 
     def handle(self, *args, **options):
+        from django.contrib.auth.models import User
+        if not User.objects.filter(username='admin').exists():
+            User.objects.create_superuser('admin', 'admin@rentora.in', 'RentoraAdmin2026!')
+            self.stdout.write(self.style.SUCCESS('Created superuser: admin'))
+        else:
+            u = User.objects.get(username='admin')
+            u.set_password('RentoraAdmin2026!')
+            u.is_superuser = True
+            u.is_staff = True
+            u.save()
+            self.stdout.write(self.style.SUCCESS('Updated superuser credentials: admin'))
+
         count = 0
         for data in SAMPLE_PROPERTIES:
             obj, created = Property.objects.update_or_create(
@@ -175,3 +187,4 @@ class Command(BaseCommand):
             if created:
                 count += 1
         self.stdout.write(self.style.SUCCESS(f'Successfully seeded {count} luxury properties (Total: {Property.objects.count()}).'))
+
