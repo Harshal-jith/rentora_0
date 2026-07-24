@@ -39,7 +39,10 @@
     <header class="navbar" id="navbar">
         <div class="nav-container">
             <a href="{% url 'home' %}" class="brand-logo">
-                <img src="{% static 'images/logo.png' %}" alt="RENTORA - Find. Rent. Live." class="logo-img">
+                <div class="logo-wrapper">
+                    <img src="{% static 'images/logo_main_nobg.png' %}" alt="RENTORA - Find. Rent. Live." class="logo-img logo-dark-mode">
+                    <img src="{% static 'images/logo_black_nobg.png' %}" alt="RENTORA - Find. Rent. Live." class="logo-img logo-light-mode">
+                </div>
             </a>
             
             <nav class="nav-links">
@@ -86,7 +89,10 @@
         <div class="footer-container">
             <div class="footer-col brand-col">
                 <a href="{% url 'home' %}" class="brand-logo footer-logo">
-                    <img src="{% static 'images/logo.png' %}" alt="RENTORA" class="logo-img footer-logo-img">
+                    <div class="logo-wrapper footer-logo-wrapper">
+                        <img src="{% static 'images/logo_main_nobg.png' %}" alt="RENTORA" class="logo-img logo-dark-mode">
+                        <img src="{% static 'images/logo_black_nobg.png' %}" alt="RENTORA" class="logo-img logo-light-mode">
+                    </div>
                 </a>
                 <p class="footer-desc">
                     Kerala’s premier luxury real estate & property rental service. Handcrafted private villas, heritage backwater estates, and exclusive mountain sanctuaries.
