@@ -102,46 +102,6 @@
             {% endif %}
         </div>
     </div>
-
-    <!-- Quick Search Widget -->
-    <div class="search-widget-container">
-        <form action="{% url 'properties' %}" method="GET" class="search-widget-form">
-            <div class="search-field">
-                <label><i class="fa-solid fa-location-dot"></i> Destination</label>
-                <select name="location" class="search-input">
-                    <option value="">All Kerala Regions</option>
-                    {% for code, name in locations %}
-                    <option value="{{ code }}">{{ name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            
-            <div class="search-field">
-                <label><i class="fa-solid fa-building-user"></i> Property Style</label>
-                <select name="property_type" class="search-input">
-                    <option value="">All Luxury Styles</option>
-                    {% for code, name in property_types %}
-                    <option value="{{ code }}">{{ name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div class="search-field">
-                <label><i class="fa-solid fa-users"></i> Guests</label>
-                <select name="guests" class="search-input">
-                    <option value="">Any Guests</option>
-                    <option value="2">2+ Guests</option>
-                    <option value="4">4+ Guests</option>
-                    <option value="6">6+ Guests</option>
-                    <option value="8">8+ Guests</option>
-                </select>
-            </div>
-
-            <button type="submit" class="search-btn">
-                <i class="fa-solid fa-magnifying-glass"></i> Search Properties
-            </button>
-        </form>
-    </div>
 </section>
 
 <!-- Company Services & Features Section -->
