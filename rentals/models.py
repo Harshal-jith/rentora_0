@@ -60,6 +60,7 @@ class Inquiry(models.Model):
     guests = models.PositiveIntegerField(default=2)
     message = models.TextField()
     status = models.CharField(max_length=20, default='Pending', choices=[('Pending', 'Pending'), ('Contacted', 'Contacted'), ('Confirmed', 'Confirmed')])
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -69,3 +70,17 @@ class Inquiry(models.Model):
     def __str__(self):
         prop_title = self.property.title if self.property else "General Inquiry"
         return f"Inquiry from {self.name} for {prop_title}"
+
+class VisitorLog(models.Model):
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    page_url = models.CharField(max_length=300)
+    property = models.ForeignKey(Property, on_delete=models.SET_NULL, null=True, blank=True, related_name='visitor_logs')
+    user_agent = models.TextField(blank=True, default='')
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Visitor & Click Logs"
+        ordering = ['-timestamp']
+
+    def __str__(self):
+        return f"{self.ip_address} visited {self.page_url} at {self.timestamp.strftime('%Y-%m-%d %H:%M')}"

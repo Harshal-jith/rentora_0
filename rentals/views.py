@@ -3,9 +3,31 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.db.models import Q
-from .models import Property, Inquiry, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
+from .models import Property, Inquiry, VisitorLog, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+def log_visitor(request, property_obj=None):
+    try:
+        ip = get_client_ip(request)
+        ua = request.META.get('HTTP_USER_AGENT', '')
+        VisitorLog.objects.create(
+            ip_address=ip,
+            page_url=request.path,
+            property=property_obj,
+            user_agent=ua[:500]
+        )
+    except Exception:
+        pass
 
 def home_view(request):
+    log_visitor(request)
     featured_properties = Property.objects.filter(is_featured=True)[:6]
     if not featured_properties.exists():
         featured_properties = Property.objects.all()[:6]
@@ -50,7 +72,8 @@ def home_view(request):
                 email=email,
                 phone=phone,
                 guests=guests,
-                message=message
+                message=message,
+                ip_address=get_client_ip(request)
             )
             messages.success(request, "Thank you! Our concierge team will contact you within 2 hours with curated options.")
             return redirect('home')
@@ -64,6 +87,7 @@ def home_view(request):
     return render(request, 'rentals/index.html', context)
 
 def properties_view(request):
+    log_visitor(request)
     properties = Property.objects.all()
 
     query = request.GET.get('q', '')
@@ -105,6 +129,7 @@ def properties_view(request):
 
 def property_detail_view(request, slug):
     property_obj = get_object_or_404(Property, slug=slug)
+    log_visitor(request, property_obj=property_obj)
     similar_properties = Property.objects.filter(location=property_obj.location).exclude(id=property_obj.id)[:3]
     
     if not similar_properties.exists():
@@ -127,7 +152,8 @@ def property_detail_view(request, slug):
             check_in=check_in,
             check_out=check_out,
             guests=guests,
-            message=message
+            message=message,
+            ip_address=get_client_ip(request)
         )
         messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! Our concierge will get back to you shortly.")
         return redirect('property_detail', slug=property_obj.slug)
@@ -139,6 +165,7 @@ def property_detail_view(request, slug):
     return render(request, 'rentals/property_detail.html', context)
 
 def register_view(request):
+    log_visitor(request)
     if request.user.is_authenticated:
         return redirect('home')
         
@@ -158,6 +185,7 @@ def register_view(request):
     return render(request, 'rentals/register.html', {'form': form})
 
 def login_view(request):
+    log_visitor(request)
     if request.user.is_authenticated:
         return redirect('home')
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Property, Inquiry
+from .models import Property, Inquiry, VisitorLog
 
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
@@ -10,6 +10,13 @@ class PropertyAdmin(admin.ModelAdmin):
 
 @admin.register(Inquiry)
 class InquiryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone', 'property', 'check_in', 'status', 'created_at')
+    list_display = ('name', 'email', 'phone', 'property', 'ip_address', 'check_in', 'status', 'created_at')
     list_filter = ('status', 'created_at')
-    search_fields = ('name', 'email', 'phone', 'message')
+    search_fields = ('name', 'email', 'phone', 'ip_address', 'message')
+
+@admin.register(VisitorLog)
+class VisitorLogAdmin(admin.ModelAdmin):
+    list_display = ('ip_address', 'page_url', 'property', 'timestamp')
+    list_filter = ('timestamp',)
+    search_fields = ('ip_address', 'page_url', 'user_agent')
+    readonly_fields = ('ip_address', 'page_url', 'property', 'user_agent', 'timestamp')
