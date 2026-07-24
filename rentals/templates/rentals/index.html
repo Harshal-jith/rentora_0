@@ -1,7 +1,7 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}RENTORA | Kerala's Finest Luxury Property Rentals{% endblock %}
+{% block title %}RENTORA | Find. Rent. Live. — Kerala Luxury Property Rentals{% endblock %}
 
 {% block content %}
 <!-- Hero Section with Integrated Sign Up / Sign In Tabbed Card -->
@@ -12,11 +12,11 @@
         <!-- Left Hero Copy -->
         <div class="hero-text-content">
             <div class="hero-badge">
-                <i class="fa-solid fa-crown"></i> Exclusive Kerala Property Collection
+                <i class="fa-solid fa-crown"></i> EXCLUSIVE LUXURY REAL ESTATE RENTALS
             </div>
-            <h1 class="hero-title">Experience Kerala in <span class="highlight-gold">Unmatched Luxury</span></h1>
+            <h1 class="hero-title">FIND. RENT. LIVE.<br><span class="highlight-gold">In Unmatched Luxury</span></h1>
             <p class="hero-subtitle">
-                Private infinity villas, heritage 5-star backwater houseboats, and colonial tea estate manors across Alleppey, Munnar, Varkala & Fort Kochi.
+                Kerala's premier portfolio of private infinity pool villas, 5-star presidential backwater houseboats, and colonial tea estate manors.
             </p>
 
             <div class="hero-stats">
@@ -25,7 +25,7 @@
                     <span class="stat-label">Verified Estates</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-num">4.96★</span>
+                    <span class="stat-num">4.98★</span>
                     <span class="stat-label">Guest Rating</span>
                 </div>
                 <div class="stat-item">
@@ -39,12 +39,12 @@
         <div class="hero-auth-card">
             {% if user.is_authenticated %}
             <div class="member-welcome-box">
-                <div class="member-icon"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="member-icon"><i class="fa-solid fa-crown"></i></div>
                 <h3>Welcome Back, {{ user.username }}!</h3>
-                <p>As a Rentora VIP Member, you have full access to our complete collection of private luxury estates in Kerala.</p>
+                <p>You have full access to our unlisted private luxury estates across Kerala.</p>
                 <div class="member-actions">
                     <a href="{% url 'properties' %}" class="btn btn-gold btn-full">
-                        <i class="fa-solid fa-compass"></i> Explore All Properties
+                        <i class="fa-solid fa-compass"></i> Explore Private Collection
                     </a>
                 </div>
             </div>
@@ -59,8 +59,8 @@
                 {% csrf_token %}
                 <input type="hidden" name="action" value="register">
                 <div class="form-header">
-                    <h4>Create Your VIP Account</h4>
-                    <p>Unlock instant booking & exclusive private listings</p>
+                    <h4>Create Member Account</h4>
+                    <p>Unlock direct property bookings & VIP rates</p>
                 </div>
                 <div class="form-group">
                     <label for="reg_username"><i class="fa-solid fa-user"></i> Username</label>
@@ -71,11 +71,11 @@
                     <input type="password" id="reg_pass1" name="password1" class="form-control" placeholder="Minimum 8 characters" required>
                 </div>
                 <div class="form-group">
-                    <label for="reg_pass2"><i class="fa-solid fa-check-double"></i> Confirm Password</label>
+                    <label for="reg_pass2"><i class="fa-solid fa-shield-halved"></i> Confirm Password</label>
                     <input type="password" id="reg_pass2" name="password2" class="form-control" placeholder="Re-enter password" required>
                 </div>
                 <button type="submit" class="btn btn-gold btn-full">
-                    <i class="fa-solid fa-user-plus"></i> Join Rentora & View Properties
+                    <i class="fa-solid fa-key"></i> Join Rentora & Access Properties
                 </button>
             </form>
 
@@ -84,8 +84,8 @@
                 {% csrf_token %}
                 <input type="hidden" name="action" value="login">
                 <div class="form-header">
-                    <h4>Welcome Back</h4>
-                    <p>Sign in to access your reserved bookings</p>
+                    <h4>Member Sign In</h4>
+                    <p>Access your reserved luxury property stays</p>
                 </div>
                 <div class="form-group">
                     <label for="login_username"><i class="fa-solid fa-user"></i> Username</label>
@@ -109,7 +109,7 @@
             <div class="search-field">
                 <label><i class="fa-solid fa-location-dot"></i> Destination</label>
                 <select name="location" class="search-input">
-                    <option value="">All Destinations (Kerala)</option>
+                    <option value="">All Kerala Regions</option>
                     {% for code, name in locations %}
                     <option value="{{ code }}">{{ name }}</option>
                     {% endfor %}
@@ -117,7 +117,7 @@
             </div>
             
             <div class="search-field">
-                <label><i class="fa-solid fa-house"></i> Property Style</label>
+                <label><i class="fa-solid fa-building-user"></i> Property Style</label>
                 <select name="property_type" class="search-input">
                     <option value="">All Luxury Styles</option>
                     {% for code, name in property_types %}
@@ -138,7 +138,7 @@
             </div>
 
             <button type="submit" class="search-btn">
-                <i class="fa-solid fa-magnifying-glass"></i> Find Luxury Stay
+                <i class="fa-solid fa-magnifying-glass"></i> Search Properties
             </button>
         </form>
     </div>
@@ -148,46 +148,46 @@
 <section class="section services-section" id="services">
     <div class="section-container">
         <div class="section-header text-center">
-            <span class="sub-heading">THE RENTORA STANDARDS</span>
-            <h2 class="section-title">Bespoke Services for the Discerning Traveler</h2>
-            <p class="section-subtitle">We go beyond ordinary holiday rentals to deliver complete private luxury experiences in God’s Own Country.</p>
+            <span class="sub-heading">THE RENTORA ADVANTAGE</span>
+            <h2 class="section-title">Bespoke Services for Luxury Travelers</h2>
+            <p class="section-subtitle">We manage and curate Kerala’s most sought-after private estates, houseboats, and cliffside residences.</p>
         </div>
 
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>100% Handpicked & Verified</h3>
-                <p>Every single villa, houseboat, and plantation estate undergoes rigorous 80-point quality inspections to ensure unmatched standards.</p>
+                <div class="service-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+                <h3>100% Verified Estates</h3>
+                <p>Every single property passes an extensive 80-point verification process covering architectural safety, high-speed connectivity, and luxury amenities.</p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><i class="fa-solid fa-utensils"></i></div>
-                <h3>Private Culinary Chefs</h3>
-                <p>Enjoy authentic Malabar feasts, fresh sea-to-table grills, and custom international dining prepared right inside your private kitchen.</p>
+                <h3>Private Culinary Master Chefs</h3>
+                <p>Indulge in custom multi-course dining, sea-to-table seafood grills, and gourmet international menus prepared in your private villa kitchen.</p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><i class="fa-solid fa-ship"></i></div>
-                <h3>Private Backwater Cruisers</h3>
-                <p>Step directly from your private villa deck onto custom motorboats and luxury houseboats reserved exclusively for your party.</p>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
-                <h3>In-Villa Ayurvedic Wellness</h3>
-                <p>Rejuvenate with custom authentic Ayurvedic therapies and massage treatments conducted by master practitioners in private therapy rooms.</p>
+                <h3>Private Backwater Charters</h3>
+                <p>Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><i class="fa-solid fa-helicopter"></i></div>
-                <h3>Helicopter & Airport Transfers</h3>
-                <p>Seamless luxury transfers from Cochin International Airport directly to estate helipads or private luxury SUVs.</p>
+                <h3>Helicopter & SUV Transfers</h3>
+                <p>Seamless airport transfers via luxury SUVs or direct helicopter arrivals at estate helipads across Munnar and Wayanad.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Confidential & Private Stays</h3>
+                <p>Discreet high-security estates with private access gates, dedicated staff quarters, and complete privacy for high-net-worth guests.</p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
-                <h3>Dedicated 24/7 Personal Host</h3>
-                <p>Your dedicated local host is on standby 24 hours a day to fulfill every request, excursion, or custom event.</p>
+                <h3>24/7 Dedicated Estate Manager</h3>
+                <p>Your dedicated personal host is available 24 hours a day to coordinate private excursions, yacht rentals, and customized requests.</p>
             </div>
         </div>
     </div>
@@ -198,10 +198,10 @@
     <div class="section-container">
         <div class="section-header flex-header">
             <div>
-                <span class="sub-heading">CURATED PORTFOLIO</span>
-                <h2 class="section-title">Featured Luxury Estates</h2>
+                <span class="sub-heading">FEATURED REAL ESTATE</span>
+                <h2 class="section-title">Exclusive Kerala Rentals</h2>
             </div>
-            <a href="{% url 'properties' %}" class="btn btn-outline">View All Estates <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="{% url 'properties' %}" class="btn btn-outline">Explore All Properties <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="property-grid">
@@ -241,8 +241,8 @@
 <section class="section destinations-section">
     <div class="section-container">
         <div class="section-header text-center">
-            <span class="sub-heading">EXPLORE KERALA</span>
-            <h2 class="section-title">Iconic Destinations</h2>
+            <span class="sub-heading">PRIME DESTINATIONS</span>
+            <h2 class="section-title">Kerala's Most Coveted Locations</h2>
         </div>
 
         <div class="destinations-grid">
@@ -250,15 +250,15 @@
                 <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Alleppey">
                 <div class="dest-overlay">
                     <h3>Alleppey Backwaters</h3>
-                    <p>Serene lake villas & luxury houseboats</p>
+                    <p>Waterfront estates & presidential houseboats</p>
                 </div>
             </a>
 
             <a href="{% url 'properties' %}?location=munnar" class="dest-card">
                 <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Munnar">
                 <div class="dest-overlay">
-                    <h3>Munnar Hills</h3>
-                    <p>Misty tea estate colonial manors</p>
+                    <h3>Munnar Tea Hills</h3>
+                    <p>Colonial tea estate manors & sanctuaries</p>
                 </div>
             </a>
 
@@ -266,7 +266,7 @@
                 <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Varkala">
                 <div class="dest-overlay">
                     <h3>Varkala Cliffside</h3>
-                    <p>Arabian Sea oceanfront sanctuaries</p>
+                    <p>Oceanfront villas overlooking the Arabian Sea</p>
                 </div>
             </a>
 
@@ -274,7 +274,7 @@
                 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Fort Kochi">
                 <div class="dest-overlay">
                     <h3>Fort Kochi</h3>
-                    <p>300-year-old Dutch-Portuguese bungalows</p>
+                    <p>300-year-old Dutch-Portuguese heritage mansions</p>
                 </div>
             </a>
         </div>
@@ -286,20 +286,20 @@
     <div class="section-container">
         <div class="contact-box">
             <div class="contact-info">
-                <span class="sub-heading text-gold">PERSONALIZED BOOKING</span>
-                <h2>Planning a Custom Kerala Retreat?</h2>
-                <p>Our senior concierge team will tailor a private portfolio matching your exact group size, dietary preferences, and travel dates.</p>
+                <span class="sub-heading text-gold">PERSONALIZED REAL ESTATE CONCIERGE</span>
+                <h2>Inquire for Custom Property Rentals</h2>
+                <p>Our estate specialists will curate a tailored list of unlisted private villas matching your party size and dates.</p>
                 <div class="contact-highlights">
-                    <div><i class="fa-solid fa-check-circle"></i> Direct Estate Access</div>
-                    <div><i class="fa-solid fa-check-circle"></i> Custom Houseboat Charters</div>
-                    <div><i class="fa-solid fa-check-circle"></i> Confidential VIP Stays</div>
+                    <div><i class="fa-solid fa-check-circle"></i> Direct Property Owner Access</div>
+                    <div><i class="fa-solid fa-check-circle"></i> Custom Houseboat & Yacht Charters</div>
+                    <div><i class="fa-solid fa-check-circle"></i> Complete Privacy & VIP Security</div>
                 </div>
             </div>
 
             <form method="POST" action="{% url 'home' %}" class="contact-form">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="inquiry">
-                <h3>Contact Senior Concierge</h3>
+                <h3>Contact Private Concierge</h3>
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Your Full Name" required>
                 </div>
@@ -312,10 +312,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" class="form-control" rows="3" placeholder="Tell us your dates, preferred location, or special requests..." required></textarea>
+                    <textarea name="message" class="form-control" rows="3" placeholder="Tell us your dates, preferred region, or special requirements..." required></textarea>
                 </div>
                 <button type="submit" class="btn btn-gold btn-full">
-                    <i class="fa-solid fa-paper-plane"></i> Send Concierge Request
+                    <i class="fa-solid fa-paper-plane"></i> Submit Rental Inquiry
                 </button>
             </form>
         </div>
