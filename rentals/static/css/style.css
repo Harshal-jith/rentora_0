@@ -499,7 +499,7 @@ img {
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* SCROLL REVEAL UTILITY CLASSES (Slow 1.0s Staggered Blur Reveal) */
+/* SCROLL REVEAL & POP-UP UTILITY CLASSES (Staggered Cinematic Blur & Pop Reveals) */
 .reveal-on-scroll {
     opacity: 0;
     transform: translateY(28px);
@@ -516,12 +516,39 @@ img {
     filter: blur(0);
 }
 
+/* CINEMATIC POP-UP SCROLL ANIMATION */
+.reveal-popup {
+    opacity: 0;
+    transform: translateY(35px) scale(0.96);
+    filter: blur(10px);
+    will-change: opacity, transform, filter;
+    transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                opacity 0.9s ease-out,
+                filter 0.9s ease-out;
+}
+
+.reveal-popup.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1.0);
+    filter: blur(0);
+}
+
 /* SECTION 2: RENTORA ADVANTAGE FEATURE CAROUSEL */
 .advantage-section {
     position: relative;
     padding: 110px 0 130px;
     background: var(--bg-dark);
     overflow: hidden;
+}
+
+.advantage-header-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto 45px;
+    max-width: 800px;
 }
 
 .sub-heading-gold {
@@ -533,11 +560,13 @@ img {
     text-transform: uppercase;
     display: block;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .advantage-title {
     font-size: clamp(2.4rem, 4vw, 3.8rem);
     margin-bottom: 14px;
+    text-align: center;
 }
 
 .advantage-desc {
@@ -545,6 +574,7 @@ img {
     font-size: 1.05rem;
     max-width: 650px;
     margin: 0 auto;
+    text-align: center;
 }
 
 /* Carousel Track & Outer Wrapper */

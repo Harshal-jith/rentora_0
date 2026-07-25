@@ -223,29 +223,27 @@ function initFeatureCarousel() {
    5. Scroll Intersection Observer for Slow 1.0s Blur/Fade Reveals (Staggered)
    -------------------------------------------------------------------------- */
 function initScrollObserver() {
-    const revealElements = document.querySelectorAll('.reveal-on-scroll, .advantage-card-glass');
+    const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-popup');
     if (!revealElements.length) return;
 
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -60px 0px',
-        threshold: 0.15
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // Apply 100ms stagger delay for feature cards
                 setTimeout(() => {
                     entry.target.classList.add('is-visible');
-                }, index * 100);
-                obs.unobserve(entry.target); // Reveal only once
+                }, index * 90);
+                obs.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     revealElements.forEach(el => {
-        el.classList.add('reveal-on-scroll');
         observer.observe(el);
     });
 }
