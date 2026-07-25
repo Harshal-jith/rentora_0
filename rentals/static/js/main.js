@@ -1,5 +1,5 @@
 /* ==========================================================================
-   RENTORA LANDING PAGE REFINEMENT INTERACTION SCRIPT - SPECIFICATION V1.1
+   RENTORA ANIMATION REFINEMENT SCRIPT - SPECIFICATION V1.2
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroParallax();
     initParticleCanvas();
     initFeatureCarousel();
+    initScrollObserver();
     initMobileNav();
 });
 
@@ -41,7 +42,7 @@ function initThemeToggle() {
 }
 
 /* --------------------------------------------------------------------------
-   2. 3-Layer Subtle Mouse Parallax (Hero Section: Max 3-8px Offset)
+   2. Ultra-Subtle Hero Parallax (Fixed Camera: Max 3-5px Total Movement)
    -------------------------------------------------------------------------- */
 function initHeroParallax() {
     const heroSection = document.querySelector('.hero-section');
@@ -58,17 +59,20 @@ function initHeroParallax() {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
 
+        // Normalized offset (-0.5 to 0.5)
         mouseX = (e.clientX / windowWidth) - 0.5;
         mouseY = (e.clientY / windowHeight) - 0.5;
     }, { passive: true });
 
     function animateParallax() {
-        targetX += (mouseX - targetX) * 0.05;
-        targetY += (mouseY - targetY) * 0.05;
+        // Heavy, ultra-slow damping (0.025 factor)
+        targetX += (mouseX - targetX) * 0.025;
+        targetY += (mouseY - targetY) * 0.025;
 
-        if (layerBg) layerBg.style.transform = `scale(1.05) translate3d(${targetX * 4}px, ${targetY * 4}px, 0)`;
-        if (layerMid) layerMid.style.transform = `scale(1.03) translate3d(${targetX * 7}px, ${targetY * 7}px, 0)`;
-        if (layerFg) layerFg.style.transform = `scale(1.02) translate3d(${targetX * 11}px, ${targetY * 11}px, 0)`;
+        // Strictly capped between 2px and 4.5px max offset
+        if (layerBg) layerBg.style.transform = `scale(1.03) translate3d(${targetX * 2.2}px, ${targetY * 2.2}px, 0)`;
+        if (layerMid) layerMid.style.transform = `scale(1.02) translate3d(${targetX * 3.5}px, ${targetY * 3.5}px, 0)`;
+        if (layerFg) layerFg.style.transform = `scale(1.01) translate3d(${targetX * 4.8}px, ${targetY * 4.8}px, 0)`;
 
         requestAnimationFrame(animateParallax);
     }
@@ -93,16 +97,16 @@ function initParticleCanvas() {
     }, { passive: true });
 
     const particles = [];
-    const particleCount = 35;
+    const particleCount = 28;
 
     for (let i = 0; i < particleCount; i++) {
         particles.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            radius: Math.random() * 1.5 + 0.5,
-            alpha: Math.random() * 0.5 + 0.1,
-            speedY: Math.random() * 0.3 + 0.1,
-            speedX: (Math.random() - 0.5) * 0.2
+            radius: Math.random() * 1.2 + 0.4,
+            alpha: Math.random() * 0.35 + 0.05,
+            speedY: Math.random() * 0.15 + 0.05,
+            speedX: (Math.random() - 0.5) * 0.1
         });
     }
 
@@ -131,7 +135,7 @@ function initParticleCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   4. RENTORA ADVANTAGE HORIZONTAL FEATURE CAROUSEL (Infinite Auto-Scroll + Drag/Touch)
+   4. Feature Carousel (Slowing speed by ~45%: 0.42 speed with smooth drag)
    -------------------------------------------------------------------------- */
 function initFeatureCarousel() {
     const wrapper = document.querySelector('.carousel-outer-wrapper');
@@ -140,14 +144,12 @@ function initFeatureCarousel() {
     if (!wrapper || !track) return;
 
     let positionX = 0;
-    let speed = 0.8;
+    let speed = 0.42; // Reduced speed for calm, luxury auto-scroll
     let isPaused = false;
     let isDragging = false;
     let startX = 0;
     let dragStartX = 0;
-    let animationFrameId = null;
 
-    // Total width of half the cards (for seamless infinite loop)
     function getHalfWidth() {
         return track.scrollWidth / 2;
     }
@@ -161,17 +163,15 @@ function initFeatureCarousel() {
             }
             track.style.transform = `translate3d(${positionX}px, 0, 0)`;
         }
-        animationFrameId = requestAnimationFrame(step);
+        requestAnimationFrame(step);
     }
 
-    // Pause / Resume on Hover
     wrapper.addEventListener('mouseenter', () => { isPaused = true; }, { passive: true });
     wrapper.addEventListener('mouseleave', () => {
         isPaused = false;
         isDragging = false;
     }, { passive: true });
 
-    // Mouse Drag Handlers
     wrapper.addEventListener('mousedown', (e) => {
         isDragging = true;
         startX = e.pageX;
@@ -198,7 +198,6 @@ function initFeatureCarousel() {
         }
     });
 
-    // Touch Swipe Handlers (Mobile)
     wrapper.addEventListener('touchstart', (e) => {
         isDragging = true;
         startX = e.touches[0].pageX;
@@ -227,7 +226,38 @@ function initFeatureCarousel() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Mobile Navigation Menu Toggle
+   5. Scroll Intersection Observer for Slow 1.0s Blur/Fade Reveals (Staggered)
+   -------------------------------------------------------------------------- */
+function initScrollObserver() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll, .advantage-card-glass');
+    if (!revealElements.length) return;
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -60px 0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Apply 100ms stagger delay for feature cards
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                }, index * 100);
+                obs.unobserve(entry.target); // Reveal only once
+            }
+        });
+    }, observerOptions);
+
+    revealElements.forEach(el => {
+        el.classList.add('reveal-on-scroll');
+        observer.observe(el);
+    });
+}
+
+/* --------------------------------------------------------------------------
+   6. Mobile Navigation Menu Toggle
    -------------------------------------------------------------------------- */
 function initMobileNav() {
     const mobileBtn = document.getElementById('mobileToggle');

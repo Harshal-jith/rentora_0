@@ -1,5 +1,5 @@
 /* ==========================================================================
-   RENTORA LUXURY REAL ESTATE - SYSTEM CSS (REFINEMENT SPECIFICATION V1.1)
+   RENTORA LUXURY REAL ESTATE - SYSTEM CSS (ANIMATION REFINEMENT V1.2)
    ========================================================================== */
 
 /* DARK LUXURY AESTHETIC (DEFAULT) */
@@ -55,8 +55,8 @@
     --radius-sm: 12px;
     --radius-md: 20px;
     --radius-lg: 28px;
-    --transition-smooth: all 0.48s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fast: all 0.25s ease-out;
+    --transition-smooth: all 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Reset & Global Base */
@@ -72,7 +72,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.48s ease, color 0.48s ease;
+    transition: background-color 1.0s cubic-bezier(0.16, 1, 0.3, 1), color 1.0s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Ambient Grain Overlay */
@@ -163,7 +163,7 @@ img {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
     transition: var(--transition-smooth);
-    animation: fadeDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 [data-theme="light"] .navbar-glass {
@@ -172,7 +172,7 @@ img {
 }
 
 @keyframes fadeDown {
-    from { opacity: 0; transform: translate(-50%, -20px); filter: blur(8px); }
+    from { opacity: 0; transform: translate(-50%, -24px); filter: blur(10px); }
     to { opacity: 1; transform: translate(-50%, 0); filter: blur(0); }
 }
 
@@ -341,7 +341,7 @@ img {
     color: var(--gold-bright);
 }
 
-/* SECTION 1: HERO (100VH UNCHANGED) */
+/* SECTION 1: HERO (100VH ULTRA-SUBTLE FIXED CAMERA PARALLAX) */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -356,7 +356,7 @@ img {
 
 .parallax-container {
     position: absolute;
-    inset: -20px;
+    inset: -10px;
     z-index: 1;
     pointer-events: none;
 }
@@ -367,12 +367,12 @@ img {
     background-size: cover;
     background-position: center;
     will-change: transform;
-    transition: transform 0.1s cubic-bezier(0.1, 1, 0.1, 1);
+    transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.parallax-bg { background-image: url('../images/hero_sky_mountains_1784964378346.jpg'); z-index: 1; transform: scale(1.05); }
-.parallax-mid { background-image: url('../images/hero_mid_villa_1784964394119.jpg'); z-index: 2; opacity: 0.88; mix-blend-mode: screen; transform: scale(1.03); }
-.parallax-fg { background-image: url('../images/hero_fg_pool_1784964408615.jpg'); z-index: 3; opacity: 0.55; mix-blend-mode: soft-light; transform: scale(1.02); }
+.parallax-bg { background-image: url('../images/hero_sky_mountains_1784964378346.jpg'); z-index: 1; transform: scale(1.03); }
+.parallax-mid { background-image: url('../images/hero_mid_villa_1784964394119.jpg'); z-index: 2; opacity: 0.88; mix-blend-mode: screen; transform: scale(1.02); }
+.parallax-fg { background-image: url('../images/hero_fg_pool_1784964408615.jpg'); z-index: 3; opacity: 0.55; mix-blend-mode: soft-light; transform: scale(1.01); }
 
 .hero-overlay {
     position: absolute;
@@ -388,7 +388,7 @@ img {
     inset: 0;
     z-index: 5;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.45;
 }
 
 .hero-content {
@@ -419,7 +419,7 @@ img {
     letter-spacing: 1px;
     margin-bottom: 24px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    animation: fadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
     opacity: 0;
 }
 
@@ -434,7 +434,7 @@ img {
     color: #FFFFFF;
     margin-bottom: 22px;
     text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
-    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    animation: fadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
     opacity: 0;
 }
 
@@ -446,91 +446,13 @@ img {
     max-width: 650px;
     margin: 0 auto 36px;
     font-weight: 400;
-    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    animation: fadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
     opacity: 0;
-}
-
-.search-card-glass {
-    width: 100%;
-    max-width: 980px;
-    background: rgba(20, 20, 20, 0.65);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid var(--border-gold);
-    border-radius: var(--radius-lg);
-    padding: 16px 20px;
-    box-shadow: var(--shadow-card);
-    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
-    opacity: 0;
-}
-
-.search-glass-form {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr 0.9fr 1.3fr;
-    gap: 12px;
-    align-items: center;
-}
-
-.search-group {
-    display: flex;
-    flex-direction: column;
-    padding: 6px 12px;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.search-group:last-of-type { border-right: none; }
-
-.search-group label {
-    font-family: var(--font-btn);
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--gold-bright);
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.search-field-input {
-    background: transparent;
-    border: none;
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 0.92rem;
-    outline: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-.search-field-input option { background-color: #141414; color: #FFFFFF; }
-
-.btn-search-gold {
-    height: 52px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-    color: #0B0B0B;
-    border-radius: var(--radius-md);
-    font-weight: 700;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: var(--shadow-gold);
-    transition: var(--transition-smooth);
-    border: none;
-    cursor: pointer;
-}
-
-.btn-search-gold:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 40px rgba(214, 181, 108, 0.4);
 }
 
 .scroll-indicator-wrap {
     position: absolute;
-    bottom: 24px;
+    bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -543,6 +465,8 @@ img {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     font-family: var(--font-btn);
+    animation: fadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+    opacity: 0;
 }
 
 .mouse-scroll-icon {
@@ -562,7 +486,7 @@ img {
     top: 6px;
     left: 50%;
     transform: translateX(-50%);
-    animation: scrollWheel 1.8s infinite ease-in-out;
+    animation: scrollWheel 2.4s infinite ease-in-out;
 }
 
 @keyframes scrollWheel {
@@ -572,14 +496,31 @@ img {
 }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+    from { opacity: 0; transform: translateY(28px); filter: blur(10px); }
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* SCROLL REVEAL UTILITY CLASSES (Slow 1.0s Staggered Blur Reveal) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(10px);
+    will-change: opacity, transform, filter;
+    transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
 }
 
 /* SECTION 2: RENTORA ADVANTAGE FEATURE CAROUSEL */
 .advantage-section {
     position: relative;
-    padding: 100px 0 120px;
+    padding: 110px 0 130px;
     background: var(--bg-dark);
     overflow: hidden;
 }
@@ -686,7 +627,6 @@ img {
     line-height: 1.65;
 }
 
-/* Glass Reflection Sweep */
 .card-reflection {
     position: absolute;
     inset: 0;
@@ -694,14 +634,12 @@ img {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s ease;
 }
 
 .advantage-card-glass:hover .card-reflection { opacity: 1; }
 
-/* --------------------------------------------------------------------------
-   PROPERTIES PAGE RESTORATION (Scoped to /properties/ catalog layout)
-   -------------------------------------------------------------------------- */
+/* PROPERTIES PAGE RESTORATION (Scoped strictly to /properties/) */
 .page-header {
     background: var(--bg-secondary);
     padding: 130px 24px 50px;
@@ -718,10 +656,7 @@ img {
     margin-bottom: 8px;
 }
 
-.page-subtitle {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-}
+.page-subtitle { color: var(--text-secondary); font-size: 1.05rem; }
 
 .catalog-section { padding: 60px 0 90px; }
 
@@ -921,7 +856,6 @@ img {
 
 /* SECTIONS GLOBAL (Concierge & Footer) */
 .section { padding: 90px 0; background-color: var(--bg-dark); }
-
 .section-container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
 .mb-10 { margin-bottom: 45px; }
 
@@ -1004,8 +938,6 @@ img {
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
-    .search-glass-form { grid-template-columns: 1fr 1fr; gap: 16px; }
-    .search-group { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; }
     .catalog-layout { grid-template-columns: 1fr; }
     .contact-box { grid-template-columns: 1fr; padding: 40px; }
     .footer-container { grid-template-columns: 1fr 1fr; }
@@ -1016,7 +948,6 @@ img {
     .nav-links, .nav-auth { display: none; }
     .mobile-toggle { display: block; }
     .hero-title-serif { font-size: 2.8rem; }
-    .search-glass-form { grid-template-columns: 1fr; }
     .footer-container { grid-template-columns: 1fr; }
     .advantage-card-glass { width: 290px; padding: 28px 22px; }
     .logo-wrapper { height: 34px; width: 163px; }
