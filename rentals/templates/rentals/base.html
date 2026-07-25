@@ -53,8 +53,6 @@
                 <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"><i class="fa-solid fa-star text-gold"></i> Dashboard</a>
                 {% endif %}
                 <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Properties</a>
-                <a href="{% url 'properties' %}?property_type=villa" class="nav-link">Luxury Stays</a>
-                <a href="{% url 'home' %}#services" class="nav-link">Experiences</a>
                 <a href="{% url 'home' %}#about" class="nav-link">About</a>
                 <a href="{% url 'home' %}#contact" class="nav-link">Contact</a>
             </nav>
