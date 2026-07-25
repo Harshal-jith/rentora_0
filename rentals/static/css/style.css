@@ -49,9 +49,9 @@
 }
 
 :root {
-    --font-heading: 'Instrument Serif', Georgia, serif;
-    --font-body: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-btn: 'Inter', -apple-system, sans-serif;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-btn: 'Plus Jakarta Sans', -apple-system, sans-serif;
     --radius-sm: 12px;
     --radius-md: 20px;
     --radius-lg: 28px;
@@ -387,6 +387,14 @@ img {
     width: 100%;
     animation: fadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
     opacity: 0;
+}
+
+.hero-brand-logo-wrap a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .hero-main-logo {
