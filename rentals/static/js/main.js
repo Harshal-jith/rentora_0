@@ -13,11 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
-   Hero Dynamic Background Slideshow (Pristine Single-Layer Transition)
+   Hero Dynamic Background Slideshow (Butter-Smooth Dual-Layer Crossfade)
    -------------------------------------------------------------------------- */
 function initHeroSlideshow() {
-    const bgElement = document.getElementById('heroDynamicBg');
-    if (!bgElement) return;
+    const layerA = document.getElementById('bgLayerA');
+    const layerB = document.getElementById('bgLayerB');
+    if (!layerA || !layerB) return;
 
     const bgImages = [
         '/static/images/hero_mid_villa_1784964394119.jpg',
@@ -27,14 +28,23 @@ function initHeroSlideshow() {
     ];
 
     let currentIndex = 0;
+    let activeLayer = layerA;
+    let inactiveLayer = layerB;
+
     setInterval(() => {
-        bgElement.style.opacity = '0.2';
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % bgImages.length;
-            bgElement.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
-            bgElement.style.opacity = '0.85';
-        }, 800);
-    }, 5000);
+        currentIndex = (currentIndex + 1) % bgImages.length;
+        const nextImage = bgImages[currentIndex];
+
+        // Prepare inactive layer with next image
+        inactiveLayer.style.backgroundImage = `url('${nextImage}')`;
+        inactiveLayer.classList.add('active');
+        activeLayer.classList.remove('active');
+
+        // Swap active and inactive layer pointers
+        const temp = activeLayer;
+        activeLayer = inactiveLayer;
+        inactiveLayer = temp;
+    }, 5500);
 }
 
 /* --------------------------------------------------------------------------

@@ -3,21 +3,32 @@
 
 {% block title %}Rentora — The Sanctuary of Uncompromised Luxury{% endblock %}
 
-<!-- Clean Hero: No Header/Navbar on Landing Page -->
+<!-- Clean Hero: Standalone Logo at Top Center (No Header Bar) -->
 {% block navbar %}{% endblock %}
 
 {% block content %}
 <!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO -->
 <section class="hero-section hero-editorial-fullscreen" id="hero">
 
-    <!-- Single Clean Dynamic Background Layer (Zero Overlapping Artifacts) -->
-    <div class="hero-single-bg" id="heroDynamicBg" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
+    <!-- Dual-Layer Continuous Cross-Fade Background Engine -->
+    <div class="hero-crossfade-container">
+        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
+        <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
+    </div>
 
     <!-- Ambient Dark Gradient Vignette -->
     <div class="hero-overlay-editorial"></div>
 
     <!-- Floating Gold Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
+
+    <!-- Top Standalone Rentora Brand Logo -->
+    <div class="hero-top-logo-wrap">
+        <a href="{% url 'home' %}" class="hero-logo-link" aria-label="Rentora Luxury Hospitality">
+            <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-brand-logo logo-dark">
+            <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-brand-logo logo-light">
+        </a>
+    </div>
 
     <!-- Editorial Hero Core Layout -->
     <div class="hero-content-editorial">
