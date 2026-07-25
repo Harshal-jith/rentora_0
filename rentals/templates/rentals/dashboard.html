@@ -10,9 +10,9 @@
     <div class="dashboard-banner">
         <div class="section-container dashboard-banner-content">
             <div class="user-welcome-info">
-                <span class="user-vip-pill"><i class="fa-solid fa-crown"></i> VIP MEMBER DASHBOARD</span>
+                <span class="user-vip-pill"><i class="fa-solid fa-star"></i> MEMBER DASHBOARD</span>
                 <h1 class="serif-title dashboard-headline">Welcome, {{ user.username }}</h1>
-                <p class="dashboard-subcopy">Manage your private estate reservations, search curated stays, and connect with your 24/7 personal host.</p>
+                <p class="dashboard-subcopy">Manage your private estate reservations, search verified stays, and connect with your 24/7 personal host.</p>
             </div>
             
             <div class="dashboard-quick-stats">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="dash-stat-card">
                     <span class="dash-stat-value">100%</span>
-                    <span class="dash-stat-label">VIP Concierge Coverage</span>
+                    <span class="dash-stat-label">Personal Concierge Coverage</span>
                 </div>
             </div>
         </div>
@@ -147,46 +147,42 @@
             <div class="dash-empty-box">
                 <i class="fa-solid fa-calendar-plus empty-icon text-gold"></i>
                 <h3>No active reservations yet</h3>
-                <p>Explore our curated private collection below and reserve your next extraordinary stay.</p>
+                <p>Explore our featured private properties below and reserve your next stay.</p>
             </div>
             {% endif %}
         </div>
 
-        <!-- SECTION C: CURATED MEMBER PROPERTY CATALOG -->
+        <!-- SECTION C: FEATURED PROPERTIES (COMPACT CARDS) -->
         <div class="dashboard-section-box">
             <div class="dash-section-header">
-                <h2><i class="fa-solid fa-crown text-gold"></i> Curated Estates & Private Collection</h2>
-                <p>Showing {{ properties.count }} verified luxury property choices.</p>
+                <h2><i class="fa-solid fa-star text-gold"></i> Featured Properties</h2>
+                <p>Handpicked luxury retreats and verified estates.</p>
             </div>
 
-            {% if properties %}
-            <div class="catalog-grid">
-                {% for prop in properties %}
-                <div class="property-card-glass">
-                    <div class="card-image-wrap">
+            {% if featured_properties %}
+            <div class="catalog-grid compact-grid">
+                {% for prop in featured_properties %}
+                <div class="property-card-compact">
+                    <div class="compact-card-img-wrap">
                         <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
-                        <div class="card-tag">{{ prop.get_property_type_display }}</div>
-                        <div class="card-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</div>
+                        <div class="compact-card-type">{{ prop.get_property_type_display }}</div>
                     </div>
-                    <div class="card-body">
-                        <div class="card-rating">
-                            <i class="fa-solid fa-star"></i> {{ prop.rating }} <span>({{ prop.reviews_count }} reviews)</span>
+                    <div class="compact-card-content">
+                        <div class="compact-card-top">
+                            <span class="compact-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</span>
+                            <span class="compact-rating"><i class="fa-solid fa-star"></i> {{ prop.rating }}</span>
                         </div>
-                        <h3 class="card-title">{{ prop.title }}</h3>
-                        <p class="card-desc">{{ prop.short_description|truncatewords:16 }}</p>
-
-                        <div class="card-specs">
+                        <h3 class="compact-title"><a href="{% url 'property_detail' slug=prop.slug %}">{{ prop.title }}</a></h3>
+                        <div class="compact-specs">
                             <span><i class="fa-solid fa-bed"></i> {{ prop.bedrooms }} Beds</span>
-                            <span><i class="fa-solid fa-bath"></i> {{ prop.bathrooms }} Baths</span>
-                            <span><i class="fa-solid fa-users"></i> Up to {{ prop.max_guests }} Guests</span>
+                            <span><i class="fa-solid fa-users"></i> {{ prop.max_guests }} Guests</span>
                         </div>
-
-                        <div class="card-footer">
-                            <div class="card-price">
-                                <span class="price-amount">₹{{ prop.price_per_night|floatformat:0 }}</span>
-                                <span class="price-period">/ night</span>
+                        <div class="compact-card-footer">
+                            <div class="compact-price">
+                                <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
+                                <span class="price-sub">/night</span>
                             </div>
-                            <a href="{% url 'property_detail' slug=prop.slug %}" class="btn btn-gold btn-sm">Reserve Estate</a>
+                            <a href="{% url 'property_detail' slug=prop.slug %}" class="btn btn-gold btn-xs">View Stay</a>
                         </div>
                     </div>
                 </div>
@@ -195,7 +191,7 @@
             {% else %}
             <div class="dash-empty-box">
                 <i class="fa-solid fa-house-circle-xmark empty-icon"></i>
-                <h3>No properties match your filter</h3>
+                <h3>No properties available</h3>
                 <p>Try adjusting your search criteria or destination to view available luxury estates.</p>
                 <a href="{% url 'dashboard' %}" class="btn btn-gold mt-3">Reset Filters</a>
             </div>

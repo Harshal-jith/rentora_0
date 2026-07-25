@@ -128,8 +128,14 @@ def dashboard_view(request):
     if guests and guests.isdigit():
         properties = properties.filter(max_guests__gte=int(guests))
 
+    # Featured Properties (Compact Display)
+    featured_properties = properties.filter(is_featured=True)[:4]
+    if not featured_properties.exists():
+        featured_properties = properties[:4]
+
     context = {
         'user_inquiries': user_inquiries,
+        'featured_properties': featured_properties,
         'properties': properties,
         'locations': LOCATION_CHOICES,
         'property_types': PROPERTY_TYPE_CHOICES,
