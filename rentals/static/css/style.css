@@ -1752,6 +1752,185 @@ img {
     margin-bottom: 30px;
 }
 
+/* CINEMATIC AUTH PAGE EXPERIENCE (LIVE VIDEO BG + SOLID LUXURY CARD) */
+.auth-cinematic-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: var(--bg-dark);
+    overflow: hidden;
+}
+
+.auth-video-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.auth-video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
+    filter: brightness(0.78) contrast(1.1);
+    position: absolute;
+    inset: 0;
+}
+
+.auth-image-fallback {
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/hero_mid_villa_1784964394119.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    animation: slowKenBurns 25s infinite alternate ease-in-out;
+}
+
+.auth-video-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: radial-gradient(circle at center, rgba(11, 11, 11, 0.45) 0%, rgba(11, 11, 11, 0.85) 75%, rgba(11, 11, 11, 0.98) 100%);
+    pointer-events: none;
+}
+
+.auth-card-solid {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+    background: #141414;
+    border: 1px solid rgba(214, 181, 108, 0.35);
+    border-top: 4px solid var(--gold-bright);
+    border-radius: 24px;
+    padding: 45px 38px 40px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(214, 181, 108, 0.12);
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.auth-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 24px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.auth-back-link:hover {
+    color: var(--gold-bright);
+}
+
+.auth-card-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.auth-card-title {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 2.1rem;
+    color: #FFFFFF;
+    margin: 6px 0 8px;
+    font-weight: 400;
+}
+
+.auth-card-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 28px;
+}
+
+.auth-solid-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group-solid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.form-group-solid label {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #E5E5E5;
+    font-family: var(--font-btn);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group-solid input {
+    width: 100%;
+    padding: 14px 18px;
+    background: #1A1A1A;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-size: 0.96rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    font-family: var(--font-body);
+}
+
+.form-group-solid input:focus {
+    outline: none;
+    border-color: var(--gold-bright);
+    background: #202020;
+    box-shadow: 0 0 15px rgba(214, 181, 108, 0.25);
+}
+
+.btn-auth-submit {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    border-radius: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.auth-box-footer {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+.auth-link-highlight {
+    color: var(--gold-bright);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+.auth-link-highlight:hover {
+    text-decoration: underline;
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
@@ -1783,4 +1962,5 @@ img {
     .logo-wrapper { height: 34px; width: 163px; }
     .logo-img { height: 34px; width: 163px; }
     .cta-trust-badges { gap: 16px; flex-direction: column; }
+    .auth-card-solid { padding: 32px 24px; }
 }
