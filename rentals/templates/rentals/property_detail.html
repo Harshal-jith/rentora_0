@@ -22,16 +22,19 @@
     </div>
 </div>
 
-<!-- Image Gallery Grid -->
+<!-- Image Gallery Section -->
 <section class="gallery-section">
     <div class="section-container">
-        <div class="gallery-grid">
+        <div class="gallery-container">
             <div class="gallery-main">
                 <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage">
             </div>
             <div class="gallery-thumbs">
+                <div class="thumb-item active" onclick="changeMainImage('{{ property.main_image }}', this)">
+                    <img src="{{ property.main_image }}" alt="Property Main View">
+                </div>
                 {% for img in property.gallery_json %}
-                <div class="thumb-item" onclick="changeMainImage('{{ img }}')">
+                <div class="thumb-item" onclick="changeMainImage('{{ img }}', this)">
                     <img src="{{ img }}" alt="Property View {{ forloop.counter }}">
                 </div>
                 {% endfor %}
@@ -44,7 +47,7 @@
 <section class="section detail-body-section">
     <div class="section-container detail-layout">
         
-        <!-- Left Content -->
+        <!-- Left Main Content -->
         <div class="detail-main-content">
             
             <!-- Quick Specs Row -->
@@ -74,7 +77,7 @@
                     <i class="fa-solid fa-hand-sparkles"></i>
                     <div>
                         <span class="spec-val">Dedicated Host</span>
-                        <span class="spec-lbl">24/7 On-site Service</span>
+                        <span class="spec-lbl">24/7 Service</span>
                     </div>
                 </div>
             </div>
@@ -207,9 +210,12 @@
 
 {% block extra_js %}
 <script>
-function changeMainImage(url) {
+function changeMainImage(url, el) {
     const mainImg = document.getElementById('mainGalleryImage');
-    mainImg.src = url;
+    if (mainImg) mainImg.src = url;
+    
+    document.querySelectorAll('.thumb-item').forEach(item => item.classList.remove('active'));
+    if (el) el.classList.add('active');
 }
 </script>
 {% endblock %}

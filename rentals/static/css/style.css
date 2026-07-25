@@ -458,6 +458,10 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: max-content;
+    margin: 0 auto;
     gap: 8px;
     color: var(--text-muted);
     font-size: 0.75rem;
@@ -466,6 +470,12 @@ img {
     font-family: var(--font-btn);
     animation: fadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
     opacity: 0;
+}
+
+.scroll-indicator-wrap span {
+    display: block;
+    text-align: center;
+    margin-top: 4px;
 }
 
 .mouse-scroll-icon {
@@ -964,10 +974,343 @@ img {
     color: var(--text-muted);
 }
 
+/* PROPERTY DETAIL PAGE STYLING */
+.property-header-section {
+    background: var(--bg-secondary);
+    padding: 120px 0 40px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-bright);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    transition: var(--transition-fast);
+}
+
+.back-link:hover { transform: translateX(-4px); }
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+}
+
+.badge-gold {
+    display: inline-block;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.property-main-title {
+    font-size: clamp(2.0rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.property-location-str {
+    color: var(--text-secondary);
+    font-size: 1.0rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-rating-box {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.rating-score {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.rating-count {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+/* Gallery Section */
+.gallery-section { padding: 40px 0 20px; background: var(--bg-dark); }
+
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gallery-main {
+    width: 100%;
+    height: 520px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-gold);
+    box-shadow: var(--shadow-card);
+    background: var(--bg-card);
+}
+
+.gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 16px;
+}
+
+.thumb-item {
+    height: 95px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.65;
+    transition: var(--transition-fast);
+    background: var(--bg-card);
+}
+
+.thumb-item:hover, .thumb-item.active {
+    opacity: 1;
+    border-color: var(--gold-bright);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
+}
+
+.thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Detail Layout & Content */
+.detail-body-section { padding: 40px 0 90px; }
+
+.detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 45px;
+    align-items: start;
+}
+
+.specs-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 24px 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    box-shadow: var(--shadow-card);
+}
+
+.spec-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.spec-bar-item i {
+    font-size: 1.5rem;
+    color: var(--gold-bright);
+}
+
+.spec-val {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.spec-lbl {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.content-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 36px;
+    margin-top: 30px;
+    box-shadow: var(--shadow-card);
+}
+
+.content-block h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.description-text {
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    white-space: pre-line;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.amenity-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.amenity-chip i { color: var(--gold-bright); }
+
+.host-card {
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-md);
+    padding: 28px 32px;
+    margin-top: 30px;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    box-shadow: var(--shadow-card);
+}
+
+.host-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--gold-bright);
+    flex-shrink: 0;
+}
+
+.host-details h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.host-details p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Booking Sidebar Sticky Card */
+.booking-sidebar { position: relative; }
+
+.booking-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+    position: sticky;
+    top: 100px;
+}
+
+.booking-price-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.b-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+}
+
+.b-unit { font-size: 0.9rem; color: var(--text-secondary); }
+
+.b-rating {
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.similar-section {
+    border-top: 1px solid var(--border-color);
+    padding: 70px 0 90px;
+}
+
+.similar-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
     .catalog-layout { grid-template-columns: 1fr; }
+    .detail-layout { grid-template-columns: 1fr; }
+    .specs-bar { grid-template-columns: repeat(2, 1fr); }
     .contact-box { grid-template-columns: 1fr; padding: 40px; }
     .footer-container { grid-template-columns: 1fr 1fr; }
     .advantage-card-glass { width: 340px; padding: 32px 26px; }
@@ -977,6 +1320,10 @@ img {
     .nav-links, .nav-auth { display: none; }
     .mobile-toggle { display: block; }
     .hero-title-serif { font-size: 2.8rem; }
+    .gallery-main { height: 320px; }
+    .specs-bar { grid-template-columns: 1fr; }
+    .header-content { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .header-rating-box { text-align: left; }
     .footer-container { grid-template-columns: 1fr; }
     .advantage-card-glass { width: 290px; padding: 28px 22px; }
     .logo-wrapper { height: 34px; width: 163px; }
