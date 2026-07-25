@@ -7,21 +7,11 @@
 {% block navbar %}{% endblock %}
 
 {% block content %}
-<!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO (FULL REBUILD) -->
+<!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO -->
 <section class="hero-section hero-editorial-fullscreen" id="hero">
 
-    <!-- Active 4K Background Video & Dynamic Cross-Fading Slideshow -->
-    <div class="hero-video-container">
-        <div class="hero-slideshow-bg">
-            <div class="slide slide-1 active"></div>
-            <div class="slide slide-2"></div>
-            <div class="slide slide-3"></div>
-        </div>
-        <video autoplay loop muted playsinline webkit-playsinline poster="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" class="hero-video-bg">
-            <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
-        </video>
-    </div>
+    <!-- Single Clean Dynamic Background Layer (Zero Overlapping Artifacts) -->
+    <div class="hero-single-bg" id="heroDynamicBg" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
 
     <!-- Ambient Dark Gradient Vignette -->
     <div class="hero-overlay-editorial"></div>
@@ -57,7 +47,7 @@
             </a>
         </div>
 
-        <!-- Bottom Luxury Stats Bar (Replacing Old Scroll Icon) -->
+        <!-- Bottom Luxury Stats Bar -->
         <div class="hero-stats-glass-bar">
             <div class="stat-glass-item">
                 <span class="stat-number">100%</span>

@@ -13,18 +13,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
-   Hero Dynamic Background Slideshow (Cross-Fading Ambient Media)
+   Hero Dynamic Background Slideshow (Pristine Single-Layer Transition)
    -------------------------------------------------------------------------- */
 function initHeroSlideshow() {
-    const slides = document.querySelectorAll('.hero-slideshow-bg .slide');
-    if (!slides.length) return;
+    const bgElement = document.getElementById('heroDynamicBg');
+    if (!bgElement) return;
+
+    const bgImages = [
+        '/static/images/hero_mid_villa_1784964394119.jpg',
+        '/static/images/scene_night_exterior_1784963519950.jpg',
+        '/static/images/scene_kerala_estate_1784963501632.jpg',
+        '/static/images/hero_fg_pool_1784964408615.jpg'
+    ];
 
     let currentIndex = 0;
     setInterval(() => {
-        slides.forEach(slide => slide.style.opacity = '0');
-        currentIndex = (currentIndex + 1) % slides.length;
-        slides[currentIndex].style.opacity = '1';
-    }, 6000);
+        bgElement.style.opacity = '0.2';
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % bgImages.length;
+            bgElement.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+            bgElement.style.opacity = '0.85';
+        }, 800);
+    }, 5000);
 }
 
 /* --------------------------------------------------------------------------
