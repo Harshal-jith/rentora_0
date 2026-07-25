@@ -1,4 +1,4 @@
-// RENTORA Kerala Luxury Real Estate - Liquid Glass Interactivity & Fading Video
+// RENTORA Kerala Luxury Real Estate - Liquid Glass UI & FadingVideo / BlurText Motion Engine
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Dark / Light Theme Toggle Management
@@ -37,27 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('rentora_theme', theme);
     }
 
-    // 2. Fading Video Component Logic (500ms fade-in on loadeddata, 550ms fade-out near end)
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
-        heroVideo.addEventListener('loadeddata', () => {
-            heroVideo.style.opacity = '1';
-        });
-
-        heroVideo.addEventListener('timeupdate', () => {
-            if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 0.55) {
-                heroVideo.style.opacity = '0';
-            }
-        });
-
-        heroVideo.addEventListener('ended', () => {
-            heroVideo.currentTime = 0;
-            heroVideo.play();
-            heroVideo.style.opacity = '1';
-        });
-    }
-
-    // 3. Navbar Scroll Glass Effect
+    // 2. Navbar Scroll Glass Effect
     const navbar = document.getElementById('navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -69,7 +49,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Auto Dismiss Toast Notifications
+    // 3. FadingVideo Engine (Atmospheric Loop with 500ms fade-in and 550ms fade-out)
+    const fadingVideos = document.querySelectorAll('.fading-video');
+    fadingVideos.forEach(video => {
+        video.addEventListener('loadeddata', () => {
+            video.classList.add('visible');
+        });
+
+        video.addEventListener('timeupdate', () => {
+            if (video.duration && (video.duration - video.currentTime <= 0.55)) {
+                video.classList.remove('visible');
+            }
+        });
+
+        video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            video.play().then(() => {
+                video.classList.add('visible');
+            }).catch(() => {});
+        });
+
+        // Fallback check if already cached/playing
+        if (video.readyState >= 3) {
+            video.classList.add('visible');
+        }
+    });
+
+    // 4. BlurText Word-by-Word Staggered Motion Engine
+    const blurTextElements = document.querySelectorAll('[data-blur-text]');
+    blurTextElements.forEach(el => {
+        const text = el.textContent.trim();
+        el.textContent = '';
+        el.classList.add('blur-text-container');
+
+        const words = text.split(/\s+/);
+        words.forEach((word, index) => {
+            const span = document.createElement('span');
+            span.className = 'blur-word';
+            span.textContent = word;
+            span.style.transitionDelay = `${index * 100}ms`;
+            el.appendChild(span);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const childSpans = el.querySelectorAll('.blur-word');
+                    childSpans.forEach(span => span.classList.add('animated'));
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        observer.observe(el);
+    });
+
+    // 5. Auto Dismiss Toast Notifications
     const toasts = document.querySelectorAll('.toast');
     toasts.forEach(toast => {
         setTimeout(() => {
@@ -80,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     });
 
-    // 5. Mobile Navigation Menu Toggle
+    // 6. Mobile Navigation Menu Toggle
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -96,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 navLinks.style.top = '100%';
                 navLinks.style.left = '0';
                 navLinks.style.right = '0';
-                navLinks.style.background = 'rgba(0, 0, 0, 0.95)';
+                navLinks.style.background = '#090c12';
                 navLinks.style.padding = '20px';
                 navLinks.style.gap = '15px';
             }

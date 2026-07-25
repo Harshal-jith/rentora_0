@@ -8,10 +8,10 @@
     <meta name="description" content="Discover and book luxury private villas, heritage backwater houseboats, tea estate manors, and oceanfront cottages across Kerala. RENTORA — Find. Rent. Live.">
     <meta name="keywords" content="Rentora Kerala, Kerala luxury property rentals, luxury villas Alleppey, Munnar tea estate, Fort Kochi bungalow, Varkala oceanfront">
     
-    <!-- Google Fonts: Instrument Serif & Barlow -->
+    <!-- Google Fonts: Instrument Serif, Barlow, Cinzel & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@500;600;700;800&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -35,8 +35,8 @@
     </div>
     {% endif %}
 
-    <!-- Top Navigation Header -->
-    <header class="navbar" id="navbar">
+    <!-- Top Navigation Header with Liquid Glass Morphism -->
+    <header class="navbar liquid-glass" id="navbar">
         <div class="nav-container">
             <a href="{% url 'home' %}" class="brand-logo" aria-label="RENTORA Home">
                 <div class="logo-wrapper">
@@ -45,17 +45,17 @@
                 </div>
             </a>
             
-            <nav class="nav-links liquid-glass-nav">
+            <nav class="nav-links liquid-glass-pill">
                 <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
                 <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Explore Properties</a>
-                <a href="{% url 'home' %}#services" class="nav-link">Luxury Services</a>
+                <a href="{% url 'home' %}#services" class="nav-link">Capabilities</a>
                 <a href="{% url 'home' %}#features" class="nav-link">Featured Estates</a>
                 <a href="{% url 'home' %}#contact" class="nav-link">Private Concierge</a>
             </nav>
 
             <div class="nav-actions">
                 <!-- Dark / Light Mode Toggle Button -->
-                <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+                <button class="theme-toggle-btn liquid-glass" id="themeToggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
                     <i class="fa-solid fa-moon" id="themeIcon"></i>
                 </button>
 
@@ -68,7 +68,7 @@
                     <a href="{% url 'logout' %}" class="btn btn-outline btn-sm">Logout</a>
                     {% else %}
                     <a href="{% url 'login' %}" class="btn btn-outline btn-sm">Sign In</a>
-                    <a href="{% url 'register' %}" class="btn btn-gold btn-sm">VIP Member Access</a>
+                    <a href="{% url 'register' %}" class="btn btn-gold btn-sm">VIP Access</a>
                     {% endif %}
                 </div>
 
@@ -98,10 +98,10 @@
                     Kerala’s premier luxury real estate & property rental service. Handcrafted private villas, heritage backwater estates, and exclusive mountain sanctuaries.
                 </p>
                 <div class="social-links">
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram" class="liquid-glass"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook" class="liquid-glass"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="liquid-glass"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="WhatsApp" class="liquid-glass"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 

@@ -4,330 +4,241 @@
 {% block title %}RENTORA | Find. Rent. Live. — Kerala Luxury Property Rentals{% endblock %}
 
 {% block content %}
-<!-- Section 1: Hero Section (Liquid Glass Morphism + Ambient Video) -->
-<section class="hero-section hero-full-screen relative overflow-hidden bg-black text-white">
-    <!-- Ambient Background Video with Smooth Fade -->
-    <div class="video-bg-container absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <video 
-            id="heroVideo" 
-            class="hero-video-bg absolute left-1/2 top-0 -translate-x-1/2 object-cover object-top w-[120%] h-[120%] opacity-0 transition-opacity duration-500 pointer-events-none"
-            autoplay 
-            muted 
-            playsinline 
-            preload="auto"
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260619_191346_9d19d66e-86a4-47f7-8dc6-712c1788c3b2.mp4"
-        ></video>
-        <div class="hero-video-overlay absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black z-1"></div>
+<!-- Section 1: Hero (Full Viewport Height with FadingVideo & Liquid Glass Morphism) -->
+<section class="hero-section">
+    <!-- Fading Video Atmospheric Background Engine -->
+    <div class="fading-video-wrap">
+        <video class="fading-video" autoplay muted playsinline preload="auto">
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260619_191346_9d19d66e-86a4-47f7-8dc6-712c1788c3b2.mp4" type="video/mp4">
+        </video>
     </div>
+    <div class="hero-overlay"></div>
 
-    <!-- Hero Main Container -->
-    <div class="hero-container relative z-10 max-w-[1320px] mx-auto px-6 pt-32 pb-12 flex flex-col min-h-screen justify-between">
-        
-        <div class="hero-grid grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    <div class="hero-container">
+        <!-- Left Hero Copy -->
+        <div class="hero-text-content">
+            <div class="hero-badge liquid-glass">
+                <i class="fa-solid fa-crown"></i> EXCLUSIVE LUXURY REAL ESTATE RENTALS
+            </div>
             
-            <!-- Left Hero Copy Column -->
-            <div class="hero-text-col lg:col-span-7 flex flex-col items-start text-left">
-                
-                <!-- Liquid Glass Badge -->
-                <div class="liquid-glass-badge liquid-glass inline-flex items-center gap-3 px-4 py-2 rounded-full mb-6">
-                    <span class="badge-new bg-white text-black font-semibold text-[11px] uppercase tracking-wider px-2.5 py-0.5 rounded-full">New</span>
-                    <span class="badge-text text-white/90 text-xs md:text-sm font-body font-light">Booking Q3 2026 engagements — limited capacity</span>
-                </div>
+            <!-- BlurText Word-by-Word Staggered Motion Headline -->
+            <h1 class="hero-title" data-blur-text>
+                FIND. RENT. LIVE. In Unmatched Luxury
+            </h1>
+            
+            <p class="hero-subtitle">
+                Kerala's premier portfolio of private infinity pool villas, 5-star presidential backwater houseboats, and colonial tea estate manors.
+            </p>
 
-                <!-- Instrument Serif Italic Headline -->
-                <h1 class="hero-title font-heading italic text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[0.88] tracking-[-3px] text-white mb-6">
-                    FIND. RENT. LIVE.<br>
-                    <span class="highlight-gold font-heading italic text-gold">In Unmatched Luxury</span>
-                </h1>
-
-                <!-- Subtext -->
-                <p class="hero-subtitle text-base md:text-lg text-white/85 max-w-2xl font-body font-light leading-relaxed mb-8">
-                    We are a premier private rental studio shaping brand-defining stays across Kerala's most coveted locations. Infinity pool villas, presidential houseboats, and historic tea estate manors.
-                </p>
-
-                <!-- Hero Action Buttons -->
-                <div class="hero-cta-group flex flex-wrap items-center gap-4 mb-10">
-                    <a href="{% url 'properties' %}" class="btn-liquid-cta liquid-glass-strong px-6 py-3.5 rounded-full inline-flex items-center gap-3 text-white font-body font-medium text-sm transition-transform hover:scale-105">
-                        Start a Project <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gold"></i>
-                    </a>
-                    <a href="#services" class="btn-watch-showreel inline-flex items-center gap-3 px-5 py-3 text-white/90 hover:text-white font-body text-sm transition-colors">
-                        <span class="play-icon-circle w-9 h-9 rounded-full liquid-glass flex items-center justify-center text-gold"><i class="fa-solid fa-play text-xs ml-0.5"></i></span>
-                        Watch Showreel
-                    </a>
-                </div>
-
-                <!-- Liquid Glass Stats Cards -->
-                <div class="hero-stats-row flex flex-wrap gap-4">
-                    <div class="stat-card-glass liquid-glass p-5 rounded-[1.25rem] w-[180px] sm:w-[210px]">
-                        <div class="stat-card-icon text-gold text-lg mb-2"><i class="fa-regular fa-clock"></i></div>
-                        <div class="stat-card-num font-heading italic text-3xl md:text-4xl tracking-[-1px] text-gold leading-none">6 Weeks</div>
-                        <div class="stat-card-label text-xs text-white/70 font-body mt-2">Average End-to-End Launch Time</div>
-                    </div>
-
-                    <div class="stat-card-glass liquid-glass p-5 rounded-[1.25rem] w-[180px] sm:w-[210px]">
-                        <div class="stat-card-icon text-gold text-lg mb-2"><i class="fa-solid fa-globe"></i></div>
-                        <div class="stat-card-num font-heading italic text-3xl md:text-4xl tracking-[-1px] text-gold leading-none">50+</div>
-                        <div class="stat-card-label text-xs text-white/70 font-body mt-2">Verified Estates Across Kerala</div>
-                    </div>
-
-                    <div class="stat-card-glass liquid-glass p-5 rounded-[1.25rem] w-[180px] sm:w-[210px]">
-                        <div class="stat-card-icon text-gold text-lg mb-2"><i class="fa-solid fa-star"></i></div>
-                        <div class="stat-card-num font-heading italic text-3xl md:text-4xl tracking-[-1px] text-gold leading-none">4.98★</div>
-                        <div class="stat-card-label text-xs text-white/70 font-body mt-2">Guest Satisfaction Score</div>
-                    </div>
-                </div>
-
+            <div class="hero-actions" style="display: flex; gap: 16px; margin-bottom: 35px;">
+                <a href="{% url 'properties' %}" class="btn btn-gold liquid-glass-strong" style="padding: 14px 28px; border-radius: 9999px;">
+                    Explore Estates <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.85rem; margin-left: 4px;"></i>
+                </a>
+                <a href="#services" class="btn btn-outline liquid-glass" style="padding: 14px 28px; border-radius: 9999px;">
+                    <i class="fa-solid fa-play" style="font-size: 0.85rem; color: var(--gold-bright);"></i> View Capabilities
+                </a>
             </div>
 
-            <!-- Right Hero Registration & Sign-In Card (Liquid Glass Strong) -->
-            <div class="hero-auth-col lg:col-span-5">
-                <div class="hero-auth-card liquid-glass-strong p-8 rounded-[1.5rem] border border-white/10 shadow-2xl">
-                    {% if user.is_authenticated %}
-                    <div class="member-welcome-box text-center py-6">
-                        <div class="member-icon text-4xl text-gold mb-4"><i class="fa-solid fa-crown"></i></div>
-                        <h3 class="font-heading italic text-3xl text-white mb-2">Welcome Back, {{ user.username }}!</h3>
-                        <p class="text-sm text-white/80 font-body font-light mb-6">You have full VIP access to our unlisted private luxury estates across Kerala.</p>
-                        <div class="member-actions">
-                            <a href="{% url 'properties' %}" class="btn btn-gold btn-full shadow-lg">
-                                <i class="fa-solid fa-compass"></i> Explore Private Collection
-                            </a>
-                        </div>
-                    </div>
-                    {% else %}
-                    <div class="auth-tabs flex bg-black/40 p-1 rounded-xl mb-6 border border-white/10">
-                        <button class="auth-tab-btn active flex-1 py-2.5 text-xs font-body font-medium text-white/80 rounded-lg transition-all" onclick="switchAuthTab('register')">Register / Sign Up</button>
-                        <button class="auth-tab-btn flex-1 py-2.5 text-xs font-body font-medium text-white/80 rounded-lg transition-all" onclick="switchAuthTab('login')">Member Sign In</button>
-                    </div>
-
-                    <!-- Registration Form -->
-                    <form method="POST" action="{% url 'home' %}" class="auth-form active" id="registerForm">
-                        {% csrf_token %}
-                        <input type="hidden" name="action" value="register">
-                        <div class="form-header mb-5 text-left">
-                            <h4 class="font-heading italic text-2xl text-white">Create Member Account</h4>
-                            <p class="text-xs text-white/70 font-body">Unlock direct property bookings & VIP rates</p>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="reg_username" class="block text-xs font-body font-medium text-white/90 mb-1.5"><i class="fa-solid fa-user text-gold mr-1"></i> Username</label>
-                            <input type="text" id="reg_username" name="username" class="form-control" placeholder="Choose a username" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="reg_pass1" class="block text-xs font-body font-medium text-white/90 mb-1.5"><i class="fa-solid fa-lock text-gold mr-1"></i> Password</label>
-                            <input type="password" id="reg_pass1" name="password1" class="form-control" placeholder="Minimum 8 characters" required>
-                        </div>
-                        <div class="form-group mb-6">
-                            <label for="reg_pass2" class="block text-xs font-body font-medium text-white/90 mb-1.5"><i class="fa-solid fa-shield-halved text-gold mr-1"></i> Confirm Password</label>
-                            <input type="password" id="reg_pass2" name="password2" class="form-control" placeholder="Re-enter password" required>
-                        </div>
-                        <button type="submit" class="btn btn-gold btn-full">
-                            <i class="fa-solid fa-key mr-2"></i> Join Rentora & Access Properties
-                        </button>
-                    </form>
-
-                    <!-- Login Form -->
-                    <form method="POST" action="{% url 'home' %}" class="auth-form" id="loginForm">
-                        {% csrf_token %}
-                        <input type="hidden" name="action" value="login">
-                        <div class="form-header mb-5 text-left">
-                            <h4 class="font-heading italic text-2xl text-white">Member Sign In</h4>
-                            <p class="text-xs text-white/70 font-body">Access your reserved luxury property stays</p>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="login_username" class="block text-xs font-body font-medium text-white/90 mb-1.5"><i class="fa-solid fa-user text-gold mr-1"></i> Username</label>
-                            <input type="text" id="login_username" name="username" class="form-control" placeholder="Enter username" required>
-                        </div>
-                        <div class="form-group mb-6">
-                            <label for="login_password" class="block text-xs font-body font-medium text-white/90 mb-1.5"><i class="fa-solid fa-lock text-gold mr-1"></i> Password</label>
-                            <input type="password" id="login_password" name="password" class="form-control" placeholder="Enter password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <i class="fa-solid fa-right-to-bracket mr-2"></i> Sign In to Account
-                        </button>
-                    </form>
-                    {% endif %}
+            <div class="hero-stats">
+                <div class="stat-card liquid-glass">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-label">Verified Estates</span>
                 </div>
-            </div>
-
-        </div>
-
-        <!-- Bottom Trust Bar (Liquid Glass Pill) -->
-        <div class="hero-trust-bar mt-12 flex flex-col items-center gap-4 text-center">
-            <div class="trust-badge-pill liquid-glass px-6 py-2 rounded-full text-xs text-white/80 font-body font-light">
-                Trusted by founders, operators, and creative directors worldwide
-            </div>
-            <div class="trust-logos-row flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-80 pt-2">
-                <span class="font-heading italic text-2xl md:text-3xl tracking-tight text-white/90">Aeon</span>
-                <span class="font-heading italic text-2xl md:text-3xl tracking-tight text-white/90">Vela</span>
-                <span class="font-heading italic text-2xl md:text-3xl tracking-tight text-white/90">Apex</span>
-                <span class="font-heading italic text-2xl md:text-3xl tracking-tight text-white/90">Orbit</span>
-                <span class="font-heading italic text-2xl md:text-3xl tracking-tight text-white/90">Zeno</span>
+                <div class="stat-card liquid-glass">
+                    <span class="stat-num">4.98★</span>
+                    <span class="stat-label">Guest Rating</span>
+                </div>
+                <div class="stat-card liquid-glass">
+                    <span class="stat-num">24/7</span>
+                    <span class="stat-label">Private Concierge</span>
+                </div>
             </div>
         </div>
 
+        <!-- Right Hero Registration & Sign-In Card -->
+        <div class="hero-auth-card liquid-glass-strong">
+            {% if user.is_authenticated %}
+            <div class="member-welcome-box">
+                <div class="member-icon"><i class="fa-solid fa-crown"></i></div>
+                <h3 class="font-heading-serif">Welcome Back, {{ user.username }}!</h3>
+                <p>You have full access to our unlisted private luxury estates across Kerala.</p>
+                <div class="member-actions">
+                    <a href="{% url 'properties' %}" class="btn btn-gold btn-full liquid-glass-strong">
+                        <i class="fa-solid fa-compass"></i> Explore Private Collection
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="auth-tabs liquid-glass">
+                <button class="auth-tab-btn active" onclick="switchAuthTab('register')">Register / Sign Up</button>
+                <button class="auth-tab-btn" onclick="switchAuthTab('login')">Member Sign In</button>
+            </div>
+
+            <!-- Registration Form directly on Hero -->
+            <form method="POST" action="{% url 'home' %}" class="auth-form active" id="registerForm">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="register">
+                <div class="form-header">
+                    <h4 class="font-heading-serif">Create Member Account</h4>
+                    <p>Unlock direct property bookings & VIP rates</p>
+                </div>
+                <div class="form-group">
+                    <label for="reg_username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="reg_username" name="username" class="form-control" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg_pass1"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="reg_pass1" name="password1" class="form-control" placeholder="Minimum 8 characters" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg_pass2"><i class="fa-solid fa-shield-halved"></i> Confirm Password</label>
+                    <input type="password" id="reg_pass2" name="password2" class="form-control" placeholder="Re-enter password" required>
+                </div>
+                <button type="submit" class="btn btn-gold btn-full liquid-glass-strong">
+                    <i class="fa-solid fa-key"></i> Join Rentora & Access Properties
+                </button>
+            </form>
+
+            <!-- Login Form directly on Hero -->
+            <form method="POST" action="{% url 'home' %}" class="auth-form" id="loginForm">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="login">
+                <div class="form-header">
+                    <h4 class="font-heading-serif">Member Sign In</h4>
+                    <p>Access your reserved luxury property stays</p>
+                </div>
+                <div class="form-group">
+                    <label for="login_username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="login_username" name="username" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login_password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="login_password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full liquid-glass-strong">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In to Account
+                </button>
+            </form>
+            {% endif %}
+        </div>
     </div>
 </section>
 
-<!-- Section 2: Capabilities / Studio Craft Section -->
-<section class="section capabilities-section bg-black text-white relative py-24 overflow-hidden" id="capabilities">
-    <div class="section-container relative z-10 max-w-[1320px] mx-auto px-6">
-        <div class="capabilities-header mb-16">
-            <div class="cap-label text-xs uppercase tracking-widest text-gold font-body mb-4">// Capabilities</div>
-            <h2 class="section-title font-heading italic text-5xl md:text-6xl lg:text-7xl leading-[0.9] tracking-[-3px]">
-                Studio craft,<br><span class="text-gold font-heading italic">end to end</span>
+<!-- Section 2: Capabilities (Full Viewport Height with Liquid Glass Cards & FadingVideo) -->
+<section class="capabilities-section" id="services">
+    <!-- Fading Video Atmospheric Background Engine -->
+    <div class="fading-video-wrap">
+        <video class="fading-video" autoplay muted playsinline preload="auto">
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_093722_ccfc7ebf-182f-419f-8a62-2dc02db7dd9d.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="capabilities-container">
+        <div class="capabilities-header">
+            <span class="capabilities-label">// CAPABILITIES</span>
+            <h2 class="capabilities-title" data-blur-text>
+                Bespoke Craft, End to End
             </h2>
         </div>
 
-        <!-- Capabilities Cards Grid -->
-        <div class="capabilities-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <!-- Card 1: Design -->
-            <div class="cap-card liquid-glass rounded-[1.25rem] p-8 min-h-[380px] flex flex-col justify-between">
-                <div class="cap-card-top flex items-center justify-between gap-4 mb-6">
-                    <div class="cap-icon-box liquid-glass w-12 h-12 rounded-[0.75rem] flex items-center justify-center text-gold text-lg">
-                        <i class="fa-solid fa-palette"></i>
+        <div class="capabilities-grid">
+            <!-- Capability Card 1: Private Villas -->
+            <div class="capability-card liquid-glass">
+                <div class="card-top-row">
+                    <div class="card-icon-box liquid-glass">
+                        <i class="fa-solid fa-gem"></i>
                     </div>
-                    <div class="cap-tags flex flex-wrap gap-1.5 justify-end">
-                        <span class="cap-tag liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body">Brand Systems</span>
-                        <span class="cap-tag liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body">Art Direction</span>
+                    <div class="card-tags">
+                        <span class="tag-pill liquid-glass">Infinity Pool</span>
+                        <span class="tag-pill liquid-glass">Private Chef</span>
+                        <span class="tag-pill liquid-glass">Starlink WiFi</span>
+                        <span class="tag-pill liquid-glass">Helipad Access</span>
                     </div>
                 </div>
-                <div class="cap-card-bottom mt-auto">
-                    <h3 class="cap-title font-heading italic text-3xl text-white mb-3 tracking-[-1px]">Estate Curation</h3>
-                    <p class="cap-body text-sm text-white/80 font-body font-light leading-relaxed">
-                        We shape identities and spaces that feel unmistakably yours — architectural verification, high-speed connectivity, and art-directed villas that scale without losing soul.
-                    </p>
+                <div class="card-bottom-content">
+                    <h3>Private Infinity Villas</h3>
+                    <p>We shape private sanctuaries and waterfront residences that feel unmistakably yours — handcrafted teakwood interiors, sea-to-table culinary master dining, and 100% verified architectural safety.</p>
                 </div>
             </div>
 
-            <!-- Card 2: Engineering -->
-            <div class="cap-card liquid-glass rounded-[1.25rem] p-8 min-h-[380px] flex flex-col justify-between">
-                <div class="cap-card-top flex items-center justify-between gap-4 mb-6">
-                    <div class="cap-icon-box liquid-glass w-12 h-12 rounded-[0.75rem] flex items-center justify-center text-gold text-lg">
-                        <i class="fa-solid fa-code"></i>
+            <!-- Capability Card 2: Presidential Houseboats -->
+            <div class="capability-card liquid-glass">
+                <div class="card-top-row">
+                    <div class="card-icon-box liquid-glass">
+                        <i class="fa-solid fa-ship"></i>
                     </div>
-                    <div class="cap-tags flex flex-wrap gap-1.5 justify-end">
-                        <span class="cap-tag liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body">Django</span>
-                        <span class="cap-tag liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body">Edge-Ready</span>
-                    </div>
-                </div>
-                <div class="cap-card-bottom mt-auto">
-                    <h3 class="cap-title font-heading italic text-3xl text-white mb-3 tracking-[-1px]">Digital Engineering</h3>
-                    <p class="cap-body text-sm text-white/80 font-body font-light leading-relaxed">
-                        Production-grade platform built on modern Django and Render infrastructure. Performant, secure, and instrumented with IP click-tracking and instant concierge dispatch.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Card 3: Growth & Concierge -->
-            <div class="cap-card liquid-glass rounded-[1.25rem] p-8 min-h-[380px] flex flex-col justify-between">
-                <div class="cap-card-top flex items-center justify-between gap-4 mb-6">
-                    <div class="cap-icon-box liquid-glass w-12 h-12 rounded-[0.75rem] flex items-center justify-center text-gold text-lg">
-                        <i class="fa-solid fa-lightbulb"></i>
-                    </div>
-                    <div class="cap-tags flex flex-wrap gap-1.5 justify-end">
-                        <span class="cap-tag liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body">VIP Concierge</span>
-                        <span class="cap-tag liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body">24/7 Support</span>
+                    <div class="card-tags">
+                        <span class="tag-pill liquid-glass">Alleppey Waters</span>
+                        <span class="tag-pill liquid-glass">Upper Sun Deck</span>
+                        <span class="tag-pill liquid-glass">Live Sitar</span>
+                        <span class="tag-pill liquid-glass">Speedboat Tender</span>
                     </div>
                 </div>
-                <div class="cap-card-bottom mt-auto">
-                    <h3 class="cap-title font-heading italic text-3xl text-white mb-3 tracking-[-1px]">Bespoke Guest Growth</h3>
-                    <p class="cap-body text-sm text-white/80 font-body font-light leading-relaxed">
-                        Your stay is only the starting line. We partner with guests on custom dining, backwater yacht charters, and private helicopter transfers that turn a stay into a compounding asset.
-                    </p>
+                <div class="card-bottom-content">
+                    <h3>Presidential Houseboats</h3>
+                    <p>5-star floating palaces built on traditional Kettuvallam heritage. Air-conditioned glass lounges, dedicated master captains, and private motor tenders for exclusive backwater canal exploration.</p>
                 </div>
             </div>
 
-        </div>
-    </div>
-</section>
-
-<!-- Company Services & Features Section -->
-<section class="section services-section bg-black/90 py-24" id="services">
-    <div class="section-container max-w-[1320px] mx-auto px-6">
-        <div class="section-header text-center mb-16">
-            <span class="sub-heading text-gold font-body text-xs uppercase tracking-widest block mb-2">THE RENTORA ADVANTAGE</span>
-            <h2 class="section-title font-heading italic text-4xl md:text-5xl text-white">Bespoke Services for Luxury Travelers</h2>
-            <p class="section-subtitle text-white/70 max-w-xl mx-auto text-sm mt-3 font-body font-light">We manage and curate Kerala’s most sought-after private estates, houseboats, and cliffside residences.</p>
-        </div>
-
-        <div class="services-grid grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="service-card liquid-glass p-8 rounded-[1.25rem]">
-                <div class="service-icon w-14 h-14 liquid-glass rounded-xl flex items-center justify-center text-gold text-2xl mb-6"><i class="fa-solid fa-building-circle-check"></i></div>
-                <h3 class="font-heading italic text-2xl text-white mb-3">100% Verified Estates</h3>
-                <p class="text-sm text-white/75 font-body font-light leading-relaxed">Every single property passes an extensive 80-point verification process covering architectural safety, high-speed connectivity, and luxury amenities.</p>
-            </div>
-
-            <div class="service-card liquid-glass p-8 rounded-[1.25rem]">
-                <div class="service-icon w-14 h-14 liquid-glass rounded-xl flex items-center justify-center text-gold text-2xl mb-6"><i class="fa-solid fa-utensils"></i></div>
-                <h3 class="font-heading italic text-2xl text-white mb-3">Private Master Chefs</h3>
-                <p class="text-sm text-white/75 font-body font-light leading-relaxed">Indulge in custom multi-course dining, sea-to-table seafood grills, and gourmet international menus prepared in your private villa kitchen.</p>
-            </div>
-
-            <div class="service-card liquid-glass p-8 rounded-[1.25rem]">
-                <div class="service-icon w-14 h-14 liquid-glass rounded-xl flex items-center justify-center text-gold text-2xl mb-6"><i class="fa-solid fa-ship"></i></div>
-                <h3 class="font-heading italic text-2xl text-white mb-3">Private Backwater Charters</h3>
-                <p class="text-sm text-white/75 font-body font-light leading-relaxed">Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
-            </div>
-
-            <div class="service-card liquid-glass p-8 rounded-[1.25rem]">
-                <div class="service-icon w-14 h-14 liquid-glass rounded-xl flex items-center justify-center text-gold text-2xl mb-6"><i class="fa-solid fa-helicopter"></i></div>
-                <h3 class="font-heading italic text-2xl text-white mb-3">Helicopter & SUV Transfers</h3>
-                <p class="text-sm text-white/75 font-body font-light leading-relaxed">Seamless airport transfers via luxury SUVs or direct helicopter arrivals at estate helipads across Munnar and Wayanad.</p>
-            </div>
-
-            <div class="service-card liquid-glass p-8 rounded-[1.25rem]">
-                <div class="service-icon w-14 h-14 liquid-glass rounded-xl flex items-center justify-center text-gold text-2xl mb-6"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3 class="font-heading italic text-2xl text-white mb-3">Confidential Stays</h3>
-                <p class="text-sm text-white/75 font-body font-light leading-relaxed">Discreet high-security estates with private access gates, dedicated staff quarters, and complete privacy for high-net-worth guests.</p>
-            </div>
-
-            <div class="service-card liquid-glass p-8 rounded-[1.25rem]">
-                <div class="service-icon w-14 h-14 liquid-glass rounded-xl flex items-center justify-center text-gold text-2xl mb-6"><i class="fa-solid fa-headset"></i></div>
-                <h3 class="font-heading italic text-2xl text-white mb-3">24/7 Estate Manager</h3>
-                <p class="text-sm text-white/75 font-body font-light leading-relaxed">Your dedicated personal host is available 24 hours a day to coordinate private excursions, yacht rentals, and customized requests.</p>
+            <!-- Capability Card 3: Heritage Tea Manors -->
+            <div class="capability-card liquid-glass">
+                <div class="card-top-row">
+                    <div class="card-icon-box liquid-glass">
+                        <i class="fa-solid fa-mountain-sun"></i>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag-pill liquid-glass">Munnar Hills</span>
+                        <span class="tag-pill liquid-glass">Stone Fireplaces</span>
+                        <span class="tag-pill liquid-glass">Tea Tasting</span>
+                        <span class="tag-pill liquid-glass">Personal Host</span>
+                    </div>
+                </div>
+                <div class="card-bottom-content">
+                    <h3>Heritage Tea Manors</h3>
+                    <p>Restored British colonial estates perched high amidst misty peaks and 150 acres of organic tea plantations. Stone fireplaces, farm-to-table culinary masters, and 24/7 personal estate hosts.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Featured Properties Showcase Section -->
-<section class="section properties-section bg-black py-24" id="features">
-    <div class="section-container max-w-[1320px] mx-auto px-6">
-        <div class="section-header flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<section class="section properties-section" id="features">
+    <div class="section-container">
+        <div class="section-header flex-header">
             <div>
-                <span class="sub-heading text-gold font-body text-xs uppercase tracking-widest block mb-2">FEATURED REAL ESTATE</span>
-                <h2 class="section-title font-heading italic text-4xl md:text-5xl text-white">Exclusive Kerala Rentals</h2>
+                <span class="sub-heading">FEATURED REAL ESTATE</span>
+                <h2 class="section-title font-heading-serif">Exclusive Kerala Rentals</h2>
             </div>
-            <a href="{% url 'properties' %}" class="btn-liquid-cta liquid-glass px-6 py-3 rounded-full inline-flex items-center gap-2 text-sm text-white hover:text-gold transition-colors">
-                Explore All Properties <i class="fa-solid fa-arrow-right text-xs"></i>
-            </a>
+            <a href="{% url 'properties' %}" class="btn btn-outline liquid-glass">Explore All Properties <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
-        <div class="property-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="property-grid">
             {% for prop in featured_properties %}
-            <div class="property-card liquid-glass rounded-[1.25rem] overflow-hidden flex flex-col">
-                <div class="card-image-wrap relative h-60 overflow-hidden">
-                    <img src="{{ prop.main_image }}" alt="{{ prop.title }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" loading="lazy">
-                    <div class="card-badge absolute top-4 left-4 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-gold uppercase tracking-wider">{{ prop.get_property_type_display }}</div>
-                    <div class="card-rating absolute bottom-4 right-4 liquid-glass px-3 py-1 rounded-full text-xs font-semibold text-white"><i class="fa-solid fa-star text-gold mr-1"></i> {{ prop.rating }} ({{ prop.reviews_count }})</div>
+            <div class="property-card liquid-glass">
+                <div class="card-image-wrap">
+                    <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
+                    <div class="card-badge">{{ prop.get_property_type_display }}</div>
+                    <div class="card-rating"><i class="fa-solid fa-star"></i> {{ prop.rating }} ({{ prop.reviews_count }})</div>
                 </div>
-                <div class="card-body p-6 flex flex-col flex-grow">
-                    <div class="card-location text-xs text-gold font-medium mb-2"><i class="fa-solid fa-location-dot mr-1"></i> {{ prop.location_display_name }}</div>
-                    <h3 class="card-title font-heading italic text-2xl text-white mb-2 leading-snug"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
-                    <p class="card-desc text-xs text-white/75 font-body font-light mb-6 flex-grow leading-relaxed">{{ prop.short_description|truncatewords:14 }}</p>
+                <div class="card-body">
+                    <div class="card-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</div>
+                    <h3 class="card-title"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
+                    <p class="card-desc">{{ prop.short_description|truncatewords:15 }}</p>
                     
-                    <div class="card-specs flex items-center justify-between text-xs text-white/70 py-3 border-t border-b border-white/10 mb-6 font-body">
-                        <span><i class="fa-solid fa-bed text-gold mr-1"></i> {{ prop.bedrooms }} Beds</span>
-                        <span><i class="fa-solid fa-bath text-gold mr-1"></i> {{ prop.bathrooms }} Baths</span>
-                        <span><i class="fa-solid fa-users text-gold mr-1"></i> Up to {{ prop.max_guests }} Guests</span>
+                    <div class="card-specs">
+                        <span><i class="fa-solid fa-bed"></i> {{ prop.bedrooms }} Beds</span>
+                        <span><i class="fa-solid fa-bath"></i> {{ prop.bathrooms }} Baths</span>
+                        <span><i class="fa-solid fa-users"></i> Up to {{ prop.max_guests }} Guests</span>
                     </div>
 
-                    <div class="card-footer flex items-center justify-between mt-auto">
+                    <div class="card-footer">
                         <div class="card-price">
-                            <span class="price-val font-heading italic text-2xl font-bold text-white">₹{{ prop.price_per_night|floatformat:0 }}</span>
-                            <span class="price-unit text-xs text-white/60 font-body">/ night</span>
+                            <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
+                            <span class="price-unit">/ night</span>
                         </div>
-                        <a href="{% url 'property_detail' prop.slug %}" class="btn btn-gold btn-sm">Explore <i class="fa-solid fa-chevron-right ml-1"></i></a>
+                        <a href="{% url 'property_detail' prop.slug %}" class="btn btn-gold btn-sm liquid-glass-strong">Explore <i class="fa-solid fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -336,29 +247,73 @@
     </div>
 </section>
 
+<!-- Kerala Destinations Showcase -->
+<section class="section destinations-section">
+    <div class="section-container">
+        <div class="section-header text-center">
+            <span class="sub-heading">PRIME DESTINATIONS</span>
+            <h2 class="section-title font-heading-serif">Kerala's Most Coveted Locations</h2>
+        </div>
+
+        <div class="destinations-grid">
+            <a href="{% url 'properties' %}?location=alleppey" class="dest-card liquid-glass">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Alleppey">
+                <div class="dest-overlay">
+                    <h3>Alleppey Backwaters</h3>
+                    <p>Waterfront estates & presidential houseboats</p>
+                </div>
+            </a>
+
+            <a href="{% url 'properties' %}?location=munnar" class="dest-card liquid-glass">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Munnar">
+                <div class="dest-overlay">
+                    <h3>Munnar Tea Hills</h3>
+                    <p>Colonial tea estate manors & sanctuaries</p>
+                </div>
+            </a>
+
+            <a href="{% url 'properties' %}?location=varkala" class="dest-card liquid-glass">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Varkala">
+                <div class="dest-overlay">
+                    <h3>Varkala Cliffside</h3>
+                    <p>Oceanfront villas overlooking the Arabian Sea</p>
+                </div>
+            </a>
+
+            <a href="{% url 'properties' %}?location=fort_kochi" class="dest-card liquid-glass">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Fort Kochi">
+                <div class="dest-overlay">
+                    <h3>Fort Kochi</h3>
+                    <p>300-year-old Dutch-Portuguese heritage mansions</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- Direct Concierge Inquiry Section -->
-<section class="section contact-section bg-black/95 py-24" id="contact">
-    <div class="section-container max-w-[1320px] mx-auto px-6">
-        <div class="contact-box liquid-glass-strong p-10 md:p-16 rounded-[1.5rem] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<section class="section contact-section" id="contact">
+    <div class="section-container">
+        <div class="contact-box liquid-glass-strong">
             <div class="contact-info">
-                <span class="sub-heading text-gold font-body text-xs uppercase tracking-widest block mb-2">PERSONALIZED REAL ESTATE CONCIERGE</span>
-                <h2 class="font-heading italic text-4xl md:text-5xl text-white mb-4">Inquire for Custom Property Rentals</h2>
-                <p class="text-sm text-white/80 font-body font-light mb-6 leading-relaxed">Our estate specialists will curate a tailored list of unlisted private villas matching your party size and dates.</p>
-                <div class="contact-highlights flex flex-col gap-3 text-xs text-white/90 font-body font-medium">
-                    <div><i class="fa-solid fa-circle-check text-gold mr-2"></i> Direct Property Owner Access</div>
-                    <div><i class="fa-solid fa-circle-check text-gold mr-2"></i> Custom Houseboat & Yacht Charters</div>
-                    <div><i class="fa-solid fa-circle-check text-gold mr-2"></i> Complete Privacy & VIP Security</div>
+                <span class="sub-heading text-gold">PERSONALIZED REAL ESTATE CONCIERGE</span>
+                <h2 class="font-heading-serif">Inquire for Custom Property Rentals</h2>
+                <p>Our estate specialists will curate a tailored list of unlisted private villas matching your party size and dates.</p>
+                <div class="contact-highlights">
+                    <div><i class="fa-solid fa-check-circle"></i> Direct Property Owner Access</div>
+                    <div><i class="fa-solid fa-check-circle"></i> Custom Houseboat & Yacht Charters</div>
+                    <div><i class="fa-solid fa-check-circle"></i> Complete Privacy & VIP Security</div>
                 </div>
             </div>
 
-            <form method="POST" action="{% url 'home' %}" class="contact-form liquid-glass p-8 rounded-xl border border-white/10">
+            <form method="POST" action="{% url 'home' %}" class="contact-form liquid-glass">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="inquiry">
-                <h3 class="font-heading italic text-2xl text-white mb-6">Contact Private Concierge</h3>
-                <div class="form-group mb-4">
+                <h3 class="font-heading-serif">Contact Private Concierge</h3>
+                <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Your Full Name" required>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="form-row">
                     <div class="form-group">
                         <input type="email" name="email" class="form-control" placeholder="Email Address" required>
                     </div>
@@ -366,11 +321,11 @@
                         <input type="tel" name="phone" class="form-control" placeholder="Phone / WhatsApp" required>
                     </div>
                 </div>
-                <div class="form-group mb-6">
+                <div class="form-group">
                     <textarea name="message" class="form-control" rows="3" placeholder="Tell us your dates, preferred region, or special requirements..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-gold btn-full">
-                    <i class="fa-solid fa-paper-plane mr-2"></i> Submit Rental Inquiry
+                <button type="submit" class="btn btn-gold btn-full liquid-glass-strong">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Rental Inquiry
                 </button>
             </form>
         </div>
@@ -385,7 +340,7 @@ function switchAuthTab(tab) {
     const loginForm = document.getElementById('loginForm');
     const btns = document.querySelectorAll('.auth-tab-btn');
 
-    btns.forEach(btn => btn.classList.remove('active', 'bg-gold', 'text-black'));
+    btns.forEach(btn => btn.classList.remove('active'));
 
     if (tab === 'register') {
         regForm.classList.add('active');
