@@ -8,10 +8,10 @@
     <meta name="description" content="Discover and book luxury private villas, heritage backwater houseboats, tea estate manors, and oceanfront cottages across Kerala. RENTORA — Find. Rent. Live.">
     <meta name="keywords" content="Rentora Kerala, Kerala luxury property rentals, luxury villas Alleppey, Munnar tea estate, Fort Kochi bungalow, Varkala oceanfront">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Instrument Serif & Barlow -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -45,7 +45,7 @@
                 </div>
             </a>
             
-            <nav class="nav-links">
+            <nav class="nav-links liquid-glass-nav">
                 <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
                 <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Explore Properties</a>
                 <a href="{% url 'home' %}#services" class="nav-link">Luxury Services</a>
@@ -61,7 +61,7 @@
 
                 <div class="nav-auth">
                     {% if user.is_authenticated %}
-                    <div class="user-badge">
+                    <div class="user-badge liquid-glass">
                         <i class="fa-solid fa-crown"></i>
                         <span>Welcome, <strong>{{ user.username }}</strong></span>
                     </div>

@@ -1,4 +1,4 @@
-// RENTORA Kerala Luxury Real Estate - Frontend Interactivity & Theme Toggle
+// RENTORA Kerala Luxury Real Estate - Liquid Glass Interactivity & Fading Video
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Dark / Light Theme Toggle Management
@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
     const bodyElement = document.body;
 
-    // Load saved theme from localStorage or default to 'dark'
     const savedTheme = localStorage.getItem('rentora_theme') || 'dark';
     applyTheme(savedTheme);
 
@@ -38,7 +37,27 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('rentora_theme', theme);
     }
 
-    // 2. Navbar Scroll Glass Effect
+    // 2. Fading Video Component Logic (500ms fade-in on loadeddata, 550ms fade-out near end)
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+        heroVideo.addEventListener('loadeddata', () => {
+            heroVideo.style.opacity = '1';
+        });
+
+        heroVideo.addEventListener('timeupdate', () => {
+            if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 0.55) {
+                heroVideo.style.opacity = '0';
+            }
+        });
+
+        heroVideo.addEventListener('ended', () => {
+            heroVideo.currentTime = 0;
+            heroVideo.play();
+            heroVideo.style.opacity = '1';
+        });
+    }
+
+    // 3. Navbar Scroll Glass Effect
     const navbar = document.getElementById('navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -50,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Auto Dismiss Toast Notifications
+    // 4. Auto Dismiss Toast Notifications
     const toasts = document.querySelectorAll('.toast');
     toasts.forEach(toast => {
         setTimeout(() => {
@@ -61,10 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     });
 
-    // 4. Mobile Navigation Menu Toggle
+    // 5. Mobile Navigation Menu Toggle
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.querySelector('.nav-links');
-    const navActions = document.querySelector('.nav-actions');
 
     if (mobileToggle && navLinks) {
         mobileToggle.addEventListener('click', () => {
@@ -78,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 navLinks.style.top = '100%';
                 navLinks.style.left = '0';
                 navLinks.style.right = '0';
-                navLinks.style.background = '#090c12';
+                navLinks.style.background = 'rgba(0, 0, 0, 0.95)';
                 navLinks.style.padding = '20px';
                 navLinks.style.gap = '15px';
             }
