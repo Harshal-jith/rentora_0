@@ -5,12 +5,61 @@
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initHeroSlideshow();
+    initSeamlessAuthVideoLoop();
     initHeroParallax();
     initParticleCanvas();
     initFeatureCarousel();
     initScrollObserver();
     initMobileNav();
 });
+
+/* --------------------------------------------------------------------------
+   Seamless Video Background Looper (0.5s Opacity Fade In/Out via rAF)
+   -------------------------------------------------------------------------- */
+function initSeamlessAuthVideoLoop() {
+    const video = document.getElementById('authBgVideo');
+    if (!video) return;
+
+    let isResetting = false;
+
+    function monitorLoop() {
+        if (video.duration && !isResetting) {
+            const timeRemaining = video.duration - video.currentTime;
+
+            if (video.currentTime < 0.5) {
+                const opacity = (video.currentTime / 0.5) * 0.72;
+                video.style.opacity = opacity.toFixed(2);
+            } else if (timeRemaining < 0.5) {
+                const opacity = (timeRemaining / 0.5) * 0.72;
+                video.style.opacity = opacity.toFixed(2);
+            } else {
+                video.style.opacity = '0.72';
+            }
+
+            if (timeRemaining <= 0.12) {
+                isResetting = true;
+                video.style.opacity = '0';
+                setTimeout(() => {
+                    video.currentTime = 0;
+                    video.play().then(() => {
+                        isResetting = false;
+                    }).catch(() => {
+                        isResetting = false;
+                    });
+                }, 100);
+            }
+        }
+        requestAnimationFrame(monitorLoop);
+    }
+
+    video.addEventListener('loadedmetadata', () => {
+        requestAnimationFrame(monitorLoop);
+    });
+
+    if (video.readyState >= 1) {
+        requestAnimationFrame(monitorLoop);
+    }
+}
 
 /* --------------------------------------------------------------------------
    Hero Dynamic Background Slideshow (Butter-Smooth Dual-Layer Crossfade)
