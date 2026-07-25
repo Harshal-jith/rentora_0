@@ -2730,6 +2730,100 @@ body.light-theme .advantage-desc {
     color: var(--text-primary);
 }
 
+/* PERMANENT DARK PAGE IMMUNITY (THE ENTIRE LANDING PAGE STAYS IN DARK MODE) */
+.permanent-dark-page,
+[data-theme="light"] .permanent-dark-page,
+body.light-theme .permanent-dark-page {
+    background-color: #0B0B0B !important;
+    color: #FFFFFF !important;
+}
+
+.permanent-dark-page .section,
+.permanent-dark-page .advantage-section,
+.permanent-dark-page .facilities-section,
+.permanent-dark-page .destinations-section,
+.permanent-dark-page .final-cta-section,
+[data-theme="light"] .permanent-dark-page .section,
+[data-theme="light"] .permanent-dark-page .advantage-section,
+[data-theme="light"] .permanent-dark-page .facilities-section,
+[data-theme="light"] .permanent-dark-page .destinations-section,
+[data-theme="light"] .permanent-dark-page .final-cta-section,
+body.light-theme .permanent-dark-page .section,
+body.light-theme .permanent-dark-page .advantage-section,
+body.light-theme .permanent-dark-page .facilities-section,
+body.light-theme .permanent-dark-page .destinations-section,
+body.light-theme .permanent-dark-page .final-cta-section {
+    background: #0B0B0B !important;
+    color: #FFFFFF !important;
+}
+
+.permanent-dark-page h1,
+.permanent-dark-page h2,
+.permanent-dark-page h3,
+.permanent-dark-page h4,
+.permanent-dark-page .serif-title,
+.permanent-dark-page .advantage-title,
+.permanent-dark-page .section-title,
+[data-theme="light"] .permanent-dark-page h1,
+[data-theme="light"] .permanent-dark-page h2,
+[data-theme="light"] .permanent-dark-page h3,
+[data-theme="light"] .permanent-dark-page h4,
+[data-theme="light"] .permanent-dark-page .serif-title,
+[data-theme="light"] .permanent-dark-page .advantage-title,
+[data-theme="light"] .permanent-dark-page .section-title,
+body.light-theme .permanent-dark-page h1,
+body.light-theme .permanent-dark-page h2,
+body.light-theme .permanent-dark-page h3,
+body.light-theme .permanent-dark-page h4,
+body.light-theme .permanent-dark-page .serif-title,
+body.light-theme .permanent-dark-page .advantage-title,
+body.light-theme .permanent-dark-page .section-title {
+    color: #FFFFFF !important;
+}
+
+.permanent-dark-page p,
+.permanent-dark-page .advantage-desc,
+.permanent-dark-page .section-desc,
+[data-theme="light"] .permanent-dark-page p,
+[data-theme="light"] .permanent-dark-page .advantage-desc,
+[data-theme="light"] .permanent-dark-page .section-desc,
+body.light-theme .permanent-dark-page p,
+body.light-theme .permanent-dark-page .advantage-desc,
+body.light-theme .permanent-dark-page .section-desc {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.permanent-dark-page .advantage-card-glass,
+.permanent-dark-page .facility-card-glass,
+[data-theme="light"] .permanent-dark-page .advantage-card-glass,
+[data-theme="light"] .permanent-dark-page .facility-card-glass,
+body.light-theme .permanent-dark-page .advantage-card-glass,
+body.light-theme .permanent-dark-page .facility-card-glass {
+    background: rgba(20, 20, 20, 0.72) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid var(--border-gold) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.permanent-dark-page .advantage-card-glass h3,
+.permanent-dark-page .facility-card-glass h3,
+[data-theme="light"] .permanent-dark-page .advantage-card-glass h3,
+[data-theme="light"] .permanent-dark-page .facility-card-glass h3,
+body.light-theme .permanent-dark-page .advantage-card-glass h3,
+body.light-theme .permanent-dark-page .facility-card-glass h3 {
+    color: #FFFFFF !important;
+}
+
+.permanent-dark-page .advantage-card-glass p,
+.permanent-dark-page .facility-card-glass p,
+[data-theme="light"] .permanent-dark-page .advantage-card-glass p,
+[data-theme="light"] .permanent-dark-page .facility-card-glass p,
+body.light-theme .permanent-dark-page .advantage-card-glass p,
+body.light-theme .permanent-dark-page .facility-card-glass p {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
