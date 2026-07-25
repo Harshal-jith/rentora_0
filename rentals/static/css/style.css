@@ -1404,14 +1404,19 @@ img {
 .contact-form h3 { font-size: 1.3rem; margin-bottom: 20px; }
 
 .footer {
+    position: relative;
+    max-width: 1320px;
+    margin: 60px auto 30px;
+    width: calc(100% - 48px);
+    border-radius: 36px;
     background: var(--bg-card-glass);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     color: var(--text-primary);
-    padding: 70px 0 30px;
-    border-top: 1px solid var(--border-gold);
-    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.4);
-    transition: background-color 1.0s cubic-bezier(0.16, 1, 0.3, 1), color 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 60px 48px 28px;
+    border: 1px solid var(--border-gold);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+    transition: background-color 1.0s cubic-bezier(0.16, 1, 0.3, 1), color 1.0s cubic-bezier(0.16, 1, 0.3, 1), border-color 1.0s ease;
 }
 
 .footer-container {
@@ -2147,11 +2152,23 @@ img {
     margin-bottom: 10px;
 }
 
+.dashboard-headline {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
 .dashboard-subcopy {
-    color: var(--text-secondary);
-    max-width: 580px;
-    font-size: 1rem;
-    line-height: 1.6;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gold-bright);
+    line-height: 1.5;
+    max-width: 680px;
 }
 
 .dashboard-quick-stats {
@@ -2617,8 +2634,8 @@ body.light-theme .dash-input-group select:focus {
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     color: #0F172A;
-    border-top: 1px solid var(--border-gold);
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-gold);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="light"] .social-links a, body.light-theme .social-links a {
