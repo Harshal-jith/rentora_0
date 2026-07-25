@@ -377,43 +377,25 @@ img {
     opacity: 0.85;
 }
 
-/* Standalone Top Rentora Brand Logo */
-.hero-top-logo-wrap {
-    position: absolute;
-    top: 36px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 15;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+/* Prominent Transparent Rentora Brand Logo (Top Center) */
+.hero-brand-logo-wrap {
+    margin-bottom: 28px;
+    display: inline-block;
+    animation: fadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    opacity: 0;
 }
 
-.hero-logo-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 24px;
-    background: rgba(11, 11, 11, 0.45);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(214, 181, 108, 0.35);
-    border-radius: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.hero-logo-link:hover {
-    transform: scale(1.05);
-    border-color: var(--gold-bright);
-    box-shadow: 0 12px 40px rgba(214, 181, 108, 0.25);
-}
-
-.hero-brand-logo {
-    height: 38px;
+.hero-main-logo {
+    height: 78px;
     width: auto;
     object-fit: contain;
+    filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.75));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.hero-brand-logo-wrap:hover .hero-main-logo {
+    transform: scale(1.06);
+    filter: drop-shadow(0 12px 35px rgba(214, 181, 108, 0.45));
 }
 
 .hero-overlay-editorial {

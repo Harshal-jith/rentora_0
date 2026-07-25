@@ -3,7 +3,7 @@
 
 {% block title %}Rentora — The Sanctuary of Uncompromised Luxury{% endblock %}
 
-<!-- Clean Hero: Standalone Logo at Top Center (No Header Bar) -->
+<!-- Clean Hero: No Header/Navbar on Landing Page -->
 {% block navbar %}{% endblock %}
 
 {% block content %}
@@ -22,19 +22,15 @@
     <!-- Floating Gold Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Top Standalone Rentora Brand Logo -->
-    <div class="hero-top-logo-wrap">
-        <a href="{% url 'home' %}" class="hero-logo-link" aria-label="Rentora Luxury Hospitality">
-            <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-brand-logo logo-dark">
-            <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-brand-logo logo-light">
-        </a>
-    </div>
-
     <!-- Editorial Hero Core Layout -->
     <div class="hero-content-editorial">
-        <!-- Private Collection Edition Badge -->
-        <div class="hero-edition-pill">
-            <span class="pill-dot"></span> RENTORA PRIVATE COLLECTION
+        
+        <!-- Large Transparent Rentora Brand Logo (Top Center) -->
+        <div class="hero-brand-logo-wrap">
+            <a href="{% url 'home' %}" aria-label="Rentora Luxury Hospitality">
+                <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-main-logo logo-dark">
+                <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-main-logo logo-light">
+            </a>
         </div>
 
         <!-- Headline (Instrument Serif Italic & Gold Shimmer) -->
