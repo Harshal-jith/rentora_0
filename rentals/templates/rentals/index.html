@@ -37,46 +37,6 @@
         <p class="hero-subtitle-text">
             Discover handpicked villas, penthouses, estates and luxury retreats designed for unforgettable experiences.
         </p>
-
-        <!-- Floating Glass Search Card -->
-        <div class="search-card-glass">
-            <form action="{% url 'properties' %}" method="GET" class="search-glass-form">
-                <div class="search-group">
-                    <label><i class="fa-solid fa-location-dot"></i> Destination</label>
-                    <select name="location" class="search-field-input">
-                        <option value="">All Kerala Regions</option>
-                        {% for code, name in locations %}
-                        <option value="{{ code }}">{{ name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="search-group">
-                    <label><i class="fa-solid fa-calendar-days"></i> Arrival</label>
-                    <input type="date" name="check_in" class="search-field-input">
-                </div>
-
-                <div class="search-group">
-                    <label><i class="fa-solid fa-calendar-days"></i> Departure</label>
-                    <input type="date" name="check_out" class="search-field-input">
-                </div>
-
-                <div class="search-group">
-                    <label><i class="fa-solid fa-users"></i> Guests</label>
-                    <select name="guests" class="search-field-input">
-                        <option value="">Any Guests</option>
-                        <option value="2">2+ Guests</option>
-                        <option value="4">4+ Guests</option>
-                        <option value="6">6+ Guests</option>
-                        <option value="8">8+ Guests</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn-search-gold">
-                    <i class="fa-solid fa-magnifying-glass"></i> Search Luxury Stays
-                </button>
-            </form>
-        </div>
     </div>
 
     <!-- Minimal Animated Scroll Indicator -->
