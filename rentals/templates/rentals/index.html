@@ -1,16 +1,16 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Rentora — Escape the Ordinary | Luxury Hospitality & Private Estates{% endblock %}
+{% block title %}Rentora — Stay Beyond Extraordinary | Bespoke Luxury Hospitality{% endblock %}
 
 <!-- Clean Hero: No Header/Navbar on Landing Page -->
 {% block navbar %}{% endblock %}
 
 {% block content %}
-<!-- SECTION 1: FULLSCREEN CINEMATIC HERO -->
-<section class="hero-section hero-fullscreen">
+<!-- SECTION 1: FULLSCREEN CINEMATIC HERO (ANTIGRAVITY LUXURY DESIGN) -->
+<section class="hero-section hero-fullscreen" id="hero">
 
-    <!-- Cinematic Background Media Layer -->
+    <!-- Cinematic Background Video Layer -->
     <div class="hero-video-container">
         <div class="hero-image-fallback"></div>
         <video autoplay loop muted playsinline webkit-playsinline poster="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" class="hero-video-bg">
@@ -19,20 +19,20 @@
         </video>
     </div>
 
-    <!-- Dark Volumetric Gradient Overlay -->
+    <!-- Volumetric Haze & Gradient Vignette -->
     <div class="hero-overlay"></div>
 
-    <!-- Floating Ambient Particle Canvas -->
+    <!-- Ambient Floating Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Hero Center-Balanced Luxury Content -->
+    <!-- Hero Content Container (Centered Alignment) -->
     <div class="hero-content hero-center-balanced">
         <!-- Glass Pill Badge -->
         <div class="hero-badge-glass">
-            <i class="fa-solid fa-star"></i> TRUSTED LUXURY RENTALS
+            <i class="fa-solid fa-crown text-gold-icon"></i> LUXURY HOSPITALITY REDEFINED
         </div>
 
-        <!-- Headline (Instrument Serif Italic) -->
+        <!-- Headline (Instrument Serif Italic & Clean Sans) -->
         <h1 class="hero-title-serif">
             Escape the Ordinary.<br>
             <span class="highlight-gold">Luxury, Curated for You.</span>
@@ -40,30 +40,30 @@
 
         <!-- Subtitle -->
         <p class="hero-subtitle-text">
-            Discover Kerala's most exclusive private villas, luxury houseboats, waterfront estates and bespoke travel experiences curated exclusively by Rentora.
+            Immerse yourself in Kerala’s most prestigious private estate services, dedicated concierge teams, in-villa culinary chefs, and private charters.
         </p>
 
-        <!-- Action Buttons -->
+        <!-- Glass CTA Action Buttons -->
         <div class="hero-cta-group">
-            <a href="#advantage" class="btn btn-gold btn-hero-action">
-                <span>Discover Rentora</span> <i class="fa-solid fa-arrow-down"></i>
+            <a href="#facilities" class="btn btn-gold btn-hero-action">
+                <span>Explore Facilities</span> <i class="fa-solid fa-arrow-down"></i>
             </a>
-            <a href="#experiences" class="btn btn-glass btn-hero-action">
-                <span>Our Services</span> <i class="fa-solid fa-compass"></i>
+            <a href="#advantage" class="btn btn-glass btn-hero-action">
+                <span>The Rentora Advantage</span> <i class="fa-solid fa-star"></i>
             </a>
         </div>
     </div>
 
-    <!-- Minimal Animated Scroll Indicator (Strictly Centered) -->
+    <!-- Minimal Scroll Indicator (Centred) -->
     <div class="scroll-indicator-wrap reveal-popup">
         <div class="mouse-scroll-icon">
             <div class="mouse-wheel"></div>
         </div>
-        <span>Scroll to Explore</span>
+        <span>Scroll to Discover Facilities</span>
     </div>
 </section>
 
-<!-- SECTION 2: THE RENTORA ADVANTAGE (STORYTELLING & FEATURE CAROUSEL) -->
+<!-- SECTION 2: THE RENTORA ADVANTAGE (HORIZONTALLY SCROLLING FEATURE CAROUSEL) -->
 <section class="section advantage-section" id="advantage">
     <div class="section-container advantage-header-wrap">
         <span class="sub-heading-gold reveal-popup">THE RENTORA ADVANTAGE</span>
@@ -75,17 +75,17 @@
     <div class="carousel-outer-wrapper">
         <div class="carousel-track" id="featureCarouselTrack">
             
-            <!-- Feature Card 1 -->
+            <!-- Facility Card 1 -->
             <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-shield-halved text-gold-icon"></i>
                 </div>
                 <h3>100% Verified Estates</h3>
-                <p>Every property undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
+                <p>Every estate undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
                 <div class="card-reflection"></div>
             </div>
 
-            <!-- Feature Card 2 -->
+            <!-- Facility Card 2 -->
             <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-utensils text-gold-icon"></i>
@@ -95,7 +95,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <!-- Feature Card 3 -->
+            <!-- Facility Card 3 -->
             <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-ship text-gold-icon"></i>
@@ -105,7 +105,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <!-- Feature Card 4 -->
+            <!-- Facility Card 4 -->
             <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-plane text-gold-icon"></i>
@@ -115,7 +115,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <!-- Feature Card 5 -->
+            <!-- Facility Card 5 -->
             <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-lock text-gold-icon"></i>
@@ -125,13 +125,13 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <!-- Feature Card 6 -->
+            <!-- Facility Card 6 -->
             <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-bell text-gold-icon"></i>
                 </div>
                 <h3>24/7 Dedicated Estate Manager</h3>
-                <p>Your personal host is available around the clock to coordinate private excursions, yacht rentals, bespoke concierge requests, wellness appointments, and personalized itineraries.</p>
+                <p>Your personal host is available around the clock to coordinate private excursions, yacht rentals, bespoke concierge requests, and wellness appointments.</p>
                 <div class="card-reflection"></div>
             </div>
 
@@ -141,7 +141,7 @@
                     <i class="fa-solid fa-shield-halved text-gold-icon"></i>
                 </div>
                 <h3>100% Verified Estates</h3>
-                <p>Every property undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
+                <p>Every estate undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
                 <div class="card-reflection"></div>
             </div>
 
@@ -167,77 +167,113 @@
     </div>
 </section>
 
-<!-- SECTION 3: LUXURY EXPERIENCES (EDITORIAL CINEMATIC GALLERY) -->
-<section class="section experiences-section" id="experiences">
+<!-- SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE (SMOOTH SCROLL REVEALS) -->
+<section class="section facilities-section" id="facilities">
     <div class="section-container advantage-header-wrap">
-        <span class="sub-heading-gold reveal-popup">CURATED EXPEDITIONS</span>
-        <h2 class="serif-title advantage-title reveal-popup">Signature Luxury Experiences</h2>
-        <p class="advantage-desc reveal-popup">Immerse yourself in hand-crafted journeys created exclusively for Rentora guests.</p>
+        <span class="sub-heading-gold reveal-popup">UNPARALLELED AMENITIES</span>
+        <h2 class="serif-title advantage-title reveal-popup">World-Class In-Villa Facilities</h2>
+        <p class="advantage-desc reveal-popup">Designed to provide absolute privacy, comfort, and uncompromising luxury throughout your stay.</p>
     </div>
 
     <div class="section-container">
-        <div class="experiences-grid">
+        <div class="facilities-grid">
             
-            <!-- Experience Item 1 -->
-            <div class="experience-card reveal-popup">
-                <div class="exp-image-wrap">
-                    <img src="{% static 'images/scene_arrival_1784964424610.jpg' %}" alt="Private Backwater Yachting" loading="lazy">
-                    <div class="exp-badge">Alleppey & Kumarakom</div>
+            <!-- Facility Item 1 -->
+            <div class="facility-card-glass reveal-popup">
+                <div class="facility-header">
+                    <div class="facility-icon"><i class="fa-solid fa-spa text-gold-icon"></i></div>
+                    <span class="facility-number">01</span>
                 </div>
-                <div class="exp-body">
-                    <h3 class="exp-title">Private Backwater Yachting</h3>
-                    <p class="exp-desc">Glide through untouched backwater lagoons aboard presidential houseboats featuring private plunge pools and dedicated culinary staff.</p>
-                </div>
+                <h3>In-Villa Ayurvedic Wellness</h3>
+                <p>Private treatment rooms with certified Ayurvedic practitioners offering personalized Panchakarma, herbal baths, and holistic massages in complete privacy.</p>
+                <ul class="facility-features-list">
+                    <li><i class="fa-solid fa-check"></i> Master Herbal Therapists</li>
+                    <li><i class="fa-solid fa-check"></i> Private Treatment Suites</li>
+                </ul>
             </div>
 
-            <!-- Experience Item 2 -->
-            <div class="experience-card reveal-popup">
-                <div class="exp-image-wrap">
-                    <img src="{% static 'images/scene_kerala_estate_1784963501632.jpg' %}" alt="High-Altitude Plantation Retreat" loading="lazy">
-                    <div class="exp-badge">Munnar High Range</div>
+            <!-- Facility Item 2 -->
+            <div class="facility-card-glass reveal-popup">
+                <div class="facility-header">
+                    <div class="facility-icon"><i class="fa-solid fa-wine-glass text-gold-icon"></i></div>
+                    <span class="facility-number">02</span>
                 </div>
-                <div class="exp-body">
-                    <h3 class="exp-title">High-Altitude Plantation Retreats</h3>
-                    <p class="exp-desc">Escape to century-old tea estate manors nestled above misty mountain peaks with private organic gardens and Ayurvedic therapists.</p>
-                </div>
+                <h3>Sommelier Wine Vaults</h3>
+                <p>Climate-controlled subterranean wine cellars stocked with rare vintage champagne and artisan pairings curated by master sommeliers.</p>
+                <ul class="facility-features-list">
+                    <li><i class="fa-solid fa-check"></i> Rare Vintage Tastings</li>
+                    <li><i class="fa-solid fa-check"></i> Private Cellar Dining</li>
+                </ul>
             </div>
 
-            <!-- Experience Item 3 -->
-            <div class="experience-card reveal-popup">
-                <div class="exp-image-wrap">
-                    <img src="{% static 'images/scene_living_room_1784963440870.jpg' %}" alt="Sea-to-Table Gastronomy" loading="lazy">
-                    <div class="exp-badge">Varkala Cliffs</div>
+            <!-- Facility Item 3 -->
+            <div class="facility-card-glass reveal-popup">
+                <div class="facility-header">
+                    <div class="facility-icon"><i class="fa-solid fa-water-ladder text-gold-icon"></i></div>
+                    <span class="facility-number">03</span>
                 </div>
-                <div class="exp-body">
-                    <h3 class="exp-title">Sea-to-Table Gastronomy</h3>
-                    <p class="exp-desc">Savor custom multi-course seafood dinners prepared on cliffside private terraces overlooking sunset ocean panoramas.</p>
-                </div>
+                <h3>Temperature-Controlled Infinity Pools</h3>
+                <p>Private heated infinity pools overlooking serene ocean cliffs and tea garden valleys, complete with underwater audio systems.</p>
+                <ul class="facility-features-list">
+                    <li><i class="fa-solid fa-check"></i> Hydrotherapy Jets</li>
+                    <li><i class="fa-solid fa-check"></i> Sunken Pool Lounges</li>
+                </ul>
             </div>
 
-            <!-- Experience Item 4 -->
-            <div class="experience-card reveal-popup">
-                <div class="exp-image-wrap">
-                    <img src="{% static 'images/scene_wine_cellar_1784963481411.jpg' %}" alt="Private Sommelier & Vault Stays" loading="lazy">
-                    <div class="exp-badge">Fort Kochi Heritage</div>
+            <!-- Facility Item 4 -->
+            <div class="facility-card-glass reveal-popup">
+                <div class="facility-header">
+                    <div class="facility-icon"><i class="fa-solid fa-wifi text-gold-icon"></i></div>
+                    <span class="facility-number">04</span>
                 </div>
-                <div class="exp-body">
-                    <h3 class="exp-title">Private Sommelier & Vault Stays</h3>
-                    <p class="exp-desc">Sample rare vintages and artisan wine pairings in private subterranean cellars curated by master sommeliers.</p>
+                <h3>Ultra-High-Speed Starlink Connectivity</h3>
+                <p>Dedicated gigabit satellite internet and encrypted mesh Wi-Fi 6 coverage across every acre of private estate grounds.</p>
+                <ul class="facility-features-list">
+                    <li><i class="fa-solid fa-check"></i> 1 Gbps Fiber Mesh</li>
+                    <li><i class="fa-solid fa-check"></i> Executive Workspace Suites</li>
+                </ul>
+            </div>
+
+            <!-- Facility Item 5 -->
+            <div class="facility-card-glass reveal-popup">
+                <div class="facility-header">
+                    <div class="facility-icon"><i class="fa-solid fa-user-shield text-gold-icon"></i></div>
+                    <span class="facility-number">05</span>
                 </div>
+                <h3>24/7 VIP Security & Gatekeepers</h3>
+                <p>Discreet round-the-clock perimeter security, biometric access gates, thermal surveillance, and dedicated staff quarters for total privacy.</p>
+                <ul class="facility-features-list">
+                    <li><i class="fa-solid fa-check"></i> Biometric Access Control</li>
+                    <li><i class="fa-solid fa-check"></i> Complete VIP Privacy</li>
+                </ul>
+            </div>
+
+            <!-- Facility Item 6 -->
+            <div class="facility-card-glass reveal-popup">
+                <div class="facility-header">
+                    <div class="facility-icon"><i class="fa-solid fa-helicopter text-gold-icon"></i></div>
+                    <span class="facility-number">06</span>
+                </div>
+                <h3>Private Helipads & Chauffeur Fleet</h3>
+                <p>Direct helicopter landings at estate helipads combined with a fleet of armored Maybach SUVs for seamless airport transfers.</p>
+                <ul class="facility-features-list">
+                    <li><i class="fa-solid fa-check"></i> On-Site Estate Helipads</li>
+                    <li><i class="fa-solid fa-check"></i> Chauffeur Maybach SUV Fleet</li>
+                </ul>
             </div>
 
         </div>
     </div>
 </section>
 
-<!-- SECTION 4: FINAL CALL TO ACTION (EXCLUSIVE MEMBERS ACCESS) -->
+<!-- SECTION 4: EXCLUSIVE MEMBERS ACCESS GATEWAY (FINAL CTA) -->
 <section class="section final-cta-section" id="access">
     <div class="section-container">
         <div class="final-cta-box reveal-popup">
             <span class="sub-heading-gold">EXCLUSIVE MEMBERS ACCESS</span>
-            <h2 class="serif-title final-cta-title">Ready to Discover Kerala's Most Exclusive Stays?</h2>
+            <h2 class="serif-title final-cta-title">Unlock Access to Rentora’s Private Collection</h2>
             <p class="final-cta-desc">
-                Create an account to unlock access to Rentora's private collection of luxury estates, unlisted waterfront villas, and bespoke travel experiences.
+                Sign in or create a member account to explore unlisted private estates, presidential houseboats, and reserve bespoke travel experiences.
             </p>
 
             <div class="final-cta-buttons">
@@ -247,7 +283,7 @@
                 </a>
                 {% else %}
                 <a href="{% url 'register' %}" class="btn btn-gold btn-cta-large">
-                    <i class="fa-solid fa-user-plus"></i> Create Account
+                    <i class="fa-solid fa-user-plus"></i> Create Member Account
                 </a>
                 <a href="{% url 'login' %}" class="btn btn-glass btn-cta-large">
                     <i class="fa-solid fa-right-to-bracket"></i> Sign In
@@ -256,9 +292,9 @@
             </div>
 
             <div class="cta-trust-badges">
-                <span><i class="fa-solid fa-shield-halved"></i> Verified Private Access</span>
-                <span><i class="fa-solid fa-lock"></i> VIP Security Standards</span>
-                <span><i class="fa-solid fa-user-check"></i> 100% Confidentiality</span>
+                <span><i class="fa-solid fa-shield-halved"></i> 100% Verified Private Estates</span>
+                <span><i class="fa-solid fa-lock"></i> VIP Security & Privacy Guarantee</span>
+                <span><i class="fa-solid fa-headset"></i> 24/7 Personal Host Assistance</span>
             </div>
         </div>
     </div>

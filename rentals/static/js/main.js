@@ -1,10 +1,9 @@
 /* ==========================================================================
-   RENTORA CINEMATIC HERO & SERVICE LANDING SCRIPT - SPECIFICATION V1.3
+   RENTORA ANIMATION REFINEMENT SCRIPT - SPECIFICATION V1.2
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
-    initSeamlessVideoLoop();
     initHeroParallax();
     initParticleCanvas();
     initFeatureCarousel();
@@ -43,61 +42,7 @@ function initThemeToggle() {
 }
 
 /* --------------------------------------------------------------------------
-   2. Custom Seamless Video Looping Engine (Fade In 0.5s / Fade Out 0.5s / 100ms reset)
-   -------------------------------------------------------------------------- */
-function initSeamlessVideoLoop() {
-    const video = document.querySelector('.hero-video-bg');
-    if (!video) return;
-
-    let isResetting = false;
-
-    function monitorVideoLoop() {
-        if (video.duration > 0 && !isResetting) {
-            const currentTime = video.currentTime;
-            const duration = video.duration;
-            const timeRemaining = duration - currentTime;
-
-            // Fade in during first 0.5 seconds
-            if (currentTime < 0.5) {
-                const fadeOpacity = Math.min(currentTime / 0.5, 1);
-                video.style.opacity = (fadeOpacity * 0.75).toString();
-            }
-            // Fade out during last 0.5 seconds
-            else if (timeRemaining < 0.5) {
-                const fadeOpacity = Math.max(timeRemaining / 0.5, 0);
-                video.style.opacity = (fadeOpacity * 0.75).toString();
-            }
-            // Normal middle opacity
-            else {
-                video.style.opacity = '0.75';
-            }
-
-            // Invisible seamless restart when reaching end
-            if (timeRemaining <= 0.08 || video.ended) {
-                isResetting = true;
-                video.style.opacity = '0';
-                video.pause();
-
-                setTimeout(() => {
-                    video.currentTime = 0;
-                    video.play().then(() => {
-                        isResetting = false;
-                    }).catch(() => {
-                        isResetting = false;
-                    });
-                }, 100);
-            }
-        }
-        requestAnimationFrame(monitorVideoLoop);
-    }
-
-    // Ensure video is playing
-    video.play().catch(() => {});
-    requestAnimationFrame(monitorVideoLoop);
-}
-
-/* --------------------------------------------------------------------------
-   3. Ultra-Subtle Hero Parallax (Fixed Camera: Max 3-5px Total Movement)
+   2. Ultra-Subtle Hero Parallax (Fixed Camera: Max 3-5px Total Movement)
    -------------------------------------------------------------------------- */
 function initHeroParallax() {
     const heroSection = document.querySelector('.hero-section');
@@ -120,6 +65,7 @@ function initHeroParallax() {
         targetX += (mouseX - targetX) * 0.025;
         targetY += (mouseY - targetY) * 0.025;
 
+        // Strictly capped between 2px and 3.5px max offset
         if (layer) layer.style.transform = `scale(1.03) translate3d(${targetX * 3.5}px, ${targetY * 3.5}px, 0)`;
 
         requestAnimationFrame(animateParallax);
@@ -129,7 +75,7 @@ function initHeroParallax() {
 }
 
 /* --------------------------------------------------------------------------
-   4. Ambient Slow Floating Particle Canvas
+   3. Ambient Slow Floating Particle Canvas
    -------------------------------------------------------------------------- */
 function initParticleCanvas() {
     const canvas = document.getElementById('particleCanvas');
@@ -183,7 +129,7 @@ function initParticleCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Feature Carousel (Auto-Scroll + Mouse Drag + Touch Swipe)
+   4. Feature Carousel (Slowing speed by ~45%: 0.42 speed with smooth drag)
    -------------------------------------------------------------------------- */
 function initFeatureCarousel() {
     const wrapper = document.querySelector('.carousel-outer-wrapper');
@@ -192,7 +138,7 @@ function initFeatureCarousel() {
     if (!wrapper || !track) return;
 
     let positionX = 0;
-    let speed = 0.42;
+    let speed = 0.42; // Reduced speed for calm, luxury auto-scroll
     let isPaused = false;
     let isDragging = false;
     let startX = 0;
@@ -274,7 +220,7 @@ function initFeatureCarousel() {
 }
 
 /* --------------------------------------------------------------------------
-   6. Scroll Intersection Observer for Staggered Blur Pop Reveals
+   5. Scroll Intersection Observer for Slow 1.0s Blur/Fade Reveals (Staggered)
    -------------------------------------------------------------------------- */
 function initScrollObserver() {
     const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-popup');
@@ -303,7 +249,7 @@ function initScrollObserver() {
 }
 
 /* --------------------------------------------------------------------------
-   7. Mobile Navigation Menu Toggle
+   6. Mobile Navigation Menu Toggle
    -------------------------------------------------------------------------- */
 function initMobileNav() {
     const mobileBtn = document.getElementById('mobileToggle');
