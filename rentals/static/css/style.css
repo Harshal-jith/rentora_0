@@ -177,23 +177,23 @@ img {
 }
 
 .nav-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.nav-container-centered {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
     width: 100%;
 }
 
-.brand-logo-center {
+.brand-logo, .brand-logo-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    justify-content: center;
+    z-index: 10;
+    margin: 0;
+    text-decoration: none;
 }
 
 .logo-wrapper {
