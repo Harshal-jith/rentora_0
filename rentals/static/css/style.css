@@ -2690,6 +2690,46 @@ body.light-theme .hero-stats-glass-bar .stat-label {
     color: rgba(255, 255, 255, 0.75) !important;
 }
 
+/* IMMUNITY FOR HERO SECONDARY BUTTON (IN-VILLA FACILITIES BUTTON) */
+.hero-editorial-fullscreen .btn-editorial-secondary,
+.hero-editorial-fullscreen .btn-glass,
+[data-theme="light"] .hero-editorial-fullscreen .btn-editorial-secondary,
+[data-theme="light"] .hero-editorial-fullscreen .btn-glass,
+body.light-theme .hero-editorial-fullscreen .btn-editorial-secondary,
+body.light-theme .hero-editorial-fullscreen .btn-glass {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.hero-editorial-fullscreen .btn-editorial-secondary:hover,
+.hero-editorial-fullscreen .btn-glass:hover,
+[data-theme="light"] .hero-editorial-fullscreen .btn-editorial-secondary:hover,
+[data-theme="light"] .hero-editorial-fullscreen .btn-glass:hover,
+body.light-theme .hero-editorial-fullscreen .btn-editorial-secondary:hover,
+body.light-theme .hero-editorial-fullscreen .btn-glass:hover {
+    background: rgba(214, 181, 108, 0.25) !important;
+    border-color: var(--gold) !important;
+    color: var(--gold-bright) !important;
+    transform: translateY(-2px);
+}
+
+/* SEAMLESS GRADIENT TRANSITION FROM HERO TO LOWER CONTENT IN LIGHT MODE */
+[data-theme="light"] .advantage-section,
+body.light-theme .advantage-section {
+    background: linear-gradient(to bottom, #0B0B0B 0%, #141923 25%, #F1F5F9 100%) !important;
+}
+
+[data-theme="light"] .advantage-title,
+body.light-theme .advantage-title,
+[data-theme="light"] .advantage-desc,
+body.light-theme .advantage-desc {
+    color: var(--text-primary);
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
