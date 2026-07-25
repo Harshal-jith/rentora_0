@@ -4,22 +4,41 @@
 {% block title %}RENTORA | Find. Rent. Live. — Kerala Luxury Property Rentals{% endblock %}
 
 {% block content %}
-<!-- Hero Section with Integrated Sign Up / Sign In Tabbed Card -->
+<!-- Cinematic Hero Section with Looping Video Background -->
 <section class="hero-section">
+    <!-- Video Background Container -->
+    <div class="hero-video-container">
+        <video 
+            id="heroVideo" 
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4" 
+            muted 
+            playsinline 
+            autoplay 
+            class="hero-video"
+        ></video>
+        <!-- Gradient Overlay over video -->
+        <div class="hero-video-gradient"></div>
+    </div>
+    
     <div class="hero-overlay"></div>
     <div class="hero-container">
         
-        <!-- Left Hero Copy -->
+        <!-- Left Hero Copy with Aethera® Cinematic Styling & Animations -->
         <div class="hero-text-content">
-            <div class="hero-badge">
+            <div class="hero-badge animate-fade-rise">
                 <i class="fa-solid fa-crown"></i> EXCLUSIVE LUXURY REAL ESTATE RENTALS
             </div>
-            <h1 class="hero-title">FIND. RENT. LIVE.<br><span class="highlight-gold">In Unmatched Luxury</span></h1>
-            <p class="hero-subtitle">
-                Kerala's premier portfolio of private infinity pool villas, 5-star presidential backwater houseboats, and colonial tea estate manors.
+            
+            <h1 class="hero-title animate-fade-rise">
+                Beyond <span class="highlight-italic">silence,</span><br>
+                we build <span class="highlight-italic">the eternal.</span>
+            </h1>
+            
+            <p class="hero-subtitle animate-fade-rise-delay">
+                Building platforms for brilliant minds, fearless makers, and thoughtful souls. Through the noise, we craft digital havens for deep work and pure flows — featuring Kerala's premier portfolio of private infinity pool villas and tea estate manors.
             </p>
 
-            <div class="hero-stats">
+            <div class="hero-stats animate-fade-rise-delay-2">
                 <div class="stat-item">
                     <span class="stat-num">50+</span>
                     <span class="stat-label">Verified Estates</span>
@@ -36,7 +55,7 @@
         </div>
 
         <!-- Right Hero Registration & Sign-In Card -->
-        <div class="hero-auth-card">
+        <div class="hero-auth-card animate-fade-rise-delay-2">
             {% if user.is_authenticated %}
             <div class="member-welcome-box">
                 <div class="member-icon"><i class="fa-solid fa-crown"></i></div>
@@ -302,5 +321,51 @@ function switchAuthTab(tab) {
         btns[1].classList.add('active');
     }
 }
+
+// Custom 0.5s Fade-In / Fade-Out Video Background Loop with requestAnimationFrame
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('heroVideo');
+    if (!video) return;
+
+    let isTransitioning = false;
+
+    function updateFade() {
+        if (video && !isTransitioning) {
+            const currentTime = video.currentTime;
+            const duration = video.duration;
+
+            if (!isNaN(duration) && duration > 0) {
+                // Fade in over 0.5s at start (opacity 0 to 1)
+                if (currentTime < 0.5) {
+                    video.style.opacity = Math.min(1, Math.max(0, currentTime / 0.5));
+                }
+                // Fade out over 0.5s before end (opacity 1 to 0)
+                else if (duration - currentTime < 0.5) {
+                    video.style.opacity = Math.min(1, Math.max(0, (duration - currentTime) / 0.5));
+                }
+                // Full opacity
+                else {
+                    video.style.opacity = 1;
+                }
+            }
+        }
+        requestAnimationFrame(updateFade);
+    }
+
+    requestAnimationFrame(updateFade);
+
+    video.addEventListener('ended', function() {
+        isTransitioning = true;
+        video.style.opacity = 0;
+        setTimeout(function() {
+            video.currentTime = 0;
+            video.play().then(function() {
+                isTransitioning = false;
+            }).catch(function() {
+                isTransitioning = false;
+            });
+        }, 100);
+    });
+});
 </script>
 {% endblock %}
