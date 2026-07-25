@@ -1,65 +1,79 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Rentora — Stay Beyond Extraordinary | Bespoke Luxury Hospitality{% endblock %}
+{% block title %}Rentora — The Sanctuary of Uncompromised Luxury{% endblock %}
 
 <!-- Clean Hero: No Header/Navbar on Landing Page -->
 {% block navbar %}{% endblock %}
 
 {% block content %}
-<!-- SECTION 1: FULLSCREEN CINEMATIC HERO (ANTIGRAVITY LUXURY DESIGN) -->
-<section class="hero-section hero-fullscreen" id="hero">
+<!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO (FULL REBUILD) -->
+<section class="hero-section hero-editorial-fullscreen" id="hero">
 
-    <!-- Cinematic Background Video Layer -->
+    <!-- Active 4K Background Video & Dynamic Cross-Fading Slideshow -->
     <div class="hero-video-container">
-        <div class="hero-image-fallback"></div>
-        <video autoplay loop muted playsinline webkit-playsinline poster="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" class="hero-video-bg">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
+        <div class="hero-slideshow-bg">
+            <div class="slide slide-1 active"></div>
+            <div class="slide slide-2"></div>
+            <div class="slide slide-3"></div>
+        </div>
+        <video autoplay loop muted playsinline webkit-playsinline poster="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" class="hero-video-bg">
             <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- Volumetric Haze & Gradient Vignette -->
-    <div class="hero-overlay"></div>
+    <!-- Ambient Dark Gradient Vignette -->
+    <div class="hero-overlay-editorial"></div>
 
-    <!-- Ambient Floating Particle Canvas -->
+    <!-- Floating Gold Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Hero Content Container (Centered Alignment) -->
-    <div class="hero-content hero-center-balanced">
-        <!-- Glass Pill Badge -->
-        <div class="hero-badge-glass">
-            <i class="fa-solid fa-crown text-gold-icon"></i> LUXURY HOSPITALITY REDEFINED
+    <!-- Editorial Hero Core Layout -->
+    <div class="hero-content-editorial">
+        <!-- Private Collection Edition Badge -->
+        <div class="hero-edition-pill">
+            <span class="pill-dot"></span> RENTORA PRIVATE COLLECTION
         </div>
 
-        <!-- Headline (Instrument Serif Italic & Clean Sans) -->
-        <h1 class="hero-title-serif">
-            Escape the Ordinary.<br>
-            <span class="highlight-gold">Luxury, Curated for You.</span>
+        <!-- Headline (Instrument Serif Italic & Gold Shimmer) -->
+        <h1 class="hero-title-editorial">
+            The Sanctuary of<br>
+            <span class="gold-shimmer-text">Uncompromised Luxury</span>
         </h1>
 
         <!-- Subtitle -->
-        <p class="hero-subtitle-text">
-            Immerse yourself in Kerala’s most prestigious private estate services, dedicated concierge teams, in-villa culinary chefs, and private charters.
+        <p class="hero-subtitle-editorial">
+            Kerala's premiere private hospitality platform. Experience 100% verified estates, in-villa culinary masters, private helipads, and 24/7 dedicated estate concierge.
         </p>
 
-        <!-- Glass CTA Action Buttons -->
-        <div class="hero-cta-group">
-            <a href="#facilities" class="btn btn-gold btn-hero-action">
-                <span>Explore Facilities</span> <i class="fa-solid fa-arrow-down"></i>
+        <!-- Action Buttons -->
+        <div class="hero-cta-editorial-group">
+            <a href="#advantage" class="btn btn-gold btn-editorial-primary">
+                <span>Explore Advantage</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <a href="#advantage" class="btn btn-glass btn-hero-action">
-                <span>The Rentora Advantage</span> <i class="fa-solid fa-star"></i>
+            <a href="#facilities" class="btn btn-glass btn-editorial-secondary">
+                <span>In-Villa Facilities</span> <i class="fa-solid fa-gem"></i>
             </a>
         </div>
-    </div>
 
-    <!-- Minimal Scroll Indicator (Centred) -->
-    <div class="scroll-indicator-wrap reveal-popup">
-        <div class="mouse-scroll-icon">
-            <div class="mouse-wheel"></div>
+        <!-- Bottom Luxury Stats Bar (Replacing Old Scroll Icon) -->
+        <div class="hero-stats-glass-bar">
+            <div class="stat-glass-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Verified Private Estates</span>
+            </div>
+            <div class="stat-glass-divider"></div>
+            <div class="stat-glass-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Personal Estate Host</span>
+            </div>
+            <div class="stat-glass-divider"></div>
+            <div class="stat-glass-item">
+                <span class="stat-number">5-Star</span>
+                <span class="stat-label">Culinary Chefs & Sommelier</span>
+            </div>
         </div>
-        <span>Scroll to Discover Facilities</span>
     </div>
 </section>
 
@@ -167,7 +181,7 @@
     </div>
 </section>
 
-<!-- SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE (SMOOTH SCROLL REVEALS) -->
+<!-- SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE -->
 <section class="section facilities-section" id="facilities">
     <div class="section-container advantage-header-wrap">
         <span class="sub-heading-gold reveal-popup">UNPARALLELED AMENITIES</span>

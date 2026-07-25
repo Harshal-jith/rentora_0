@@ -4,12 +4,28 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
+    initHeroSlideshow();
     initHeroParallax();
     initParticleCanvas();
     initFeatureCarousel();
     initScrollObserver();
     initMobileNav();
 });
+
+/* --------------------------------------------------------------------------
+   Hero Dynamic Background Slideshow (Cross-Fading Ambient Media)
+   -------------------------------------------------------------------------- */
+function initHeroSlideshow() {
+    const slides = document.querySelectorAll('.hero-slideshow-bg .slide');
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    setInterval(() => {
+        slides.forEach(slide => slide.style.opacity = '0');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].style.opacity = '1';
+    }, 6000);
+}
 
 /* --------------------------------------------------------------------------
    1. Theme Toggle & Persistence
