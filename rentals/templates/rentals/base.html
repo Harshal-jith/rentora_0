@@ -49,6 +49,9 @@
             
             <!-- Center: Navigation Links -->
             <nav class="nav-links">
+                {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"><i class="fa-solid fa-crown text-gold"></i> Dashboard</a>
+                {% endif %}
                 <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Properties</a>
                 <a href="{% url 'properties' %}?property_type=villa" class="nav-link">Luxury Stays</a>
                 <a href="{% url 'home' %}#services" class="nav-link">Experiences</a>
@@ -65,10 +68,12 @@
 
                 <div class="nav-auth">
                     {% if user.is_authenticated %}
-                    <div class="user-badge">
-                        <i class="fa-solid fa-crown"></i>
-                        <span>{{ user.username }}</span>
-                    </div>
+                    <a href="{% url 'dashboard' %}" class="user-badge-link">
+                        <div class="user-badge">
+                            <i class="fa-solid fa-crown"></i>
+                            <span>{{ user.username }}</span>
+                        </div>
+                    </a>
                     <a href="{% url 'logout' %}" class="btn btn-glass btn-sm">Logout</a>
                     {% else %}
                     <a href="{% url 'login' %}" class="btn btn-glass btn-sm">Login</a>

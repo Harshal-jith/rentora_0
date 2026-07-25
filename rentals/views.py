@@ -44,8 +44,8 @@ def home_view(request):
             if form.is_valid():
                 user = form.save()
                 login(request, user)
-                messages.success(request, f"Welcome to Rentora, {user.username}! Your luxury membership is active.")
-                return redirect('home')
+                messages.success(request, f"Welcome to Rentora, {user.username}! Your VIP membership is active.")
+                return redirect('dashboard')
             else:
                 for error in form.errors.values():
                     messages.error(request, error)
@@ -56,7 +56,7 @@ def home_view(request):
                 user = form.get_user()
                 login(request, user)
                 messages.success(request, f"Welcome back, {user.username}!")
-                return redirect('home')
+                return redirect('dashboard')
             else:
                 messages.error(request, "Invalid username or password. Please try again.")
 
@@ -85,6 +85,61 @@ def home_view(request):
         'total_properties': Property.objects.count(),
     }
     return render(request, 'rentals/index.html', context)
+
+def dashboard_view(request):
+    if not request.user.is_authenticated:
+        messages.info(request, "Please sign in to access your member dashboard.")
+        return redirect('login')
+
+    log_visitor(request)
+    
+    # Retrieve user's inquiries/bookings
+    user_inquiries = Inquiry.objects.filter(
+        Q(email__iexact=request.user.email) | Q(name__icontains=request.user.username)
+    ).distinct()
+
+    if not user_inquiries.exists():
+        user_inquiries = Inquiry.objects.all()[:5]
+
+    # Property Search & Filter
+    properties = Property.objects.all()
+    query = request.GET.get('q', '')
+    location = request.GET.get('location', '')
+    property_type = request.GET.get('property_type', '')
+    max_price = request.GET.get('max_price', '')
+    guests = request.GET.get('guests', '')
+
+    if query:
+        properties = properties.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(location_display_name__icontains=query)
+        )
+
+    if location:
+        properties = properties.filter(location=location)
+
+    if property_type:
+        properties = properties.filter(property_type=property_type)
+
+    if max_price and max_price.isdigit():
+        properties = properties.filter(price_per_night__lte=int(max_price))
+
+    if guests and guests.isdigit():
+        properties = properties.filter(max_guests__gte=int(guests))
+
+    context = {
+        'user_inquiries': user_inquiries,
+        'properties': properties,
+        'locations': LOCATION_CHOICES,
+        'property_types': PROPERTY_TYPE_CHOICES,
+        'selected_location': location,
+        'selected_type': property_type,
+        'query': query,
+        'max_price': max_price,
+        'guests': guests,
+    }
+    return render(request, 'rentals/dashboard.html', context)
 
 def properties_view(request):
     log_visitor(request)
@@ -167,7 +222,7 @@ def property_detail_view(request, slug):
 def register_view(request):
     log_visitor(request)
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('dashboard')
         
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -175,7 +230,7 @@ def register_view(request):
             user = form.save()
             login(request, user)
             messages.success(request, f"Registration successful! Welcome to Rentora, {user.username}.")
-            return redirect('home')
+            return redirect('dashboard')
         else:
             for error in form.errors.values():
                 messages.error(request, error)
@@ -187,7 +242,7 @@ def register_view(request):
 def login_view(request):
     log_visitor(request)
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('dashboard')
 
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -195,7 +250,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, f"Logged in as {user.username}.")
-            return redirect('home')
+            return redirect('dashboard')
         else:
             messages.error(request, "Invalid username or password.")
     else:
