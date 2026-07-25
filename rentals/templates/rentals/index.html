@@ -7,21 +7,23 @@
 <!-- SECTION 1: FULLSCREEN CINEMATIC HERO -->
 <section class="hero-section hero-fullscreen">
 
-    <!-- Fullscreen Background Video & Fallback Canvas -->
+    <!-- Cinematic Background Media Layer -->
     <div class="hero-video-container">
-        <video autoplay loop muted playsinline poster="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" class="hero-video-bg">
+        <div class="hero-image-fallback"></div>
+        <video autoplay loop muted playsinline webkit-playsinline poster="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" class="hero-video-bg">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
             <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- Dark Gradient & Ambient Volumetric Overlay -->
+    <!-- Dark Volumetric Gradient Overlay -->
     <div class="hero-overlay"></div>
 
     <!-- Floating Ambient Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Hero Top-Aligned Content -->
-    <div class="hero-content hero-top-aligned">
+    <!-- Hero Center-Balanced Luxury Content -->
+    <div class="hero-content hero-center-balanced">
         <!-- Glass Pill Badge -->
         <div class="hero-badge-glass">
             <i class="fa-solid fa-star"></i> TRUSTED LUXURY RENTALS
