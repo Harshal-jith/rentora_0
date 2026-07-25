@@ -363,6 +363,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 15px;
     background-color: var(--bg-dark);
 }
 
@@ -396,7 +397,7 @@ img {
 
 /* Prominent Transparent Rentora Brand Logo (Top Center) */
 .hero-brand-logo-wrap {
-    margin: 0 auto 28px;
+    margin: 0 auto 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -441,12 +442,13 @@ img {
     z-index: 10;
     max-width: 1050px;
     margin: 0 auto;
-    padding: 40px 24px 0;
+    padding: 10px 24px 0;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .hero-edition-pill {
