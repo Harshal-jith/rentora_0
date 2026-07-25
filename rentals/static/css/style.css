@@ -389,6 +389,11 @@ img {
     opacity: 0.85;
 }
 
+@keyframes heroFadeDown {
+    from { opacity: 0; transform: translateY(-24px); filter: blur(10px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
 /* Prominent Transparent Rentora Brand Logo (Top Center) */
 .hero-brand-logo-wrap {
     margin: 0 auto 28px;
@@ -397,7 +402,7 @@ img {
     align-items: center;
     text-align: center;
     width: 100%;
-    animation: fadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    animation: heroFadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
     opacity: 0;
 }
 
