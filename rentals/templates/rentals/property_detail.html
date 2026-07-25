@@ -15,7 +15,7 @@
                 <p class="property-location-str"><i class="fa-solid fa-location-dot"></i> {{ property.location_display_name }}</p>
             </div>
             <div class="header-rating-box">
-                <div class="rating-score"><i class="fa-solid fa-star"></i> {{ property.rating }}</div>
+                <div class="rating-score"><i class="fa-solid fa-check text-gold"></i> {{ property.rating }}</div>
                 <div class="rating-count">{{ property.reviews_count }} Verified Guest Reviews</div>
             </div>
         </div>
@@ -119,7 +119,7 @@
                         <span class="b-price">₹{{ property.price_per_night|floatformat:0 }}</span>
                         <span class="b-unit">/ night</span>
                     </div>
-                    <div class="b-rating"><i class="fa-solid fa-star"></i> {{ property.rating }}</div>
+                    <div class="b-rating"><i class="fa-solid fa-check text-gold"></i> {{ property.rating }}</div>
                 </div>
 
                 <form method="POST" action="{% url 'property_detail' property.slug %}" class="booking-form">

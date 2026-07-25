@@ -10,7 +10,7 @@
     <div class="dashboard-banner">
         <div class="section-container dashboard-banner-content">
             <div class="user-welcome-info">
-                <span class="user-vip-pill"><i class="fa-solid fa-star"></i> MEMBER DASHBOARD</span>
+                <span class="user-vip-pill"><i class="fa-solid fa-shield-halved"></i> MEMBER DASHBOARD</span>
                 <h1 class="page-title dashboard-headline">Welcome, {{ user.username }}</h1>
                 <p class="page-subtitle dashboard-subcopy">Explore Luxury Kerala Rentals — <span class="gold-shimmer-text">Handpicked estates, private backwater villas, and oceanfront sanctuaries.</span></p>
             </div>
@@ -155,7 +155,7 @@
         <!-- SECTION C: FEATURED PROPERTIES (COMPACT CARDS) -->
         <div class="dashboard-section-box">
             <div class="dash-section-header">
-                <h2><i class="fa-solid fa-star text-gold"></i> Featured Properties</h2>
+                <h2><i class="fa-solid fa-gem text-gold"></i> Featured Properties</h2>
                 <p>Handpicked luxury retreats and verified estates.</p>
             </div>
 
@@ -170,7 +170,7 @@
                     <div class="compact-card-content">
                         <div class="compact-card-top">
                             <span class="compact-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</span>
-                            <span class="compact-rating"><i class="fa-solid fa-star"></i> {{ prop.rating }}</span>
+                            <span class="compact-rating"><i class="fa-solid fa-check"></i> {{ prop.rating }}</span>
                         </div>
                         <h3 class="compact-title"><a href="{% url 'property_detail' slug=prop.slug %}">{{ prop.title }}</a></h3>
                         <div class="compact-specs">

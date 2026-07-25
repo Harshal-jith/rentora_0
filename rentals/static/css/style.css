@@ -2500,11 +2500,12 @@ img {
 
 .compact-title {
     font-size: 1.05rem;
-    font-weight: 500;
-    font-family: var(--font-heading);
-    font-style: italic;
+    font-weight: 600;
+    font-family: var(--font-body);
+    font-style: normal;
     margin: 0;
     line-height: 1.3;
+    color: var(--text-primary);
 }
 
 .compact-title a {
