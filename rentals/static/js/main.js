@@ -46,11 +46,9 @@ function initThemeToggle() {
    -------------------------------------------------------------------------- */
 function initHeroParallax() {
     const heroSection = document.querySelector('.hero-section');
-    const layerBg = document.querySelector('.parallax-bg');
-    const layerMid = document.querySelector('.parallax-mid');
-    const layerFg = document.querySelector('.parallax-fg');
+    const layer = document.querySelector('.parallax-layer');
 
-    if (!heroSection || !layerBg) return;
+    if (!heroSection || !layer) return;
 
     let mouseX = 0, mouseY = 0;
     let targetX = 0, targetY = 0;
@@ -59,20 +57,16 @@ function initHeroParallax() {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
 
-        // Normalized offset (-0.5 to 0.5)
         mouseX = (e.clientX / windowWidth) - 0.5;
         mouseY = (e.clientY / windowHeight) - 0.5;
     }, { passive: true });
 
     function animateParallax() {
-        // Heavy, ultra-slow damping (0.025 factor)
         targetX += (mouseX - targetX) * 0.025;
         targetY += (mouseY - targetY) * 0.025;
 
-        // Strictly capped between 2px and 4.5px max offset
-        if (layerBg) layerBg.style.transform = `scale(1.03) translate3d(${targetX * 2.2}px, ${targetY * 2.2}px, 0)`;
-        if (layerMid) layerMid.style.transform = `scale(1.02) translate3d(${targetX * 3.5}px, ${targetY * 3.5}px, 0)`;
-        if (layerFg) layerFg.style.transform = `scale(1.01) translate3d(${targetX * 4.8}px, ${targetY * 4.8}px, 0)`;
+        // Strictly capped between 2px and 3.5px max offset
+        if (layer) layer.style.transform = `scale(1.03) translate3d(${targetX * 3.5}px, ${targetY * 3.5}px, 0)`;
 
         requestAnimationFrame(animateParallax);
     }

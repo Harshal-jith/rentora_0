@@ -364,15 +364,14 @@ img {
 .parallax-layer {
     position: absolute;
     inset: 0;
+    background-image: url('../images/hero_mid_villa_1784964394119.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transform: scale(1.03);
     will-change: transform;
     transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.parallax-bg { background-image: url('../images/hero_sky_mountains_1784964378346.jpg'); z-index: 1; transform: scale(1.03); }
-.parallax-mid { background-image: url('../images/hero_mid_villa_1784964394119.jpg'); z-index: 2; opacity: 0.88; mix-blend-mode: screen; transform: scale(1.02); }
-.parallax-fg { background-image: url('../images/hero_fg_pool_1784964408615.jpg'); z-index: 3; opacity: 0.55; mix-blend-mode: soft-light; transform: scale(1.01); }
 
 .hero-overlay {
     position: absolute;
