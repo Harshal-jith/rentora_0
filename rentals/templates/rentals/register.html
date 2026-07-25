@@ -7,67 +7,9 @@
 {% block navbar %}{% endblock %}
 
 {% block content %}
-<div class="auth-split-layout">
+<div class="auth-split-layout auth-panel-left">
 
-    <!-- LEFT SIDE: IMMERSIVE VISUAL STORYTELLING & VIDEO ENGINE (55%) -->
-    <div class="auth-visual-side">
-        
-        <!-- Video Background Layer -->
-        <div class="auth-video-wrapper">
-            <video id="authBgVideo" autoplay muted playsinline webkit-playsinline poster="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" class="auth-video-element">
-                <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
-            </video>
-            <div class="auth-image-fallback" style="background-image: url('{% static 'images/scene_night_exterior_1784963519950.jpg' %}');"></div>
-        </div>
-
-        <!-- Atmospheric Dark Vignette Overlay -->
-        <div class="auth-visual-overlay"></div>
-
-        <!-- Left Visual Content Container -->
-        <div class="auth-visual-content">
-            <!-- Brand Logo at Top Left -->
-            <div class="auth-brand-header">
-                <a href="{% url 'home' %}" aria-label="Rentora Home">
-                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-dark">
-                    <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-light">
-                </a>
-            </div>
-
-            <!-- Brand Storytelling -->
-            <div class="auth-story-body">
-                <span class="sub-heading-gold">VIP MEMBERSHIP PRIVILEGES</span>
-                <h1 class="auth-story-headline">
-                    Bespoke Stays &<br>
-                    <span class="gold-shimmer-text">Exclusive Access</span>
-                </h1>
-                <p class="auth-story-subcopy">
-                    Apply for Rentora VIP membership to unlock access to unlisted private estates, presidential houseboats, and personalized travel itineraries.
-                </p>
-
-                <div class="auth-trust-pillars">
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-lock text-gold"></i>
-                        <span>Confidential High-Security Stays</span>
-                    </div>
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-helicopter text-gold"></i>
-                        <span>Helicopter & Armored SUV Transfers</span>
-                    </div>
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-spa text-gold"></i>
-                        <span>In-Villa Ayurvedic Wellness</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="auth-visual-footer">
-                <p>© 2026 Rentora Luxury Hospitality. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- RIGHT SIDE: SOLID LUXURY AUTHENTICATION PANEL (45%) -->
+    <!-- LEFT SIDE: SOLID LUXURY AUTHENTICATION PANEL (45%) -->
     <div class="auth-panel-side">
         <div class="auth-panel-content">
             
@@ -78,7 +20,7 @@
                 </a>
             </div>
 
-            <!-- Solid Luxury Card Surface (No Flimsy Glassmorphism) -->
+            <!-- Solid Luxury Card Surface -->
             <div class="auth-card-solid">
                 <div class="auth-card-header">
                     <span class="sub-heading-gold">VIP MEMBERSHIP APPLICATION</span>
@@ -122,5 +64,64 @@
 
         </div>
     </div>
+
+    <!-- RIGHT SIDE: IMMERSIVE VISUAL STORYTELLING & VIDEO ENGINE (55%) -->
+    <div class="auth-visual-side">
+        
+        <!-- Video Background Layer -->
+        <div class="auth-video-wrapper">
+            <video id="authBgVideo" autoplay muted playsinline webkit-playsinline poster="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" class="auth-video-element">
+                <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
+            </video>
+            <div class="auth-image-fallback" style="background-image: url('{% static 'images/scene_night_exterior_1784963519950.jpg' %}');"></div>
+        </div>
+
+        <!-- Atmospheric Dark Vignette Overlay -->
+        <div class="auth-visual-overlay"></div>
+
+        <!-- Right Visual Content Container -->
+        <div class="auth-visual-content">
+            <!-- Brand Logo at Top Right -->
+            <div class="auth-brand-header">
+                <a href="{% url 'home' %}" aria-label="Rentora Home">
+                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-dark">
+                    <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-light">
+                </a>
+            </div>
+
+            <!-- Brand Storytelling -->
+            <div class="auth-story-body">
+                <span class="sub-heading-gold">VIP MEMBERSHIP PRIVILEGES</span>
+                <h1 class="auth-story-headline">
+                    Bespoke Stays &<br>
+                    <span class="gold-shimmer-text">Exclusive Access</span>
+                </h1>
+                <p class="auth-story-subcopy">
+                    Apply for Rentora VIP membership to unlock access to unlisted private estates, presidential houseboats, and personalized travel itineraries.
+                </p>
+
+                <div class="auth-trust-pillars">
+                    <div class="pillar-item">
+                        <i class="fa-solid fa-lock text-gold"></i>
+                        <span>Confidential High-Security Stays</span>
+                    </div>
+                    <div class="pillar-item">
+                        <i class="fa-solid fa-helicopter text-gold"></i>
+                        <span>Helicopter & Armored SUV Transfers</span>
+                    </div>
+                    <div class="pillar-item">
+                        <i class="fa-solid fa-spa text-gold"></i>
+                        <span>In-Villa Ayurvedic Wellness</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-visual-footer">
+                <p>© 2026 Rentora Luxury Hospitality. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}

@@ -7,67 +7,9 @@
 {% block navbar %}{% endblock %}
 
 {% block content %}
-<div class="auth-split-layout">
+<div class="auth-split-layout auth-panel-left">
 
-    <!-- LEFT SIDE: IMMERSIVE VISUAL STORYTELLING & VIDEO ENGINE (55%) -->
-    <div class="auth-visual-side">
-        
-        <!-- Video Background Layer -->
-        <div class="auth-video-wrapper">
-            <video id="authBgVideo" autoplay muted playsinline webkit-playsinline poster="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" class="auth-video-element">
-                <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
-            </video>
-            <div class="auth-image-fallback" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
-        </div>
-
-        <!-- Atmospheric Dark Vignette Overlay -->
-        <div class="auth-visual-overlay"></div>
-
-        <!-- Left Visual Content Container -->
-        <div class="auth-visual-content">
-            <!-- Brand Logo at Top Left -->
-            <div class="auth-brand-header">
-                <a href="{% url 'home' %}" aria-label="Rentora Home">
-                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-dark">
-                    <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-light">
-                </a>
-            </div>
-
-            <!-- Brand Storytelling -->
-            <div class="auth-story-body">
-                <span class="sub-heading-gold">RENTORA PRIVATE COLLECTION</span>
-                <h1 class="auth-story-headline">
-                    The Sanctuary of<br>
-                    <span class="gold-shimmer-text">Uncompromised Luxury</span>
-                </h1>
-                <p class="auth-story-subcopy">
-                    Enter Kerala’s premiere hospitality platform. Access 100% verified private estates, in-villa culinary master chefs, and 24/7 personal concierge hosts.
-                </p>
-
-                <div class="auth-trust-pillars">
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-shield-halved text-gold"></i>
-                        <span>100% Verified Private Estates</span>
-                    </div>
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-crown text-gold"></i>
-                        <span>24/7 Dedicated Estate Host</span>
-                    </div>
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-utensils text-gold"></i>
-                        <span>In-Villa Culinary Masters</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="auth-visual-footer">
-                <p>© 2026 Rentora Luxury Hospitality. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- RIGHT SIDE: SOLID LUXURY AUTHENTICATION PANEL (45%) -->
+    <!-- LEFT SIDE: SOLID LUXURY AUTHENTICATION PANEL (45%) -->
     <div class="auth-panel-side">
         <div class="auth-panel-content">
             
@@ -78,7 +20,7 @@
                 </a>
             </div>
 
-            <!-- Solid Luxury Card Surface (No Flimsy Glassmorphism) -->
+            <!-- Solid Luxury Card Surface -->
             <div class="auth-card-solid">
                 <div class="auth-card-header">
                     <span class="sub-heading-gold">VIP MEMBER ACCESS</span>
@@ -128,5 +70,64 @@
 
         </div>
     </div>
+
+    <!-- RIGHT SIDE: IMMERSIVE VISUAL STORYTELLING & VIDEO ENGINE (55%) -->
+    <div class="auth-visual-side">
+        
+        <!-- Video Background Layer -->
+        <div class="auth-video-wrapper">
+            <video id="authBgVideo" autoplay muted playsinline webkit-playsinline poster="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" class="auth-video-element">
+                <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
+            </video>
+            <div class="auth-image-fallback" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
+        </div>
+
+        <!-- Atmospheric Dark Vignette Overlay -->
+        <div class="auth-visual-overlay"></div>
+
+        <!-- Right Visual Content Container -->
+        <div class="auth-visual-content">
+            <!-- Brand Logo at Top Right -->
+            <div class="auth-brand-header">
+                <a href="{% url 'home' %}" aria-label="Rentora Home">
+                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-dark">
+                    <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-light">
+                </a>
+            </div>
+
+            <!-- Brand Storytelling -->
+            <div class="auth-story-body">
+                <span class="sub-heading-gold">RENTORA PRIVATE COLLECTION</span>
+                <h1 class="auth-story-headline">
+                    The Sanctuary of<br>
+                    <span class="gold-shimmer-text">Uncompromised Luxury</span>
+                </h1>
+                <p class="auth-story-subcopy">
+                    Enter Kerala’s premiere hospitality platform. Access 100% verified private estates, in-villa culinary master chefs, and 24/7 personal concierge hosts.
+                </p>
+
+                <div class="auth-trust-pillars">
+                    <div class="pillar-item">
+                        <i class="fa-solid fa-shield-halved text-gold"></i>
+                        <span>100% Verified Private Estates</span>
+                    </div>
+                    <div class="pillar-item">
+                        <i class="fa-solid fa-crown text-gold"></i>
+                        <span>24/7 Dedicated Estate Host</span>
+                    </div>
+                    <div class="pillar-item">
+                        <i class="fa-solid fa-utensils text-gold"></i>
+                        <span>In-Villa Culinary Masters</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-visual-footer">
+                <p>© 2026 Rentora Luxury Hospitality. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}
