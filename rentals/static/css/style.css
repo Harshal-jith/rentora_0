@@ -199,11 +199,11 @@ img {
     transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme="dark"] .logo-dark, body.dark-theme .logo-dark { opacity: 1; visibility: visible; position: relative; }
-[data-theme="dark"] .logo-light, body.dark-theme .logo-light { opacity: 0; visibility: hidden; position: absolute; top: 0; left: 0; pointer-events: none; }
+[data-theme="dark"] .logo-dark, body.dark-theme .logo-dark { opacity: 1; visibility: visible; display: inline-block; position: relative; }
+[data-theme="dark"] .logo-light, body.dark-theme .logo-light { opacity: 0; visibility: hidden; display: none; pointer-events: none; }
 
-[data-theme="light"] .logo-light, body.light-theme .logo-light { opacity: 1; visibility: visible; position: relative; }
-[data-theme="light"] .logo-dark, body.light-theme .logo-dark { opacity: 0; visibility: hidden; position: absolute; top: 0; left: 0; pointer-events: none; }
+[data-theme="light"] .logo-light, body.light-theme .logo-light { opacity: 1; visibility: visible; display: inline-block; position: relative; }
+[data-theme="light"] .logo-dark, body.light-theme .logo-dark { opacity: 0; visibility: hidden; display: none; pointer-events: none; }
 
 .footer-logo-wrapper { height: 48px; width: 230px; }
 .footer-logo-img { height: 48px; width: 230px; }
