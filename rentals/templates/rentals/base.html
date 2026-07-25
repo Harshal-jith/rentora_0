@@ -8,6 +8,14 @@
     <meta name="description" content="Discover handpicked villas, penthouses, estates and luxury retreats designed for unforgettable experiences. Rentora — Stay Beyond Extraordinary.">
     <meta name="keywords" content="Rentora, luxury rentals, private villas, penthouses, luxury retreats, Kerala luxury homes, Architectural Digest luxury stays">
     
+    <!-- Instant Theme Initialization Script (Prevents Dark Flash on Navigation) -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('rentora_theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
     <!-- Google Fonts: Playfair Display (Luxury Serif) & Plus Jakarta Sans (Modern UI) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2.7">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2.8">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme">
