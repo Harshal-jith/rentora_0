@@ -2824,6 +2824,48 @@ body.light-theme .permanent-dark-page .facility-card-glass p {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+/* FOOTER PERMANENT DARK IMMUNITY ON LANDING PAGE */
+.permanent-dark-page + .footer,
+.permanent-dark-page ~ .footer,
+body:has(.permanent-dark-page) .footer,
+[data-theme="light"] body:has(.permanent-dark-page) .footer,
+[data-theme="light"] .permanent-dark-page ~ .footer,
+body.light-theme .permanent-dark-page ~ .footer {
+    background: rgba(18, 18, 18, 0.88) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    color: #FFFFFF !important;
+    border: 1px solid var(--border-gold) !important;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45) !important;
+}
+
+body:has(.permanent-dark-page) .footer h4,
+body:has(.permanent-dark-page) .footer p,
+body:has(.permanent-dark-page) .footer a,
+body:has(.permanent-dark-page) .footer .footer-desc,
+body:has(.permanent-dark-page) .footer .contact-item,
+body:has(.permanent-dark-page) .footer .footer-bottom p,
+[data-theme="light"] body:has(.permanent-dark-page) .footer h4,
+[data-theme="light"] body:has(.permanent-dark-page) .footer p,
+[data-theme="light"] body:has(.permanent-dark-page) .footer a,
+[data-theme="light"] body:has(.permanent-dark-page) .footer .footer-desc,
+[data-theme="light"] body:has(.permanent-dark-page) .footer .contact-item,
+[data-theme="light"] body:has(.permanent-dark-page) .footer .footer-bottom p {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body:has(.permanent-dark-page) .footer-heading,
+[data-theme="light"] body:has(.permanent-dark-page) .footer-heading {
+    color: #FFFFFF !important;
+}
+
+body:has(.permanent-dark-page) .social-links a,
+[data-theme="light"] body:has(.permanent-dark-page) .social-links a {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--gold-bright) !important;
+    border: 1px solid var(--border-gold) !important;
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
