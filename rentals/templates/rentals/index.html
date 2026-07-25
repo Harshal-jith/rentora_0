@@ -1,356 +1,401 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}RENTORA | Find. Rent. Live. — Kerala Luxury Property Rentals{% endblock %}
+{% block title %}Rentora — Stay Beyond Extraordinary | Luxury Property Rentals{% endblock %}
 
 {% block content %}
-<!-- Section 1: Hero (Full Viewport Height with FadingVideo & Liquid Glass Morphism) -->
+<!-- SECTION 1: HERO (100VH CINEMATIC LAYERED PARALLAX) -->
 <section class="hero-section">
-    <!-- Fading Video Atmospheric Background Engine -->
-    <div class="fading-video-wrap">
-        <video class="fading-video" autoplay muted playsinline preload="auto">
-            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260619_191346_9d19d66e-86a4-47f7-8dc6-712c1788c3b2.mp4" type="video/mp4">
-        </video>
+
+    <!-- Layered Parallax Background Container -->
+    <div class="parallax-container">
+        <div class="parallax-layer parallax-bg"></div>
+        <div class="parallax-layer parallax-mid"></div>
+        <div class="parallax-layer parallax-fg"></div>
     </div>
+
+    <!-- Dark Gradient & Ambient Volumetric Overlay -->
     <div class="hero-overlay"></div>
 
-    <div class="hero-container">
-        <!-- Left Hero Copy -->
-        <div class="hero-text-content">
-            <div class="hero-badge liquid-glass">
-                <i class="fa-solid fa-crown"></i> EXCLUSIVE LUXURY REAL ESTATE RENTALS
-            </div>
-            
-            <!-- BlurText Word-by-Word Staggered Motion Headline -->
-            <h1 class="hero-title" data-blur-text>
-                FIND. RENT. LIVE. In Unmatched Luxury
-            </h1>
-            
-            <p class="hero-subtitle">
-                Kerala's premier portfolio of private infinity pool villas, 5-star presidential backwater houseboats, and colonial tea estate manors.
-            </p>
+    <!-- Floating Ambient Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
 
-            <div class="hero-actions" style="display: flex; gap: 16px; margin-bottom: 35px;">
-                <a href="{% url 'properties' %}" class="btn btn-gold liquid-glass-strong" style="padding: 14px 28px; border-radius: 9999px;">
-                    Explore Estates <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.85rem; margin-left: 4px;"></i>
-                </a>
-                <a href="#services" class="btn btn-outline liquid-glass" style="padding: 14px 28px; border-radius: 9999px;">
-                    <i class="fa-solid fa-play" style="font-size: 0.85rem; color: var(--gold-bright);"></i> View Capabilities
-                </a>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat-card liquid-glass">
-                    <span class="stat-num">50+</span>
-                    <span class="stat-label">Verified Estates</span>
-                </div>
-                <div class="stat-card liquid-glass">
-                    <span class="stat-num">4.98★</span>
-                    <span class="stat-label">Guest Rating</span>
-                </div>
-                <div class="stat-card liquid-glass">
-                    <span class="stat-num">24/7</span>
-                    <span class="stat-label">Private Concierge</span>
-                </div>
-            </div>
+    <!-- Hero Center Content -->
+    <div class="hero-content">
+        <!-- Glass Pill Badge -->
+        <div class="hero-badge-glass">
+            <i class="fa-solid fa-star"></i> TRUSTED LUXURY RENTALS
         </div>
 
-        <!-- Right Hero Registration & Sign-In Card -->
-        <div class="hero-auth-card liquid-glass-strong">
-            {% if user.is_authenticated %}
-            <div class="member-welcome-box">
-                <div class="member-icon"><i class="fa-solid fa-crown"></i></div>
-                <h3 class="font-heading-serif">Welcome Back, {{ user.username }}!</h3>
-                <p>You have full access to our unlisted private luxury estates across Kerala.</p>
-                <div class="member-actions">
-                    <a href="{% url 'properties' %}" class="btn btn-gold btn-full liquid-glass-strong">
-                        <i class="fa-solid fa-compass"></i> Explore Private Collection
-                    </a>
-                </div>
-            </div>
-            {% else %}
-            <div class="auth-tabs liquid-glass">
-                <button class="auth-tab-btn active" onclick="switchAuthTab('register')">Register / Sign Up</button>
-                <button class="auth-tab-btn" onclick="switchAuthTab('login')">Member Sign In</button>
-            </div>
+        <!-- Headline (Instrument Serif Italic, Massive Clamp) -->
+        <h1 class="hero-title-serif">
+            Stay Beyond<br>
+            <span class="highlight-gold">Extraordinary</span>
+        </h1>
 
-            <!-- Registration Form directly on Hero -->
-            <form method="POST" action="{% url 'home' %}" class="auth-form active" id="registerForm">
-                {% csrf_token %}
-                <input type="hidden" name="action" value="register">
-                <div class="form-header">
-                    <h4 class="font-heading-serif">Create Member Account</h4>
-                    <p>Unlock direct property bookings & VIP rates</p>
+        <!-- Subtitle -->
+        <p class="hero-subtitle-text">
+            Discover handpicked villas, penthouses, estates and luxury retreats designed for unforgettable experiences.
+        </p>
+
+        <!-- Floating Glass Search Card -->
+        <div class="search-card-glass">
+            <form action="{% url 'properties' %}" method="GET" class="search-glass-form">
+                <div class="search-group">
+                    <label><i class="fa-solid fa-location-dot"></i> Destination</label>
+                    <select name="location" class="search-field-input">
+                        <option value="">All Kerala Regions</option>
+                        {% for code, name in locations %}
+                        <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="reg_username"><i class="fa-solid fa-user"></i> Username</label>
-                    <input type="text" id="reg_username" name="username" class="form-control" placeholder="Choose a username" required>
+
+                <div class="search-group">
+                    <label><i class="fa-solid fa-calendar-days"></i> Arrival</label>
+                    <input type="date" name="check_in" class="search-field-input">
                 </div>
-                <div class="form-group">
-                    <label for="reg_pass1"><i class="fa-solid fa-lock"></i> Password</label>
-                    <input type="password" id="reg_pass1" name="password1" class="form-control" placeholder="Minimum 8 characters" required>
+
+                <div class="search-group">
+                    <label><i class="fa-solid fa-calendar-days"></i> Departure</label>
+                    <input type="date" name="check_out" class="search-field-input">
                 </div>
-                <div class="form-group">
-                    <label for="reg_pass2"><i class="fa-solid fa-shield-halved"></i> Confirm Password</label>
-                    <input type="password" id="reg_pass2" name="password2" class="form-control" placeholder="Re-enter password" required>
+
+                <div class="search-group">
+                    <label><i class="fa-solid fa-users"></i> Guests</label>
+                    <select name="guests" class="search-field-input">
+                        <option value="">Any Guests</option>
+                        <option value="2">2+ Guests</option>
+                        <option value="4">4+ Guests</option>
+                        <option value="6">6+ Guests</option>
+                        <option value="8">8+ Guests</option>
+                    </select>
                 </div>
-                <button type="submit" class="btn btn-gold btn-full liquid-glass-strong">
-                    <i class="fa-solid fa-key"></i> Join Rentora & Access Properties
+
+                <button type="submit" class="btn-search-gold">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search Luxury Stays
                 </button>
             </form>
+        </div>
+    </div>
 
-            <!-- Login Form directly on Hero -->
-            <form method="POST" action="{% url 'home' %}" class="auth-form" id="loginForm">
-                {% csrf_token %}
-                <input type="hidden" name="action" value="login">
-                <div class="form-header">
-                    <h4 class="font-heading-serif">Member Sign In</h4>
-                    <p>Access your reserved luxury property stays</p>
+    <!-- Minimal Animated Scroll Indicator -->
+    <div class="scroll-indicator-wrap">
+        <div class="mouse-scroll-icon">
+            <div class="mouse-wheel"></div>
+        </div>
+        <span>Scroll to Explore</span>
+    </div>
+</section>
+
+<!-- SECTION 2: DUAL-ROW SCROLL-DRIVEN LUXURY SHOWCASE MARQUEE -->
+<section class="showcase-section" id="showcase">
+    <div class="showcase-header">
+        <span class="sub-heading-gold">THE EXCLUSIVE COLLECTION</span>
+        <h2 class="serif-title showcase-title">Kerala's Most Coveted Private Residences</h2>
+        <p class="showcase-desc">Handpicked infinity pool villas, presidential houseboats, and colonial tea estate manors.</p>
+    </div>
+
+    <div class="marquee-container">
+        <!-- TOP MARQUEE ROW (Moves RIGHT on scroll) -->
+        <div class="marquee-row marquee-row-top">
+            <!-- Card 1: Arrival -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_arrival_1784964424610.jpg' %}" alt="Arrival & Private Driveway" loading="lazy">
+                <span class="card-num-badge">01 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Arrival & Private Driveway</h3>
+                    <div class="card-editorial-meta">
+                        <span>Alleppey, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="login_username"><i class="fa-solid fa-user"></i> Username</label>
-                    <input type="text" id="login_username" name="username" class="form-control" placeholder="Enter username" required>
+            </div>
+
+            <!-- Card 2: Exterior -->
+            <div class="showcase-card">
+                <img src="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" alt="Modern Villa Exterior" loading="lazy">
+                <span class="card-num-badge">02 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Modern Villa Pavilion</h3>
+                    <div class="card-editorial-meta">
+                        <span>Munnar, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.98</span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="login_password"><i class="fa-solid fa-lock"></i> Password</label>
-                    <input type="password" id="login_password" name="password" class="form-control" placeholder="Enter password" required>
+            </div>
+
+            <!-- Card 3: Living Room -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_living_room_1784963440870.jpg' %}" alt="Grand Living Room" loading="lazy">
+                <span class="card-num-badge">03 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Double-Height Living Salon</h3>
+                    <div class="card-editorial-meta">
+                        <span>Varkala, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.97</span>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-full liquid-glass-strong">
-                    <i class="fa-solid fa-right-to-bracket"></i> Sign In to Account
-                </button>
-            </form>
-            {% endif %}
+            </div>
+
+            <!-- Card 4: Master Bedroom -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_master_bedroom_1784963465785.jpg' %}" alt="Master Bedroom Suite" loading="lazy">
+                <span class="card-num-badge">04 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Canopy Master Suite</h3>
+                    <div class="card-editorial-meta">
+                        <span>Wayanad, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Wine Cellar -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_wine_cellar_1784963481411.jpg' %}" alt="Vintage Wine Cellar" loading="lazy">
+                <span class="card-num-badge">05 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Vintage Sommelier Vault</h3>
+                    <div class="card-editorial-meta">
+                        <span>Fort Kochi, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.95</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Kerala Estate -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_kerala_estate_1784963501632.jpg' %}" alt="Heritage Estate Manor" loading="lazy">
+                <span class="card-num-badge">06 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Heritage Plantation Manor</h3>
+                    <div class="card-editorial-meta">
+                        <span>Kumarakom, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Duplicate items for seamless top row loop -->
+            <div class="showcase-card">
+                <img src="{% static 'images/hero_fg_pool_1784964408615.jpg' %}" alt="Infinity Pool Terrace" loading="lazy">
+                <span class="card-num-badge">07 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Infinity Pool Terrace</h3>
+                    <div class="card-editorial-meta">
+                        <span>Alleppey, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.98</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" alt="Night Villa Illumination" loading="lazy">
+                <span class="card-num-badge">08 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Night Estate Illumination</h3>
+                    <div class="card-editorial-meta">
+                        <span>Varkala, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.96</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM MARQUEE ROW (Moves LEFT on scroll) -->
+        <div class="marquee-row marquee-row-bottom">
+            <!-- Card 9: Infinity Pool -->
+            <div class="showcase-card">
+                <img src="{% static 'images/hero_fg_pool_1784964408615.jpg' %}" alt="Cliffside Infinity Pool" loading="lazy">
+                <span class="card-num-badge">09 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Cliffside Infinity Sanctuary</h3>
+                    <div class="card-editorial-meta">
+                        <span>Varkala, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10: Night Exterior -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" alt="Night Exterior" loading="lazy">
+                <span class="card-num-badge">10 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Twilight Ocean Villa</h3>
+                    <div class="card-editorial-meta">
+                        <span>Fort Kochi, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.97</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11: Arrival -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_arrival_1784964424610.jpg' %}" alt="Arrival Courtyard" loading="lazy">
+                <span class="card-num-badge">11 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Private Courtyard Entry</h3>
+                    <div class="card-editorial-meta">
+                        <span>Munnar, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.95</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12: Wine Cellar -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_wine_cellar_1784963481411.jpg' %}" alt="Wine Lounge" loading="lazy">
+                <span class="card-num-badge">12 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Sommelier Tasting Room</h3>
+                    <div class="card-editorial-meta">
+                        <span>Alleppey, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 13: Kerala Estate -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_kerala_estate_1784963501632.jpg' %}" alt="Colonial Bungalow" loading="lazy">
+                <span class="card-num-badge">13 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Colonial Tea Mansion</h3>
+                    <div class="card-editorial-meta">
+                        <span>Munnar, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.98</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 14: Master Bedroom -->
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_master_bedroom_1784963465785.jpg' %}" alt="Panoramas Suite" loading="lazy">
+                <span class="card-num-badge">14 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Oceanfront Penthouse Suite</h3>
+                    <div class="card-editorial-meta">
+                        <span>Kovalam, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.96</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Duplicate items for seamless bottom row loop -->
+            <div class="showcase-card">
+                <img src="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" alt="Luxury Villa Architecture" loading="lazy">
+                <span class="card-num-badge">15 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Signature Villa Residence</h3>
+                    <div class="card-editorial-meta">
+                        <span>Kumarakom, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-card">
+                <img src="{% static 'images/scene_living_room_1784963440870.jpg' %}" alt="Designer Living Room" loading="lazy">
+                <span class="card-num-badge">16 / 24</span>
+                <div class="card-overlay-editorial">
+                    <h3 class="card-editorial-title">Panoramic Sunset Salon</h3>
+                    <div class="card-editorial-meta">
+                        <span>Wayanad, Kerala</span>
+                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.99</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Section 2: Capabilities (Full Viewport Height with Liquid Glass Cards & FadingVideo) -->
-<section class="capabilities-section" id="services">
-    <!-- Fading Video Atmospheric Background Engine -->
-    <div class="fading-video-wrap">
-        <video class="fading-video" autoplay muted playsinline preload="auto">
-            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260622_093722_ccfc7ebf-182f-419f-8a62-2dc02db7dd9d.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="hero-overlay"></div>
-
-    <div class="capabilities-container">
-        <div class="capabilities-header">
-            <span class="capabilities-label">// CAPABILITIES</span>
-            <h2 class="capabilities-title" data-blur-text>
-                Bespoke Craft, End to End
-            </h2>
-        </div>
-
-        <div class="capabilities-grid">
-            <!-- Capability Card 1: Private Villas -->
-            <div class="capability-card liquid-glass">
-                <div class="card-top-row">
-                    <div class="card-icon-box liquid-glass">
-                        <i class="fa-solid fa-gem"></i>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag-pill liquid-glass">Infinity Pool</span>
-                        <span class="tag-pill liquid-glass">Private Chef</span>
-                        <span class="tag-pill liquid-glass">Starlink WiFi</span>
-                        <span class="tag-pill liquid-glass">Helipad Access</span>
-                    </div>
-                </div>
-                <div class="card-bottom-content">
-                    <h3>Private Infinity Villas</h3>
-                    <p>We shape private sanctuaries and waterfront residences that feel unmistakably yours — handcrafted teakwood interiors, sea-to-table culinary master dining, and 100% verified architectural safety.</p>
-                </div>
-            </div>
-
-            <!-- Capability Card 2: Presidential Houseboats -->
-            <div class="capability-card liquid-glass">
-                <div class="card-top-row">
-                    <div class="card-icon-box liquid-glass">
-                        <i class="fa-solid fa-ship"></i>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag-pill liquid-glass">Alleppey Waters</span>
-                        <span class="tag-pill liquid-glass">Upper Sun Deck</span>
-                        <span class="tag-pill liquid-glass">Live Sitar</span>
-                        <span class="tag-pill liquid-glass">Speedboat Tender</span>
-                    </div>
-                </div>
-                <div class="card-bottom-content">
-                    <h3>Presidential Houseboats</h3>
-                    <p>5-star floating palaces built on traditional Kettuvallam heritage. Air-conditioned glass lounges, dedicated master captains, and private motor tenders for exclusive backwater canal exploration.</p>
-                </div>
-            </div>
-
-            <!-- Capability Card 3: Heritage Tea Manors -->
-            <div class="capability-card liquid-glass">
-                <div class="card-top-row">
-                    <div class="card-icon-box liquid-glass">
-                        <i class="fa-solid fa-mountain-sun"></i>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag-pill liquid-glass">Munnar Hills</span>
-                        <span class="tag-pill liquid-glass">Stone Fireplaces</span>
-                        <span class="tag-pill liquid-glass">Tea Tasting</span>
-                        <span class="tag-pill liquid-glass">Personal Host</span>
-                    </div>
-                </div>
-                <div class="card-bottom-content">
-                    <h3>Heritage Tea Manors</h3>
-                    <p>Restored British colonial estates perched high amidst misty peaks and 150 acres of organic tea plantations. Stone fireplaces, farm-to-table culinary masters, and 24/7 personal estate hosts.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Properties Showcase Section -->
-<section class="section properties-section" id="features">
-    <div class="section-container">
-        <div class="section-header flex-header">
-            <div>
-                <span class="sub-heading">FEATURED REAL ESTATE</span>
-                <h2 class="section-title font-heading-serif">Exclusive Kerala Rentals</h2>
-            </div>
-            <a href="{% url 'properties' %}" class="btn btn-outline liquid-glass">Explore All Properties <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
-        <div class="property-grid">
-            {% for prop in featured_properties %}
-            <div class="property-card liquid-glass">
-                <div class="card-image-wrap">
-                    <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
-                    <div class="card-badge">{{ prop.get_property_type_display }}</div>
-                    <div class="card-rating"><i class="fa-solid fa-star"></i> {{ prop.rating }} ({{ prop.reviews_count }})</div>
-                </div>
-                <div class="card-body">
-                    <div class="card-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</div>
-                    <h3 class="card-title"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
-                    <p class="card-desc">{{ prop.short_description|truncatewords:15 }}</p>
-                    
-                    <div class="card-specs">
-                        <span><i class="fa-solid fa-bed"></i> {{ prop.bedrooms }} Beds</span>
-                        <span><i class="fa-solid fa-bath"></i> {{ prop.bathrooms }} Baths</span>
-                        <span><i class="fa-solid fa-users"></i> Up to {{ prop.max_guests }} Guests</span>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="card-price">
-                            <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
-                            <span class="price-unit">/ night</span>
-                        </div>
-                        <a href="{% url 'property_detail' prop.slug %}" class="btn btn-gold btn-sm liquid-glass-strong">Explore <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- Kerala Destinations Showcase -->
-<section class="section destinations-section">
+<!-- COMPANY SERVICES & FEATURES SECTION -->
+<section class="section services-section" id="services">
     <div class="section-container">
         <div class="section-header text-center">
-            <span class="sub-heading">PRIME DESTINATIONS</span>
-            <h2 class="section-title font-heading-serif">Kerala's Most Coveted Locations</h2>
+            <span class="sub-heading-gold">THE RENTORA ADVANTAGE</span>
+            <h2 class="serif-title showcase-title">Bespoke Services for Luxury Travelers</h2>
+            <p class="showcase-desc">We manage and curate Kerala’s most sought-after private estates, houseboats, and cliffside residences.</p>
         </div>
 
-        <div class="destinations-grid">
-            <a href="{% url 'properties' %}?location=alleppey" class="dest-card liquid-glass">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Alleppey">
-                <div class="dest-overlay">
-                    <h3>Alleppey Backwaters</h3>
-                    <p>Waterfront estates & presidential houseboats</p>
-                </div>
-            </a>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>100% Verified Estates</h3>
+                <p>Every property undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
+            </div>
 
-            <a href="{% url 'properties' %}?location=munnar" class="dest-card liquid-glass">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Munnar">
-                <div class="dest-overlay">
-                    <h3>Munnar Tea Hills</h3>
-                    <p>Colonial tea estate manors & sanctuaries</p>
-                </div>
-            </a>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-utensils"></i></div>
+                <h3>Private Culinary Masters</h3>
+                <p>Indulge in custom multi-course dining, sea-to-table seafood grills, and organic plantation gastronomy prepared by top private chefs.</p>
+            </div>
 
-            <a href="{% url 'properties' %}?location=varkala" class="dest-card liquid-glass">
-                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Varkala">
-                <div class="dest-overlay">
-                    <h3>Varkala Cliffside</h3>
-                    <p>Oceanfront villas overlooking the Arabian Sea</p>
-                </div>
-            </a>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-ship"></i></div>
+                <h3>Private Backwater Charters</h3>
+                <p>Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
+            </div>
 
-            <a href="{% url 'properties' %}?location=fort_kochi" class="dest-card liquid-glass">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Fort Kochi">
-                <div class="dest-overlay">
-                    <h3>Fort Kochi</h3>
-                    <p>300-year-old Dutch-Portuguese heritage mansions</p>
-                </div>
-            </a>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-helicopter"></i></div>
+                <h3>Helicopter & SUV Transfers</h3>
+                <p>Seamless airport transfers via luxury SUVs or direct helicopter arrivals at private estate helipads across Munnar and Wayanad.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-user-shield"></i></div>
+                <h3>Confidential & Private Stays</h3>
+                <p>Discreet high-security estates featuring private access gates, dedicated staff quarters, and total privacy for high-net-worth guests.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>24/7 Dedicated Estate Manager</h3>
+                <p>Your personal host is available 24 hours a day to coordinate private excursions, yacht rentals, and bespoke concierge requests.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Direct Concierge Inquiry Section -->
+<!-- DIRECT CONCIERGE INQUIRY SECTION -->
 <section class="section contact-section" id="contact">
     <div class="section-container">
-        <div class="contact-box liquid-glass-strong">
+        <div class="contact-box">
             <div class="contact-info">
-                <span class="sub-heading text-gold">PERSONALIZED REAL ESTATE CONCIERGE</span>
-                <h2 class="font-heading-serif">Inquire for Custom Property Rentals</h2>
+                <span class="sub-heading-gold">PERSONALIZED REAL ESTATE CONCIERGE</span>
+                <h2 class="serif-title">Inquire for Custom Property Rentals</h2>
                 <p>Our estate specialists will curate a tailored list of unlisted private villas matching your party size and dates.</p>
                 <div class="contact-highlights">
-                    <div><i class="fa-solid fa-check-circle"></i> Direct Property Owner Access</div>
-                    <div><i class="fa-solid fa-check-circle"></i> Custom Houseboat & Yacht Charters</div>
-                    <div><i class="fa-solid fa-check-circle"></i> Complete Privacy & VIP Security</div>
+                    <div><i class="fa-solid fa-circle-check"></i> Direct Property Owner Access</div>
+                    <div><i class="fa-solid fa-circle-check"></i> Custom Houseboat & Yacht Charters</div>
+                    <div><i class="fa-solid fa-circle-check"></i> Complete Privacy & VIP Security</div>
                 </div>
             </div>
 
-            <form method="POST" action="{% url 'home' %}" class="contact-form liquid-glass">
+            <form method="POST" action="{% url 'home' %}" class="contact-form">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="inquiry">
-                <h3 class="font-heading-serif">Contact Private Concierge</h3>
+                <h3>Contact Private Concierge</h3>
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Your Full Name" required>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" name="phone" class="form-control" placeholder="Phone / WhatsApp" required>
-                    </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" class="form-control" placeholder="Phone / WhatsApp" required>
                 </div>
                 <div class="form-group">
                     <textarea name="message" class="form-control" rows="3" placeholder="Tell us your dates, preferred region, or special requirements..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-gold btn-full liquid-glass-strong">
+                <button type="submit" class="btn btn-gold btn-full">
                     <i class="fa-solid fa-paper-plane"></i> Submit Rental Inquiry
                 </button>
             </form>
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-function switchAuthTab(tab) {
-    const regForm = document.getElementById('registerForm');
-    const loginForm = document.getElementById('loginForm');
-    const btns = document.querySelectorAll('.auth-tab-btn');
-
-    btns.forEach(btn => btn.classList.remove('active'));
-
-    if (tab === 'register') {
-        regForm.classList.add('active');
-        loginForm.classList.remove('active');
-        btns[0].classList.add('active');
-    } else {
-        loginForm.classList.add('active');
-        regForm.classList.remove('active');
-        btns[1].classList.add('active');
-    }
-}
-</script>
 {% endblock %}

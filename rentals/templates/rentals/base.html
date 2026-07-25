@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}RENTORA | Find. Rent. Live. — Luxury Property Rentals in Kerala{% endblock %}</title>
-    <meta name="description" content="Discover and book luxury private villas, heritage backwater houseboats, tea estate manors, and oceanfront cottages across Kerala. RENTORA — Find. Rent. Live.">
-    <meta name="keywords" content="Rentora Kerala, Kerala luxury property rentals, luxury villas Alleppey, Munnar tea estate, Fort Kochi bungalow, Varkala oceanfront">
+    <title>{% block title %}Rentora — Stay Beyond Extraordinary | Luxury Property Rentals{% endblock %}</title>
+    <meta name="description" content="Discover handpicked villas, penthouses, estates and luxury retreats designed for unforgettable experiences. Rentora — Stay Beyond Extraordinary.">
+    <meta name="keywords" content="Rentora, luxury rentals, private villas, penthouses, luxury retreats, Kerala luxury homes, Architectural Digest luxury stays">
     
-    <!-- Google Fonts: Instrument Serif, Barlow, Cinzel & Plus Jakarta Sans -->
+    <!-- Google Fonts: Instrument Serif (Italic), Schibsted Grotesk, Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@500;600;700;800&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -35,40 +35,43 @@
     </div>
     {% endif %}
 
-    <!-- Top Navigation Header with Liquid Glass Morphism -->
-    <header class="navbar liquid-glass" id="navbar">
+    <!-- Floating Glass Navigation Bar -->
+    <header class="navbar navbar-glass" id="navbar">
         <div class="nav-container">
-            <a href="{% url 'home' %}" class="brand-logo" aria-label="RENTORA Home">
+            <!-- Left: Rentora Brand Logo -->
+            <a href="{% url 'home' %}" class="brand-logo" aria-label="Rentora Home">
                 <div class="logo-wrapper">
-                    <img src="{% static 'images/logo_dark.png' %}" alt="RENTORA - Find. Rent. Live." class="logo-img logo-dark">
-                    <img src="{% static 'images/logo_light.png' %}" alt="RENTORA - Find. Rent. Live." class="logo-img logo-light">
+                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="logo-img logo-dark">
+                    <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="logo-img logo-light">
                 </div>
             </a>
             
-            <nav class="nav-links liquid-glass-pill">
-                <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
-                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Explore Properties</a>
-                <a href="{% url 'home' %}#services" class="nav-link">Capabilities</a>
-                <a href="{% url 'home' %}#features" class="nav-link">Featured Estates</a>
-                <a href="{% url 'home' %}#contact" class="nav-link">Private Concierge</a>
+            <!-- Center: Navigation Links -->
+            <nav class="nav-links">
+                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Properties</a>
+                <a href="{% url 'properties' %}?property_type=villa" class="nav-link">Luxury Stays</a>
+                <a href="{% url 'home' %}#services" class="nav-link">Experiences</a>
+                <a href="{% url 'home' %}#about" class="nav-link">About</a>
+                <a href="{% url 'home' %}#contact" class="nav-link">Contact</a>
             </nav>
 
+            <!-- Right: Actions & Auth Glass Buttons -->
             <div class="nav-actions">
-                <!-- Dark / Light Mode Toggle Button -->
-                <button class="theme-toggle-btn liquid-glass" id="themeToggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+                <!-- Dark / Light Theme Switcher -->
+                <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
                     <i class="fa-solid fa-moon" id="themeIcon"></i>
                 </button>
 
                 <div class="nav-auth">
                     {% if user.is_authenticated %}
-                    <div class="user-badge liquid-glass">
+                    <div class="user-badge">
                         <i class="fa-solid fa-crown"></i>
-                        <span>Welcome, <strong>{{ user.username }}</strong></span>
+                        <span>{{ user.username }}</span>
                     </div>
-                    <a href="{% url 'logout' %}" class="btn btn-outline btn-sm">Logout</a>
+                    <a href="{% url 'logout' %}" class="btn btn-glass btn-sm">Logout</a>
                     {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-outline btn-sm">Sign In</a>
-                    <a href="{% url 'register' %}" class="btn btn-gold btn-sm">VIP Access</a>
+                    <a href="{% url 'login' %}" class="btn btn-glass btn-sm">Login</a>
+                    <a href="{% url 'register' %}" class="btn btn-gold btn-sm">Sign Up</a>
                     {% endif %}
                 </div>
 
@@ -84,24 +87,24 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
+    <!-- Cinematic Luxury Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-col brand-col">
-                <a href="{% url 'home' %}" class="brand-logo footer-logo" aria-label="RENTORA Home">
+                <a href="{% url 'home' %}" class="brand-logo footer-logo" aria-label="Rentora Home">
                     <div class="logo-wrapper footer-logo-wrapper">
-                        <img src="{% static 'images/logo_dark.png' %}" alt="RENTORA" class="logo-img logo-dark footer-logo-img">
-                        <img src="{% static 'images/logo_light.png' %}" alt="RENTORA" class="logo-img logo-light footer-logo-img">
+                        <img src="{% static 'images/logo_dark.png' %}" alt="Rentora" class="logo-img logo-dark footer-logo-img">
+                        <img src="{% static 'images/logo_light.png' %}" alt="Rentora" class="logo-img logo-light footer-logo-img">
                     </div>
                 </a>
                 <p class="footer-desc">
-                    Kerala’s premier luxury real estate & property rental service. Handcrafted private villas, heritage backwater estates, and exclusive mountain sanctuaries.
+                    Discover handpicked villas, penthouses, estates and luxury retreats designed for unforgettable experiences.
                 </p>
                 <div class="social-links">
-                    <a href="#" aria-label="Instagram" class="liquid-glass"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook" class="liquid-glass"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="LinkedIn" class="liquid-glass"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="WhatsApp" class="liquid-glass"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -134,7 +137,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2026 RENTORA Property Rentals. FIND. RENT. LIVE. All rights reserved.</p>
+            <p>&copy; 2026 Rentora Luxury Rentals. Stay Beyond Extraordinary. All rights reserved.</p>
         </div>
     </footer>
 
