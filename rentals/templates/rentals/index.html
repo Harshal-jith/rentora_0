@@ -88,274 +88,106 @@
     </div>
 </section>
 
-<!-- SECTION 2: DUAL-ROW SCROLL-DRIVEN LUXURY SHOWCASE MARQUEE -->
-<section class="showcase-section" id="showcase">
-    <div class="showcase-header">
-        <span class="sub-heading-gold">THE EXCLUSIVE COLLECTION</span>
-        <h2 class="serif-title showcase-title">Kerala's Most Coveted Private Residences</h2>
-        <p class="showcase-desc">Handpicked infinity pool villas, presidential houseboats, and colonial tea estate manors.</p>
+<!-- SECTION 2: RENTORA ADVANTAGE FEATURE CAROUSEL -->
+<section class="section advantage-section" id="advantage">
+    <div class="section-container text-center mb-10">
+        <span class="sub-heading-gold">THE RENTORA ADVANTAGE</span>
+        <h2 class="serif-title advantage-title">Bespoke Services for Luxury Travelers</h2>
+        <p class="advantage-desc">We manage and curate Kerala's most sought-after private estates, houseboats, and cliffside residences.</p>
     </div>
 
-    <div class="marquee-container">
-        <!-- TOP MARQUEE ROW (Moves RIGHT on scroll) -->
-        <div class="marquee-row marquee-row-top">
-            <!-- Card 1: Arrival -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_arrival_1784964424610.jpg' %}" alt="Arrival & Private Driveway" loading="lazy">
-                <span class="card-num-badge">01 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Arrival & Private Driveway</h3>
-                    <div class="card-editorial-meta">
-                        <span>Alleppey, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
-                    </div>
+    <!-- Infinite Auto-Scrolling Feature Carousel -->
+    <div class="carousel-outer-wrapper">
+        <div class="carousel-track" id="featureCarouselTrack">
+            
+            <!-- Card 1: Verified Estates -->
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-shield-halved text-gold-icon"></i>
                 </div>
-            </div>
-
-            <!-- Card 2: Exterior -->
-            <div class="showcase-card">
-                <img src="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" alt="Modern Villa Exterior" loading="lazy">
-                <span class="card-num-badge">02 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Modern Villa Pavilion</h3>
-                    <div class="card-editorial-meta">
-                        <span>Munnar, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.98</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3: Living Room -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_living_room_1784963440870.jpg' %}" alt="Grand Living Room" loading="lazy">
-                <span class="card-num-badge">03 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Double-Height Living Salon</h3>
-                    <div class="card-editorial-meta">
-                        <span>Varkala, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.97</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4: Master Bedroom -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_master_bedroom_1784963465785.jpg' %}" alt="Master Bedroom Suite" loading="lazy">
-                <span class="card-num-badge">04 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Canopy Master Suite</h3>
-                    <div class="card-editorial-meta">
-                        <span>Wayanad, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.99</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 5: Wine Cellar -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_wine_cellar_1784963481411.jpg' %}" alt="Vintage Wine Cellar" loading="lazy">
-                <span class="card-num-badge">05 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Vintage Sommelier Vault</h3>
-                    <div class="card-editorial-meta">
-                        <span>Fort Kochi, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.95</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 6: Kerala Estate -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_kerala_estate_1784963501632.jpg' %}" alt="Heritage Estate Manor" loading="lazy">
-                <span class="card-num-badge">06 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Heritage Plantation Manor</h3>
-                    <div class="card-editorial-meta">
-                        <span>Kumarakom, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Duplicate items for seamless top row loop -->
-            <div class="showcase-card">
-                <img src="{% static 'images/hero_fg_pool_1784964408615.jpg' %}" alt="Infinity Pool Terrace" loading="lazy">
-                <span class="card-num-badge">07 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Infinity Pool Terrace</h3>
-                    <div class="card-editorial-meta">
-                        <span>Alleppey, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.98</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" alt="Night Villa Illumination" loading="lazy">
-                <span class="card-num-badge">08 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Night Estate Illumination</h3>
-                    <div class="card-editorial-meta">
-                        <span>Varkala, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.96</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTTOM MARQUEE ROW (Moves LEFT on scroll) -->
-        <div class="marquee-row marquee-row-bottom">
-            <!-- Card 9: Infinity Pool -->
-            <div class="showcase-card">
-                <img src="{% static 'images/hero_fg_pool_1784964408615.jpg' %}" alt="Cliffside Infinity Pool" loading="lazy">
-                <span class="card-num-badge">09 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Cliffside Infinity Sanctuary</h3>
-                    <div class="card-editorial-meta">
-                        <span>Varkala, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.99</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 10: Night Exterior -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_night_exterior_1784963519950.jpg' %}" alt="Night Exterior" loading="lazy">
-                <span class="card-num-badge">10 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Twilight Ocean Villa</h3>
-                    <div class="card-editorial-meta">
-                        <span>Fort Kochi, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.97</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 11: Arrival -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_arrival_1784964424610.jpg' %}" alt="Arrival Courtyard" loading="lazy">
-                <span class="card-num-badge">11 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Private Courtyard Entry</h3>
-                    <div class="card-editorial-meta">
-                        <span>Munnar, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.95</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 12: Wine Cellar -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_wine_cellar_1784963481411.jpg' %}" alt="Wine Lounge" loading="lazy">
-                <span class="card-num-badge">12 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Sommelier Tasting Room</h3>
-                    <div class="card-editorial-meta">
-                        <span>Alleppey, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 13: Kerala Estate -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_kerala_estate_1784963501632.jpg' %}" alt="Colonial Bungalow" loading="lazy">
-                <span class="card-num-badge">13 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Colonial Tea Mansion</h3>
-                    <div class="card-editorial-meta">
-                        <span>Munnar, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.98</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 14: Master Bedroom -->
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_master_bedroom_1784963465785.jpg' %}" alt="Panoramas Suite" loading="lazy">
-                <span class="card-num-badge">14 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Oceanfront Penthouse Suite</h3>
-                    <div class="card-editorial-meta">
-                        <span>Kovalam, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.96</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Duplicate items for seamless bottom row loop -->
-            <div class="showcase-card">
-                <img src="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" alt="Luxury Villa Architecture" loading="lazy">
-                <span class="card-num-badge">15 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Signature Villa Residence</h3>
-                    <div class="card-editorial-meta">
-                        <span>Kumarakom, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 5.0</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="showcase-card">
-                <img src="{% static 'images/scene_living_room_1784963440870.jpg' %}" alt="Designer Living Room" loading="lazy">
-                <span class="card-num-badge">16 / 24</span>
-                <div class="card-overlay-editorial">
-                    <h3 class="card-editorial-title">Panoramic Sunset Salon</h3>
-                    <div class="card-editorial-meta">
-                        <span>Wayanad, Kerala</span>
-                        <span class="card-rating-gold"><i class="fa-solid fa-star"></i> 4.99</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- COMPANY SERVICES & FEATURES SECTION -->
-<section class="section services-section" id="services">
-    <div class="section-container">
-        <div class="section-header text-center">
-            <span class="sub-heading-gold">THE RENTORA ADVANTAGE</span>
-            <h2 class="serif-title showcase-title">Bespoke Services for Luxury Travelers</h2>
-            <p class="showcase-desc">We manage and curate Kerala’s most sought-after private estates, houseboats, and cliffside residences.</p>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <h3>100% Verified Estates</h3>
                 <p>Every property undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
+                <div class="card-reflection"></div>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-utensils"></i></div>
+            <!-- Card 2: Private Chefs -->
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-utensils text-gold-icon"></i>
+                </div>
                 <h3>Private Culinary Masters</h3>
                 <p>Indulge in custom multi-course dining, sea-to-table seafood grills, and organic plantation gastronomy prepared by top private chefs.</p>
+                <div class="card-reflection"></div>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-ship"></i></div>
+            <!-- Card 3: Backwater Charters -->
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-ship text-gold-icon"></i>
+                </div>
                 <h3>Private Backwater Charters</h3>
                 <p>Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
+                <div class="card-reflection"></div>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-helicopter"></i></div>
+            <!-- Card 4: Helicopter & SUV -->
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-plane text-gold-icon"></i>
+                </div>
                 <h3>Helicopter & SUV Transfers</h3>
                 <p>Seamless airport transfers via luxury SUVs or direct helicopter arrivals at private estate helipads across Munnar and Wayanad.</p>
+                <div class="card-reflection"></div>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <!-- Card 5: Confidential Stays -->
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-lock text-gold-icon"></i>
+                </div>
                 <h3>Confidential & Private Stays</h3>
                 <p>Discreet high-security estates featuring private access gates, dedicated staff quarters, and total privacy for high-net-worth guests.</p>
+                <div class="card-reflection"></div>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-headset"></i></div>
+            <!-- Card 6: Estate Manager -->
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-bell text-gold-icon"></i>
+                </div>
                 <h3>24/7 Dedicated Estate Manager</h3>
-                <p>Your personal host is available 24 hours a day to coordinate private excursions, yacht rentals, and bespoke concierge requests.</p>
+                <p>Your personal host is available around the clock to coordinate private excursions, yacht rentals, bespoke concierge requests, wellness appointments, and personalized itineraries.</p>
+                <div class="card-reflection"></div>
             </div>
+
+            <!-- Duplicate Set for Seamless Infinite Carousel Loop -->
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-shield-halved text-gold-icon"></i>
+                </div>
+                <h3>100% Verified Estates</h3>
+                <p>Every property undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
+                <div class="card-reflection"></div>
+            </div>
+
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-utensils text-gold-icon"></i>
+                </div>
+                <h3>Private Culinary Masters</h3>
+                <p>Indulge in custom multi-course dining, sea-to-table seafood grills, and organic plantation gastronomy prepared by top private chefs.</p>
+                <div class="card-reflection"></div>
+            </div>
+
+            <div class="advantage-card-glass">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-ship text-gold-icon"></i>
+                </div>
+                <h3>Private Backwater Charters</h3>
+                <p>Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
+                <div class="card-reflection"></div>
+            </div>
+
         </div>
     </div>
 </section>

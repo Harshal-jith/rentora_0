@@ -1,5 +1,5 @@
 /* ==========================================================================
-   RENTORA CINEMATIC LUXURY REAL ESTATE LANDING PAGE - SPECIFICATION V1.0
+   RENTORA LUXURY REAL ESTATE - SYSTEM CSS (REFINEMENT SPECIFICATION V1.1)
    ========================================================================== */
 
 /* DARK LUXURY AESTHETIC (DEFAULT) */
@@ -31,7 +31,7 @@
     --bg-main: #F8FAF8;
     --bg-secondary: #F0F4F1;
     --bg-card: #FFFFFF;
-    --bg-card-glass: rgba(255, 255, 255, 0.82);
+    --bg-card-glass: rgba(255, 255, 255, 0.85);
     --bg-overlay: rgba(15, 23, 42, 0.75);
     --text-primary: #0F172A;
     --text-secondary: rgba(15, 23, 42, 0.75);
@@ -88,8 +88,8 @@ body::before {
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
 }
 
 .serif-title {
@@ -182,12 +182,7 @@ img {
     justify-content: space-between;
 }
 
-/* Logo Wrapper */
-.brand-logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-}
+.brand-logo { display: inline-flex; align-items: center; text-decoration: none; }
 
 .logo-wrapper {
     position: relative;
@@ -213,10 +208,7 @@ img {
 .footer-logo-wrapper { height: 48px; width: 230px; }
 .footer-logo-img { height: 48px; width: 230px; }
 
-.nav-links {
-    display: flex;
-    gap: 36px;
-}
+.nav-links { display: flex; gap: 36px; }
 
 .nav-link {
     font-family: var(--font-btn);
@@ -227,9 +219,7 @@ img {
     letter-spacing: 0.2px;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: var(--gold-bright);
-}
+.nav-link:hover, .nav-link.active { color: var(--gold-bright); }
 
 .nav-link::after {
     content: '';
@@ -242,15 +232,9 @@ img {
     transition: var(--transition-fast);
 }
 
-.nav-link:hover::after, .nav-link.active::after {
-    width: 100%;
-}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
+.nav-actions { display: flex; align-items: center; gap: 16px; }
 
 .theme-toggle-btn {
     width: 40px;
@@ -274,11 +258,7 @@ img {
     box-shadow: var(--shadow-gold);
 }
 
-.nav-auth {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+.nav-auth { display: flex; align-items: center; gap: 12px; }
 
 .user-badge {
     color: var(--gold-bright);
@@ -319,12 +299,7 @@ img {
     letter-spacing: 0.2px;
 }
 
-.btn-sm {
-    padding: 8px 18px;
-    font-size: 0.85rem;
-    border-radius: 12px;
-}
-
+.btn-sm { padding: 8px 18px; font-size: 0.85rem; border-radius: 12px; }
 .btn-full { width: 100%; }
 
 .btn-gold {
@@ -366,7 +341,7 @@ img {
     color: var(--gold-bright);
 }
 
-/* SECTION 1: HERO (100VH CINEMATIC LAYERED PARALLAX) */
+/* SECTION 1: HERO (100VH UNCHANGED) */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -379,7 +354,6 @@ img {
     background-color: var(--bg-dark);
 }
 
-/* Layered Parallax Background Container */
 .parallax-container {
     position: absolute;
     inset: -20px;
@@ -396,32 +370,10 @@ img {
     transition: transform 0.1s cubic-bezier(0.1, 1, 0.1, 1);
 }
 
-/* Layer 1: Background Sky / Mountains */
-.parallax-bg {
-    background-image: url('../images/hero_sky_mountains_1784964378346.jpg');
-    z-index: 1;
-    transform: scale(1.05);
-}
+.parallax-bg { background-image: url('../images/hero_sky_mountains_1784964378346.jpg'); z-index: 1; transform: scale(1.05); }
+.parallax-mid { background-image: url('../images/hero_mid_villa_1784964394119.jpg'); z-index: 2; opacity: 0.88; mix-blend-mode: screen; transform: scale(1.03); }
+.parallax-fg { background-image: url('../images/hero_fg_pool_1784964408615.jpg'); z-index: 3; opacity: 0.55; mix-blend-mode: soft-light; transform: scale(1.02); }
 
-/* Layer 2: Midground Luxury Villa Pavilion */
-.parallax-mid {
-    background-image: url('../images/hero_mid_villa_1784964394119.jpg');
-    z-index: 2;
-    opacity: 0.88;
-    mix-blend-mode: screen;
-    transform: scale(1.03);
-}
-
-/* Layer 3: Foreground Infinity Pool Terrace & Palms */
-.parallax-fg {
-    background-image: url('../images/hero_fg_pool_1784964408615.jpg');
-    z-index: 3;
-    opacity: 0.55;
-    mix-blend-mode: soft-light;
-    transform: scale(1.02);
-}
-
-/* Dark Gradient & Ambient Volumetric Overlay */
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -431,7 +383,6 @@ img {
     pointer-events: none;
 }
 
-/* Particle Canvas Overlay */
 #particleCanvas {
     position: absolute;
     inset: 0;
@@ -440,7 +391,6 @@ img {
     opacity: 0.6;
 }
 
-/* Hero Central Content Container */
 .hero-content {
     position: relative;
     z-index: 10;
@@ -453,7 +403,6 @@ img {
     align-items: center;
 }
 
-/* Glass Pill Badge */
 .hero-badge-glass {
     display: inline-flex;
     align-items: center;
@@ -476,7 +425,6 @@ img {
 
 .hero-badge-glass i { color: var(--gold); }
 
-/* Headline (Instrument Serif Italic, Massive Clamp) */
 .hero-title-serif {
     font-family: var(--font-heading);
     font-style: italic;
@@ -490,12 +438,8 @@ img {
     opacity: 0;
 }
 
-.hero-title-serif .highlight-gold {
-    color: var(--gold-bright);
-    font-style: italic;
-}
+.hero-title-serif .highlight-gold { color: var(--gold-bright); font-style: italic; }
 
-/* Subtitle */
 .hero-subtitle-text {
     font-size: clamp(1.05rem, 1.8vw, 1.25rem);
     color: var(--text-secondary);
@@ -506,7 +450,6 @@ img {
     opacity: 0;
 }
 
-/* FLOATING LUXURY SEARCH CARD */
 .search-card-glass {
     width: 100%;
     max-width: 980px;
@@ -561,10 +504,7 @@ img {
     width: 100%;
 }
 
-.search-field-input option {
-    background-color: #141414;
-    color: #FFFFFF;
-}
+.search-field-input option { background-color: #141414; color: #FFFFFF; }
 
 .btn-search-gold {
     height: 52px;
@@ -588,7 +528,6 @@ img {
     box-shadow: 0 14px 40px rgba(214, 181, 108, 0.4);
 }
 
-/* Minimal Animated Scroll Indicator */
 .scroll-indicator-wrap {
     position: absolute;
     bottom: 24px;
@@ -637,32 +576,12 @@ img {
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* SECTION 2: DUAL-ROW SCROLL-DRIVEN SHOWCASE MARQUEE */
-.showcase-section {
+/* SECTION 2: RENTORA ADVANTAGE FEATURE CAROUSEL */
+.advantage-section {
     position: relative;
     padding: 100px 0 120px;
     background: var(--bg-dark);
     overflow: hidden;
-}
-
-/* Seamless Dissolve Gradient Overlay from Hero into Showcase */
-.showcase-section::before {
-    content: '';
-    position: absolute;
-    top: -120px;
-    left: 0;
-    right: 0;
-    height: 180px;
-    background: linear-gradient(to bottom, transparent 0%, var(--bg-dark) 100%);
-    z-index: 5;
-    pointer-events: none;
-}
-
-.showcase-header {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 60px;
-    padding: 0 24px;
 }
 
 .sub-heading-gold {
@@ -676,203 +595,336 @@ img {
     margin-bottom: 10px;
 }
 
-.showcase-title {
+.advantage-title {
     font-size: clamp(2.4rem, 4vw, 3.8rem);
     margin-bottom: 14px;
 }
 
-.showcase-desc {
+.advantage-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Carousel Track & Outer Wrapper */
+.carousel-outer-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 0 40px;
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-y;
+}
+
+.carousel-outer-wrapper:active { cursor: grabbing; }
+
+.carousel-track {
+    display: flex;
+    gap: 28px;
+    width: max-content;
+    will-change: transform;
+}
+
+/* Glass Feature Cards (Desktop: 3 Visible, Tablet: 2, Mobile: 1) */
+.advantage-card-glass {
+    position: relative;
+    width: 385px;
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    padding: 38px 32px;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.advantage-card-glass:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: var(--gold-bright);
+    box-shadow: 0 20px 45px rgba(214, 181, 108, 0.28), var(--shadow-card);
+}
+
+.advantage-icon-wrapper {
+    width: 58px;
+    height: 58px;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 22px;
+    transition: var(--transition-fast);
+}
+
+.advantage-card-glass:hover .advantage-icon-wrapper {
+    background: var(--gold);
+    color: #0B0B0B;
+    transform: scale(1.05);
+}
+
+.text-gold-icon { color: var(--gold-bright); }
+.advantage-card-glass:hover .text-gold-icon { color: #0B0B0B; }
+
+.advantage-card-glass h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.advantage-card-glass p {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
+/* Glass Reflection Sweep */
+.card-reflection {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.advantage-card-glass:hover .card-reflection { opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   PROPERTIES PAGE RESTORATION (Scoped to /properties/ catalog layout)
+   -------------------------------------------------------------------------- */
+.page-header {
+    background: var(--bg-secondary);
+    padding: 130px 24px 50px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-header-container { max-width: 1000px; margin: 0 auto; }
+
+.page-title {
+    font-family: var(--font-body);
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
     color: var(--text-secondary);
     font-size: 1.05rem;
 }
 
-/* Marquee Container & Dual Rows */
-.marquee-container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
+.catalog-section { padding: 60px 0 90px; }
 
-.marquee-row {
-    display: flex;
-    gap: 20px;
-    width: max-content;
-    will-change: transform;
-    transition: transform 0.05s linear;
-}
-
-.marquee-row-top { transform: translateX(0); }
-.marquee-row-bottom { transform: translateX(-15%); }
-
-/* Showcase Card Styling (420px x 270px) */
-.showcase-card {
-    position: relative;
-    width: 420px;
-    height: 270px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    flex-shrink: 0;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-card);
-    transition: var(--transition-smooth);
-    cursor: pointer;
-}
-
-.showcase-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Glass Reflection Sheen on Hover */
-.showcase-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-
-.showcase-card:hover {
-    transform: translateY(-8px) scale(1.04);
-    border-color: var(--border-gold);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), var(--shadow-gold);
-}
-
-.showcase-card:hover img {
-    transform: scale(1.08);
-}
-
-.showcase-card:hover::after {
-    opacity: 1;
-}
-
-/* Editorial Card Overlay & Tiny Typography */
-.card-overlay-editorial {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(11, 11, 11, 0.92) 0%, rgba(11, 11, 11, 0.3) 50%, transparent 100%);
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    color: #FFFFFF;
-}
-
-.card-num-badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: rgba(20, 20, 20, 0.65);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border-gold);
-    color: var(--gold-bright);
-    padding: 4px 12px;
-    border-radius: 14px;
-    font-size: 0.75rem;
-    font-family: var(--font-btn);
-    font-weight: 600;
-}
-
-.card-editorial-title {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: 1.4rem;
-    color: #FFFFFF;
-    margin-bottom: 4px;
-}
-
-.card-editorial-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-btn);
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-}
-
-.card-rating-gold {
-    color: var(--gold-bright);
-    font-weight: 600;
-}
-
-.card-rating-gold i { color: var(--gold); }
-
-/* SECTIONS GLOBAL (Services & Concierge) */
-.section {
-    padding: 90px 0;
-    background-color: var(--bg-dark);
-}
-
-.section-container {
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 0 24px;
-}
-
-.section-header {
-    margin-bottom: 50px;
-}
-
-.section-header.text-center { text-align: center; }
-
-.services-grid {
+.catalog-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+}
+
+.filter-sidebar { position: relative; }
+
+.filter-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    position: sticky;
+    top: 100px;
+}
+
+.filter-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group { margin-bottom: 16px; }
+
+.form-group label {
+    display: block;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(214, 181, 108, 0.2);
+}
+
+.results-header {
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
 }
 
-.service-card {
-    background: var(--bg-card-glass);
-    backdrop-filter: blur(20px);
-    padding: 38px 32px;
-    border-radius: var(--radius-lg);
+.property-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
     box-shadow: var(--shadow-card);
     border: 1px solid var(--border-color);
     transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
 }
 
-.service-card:hover {
+.property-card:hover {
     transform: translateY(-6px);
     border-color: var(--border-gold);
     box-shadow: var(--shadow-gold);
 }
 
-.service-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--gold-bg);
+.card-image-wrap {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.property-card:hover .card-image-wrap img { transform: scale(1.06); }
+
+.card-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(11, 11, 11, 0.85);
     color: var(--gold-bright);
+    backdrop-filter: blur(8px);
+    padding: 5px 12px;
     border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
     border: 1px solid var(--border-gold);
 }
 
-.service-card h3 {
-    font-size: 1.35rem;
-    margin-bottom: 12px;
+.card-rating {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
 }
 
-.service-card p {
+.card-rating i { color: var(--gold); }
+
+.card-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-location {
+    font-size: 0.85rem;
+    color: var(--gold-bright);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.card-title {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-desc {
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    margin-bottom: 18px;
+    flex-grow: 1;
 }
 
-/* Concierge Box */
+.card-specs {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 18px;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price-val {
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.price-unit { font-size: 0.85rem; color: var(--text-secondary); }
+
+.no-results-box {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-gold);
+}
+
+.no-results-box i { font-size: 3rem; color: var(--gold-bright); margin-bottom: 16px; }
+
+/* SECTIONS GLOBAL (Concierge & Footer) */
+.section { padding: 90px 0; background-color: var(--bg-dark); }
+
+.section-container { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+.mb-10 { margin-bottom: 45px; }
+
 .contact-box {
     background: var(--bg-card-glass);
     backdrop-filter: blur(24px);
@@ -886,24 +938,9 @@ img {
     border: 1px solid var(--border-gold);
 }
 
-.contact-info h2 {
-    font-size: 2.4rem;
-    margin-bottom: 16px;
-}
-
-.contact-info p {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    margin-bottom: 25px;
-}
-
-.contact-highlights {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font-weight: 500;
-}
-
+.contact-info h2 { font-size: 2.4rem; margin-bottom: 16px; }
+.contact-info p { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 25px; }
+.contact-highlights { display: flex; flex-direction: column; gap: 12px; font-weight: 500; }
 .contact-highlights i { color: var(--gold-bright); margin-right: 8px; }
 
 .contact-form {
@@ -913,32 +950,8 @@ img {
     border: 1px solid var(--border-color);
 }
 
-.contact-form h3 {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-}
+.contact-form h3 { font-size: 1.3rem; margin-bottom: 20px; }
 
-.form-group { margin-bottom: 16px; }
-
-.form-control {
-    width: 100%;
-    padding: 13px 18px;
-    border: 1.5px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    background-color: rgba(255, 255, 255, 0.04);
-    color: var(--text-primary);
-    transition: var(--transition-fast);
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(214, 181, 108, 0.2);
-}
-
-/* FOOTER */
 .footer {
     background: #06080D;
     color: #FFFFFF;
@@ -955,12 +968,7 @@ img {
     gap: 50px;
 }
 
-.footer-desc {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    margin: 16px 0 24px;
-}
-
+.footer-desc { color: var(--text-secondary); font-size: 0.92rem; margin: 16px 0 24px; }
 .social-links { display: flex; gap: 12px; }
 
 .social-links a {
@@ -975,16 +983,8 @@ img {
     border: 1px solid var(--border-color);
 }
 
-.social-links a:hover {
-    background: var(--gold);
-    color: #0B0B0B;
-}
-
-.footer-heading {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-}
-
+.social-links a:hover { background: var(--gold); color: #0B0B0B; }
+.footer-heading { font-size: 1.1rem; margin-bottom: 20px; }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: 12px; }
 .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
@@ -1006,9 +1006,10 @@ img {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
     .search-glass-form { grid-template-columns: 1fr 1fr; gap: 16px; }
     .search-group { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; }
+    .catalog-layout { grid-template-columns: 1fr; }
     .contact-box { grid-template-columns: 1fr; padding: 40px; }
     .footer-container { grid-template-columns: 1fr 1fr; }
-    .showcase-card { width: 340px; height: 220px; }
+    .advantage-card-glass { width: 340px; padding: 32px 26px; }
 }
 
 @media (max-width: 768px) {
@@ -1017,7 +1018,7 @@ img {
     .hero-title-serif { font-size: 2.8rem; }
     .search-glass-form { grid-template-columns: 1fr; }
     .footer-container { grid-template-columns: 1fr; }
-    .showcase-card { width: 300px; height: 200px; }
+    .advantage-card-glass { width: 290px; padding: 28px 22px; }
     .logo-wrapper { height: 34px; width: 163px; }
     .logo-img { height: 34px; width: 163px; }
 }

@@ -1,12 +1,12 @@
 /* ==========================================================================
-   RENTORA CINEMATIC LANDING PAGE INTERACTION SCRIPT - SPECIFICATION V1.0
+   RENTORA LANDING PAGE REFINEMENT INTERACTION SCRIPT - SPECIFICATION V1.1
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initHeroParallax();
     initParticleCanvas();
-    initScrollMarquee();
+    initFeatureCarousel();
     initMobileNav();
 });
 
@@ -35,11 +35,7 @@ function initThemeToggle() {
         localStorage.setItem('rentora_theme', theme);
 
         if (themeIcon) {
-            if (theme === 'dark') {
-                themeIcon.className = 'fa-solid fa-sun';
-            } else {
-                themeIcon.className = 'fa-solid fa-moon';
-            }
+            themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         }
     }
 }
@@ -62,7 +58,6 @@ function initHeroParallax() {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
 
-        // Calculate normalized offset (-0.5 to 0.5)
         mouseX = (e.clientX / windowWidth) - 0.5;
         mouseY = (e.clientY / windowHeight) - 0.5;
     }, { passive: true });
@@ -71,7 +66,6 @@ function initHeroParallax() {
         targetX += (mouseX - targetX) * 0.05;
         targetY += (mouseY - targetY) * 0.05;
 
-        // Apply smooth 3px, 5px, 8px subtle parallax movements
         if (layerBg) layerBg.style.transform = `scale(1.05) translate3d(${targetX * 4}px, ${targetY * 4}px, 0)`;
         if (layerMid) layerMid.style.transform = `scale(1.03) translate3d(${targetX * 7}px, ${targetY * 7}px, 0)`;
         if (layerFg) layerFg.style.transform = `scale(1.02) translate3d(${targetX * 11}px, ${targetY * 11}px, 0)`;
@@ -137,36 +131,99 @@ function initParticleCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   4. Scroll-Driven Dual-Row Marquee (3D Creator Linked Motion)
+   4. RENTORA ADVANTAGE HORIZONTAL FEATURE CAROUSEL (Infinite Auto-Scroll + Drag/Touch)
    -------------------------------------------------------------------------- */
-function initScrollMarquee() {
-    const rowTop = document.querySelector('.marquee-row-top');
-    const rowBottom = document.querySelector('.marquee-row-bottom');
+function initFeatureCarousel() {
+    const wrapper = document.querySelector('.carousel-outer-wrapper');
+    const track = document.getElementById('featureCarouselTrack');
 
-    if (!rowTop || !rowBottom) return;
+    if (!wrapper || !track) return;
 
-    let currentScroll = window.scrollY;
-    let targetScroll = currentScroll;
-    let ease = 0.08;
+    let positionX = 0;
+    let speed = 0.8;
+    let isPaused = false;
+    let isDragging = false;
+    let startX = 0;
+    let dragStartX = 0;
+    let animationFrameId = null;
 
-    window.addEventListener('scroll', () => {
-        targetScroll = window.scrollY;
-    }, { passive: true });
-
-    function updateMarquee() {
-        currentScroll += (targetScroll - currentScroll) * ease;
-
-        // Top Row moves RIGHT at 1.0x, Bottom Row moves LEFT at 0.82x
-        const shiftTop = (currentScroll * 0.35) % 1200;
-        const shiftBottom = (-currentScroll * 0.28) % 1200;
-
-        rowTop.style.transform = `translate3d(${shiftTop}px, 0, 0)`;
-        rowBottom.style.transform = `translate3d(${shiftBottom}px, 0, 0)`;
-
-        requestAnimationFrame(updateMarquee);
+    // Total width of half the cards (for seamless infinite loop)
+    function getHalfWidth() {
+        return track.scrollWidth / 2;
     }
 
-    requestAnimationFrame(updateMarquee);
+    function step() {
+        if (!isPaused && !isDragging) {
+            positionX -= speed;
+            const halfWidth = getHalfWidth();
+            if (halfWidth > 0 && Math.abs(positionX) >= halfWidth) {
+                positionX = 0;
+            }
+            track.style.transform = `translate3d(${positionX}px, 0, 0)`;
+        }
+        animationFrameId = requestAnimationFrame(step);
+    }
+
+    // Pause / Resume on Hover
+    wrapper.addEventListener('mouseenter', () => { isPaused = true; }, { passive: true });
+    wrapper.addEventListener('mouseleave', () => {
+        isPaused = false;
+        isDragging = false;
+    }, { passive: true });
+
+    // Mouse Drag Handlers
+    wrapper.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX;
+        dragStartX = positionX;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const diff = e.pageX - startX;
+        positionX = dragStartX + diff;
+        
+        const halfWidth = getHalfWidth();
+        if (halfWidth > 0) {
+            if (positionX > 0) positionX = -halfWidth + (positionX % halfWidth);
+            if (Math.abs(positionX) >= halfWidth) positionX = positionX % halfWidth;
+        }
+        track.style.transform = `translate3d(${positionX}px, 0, 0)`;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            isPaused = false;
+        }
+    });
+
+    // Touch Swipe Handlers (Mobile)
+    wrapper.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX;
+        dragStartX = positionX;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const diff = e.touches[0].pageX - startX;
+        positionX = dragStartX + diff;
+        
+        const halfWidth = getHalfWidth();
+        if (halfWidth > 0) {
+            if (positionX > 0) positionX = -halfWidth + (positionX % halfWidth);
+            if (Math.abs(positionX) >= halfWidth) positionX = positionX % halfWidth;
+        }
+        track.style.transform = `translate3d(${positionX}px, 0, 0)`;
+    }, { passive: true });
+
+    wrapper.addEventListener('touchend', () => {
+        isDragging = false;
+        isPaused = false;
+    }, { passive: true });
+
+    requestAnimationFrame(step);
 }
 
 /* --------------------------------------------------------------------------
