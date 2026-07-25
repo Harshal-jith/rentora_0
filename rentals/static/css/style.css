@@ -397,7 +397,7 @@ img {
 
 /* Prominent Transparent Rentora Brand Logo (Top Center) */
 .hero-brand-logo-wrap {
-    margin: 0 auto 16px;
+    margin: -30px auto 42px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -442,7 +442,7 @@ img {
     z-index: 10;
     max-width: 1050px;
     margin: 0 auto;
-    padding: 10px 24px 0;
+    padding: 0 24px 0;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -1404,10 +1404,13 @@ img {
 .contact-form h3 { font-size: 1.3rem; margin-bottom: 20px; }
 
 .footer {
-    background: var(--bg-secondary);
+    background: var(--bg-card-glass);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     color: var(--text-primary);
-    padding: 80px 0 30px;
+    padding: 70px 0 30px;
     border-top: 1px solid var(--border-gold);
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.4);
     transition: background-color 1.0s cubic-bezier(0.16, 1, 0.3, 1), color 1.0s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -2610,9 +2613,12 @@ body.light-theme .dash-input-group select:focus {
 }
 
 [data-theme="light"] .footer, body.light-theme .footer {
-    background: #F1F5F9;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     color: #0F172A;
-    border-top: 1px solid #CBD5E1;
+    border-top: 1px solid var(--border-gold);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="light"] .social-links a, body.light-theme .social-links a {
