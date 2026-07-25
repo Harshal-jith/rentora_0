@@ -1762,7 +1762,8 @@ img {
     justify-content: center;
     padding: 60px 20px;
     background-color: var(--bg-dark);
-    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .auth-video-container {
@@ -1805,6 +1806,7 @@ img {
     z-index: 10;
     width: 100%;
     max-width: 480px;
+    margin: auto;
     background: #141414;
     border: 1px solid rgba(214, 181, 108, 0.35);
     border-top: 4px solid var(--gold-bright);
