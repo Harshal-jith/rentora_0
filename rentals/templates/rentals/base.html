@@ -17,19 +17,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.5">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.6">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
 
-    <!-- RENTORA MINIMALIST LUXURY PRELOADER -->
+    <!-- RENTORA EDITORIAL LUXURY PRELOADER -->
     <div id="rentoraPreloader" class="rentora-preloader-overlay">
         <div class="preloader-content">
-            <div class="preloader-brand-title">RENTORA</div>
-            <div class="preloader-hairline-track">
-                <div class="preloader-hairline-fill" id="preloaderProgressFill"></div>
+            <!-- Subtle Gold Shield Emblem -->
+            <div class="preloader-emblem">
+                <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <div class="preloader-caption">LUXURY HOSPITALITY</div>
+            
+            <!-- Executive Monogram Title -->
+            <div class="preloader-brand-title">RENTORA</div>
+            
+            <!-- Champagne Accent Shimmer Track -->
+            <div class="preloader-shimmer-track">
+                <div class="preloader-shimmer-fill" id="preloaderProgressFill"></div>
+            </div>
+            
+            <!-- Curated Luxury Tagline -->
+            <div class="preloader-tagline">Kerala’s Sanctuary of Bespoke Private Estates</div>
         </div>
     </div>
 
@@ -161,18 +171,18 @@
     <!-- Custom JavaScript -->
     <script src="{% static 'js/main.js' %}"></script>
     <script>
-        // RENTORA MINIMALIST LUXURY PRELOADER
+        // RENTORA EDITORIAL LUXURY PRELOADER (POISED & REFINED)
         (function() {
             const preloader = document.getElementById("rentoraPreloader");
             const fill = document.getElementById("preloaderProgressFill");
             if (!preloader) return;
 
-            // Expand hairline smoothly
+            // Smooth deliberate 1.3s fill
             setTimeout(function() {
                 if (fill) fill.style.width = "100%";
-            }, 50);
+            }, 100);
 
-            // Fast, ultra-smooth dismiss
+            // Poised, elegant dismiss (~1.4s)
             let isDismissed = false;
             const dismiss = function() {
                 if (isDismissed) return;
@@ -180,15 +190,15 @@
                 preloader.classList.add("preloader-hide");
                 setTimeout(function() {
                     preloader.style.display = "none";
-                }, 450);
+                }, 600);
             };
 
             window.addEventListener("load", function() {
-                setTimeout(dismiss, 500);
+                setTimeout(dismiss, 1350);
             });
 
-            // Fallback safety timeout (0.9s max)
-            setTimeout(dismiss, 900);
+            // Fallback safety timeout (1.7s max)
+            setTimeout(dismiss, 1700);
         })();
     </script>
     {% block extra_js %}{% endblock %}
