@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.6">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.7">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
@@ -184,6 +184,10 @@
                 if (isDismissed) return;
                 isDismissed = true;
                 preloader.classList.add("preloader-hide");
+
+                // TRIGGER HERO ANIMATIONS EXACTLY AS PRELOADER FINISHES
+                document.body.classList.add("hero-animate-active");
+
                 setTimeout(function() {
                     preloader.style.display = "none";
                 }, 650);
