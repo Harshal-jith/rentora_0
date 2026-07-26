@@ -2882,6 +2882,86 @@ body.light-theme:has(.permanent-dark-page) {
     position: relative !important;
 }
 
+/* PERMANENT DARK IMMUNITY FOR FINAL CTA BOX, SIGN IN BUTTON & TRUST BADGES */
+.final-cta-box,
+[data-theme="light"] .final-cta-box,
+body.light-theme .final-cta-box,
+.permanent-dark-page .final-cta-box {
+    background: radial-gradient(circle at center, rgba(20, 20, 20, 0.95) 0%, rgba(14, 14, 14, 0.98) 100%) !important;
+    border: 1px solid var(--border-gold) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(214, 181, 108, 0.15) !important;
+}
+
+.final-cta-title,
+[data-theme="light"] .final-cta-title,
+body.light-theme .final-cta-title,
+.permanent-dark-page .final-cta-title {
+    color: #FFFFFF !important;
+}
+
+.final-cta-desc,
+[data-theme="light"] .final-cta-desc,
+body.light-theme .final-cta-desc,
+.permanent-dark-page .final-cta-desc {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.final-cta-buttons .btn-editorial-secondary,
+.final-cta-buttons .btn-glass,
+.final-cta-buttons .btn-outline,
+[data-theme="light"] .final-cta-buttons .btn-editorial-secondary,
+[data-theme="light"] .final-cta-buttons .btn-glass,
+[data-theme="light"] .final-cta-buttons .btn-outline,
+body.light-theme .final-cta-buttons .btn-editorial-secondary,
+body.light-theme .final-cta-buttons .btn-glass,
+body.light-theme .final-cta-buttons .btn-outline,
+.permanent-dark-page .final-cta-buttons .btn-editorial-secondary,
+.permanent-dark-page .final-cta-buttons .btn-glass,
+.permanent-dark-page .final-cta-buttons .btn-outline {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.final-cta-buttons .btn-editorial-secondary:hover,
+.final-cta-buttons .btn-glass:hover,
+.final-cta-buttons .btn-outline:hover,
+[data-theme="light"] .final-cta-buttons .btn-editorial-secondary:hover,
+[data-theme="light"] .final-cta-buttons .btn-glass:hover,
+[data-theme="light"] .final-cta-buttons .btn-outline:hover,
+body.light-theme .final-cta-buttons .btn-editorial-secondary:hover,
+body.light-theme .final-cta-buttons .btn-glass:hover,
+body.light-theme .final-cta-buttons .btn-outline:hover,
+.permanent-dark-page .final-cta-buttons .btn-editorial-secondary:hover,
+.permanent-dark-page .final-cta-buttons .btn-glass:hover,
+.permanent-dark-page .final-cta-buttons .btn-outline:hover {
+    background: rgba(214, 181, 108, 0.25) !important;
+    border-color: var(--gold) !important;
+    color: var(--gold-bright) !important;
+    transform: translateY(-2px);
+}
+
+.cta-trust-badges,
+.cta-trust-badges span,
+[data-theme="light"] .cta-trust-badges,
+[data-theme="light"] .cta-trust-badges span,
+body.light-theme .cta-trust-badges,
+body.light-theme .cta-trust-badges span,
+.permanent-dark-page .cta-trust-badges,
+.permanent-dark-page .cta-trust-badges span {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.cta-trust-badges i,
+[data-theme="light"] .cta-trust-badges i,
+body.light-theme .cta-trust-badges i,
+.permanent-dark-page .cta-trust-badges i {
+    color: var(--gold-bright) !important;
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
     .navbar-glass { width: calc(100% - 32px); padding: 10px 20px; }
