@@ -2962,108 +2962,76 @@ body.light-theme .cta-trust-badges i,
     color: var(--gold-bright) !important;
 }
 
-/* ====================================================
-   RENTORA EDITORIAL LUXURY PRELOADER (POISED & REFINED)
-==================================================== */
-.rentora-preloader-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    background-color: #080808;
-    background-image: radial-gradient(circle at center, rgba(24, 24, 24, 0.98) 0%, rgba(8, 8, 8, 1) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, filter;
-}
-
-.rentora-preloader-overlay.preloader-hide {
-    opacity: 0;
-    visibility: hidden;
-    filter: blur(10px);
+/* =============================================================
+   AMBIENT ORBS & HERO ANIMATION SYSTEM (FROM PREMIUM-RENTALS.GIT)
+   ============================================================= */
+.ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.28;
+    z-index: 2;
     pointer-events: none;
+    animation: orbFloat 12s ease-in-out infinite alternate;
 }
 
-.preloader-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-    max-width: 520px;
-    animation: preloaderContentFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.ambient-orb-1 {
+    width: 380px;
+    height: 380px;
+    top: 15%;
+    left: 8%;
+    background: radial-gradient(circle, rgba(214, 181, 108, 0.55) 0%, rgba(197, 155, 39, 0) 70%);
 }
 
-@keyframes preloaderContentFade {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: translateY(0); }
+.ambient-orb-2 {
+    width: 440px;
+    height: 440px;
+    bottom: 12%;
+    right: 8%;
+    background: radial-gradient(circle, rgba(232, 206, 146, 0.45) 0%, rgba(184, 147, 88, 0) 70%);
+    animation-delay: -6s;
 }
 
-.preloader-emblem {
-    font-size: 1.8rem;
-    color: var(--gold-bright);
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 16px rgba(214, 181, 108, 0.5));
-    animation: emblemGlow 2.4s ease-in-out infinite alternate;
+@keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(35px, -25px) scale(1.08); }
+    100% { transform: translate(-25px, 35px) scale(0.95); }
 }
 
-@keyframes emblemGlow {
-    0% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(214, 181, 108, 0.4)); }
-    100% { transform: scale(1.08); filter: drop-shadow(0 0 24px rgba(255, 243, 209, 0.8)); }
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.preloader-brand-title {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 12px;
-    color: #FFFFFF;
-    margin-bottom: 22px;
-    text-transform: uppercase;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+.hero-brand-logo-wrap {
+    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    opacity: 0;
 }
 
-.preloader-shimmer-track {
-    width: 220px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.08);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+.hero-title-editorial {
+    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    opacity: 0;
 }
 
-.preloader-shimmer-fill {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #C5A059 0%, #FFF3D1 50%, #E8CE92 100%);
-    border-radius: 2px;
-    box-shadow: 0 0 14px rgba(214, 181, 108, 0.9);
-    transition: width 1.3s cubic-bezier(0.25, 1, 0.5, 1);
-    margin: 0 auto;
+.hero-subtitle-editorial {
+    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+    opacity: 0;
 }
 
-.preloader-tagline {
-    font-size: 0.82rem;
-    color: var(--gold-bright);
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    font-family: var(--font-btn);
-    font-weight: 600;
-    line-height: 1.5;
-    opacity: 0.9;
-    animation: taglineShimmer 2s ease-in-out infinite alternate;
+.hero-cta-editorial-group {
+    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    opacity: 0;
 }
 
-@keyframes taglineShimmer {
-    0% { opacity: 0.75; }
-    100% { opacity: 1; text-shadow: 0 0 12px rgba(214, 181, 108, 0.4); }
+.hero-stats-glass-bar {
+    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+    opacity: 0;
 }
 
 /* RESPONSIVE MEDIA QUERIES */
