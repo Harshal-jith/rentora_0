@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.7">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.8">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
@@ -25,11 +25,9 @@
     <!-- RENTORA CINEMATIC BRAND LOGO REVEAL PRELOADER -->
     <div id="rentoraPreloader" class="rentora-preloader-overlay">
         <div class="preloader-content">
-            <!-- Brand Logo Reveal Container -->
+            <!-- Brand Logo Reveal (Pure Transparent Logo) -->
             <div class="preloader-logo-reveal-box">
-                <div class="preloader-logo-glow-aura"></div>
                 <img src="{% static 'images/logo_dark.png' %}" alt="Rentora Luxury Hospitality" class="preloader-revealed-logo">
-                <div class="preloader-shimmer-sweep"></div>
             </div>
 
             <!-- Expanding Gold Line -->
