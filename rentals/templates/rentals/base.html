@@ -17,10 +17,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.7">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.6">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
+
+    <!-- RENTORA CINEMATIC BRAND LOGO REVEAL PRELOADER -->
+    <div id="rentoraPreloader" class="rentora-preloader-overlay">
+        <div class="preloader-content">
+            <!-- Brand Logo Reveal Container -->
+            <div class="preloader-logo-reveal-box">
+                <div class="preloader-logo-glow-aura"></div>
+                <img src="{% static 'images/logo_dark.png' %}" alt="Rentora Luxury Hospitality" class="preloader-revealed-logo">
+                <div class="preloader-shimmer-sweep"></div>
+            </div>
+
+            <!-- Expanding Gold Line -->
+            <div class="preloader-gold-hairline"></div>
+
+            <!-- Official Tagline -->
+            <p class="preloader-official-tagline">Stay Beyond Extraordinary</p>
+        </div>
+    </div>
 
     <!-- Django Flash Messages -->
     {% if messages %}
@@ -149,6 +167,36 @@
 
     <!-- Custom JavaScript -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        // RENTORA CINEMATIC BRAND LOGO REVEAL ENGINE
+        (function() {
+            const preloader = document.getElementById("rentoraPreloader");
+            if (!preloader) return;
+
+            // Trigger logo reveal animation after brief DOM paint
+            setTimeout(function() {
+                preloader.classList.add("start-reveal");
+            }, 80);
+
+            // Smooth luxury dismiss transition (1.4s total)
+            let isDismissed = false;
+            const dismiss = function() {
+                if (isDismissed) return;
+                isDismissed = true;
+                preloader.classList.add("preloader-hide");
+                setTimeout(function() {
+                    preloader.style.display = "none";
+                }, 650);
+            };
+
+            window.addEventListener("load", function() {
+                setTimeout(dismiss, 1350);
+            });
+
+            // Fallback safety timeout (1.9s max)
+            setTimeout(dismiss, 1900);
+        })();
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

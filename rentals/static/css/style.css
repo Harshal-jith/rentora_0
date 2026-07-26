@@ -2962,76 +2962,147 @@ body.light-theme .cta-trust-badges i,
     color: var(--gold-bright) !important;
 }
 
-/* =============================================================
-   AMBIENT ORBS & HERO ANIMATION SYSTEM (FROM PREMIUM-RENTALS.GIT)
-   ============================================================= */
-.ambient-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.28;
-    z-index: 2;
+/* ====================================================
+   RENTORA CINEMATIC BRAND LOGO REVEAL PRELOADER
+==================================================== */
+.rentora-preloader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background-color: #0A0A0A;
+    background-image: radial-gradient(circle at center, rgba(24, 24, 24, 0.98) 0%, rgba(8, 8, 8, 1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+}
+
+.rentora-preloader-overlay.preloader-hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.03);
+    filter: blur(12px);
     pointer-events: none;
-    animation: orbFloat 12s ease-in-out infinite alternate;
 }
 
-.ambient-orb-1 {
-    width: 380px;
-    height: 380px;
-    top: 15%;
-    left: 8%;
-    background: radial-gradient(circle, rgba(214, 181, 108, 0.55) 0%, rgba(197, 155, 39, 0) 70%);
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    max-width: 500px;
 }
 
-.ambient-orb-2 {
-    width: 440px;
-    height: 440px;
-    bottom: 12%;
-    right: 8%;
-    background: radial-gradient(circle, rgba(232, 206, 146, 0.45) 0%, rgba(184, 147, 88, 0) 70%);
-    animation-delay: -6s;
+/* Brand Logo Reveal Box */
+.preloader-logo-reveal-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    overflow: hidden;
+    padding: 15px 30px;
 }
 
-@keyframes orbFloat {
-    0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(35px, -25px) scale(1.08); }
-    100% { transform: translate(-25px, 35px) scale(0.95); }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-brand-logo-wrap {
-    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+.preloader-logo-glow-aura {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(214, 181, 108, 0.3) 0%, rgba(214, 181, 108, 0) 70%);
+    border-radius: 50%;
     opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-title-editorial {
-    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-    opacity: 0;
+.rentora-preloader-overlay.start-reveal .preloader-logo-glow-aura {
+    opacity: 1;
+    transform: scale(1.2);
 }
 
-.hero-subtitle-editorial {
-    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+.preloader-revealed-logo {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
     opacity: 0;
+    transform: scale(0.9) translateY(12px);
+    filter: blur(12px);
+    transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.0s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+    position: relative;
+    z-index: 2;
 }
 
-.hero-cta-editorial-group {
-    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-    opacity: 0;
+.rentora-preloader-overlay.start-reveal .preloader-revealed-logo {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+    drop-shadow: 0 10px 35px rgba(0, 0, 0, 0.8);
 }
 
-.hero-stats-glass-bar {
-    animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+/* Shimmer Sweep Animation across Logo */
+.preloader-shimmer-sweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 243, 209, 0.6) 50%, transparent 100%);
+    transform: skewX(-25deg);
+    z-index: 3;
     opacity: 0;
+    pointer-events: none;
+}
+
+.rentora-preloader-overlay.start-reveal .preloader-shimmer-sweep {
+    animation: shimmerSweepAcross 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+@keyframes shimmerSweepAcross {
+    0% { left: -100%; opacity: 0; }
+    30% { opacity: 1; }
+    100% { left: 160%; opacity: 0; }
+}
+
+/* Gold Hairline */
+.preloader-gold-hairline {
+    width: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold-bright) 50%, transparent 100%);
+    margin-bottom: 18px;
+    transition: width 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+    box-shadow: 0 0 12px rgba(214, 181, 108, 0.8);
+}
+
+.rentora-preloader-overlay.start-reveal .preloader-gold-hairline {
+    width: 200px;
+}
+
+/* Official Tagline */
+.preloader-official-tagline {
+    font-family: var(--font-heading);
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.9s ease 0.7s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s;
+}
+
+.rentora-preloader-overlay.start-reveal .preloader-official-tagline {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* RESPONSIVE MEDIA QUERIES */

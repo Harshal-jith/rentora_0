@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initFeatureCarousel();
     initScrollObserver();
     initMobileNav();
-    initHeroStatsCounter();
 });
 
 /* --------------------------------------------------------------------------
@@ -359,36 +358,4 @@ function initMobileNav() {
             }
         });
     }
-}
-
-/* --------------------------------------------------------------------------
-   Animated Hero Stats Metrics Counter (Ported from premium-rentals.git)
-   -------------------------------------------------------------------------- */
-function initHeroStatsCounter() {
-    const counters = document.querySelectorAll('.hero-counter');
-    if (!counters.length) return;
-
-    counters.forEach(counterEl => {
-        const target = parseFloat(counterEl.getAttribute('data-target'));
-        if (isNaN(target)) return;
-        const prefix = counterEl.getAttribute('data-prefix') || '';
-        const suffix = counterEl.getAttribute('data-suffix') || '';
-        const isFloat = target % 1 !== 0;
-
-        let current = 0;
-        const duration = 1200; // ms
-        const steps = 40;
-        const increment = target / steps;
-        const stepTime = duration / steps;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            const formattedVal = isFloat ? current.toFixed(1) : Math.floor(current);
-            counterEl.textContent = `${prefix}${formattedVal}${suffix}`;
-        }, stepTime);
-    });
 }
