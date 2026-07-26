@@ -17,41 +17,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.4">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.5">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
 
-    <!-- RENTORA EXECUTIVE LUXURY PRELOADER -->
+    <!-- RENTORA MINIMALIST LUXURY PRELOADER -->
     <div id="rentoraPreloader" class="rentora-preloader-overlay">
         <div class="preloader-content">
-            <!-- Glowing Crest Icon Wrap -->
-            <div class="preloader-crest-wrapper">
-                <div class="preloader-spinner-ring"></div>
-                <div class="preloader-spinner-ring-inner"></div>
-                <div class="preloader-logo-icon">
-                    <i class="fa-solid fa-gem text-gold-glow"></i>
-                </div>
+            <div class="preloader-brand-title">RENTORA</div>
+            <div class="preloader-hairline-track">
+                <div class="preloader-hairline-fill" id="preloaderProgressFill"></div>
             </div>
-
-            <!-- Rentora Brand Title -->
-            <div class="preloader-brand-title">
-                <span class="preloader-letter">R</span>
-                <span class="preloader-letter">E</span>
-                <span class="preloader-letter">N</span>
-                <span class="preloader-letter">T</span>
-                <span class="preloader-letter">O</span>
-                <span class="preloader-letter">R</span>
-                <span class="preloader-letter">A</span>
-            </div>
-
-            <!-- Sleek Shimmer Progress Bar -->
-            <div class="preloader-progress-track">
-                <div class="preloader-progress-fill" id="preloaderProgressFill"></div>
-            </div>
-
-            <!-- Subtitle Caption -->
-            <p class="preloader-caption" id="preloaderCaption">Curating Bespoke Sanctuaries...</p>
+            <div class="preloader-caption">LUXURY HOSPITALITY</div>
         </div>
     </div>
 
@@ -183,48 +161,34 @@
     <!-- Custom JavaScript -->
     <script src="{% static 'js/main.js' %}"></script>
     <script>
-        // RENTORA EXECUTIVE LUXURY PRELOADER ENGINE
+        // RENTORA MINIMALIST LUXURY PRELOADER
         (function() {
             const preloader = document.getElementById("rentoraPreloader");
-            const progressFill = document.getElementById("preloaderProgressFill");
-            const caption = document.getElementById("preloaderCaption");
-            
+            const fill = document.getElementById("preloaderProgressFill");
             if (!preloader) return;
 
-            const captions = [
-                "Curating Bespoke Sanctuaries...",
-                "Verifying Private Estates...",
-                "Welcome to Rentora"
-            ];
+            // Expand hairline smoothly
+            setTimeout(function() {
+                if (fill) fill.style.width = "100%";
+            }, 50);
 
-            // Animate Progress Fill & Captions smoothly
-            setTimeout(function() { if (progressFill) progressFill.style.width = "45%"; }, 120);
-            setTimeout(function() { 
-                if (progressFill) progressFill.style.width = "85%"; 
-                if (caption) caption.textContent = captions[1];
-            }, 480);
-            setTimeout(function() { 
-                if (progressFill) progressFill.style.width = "100%"; 
-                if (caption) caption.textContent = captions[2];
-            }, 880);
-
-            // Smooth Dismiss Transition
+            // Fast, ultra-smooth dismiss
             let isDismissed = false;
-            const dismissPreloader = function() {
+            const dismiss = function() {
                 if (isDismissed) return;
                 isDismissed = true;
                 preloader.classList.add("preloader-hide");
                 setTimeout(function() {
                     preloader.style.display = "none";
-                }, 700);
+                }, 450);
             };
 
             window.addEventListener("load", function() {
-                setTimeout(dismissPreloader, 1050);
+                setTimeout(dismiss, 500);
             });
 
-            // Fallback safety timeout (1.6s max)
-            setTimeout(dismissPreloader, 1600);
+            // Fallback safety timeout (0.9s max)
+            setTimeout(dismiss, 900);
         })();
     </script>
     {% block extra_js %}{% endblock %}
