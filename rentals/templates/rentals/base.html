@@ -17,10 +17,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.3">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.4">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
+
+    <!-- RENTORA EXECUTIVE LUXURY PRELOADER -->
+    <div id="rentoraPreloader" class="rentora-preloader-overlay">
+        <div class="preloader-content">
+            <!-- Glowing Crest Icon Wrap -->
+            <div class="preloader-crest-wrapper">
+                <div class="preloader-spinner-ring"></div>
+                <div class="preloader-spinner-ring-inner"></div>
+                <div class="preloader-logo-icon">
+                    <i class="fa-solid fa-gem text-gold-glow"></i>
+                </div>
+            </div>
+
+            <!-- Rentora Brand Title -->
+            <div class="preloader-brand-title">
+                <span class="preloader-letter">R</span>
+                <span class="preloader-letter">E</span>
+                <span class="preloader-letter">N</span>
+                <span class="preloader-letter">T</span>
+                <span class="preloader-letter">O</span>
+                <span class="preloader-letter">R</span>
+                <span class="preloader-letter">A</span>
+            </div>
+
+            <!-- Sleek Shimmer Progress Bar -->
+            <div class="preloader-progress-track">
+                <div class="preloader-progress-fill" id="preloaderProgressFill"></div>
+            </div>
+
+            <!-- Subtitle Caption -->
+            <p class="preloader-caption" id="preloaderCaption">Curating Bespoke Sanctuaries...</p>
+        </div>
+    </div>
 
     <!-- Django Flash Messages -->
     {% if messages %}
@@ -149,6 +182,51 @@
 
     <!-- Custom JavaScript -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        // RENTORA EXECUTIVE LUXURY PRELOADER ENGINE
+        (function() {
+            const preloader = document.getElementById("rentoraPreloader");
+            const progressFill = document.getElementById("preloaderProgressFill");
+            const caption = document.getElementById("preloaderCaption");
+            
+            if (!preloader) return;
+
+            const captions = [
+                "Curating Bespoke Sanctuaries...",
+                "Verifying Private Estates...",
+                "Welcome to Rentora"
+            ];
+
+            // Animate Progress Fill & Captions smoothly
+            setTimeout(function() { if (progressFill) progressFill.style.width = "45%"; }, 120);
+            setTimeout(function() { 
+                if (progressFill) progressFill.style.width = "85%"; 
+                if (caption) caption.textContent = captions[1];
+            }, 480);
+            setTimeout(function() { 
+                if (progressFill) progressFill.style.width = "100%"; 
+                if (caption) caption.textContent = captions[2];
+            }, 880);
+
+            // Smooth Dismiss Transition
+            let isDismissed = false;
+            const dismissPreloader = function() {
+                if (isDismissed) return;
+                isDismissed = true;
+                preloader.classList.add("preloader-hide");
+                setTimeout(function() {
+                    preloader.style.display = "none";
+                }, 700);
+            };
+
+            window.addEventListener("load", function() {
+                setTimeout(dismissPreloader, 1050);
+            });
+
+            // Fallback safety timeout (1.6s max)
+            setTimeout(dismissPreloader, 1600);
+        })();
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
