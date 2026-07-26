@@ -676,15 +676,15 @@ img {
 
 .facility-features-list li {
     font-size: 0.84rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.88) !important;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .facility-features-list i {
-    color: var(--gold-bright);
-    font-size: 0.78rem;
+    color: var(--gold-bright) !important;
+    font-size: 0.82rem;
 }
 
 .experiences-grid {
@@ -2864,6 +2864,22 @@ body:has(.permanent-dark-page) .social-links a,
     background: rgba(255, 255, 255, 0.08) !important;
     color: var(--gold-bright) !important;
     border: 1px solid var(--border-gold) !important;
+}
+
+/* BODY BACKGROUND LOCK ON LANDING PAGE */
+body.is-landing-page,
+body:has(.permanent-dark-page),
+[data-theme="light"] body.is-landing-page,
+[data-theme="light"] body:has(.permanent-dark-page),
+body.light-theme:has(.permanent-dark-page) {
+    background-color: #0B0B0B !important;
+}
+
+.footer-permanent-dark-logo {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
 }
 
 /* RESPONSIVE MEDIA QUERIES */

@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.2">
     {% block extra_css %}{% endblock %}
 </head>
-<body class="dark-theme">
+<body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
 
     <!-- Django Flash Messages -->
     {% if messages %}
@@ -100,8 +100,7 @@
             <div class="footer-col brand-col">
                 <a href="{% url 'home' %}" aria-label="Rentora Home">
                     <div class="logo-wrapper footer-logo-wrapper">
-                        <img src="{% static 'images/logo_dark.png' %}" alt="Rentora" class="logo-img logo-dark footer-logo-img">
-                        <img src="{% static 'images/logo_light.png' %}" alt="Rentora" class="logo-img logo-light footer-logo-img">
+                        <img src="{% static 'images/logo_dark.png' %}" alt="Rentora" class="logo-img footer-logo-img footer-permanent-dark-logo">
                     </div>
                 </a>
                 <p class="footer-desc">
