@@ -214,7 +214,7 @@ function initParticleCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   4. Feature Carousel (Slowing speed by ~45%: 0.42 speed with smooth drag)
+   4. Feature Carousel (Silky Smooth Infinite Auto-Scroll with Zero Stutter)
    -------------------------------------------------------------------------- */
 function initFeatureCarousel() {
     const wrapper = document.querySelector('.carousel-outer-wrapper');
@@ -222,25 +222,41 @@ function initFeatureCarousel() {
 
     if (!wrapper || !track) return;
 
+    // Dynamically clone original cards once to guarantee 100% exact width symmetry
+    const originalCards = Array.from(track.children);
+    originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        // Strip scroll reveal animation classes from cloned cards to prevent pop glitches
+        clone.classList.remove('reveal-popup', 'revealed');
+        clone.style.opacity = '1';
+        clone.style.transform = 'none';
+        track.appendChild(clone);
+    });
+
     let positionX = 0;
-    let speed = 0.42; // Reduced speed for calm, luxury auto-scroll
+    let speed = 0.45; // Smooth luxury auto-scroll speed
     let isPaused = false;
     let isDragging = false;
     let startX = 0;
     let dragStartX = 0;
+    let singleSetWidth = 0;
 
-    function getHalfWidth() {
-        return track.scrollWidth / 2;
+    function calculateWidth() {
+        // Calculate exact width of original set
+        singleSetWidth = track.scrollWidth / 2;
     }
+
+    calculateWidth();
+    window.addEventListener('resize', calculateWidth, { passive: true });
 
     function step() {
         if (!isPaused && !isDragging) {
             positionX -= speed;
-            const halfWidth = getHalfWidth();
-            if (halfWidth > 0 && Math.abs(positionX) >= halfWidth) {
-                positionX = 0;
+            if (singleSetWidth > 0 && Math.abs(positionX) >= singleSetWidth) {
+                // Smooth wrapping: add back exact width to avoid frame loss or visual jumps
+                positionX += singleSetWidth;
             }
-            track.style.transform = `translate3d(${positionX}px, 0, 0)`;
+            track.style.transform = `translate3d(${positionX.toFixed(2)}px, 0, 0)`;
         }
         requestAnimationFrame(step);
     }
@@ -261,13 +277,12 @@ function initFeatureCarousel() {
         if (!isDragging) return;
         const diff = e.pageX - startX;
         positionX = dragStartX + diff;
-        
-        const halfWidth = getHalfWidth();
-        if (halfWidth > 0) {
-            if (positionX > 0) positionX = -halfWidth + (positionX % halfWidth);
-            if (Math.abs(positionX) >= halfWidth) positionX = positionX % halfWidth;
+
+        if (singleSetWidth > 0) {
+            if (positionX > 0) positionX -= singleSetWidth;
+            if (Math.abs(positionX) >= singleSetWidth) positionX += singleSetWidth;
         }
-        track.style.transform = `translate3d(${positionX}px, 0, 0)`;
+        track.style.transform = `translate3d(${positionX.toFixed(2)}px, 0, 0)`;
     });
 
     window.addEventListener('mouseup', () => {
@@ -287,13 +302,12 @@ function initFeatureCarousel() {
         if (!isDragging) return;
         const diff = e.touches[0].pageX - startX;
         positionX = dragStartX + diff;
-        
-        const halfWidth = getHalfWidth();
-        if (halfWidth > 0) {
-            if (positionX > 0) positionX = -halfWidth + (positionX % halfWidth);
-            if (Math.abs(positionX) >= halfWidth) positionX = positionX % halfWidth;
+
+        if (singleSetWidth > 0) {
+            if (positionX > 0) positionX -= singleSetWidth;
+            if (Math.abs(positionX) >= singleSetWidth) positionX += singleSetWidth;
         }
-        track.style.transform = `translate3d(${positionX}px, 0, 0)`;
+        track.style.transform = `translate3d(${positionX.toFixed(2)}px, 0, 0)`;
     }, { passive: true });
 
     wrapper.addEventListener('touchend', () => {

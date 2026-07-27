@@ -1102,6 +1102,9 @@ body.hero-animate-active .hero-stats-glass-bar {
     gap: 28px;
     width: max-content;
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
 }
 
 /* Glass Feature Cards (Desktop: 3 Visible, Tablet: 2, Mobile: 1) */
