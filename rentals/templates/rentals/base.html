@@ -17,12 +17,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.9">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4.0">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
 
-    <!-- RENTORA CINEMATIC BRAND LOGO REVEAL PRELOADER -->
+    <!-- RENTORA CINEMATIC BRAND LOGO REVEAL PRELOADER (HERO LANDING PAGE ONLY) -->
+    {% if request.resolver_match.url_name == 'home' %}
     <div id="rentoraPreloader" class="rentora-preloader-overlay">
         <div class="preloader-content">
             <!-- Brand Logo Reveal (Pure Transparent Logo) -->
@@ -37,6 +38,7 @@
             <p class="preloader-official-tagline">Stay Beyond Extraordinary</p>
         </div>
     </div>
+    {% endif %}
 
     <!-- Django Flash Messages -->
     {% if messages %}
@@ -165,8 +167,9 @@
 
     <!-- Custom JavaScript -->
     <script src="{% static 'js/main.js' %}"></script>
+    {% if request.resolver_match.url_name == 'home' %}
     <script>
-        // RENTORA CINEMATIC BRAND LOGO REVEAL ENGINE
+        // RENTORA CINEMATIC BRAND LOGO REVEAL ENGINE (HERO LANDING PAGE ONLY)
         (function() {
             const preloader = document.getElementById("rentoraPreloader");
             if (!preloader) return;
@@ -199,6 +202,7 @@
             setTimeout(dismiss, 1900);
         })();
     </script>
+    {% endif %}
     {% block extra_js %}{% endblock %}
 </body>
 </html>
