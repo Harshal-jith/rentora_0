@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4.1">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
@@ -60,13 +60,9 @@
             
             <!-- Left: Navigation Links -->
             <nav class="nav-links">
-                {% if user.is_authenticated %}
-                <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"><i class="fa-solid fa-shield-halved text-gold"></i> Dashboard</a>
-                {% endif %}
-                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Private Estates</a>
-                <a href="{% url 'home' %}#advantage" class="nav-link">Bespoke Services</a>
-                <a href="{% url 'home' %}#facilities" class="nav-link">In-Villa Facilities</a>
-                <a href="{% url 'home' %}#access" class="nav-link">VIP Collection</a>
+                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Estates</a>
+                <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'home' %}#facilities" class="nav-link">Facilities</a>
             </nav>
 
             <!-- Center: Rentora Brand Logo (CENTERED) -->
