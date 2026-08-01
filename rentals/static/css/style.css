@@ -316,17 +316,19 @@ img {
 .btn-sm { padding: 8px 18px; font-size: 0.85rem; border-radius: 12px; }
 .btn-full { width: 100%; }
 
-.btn-gold {
-    background: linear-gradient(135deg, #F5E6D3 0%, #E6C594 50%, #D4B07B 100%);
-    color: #120E0C;
-    box-shadow: 0 10px 30px rgba(230, 197, 148, 0.35);
-    font-weight: 700;
+.btn-gold, .btn-primary, .btn-editorial-primary {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F5F3EF 50%, #EBE7DF 100%) !important;
+    color: #1A1512 !important;
+    box-shadow: 0 10px 30px rgba(245, 243, 239, 0.22), 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    font-weight: 700 !important;
+    border: none !important;
 }
 
-.btn-gold:hover {
+.btn-gold:hover, .btn-primary:hover, .btn-editorial-primary:hover {
     transform: translateY(-2px);
-    background: linear-gradient(135deg, #FFFFFF 0%, #F5E6D3 50%, #E6C594 100%);
-    box-shadow: 0 14px 40px rgba(230, 197, 148, 0.45);
+    background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 100%) !important;
+    color: #1A1512 !important;
+    box-shadow: 0 14px 40px rgba(255, 255, 255, 0.35), 0 6px 20px rgba(0, 0, 0, 0.5) !important;
     opacity: 0.98;
 }
 
@@ -334,17 +336,17 @@ img {
     background: rgba(27, 21, 18, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(230, 197, 148, 0.35);
+    border: 1px solid rgba(245, 243, 239, 0.28);
     color: #FFFFFF;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .btn-glass:hover {
     background: rgba(27, 21, 18, 0.98);
-    border-color: #E6C594;
-    color: #F5E6D3;
+    border-color: #F5F3EF;
+    color: #F5F3EF;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(230, 197, 148, 0.25);
+    box-shadow: 0 10px 30px rgba(245, 243, 239, 0.2);
 }
 
 .btn-outline {
