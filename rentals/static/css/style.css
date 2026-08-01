@@ -317,30 +317,33 @@ img {
 .btn-full { width: 100%; }
 
 .btn-gold {
-    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-    color: #0B0B0B;
-    box-shadow: var(--shadow-gold);
-    font-weight: 600;
+    background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #C59B27 100%);
+    color: #060A08;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.38), 0 0 20px rgba(82, 183, 136, 0.2);
+    font-weight: 700;
 }
 
 .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 35px rgba(214, 181, 108, 0.38);
-    opacity: 0.96;
+    box-shadow: 0 14px 40px rgba(212, 175, 55, 0.5), 0 0 25px rgba(82, 183, 136, 0.35);
+    opacity: 0.98;
 }
 
 .btn-glass {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border-gold);
-    color: var(--text-primary);
+    background: rgba(14, 28, 21, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(82, 183, 136, 0.4);
+    color: #FFFFFF;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .btn-glass:hover {
-    background: var(--gold-bg);
-    border-color: var(--gold-bright);
-    color: var(--gold-bright);
+    background: rgba(14, 28, 21, 0.95);
+    border-color: #D4AF37;
+    color: #F3E5AB;
     transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
 }
 
 .btn-outline {
@@ -437,8 +440,8 @@ body.hero-animate-active .hero-brand-logo-wrap {
     position: absolute;
     inset: 0;
     z-index: 3;
-    background: radial-gradient(circle at center, rgba(11, 11, 11, 0.28) 0%, rgba(11, 11, 11, 0.78) 70%, rgba(11, 11, 11, 0.98) 100%),
-                linear-gradient(to bottom, rgba(11, 11, 11, 0.4) 0%, rgba(11, 11, 11, 0.15) 50%, var(--bg-dark) 100%);
+    background: radial-gradient(circle at center, rgba(6, 15, 10, 0.35) 0%, rgba(6, 12, 9, 0.85) 70%, #060A08 100%),
+                linear-gradient(to bottom, rgba(6, 15, 10, 0.4) 0%, rgba(6, 12, 9, 0.2) 50%, var(--bg-dark) 100%);
     pointer-events: none;
 }
 
@@ -460,10 +463,10 @@ body.hero-animate-active .hero-brand-logo-wrap {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(20, 20, 20, 0.65);
+    background: rgba(11, 20, 16, 0.82);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-gold);
+    border: 1px solid rgba(82, 183, 136, 0.45);
     color: var(--gold-bright);
     padding: 8px 24px;
     border-radius: 30px;
@@ -472,7 +475,7 @@ body.hero-animate-active .hero-brand-logo-wrap {
     letter-spacing: 2px;
     font-family: var(--font-btn);
     margin-bottom: 24px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(45, 106, 79, 0.3);
     opacity: 0;
 }
 
@@ -481,11 +484,12 @@ body.hero-animate-active .hero-edition-pill {
 }
 
 .pill-dot {
-    width: 7px;
-    height: 7px;
-    background: var(--gold);
+    width: 8px;
+    height: 8px;
+    background: #52B788;
     border-radius: 50%;
     display: inline-block;
+    box-shadow: 0 0 10px #52B788;
     animation: pulseGlow 2s infinite;
 }
 
@@ -512,7 +516,7 @@ body.hero-animate-active .hero-title-editorial {
 }
 
 .gold-shimmer-text {
-    background: linear-gradient(135deg, #D6B56C 0%, #FFF3D1 50%, #E8CE92 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #E6C594 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
@@ -558,13 +562,13 @@ body.hero-animate-active .hero-cta-editorial-group {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    background: rgba(20, 20, 20, 0.6);
+    background: linear-gradient(145deg, rgba(14, 28, 21, 0.82), rgba(7, 14, 10, 0.92));
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid var(--border-gold);
+    border: 1px solid rgba(82, 183, 136, 0.35);
     border-radius: var(--radius-lg);
     padding: 18px 45px;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card), 0 0 30px rgba(45, 106, 79, 0.2);
     max-width: 850px;
     width: 100%;
     opacity: 0;
