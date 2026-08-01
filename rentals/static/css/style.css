@@ -2,7 +2,7 @@
    RENTORA LUXURY REAL ESTATE - SYSTEM CSS (ANIMATION REFINEMENT V1.2)
    ========================================================================== */
 
-/* DARK LUXURY AESTHETIC — DEEP EMERALD SLATE & CHAMPAGNE GOLD (DEFAULT) */
+/* DARK LUXURY AESTHETIC — DEEP EMERALD SLATE & PLATINUM SILVER (DEFAULT) */
 [data-theme="dark"], body.dark-theme {
     --bg-dark: #060A08;
     --bg-main: #060A08;
@@ -11,23 +11,23 @@
     --bg-card-glass: rgba(11, 20, 16, 0.76);
     --bg-overlay: rgba(6, 10, 8, 0.82);
     --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.76);
+    --text-secondary: rgba(255, 255, 255, 0.78);
     --text-muted: rgba(255, 255, 255, 0.52);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-gold: rgba(212, 175, 55, 0.28);
-    --border-emerald: rgba(82, 183, 136, 0.22);
-    --gold: #D4AF37;
-    --gold-bright: #F3E5AB;
-    --gold-hover: #B89326;
-    --gold-bg: rgba(212, 175, 55, 0.12);
-    --emerald-glow: rgba(45, 106, 79, 0.35);
-    --primary-btn: #D4AF37;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-gold: rgba(52, 211, 153, 0.35);
+    --border-emerald: rgba(52, 211, 153, 0.28);
+    --gold: #34D399;
+    --gold-bright: #F8FAFC;
+    --gold-hover: #10B981;
+    --gold-bg: rgba(52, 211, 153, 0.12);
+    --emerald-glow: rgba(52, 211, 153, 0.3);
+    --primary-btn: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #CBD5E1 100%);
     --primary-btn-text: #060A08;
     --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.75);
-    --shadow-gold: 0 12px 35px rgba(212, 175, 55, 0.25);
+    --shadow-gold: 0 12px 35px rgba(52, 211, 153, 0.28);
 }
 
-/* LIGHT THEME (SLEEK EMERALD MARBLE) */
+/* LIGHT THEME (SLEEK EMERALD MARBLE & PLATINUM SILVER) */
 [data-theme="light"], body.light-theme {
     --bg-dark: #F4F7F5;
     --bg-main: #F4F7F5;
@@ -39,15 +39,15 @@
     --text-secondary: rgba(10, 20, 15, 0.78);
     --text-muted: rgba(10, 20, 15, 0.54);
     --border-color: #D8E4DC;
-    --border-gold: rgba(197, 155, 39, 0.38);
-    --gold: #C59B27;
-    --gold-bright: #D4AF37;
-    --gold-hover: #A37F1C;
-    --gold-bg: rgba(212, 175, 55, 0.1);
+    --border-gold: rgba(52, 211, 153, 0.38);
+    --gold: #10B981;
+    --gold-bright: #34D399;
+    --gold-hover: #059669;
+    --gold-bg: rgba(52, 211, 153, 0.1);
     --primary-btn: #0A140F;
     --primary-btn-text: #FFFFFF;
     --shadow-card: 0 16px 40px rgba(6, 10, 8, 0.08);
-    --shadow-gold: 0 8px 25px rgba(197, 155, 39, 0.25);
+    --shadow-gold: 0 8px 25px rgba(52, 211, 153, 0.25);
 }
 
 :root {
@@ -317,33 +317,34 @@ img {
 .btn-full { width: 100%; }
 
 .btn-gold {
-    background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #C59B27 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #CBD5E1 100%);
     color: #060A08;
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.38), 0 0 20px rgba(82, 183, 136, 0.2);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.25), 0 0 25px rgba(52, 211, 153, 0.3);
     font-weight: 700;
 }
 
 .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 40px rgba(212, 175, 55, 0.5), 0 0 25px rgba(82, 183, 136, 0.35);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 50%, #E2E8F0 100%);
+    box-shadow: 0 14px 40px rgba(255, 255, 255, 0.35), 0 0 30px rgba(52, 211, 153, 0.45);
     opacity: 0.98;
 }
 
 .btn-glass {
-    background: rgba(14, 28, 21, 0.75);
+    background: rgba(14, 28, 21, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(82, 183, 136, 0.4);
+    border: 1px solid rgba(226, 232, 240, 0.35);
     color: #FFFFFF;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .btn-glass:hover {
-    background: rgba(14, 28, 21, 0.95);
-    border-color: #D4AF37;
-    color: #F3E5AB;
+    background: rgba(14, 28, 21, 0.98);
+    border-color: #34D399;
+    color: #34D399;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 30px rgba(52, 211, 153, 0.3);
 }
 
 .btn-outline {
@@ -516,7 +517,7 @@ body.hero-animate-active .hero-title-editorial {
 }
 
 .gold-shimmer-text {
-    background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #E6C594 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #A7F3D0 50%, #34D399 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
