@@ -2,49 +2,51 @@
    RENTORA LUXURY REAL ESTATE - SYSTEM CSS (ANIMATION REFINEMENT V1.2)
    ========================================================================== */
 
-/* DARK LUXURY AESTHETIC (DEFAULT) */
+/* DARK LUXURY AESTHETIC — DEEP EMERALD SLATE & CHAMPAGNE GOLD (DEFAULT) */
 [data-theme="dark"], body.dark-theme {
-    --bg-dark: #0B0B0B;
-    --bg-main: #0B0B0B;
-    --bg-secondary: #141414;
-    --bg-card: #141414;
-    --bg-card-glass: rgba(20, 20, 20, 0.72);
-    --bg-overlay: rgba(11, 11, 11, 0.78);
+    --bg-dark: #060A08;
+    --bg-main: #060A08;
+    --bg-secondary: #0B1410;
+    --bg-card: #0B1410;
+    --bg-card-glass: rgba(11, 20, 16, 0.76);
+    --bg-overlay: rgba(6, 10, 8, 0.82);
     --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.72);
-    --text-muted: rgba(255, 255, 255, 0.48);
+    --text-secondary: rgba(255, 255, 255, 0.76);
+    --text-muted: rgba(255, 255, 255, 0.52);
     --border-color: rgba(255, 255, 255, 0.08);
-    --border-gold: rgba(214, 181, 108, 0.24);
-    --gold: #D6B56C;
-    --gold-bright: #E8CE92;
-    --gold-hover: #bfa058;
-    --gold-bg: rgba(214, 181, 108, 0.12);
-    --primary-btn: #D6B56C;
-    --primary-btn-text: #0B0B0B;
-    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.6);
-    --shadow-gold: 0 12px 35px rgba(214, 181, 108, 0.22);
+    --border-gold: rgba(212, 175, 55, 0.28);
+    --border-emerald: rgba(82, 183, 136, 0.22);
+    --gold: #D4AF37;
+    --gold-bright: #F3E5AB;
+    --gold-hover: #B89326;
+    --gold-bg: rgba(212, 175, 55, 0.12);
+    --emerald-glow: rgba(45, 106, 79, 0.35);
+    --primary-btn: #D4AF37;
+    --primary-btn-text: #060A08;
+    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.75);
+    --shadow-gold: 0 12px 35px rgba(212, 175, 55, 0.25);
 }
 
-/* LIGHT THEME (SLEEK MARBLE LUXURY) */
+/* LIGHT THEME (SLEEK EMERALD MARBLE) */
 [data-theme="light"], body.light-theme {
-    --bg-dark: #F8FAF8;
-    --bg-main: #F8FAF8;
-    --bg-secondary: #F0F4F1;
+    --bg-dark: #F4F7F5;
+    --bg-main: #F4F7F5;
+    --bg-secondary: #E8EFEA;
     --bg-card: #FFFFFF;
-    --bg-card-glass: rgba(255, 255, 255, 0.85);
-    --bg-overlay: rgba(15, 23, 42, 0.75);
-    --text-primary: #0F172A;
-    --text-secondary: rgba(15, 23, 42, 0.75);
-    --text-muted: rgba(15, 23, 42, 0.52);
-    --border-color: #E2E8F0;
-    --border-gold: rgba(214, 181, 108, 0.35);
+    --bg-card-glass: rgba(255, 255, 255, 0.88);
+    --bg-overlay: rgba(6, 10, 8, 0.75);
+    --text-primary: #0A140F;
+    --text-secondary: rgba(10, 20, 15, 0.78);
+    --text-muted: rgba(10, 20, 15, 0.54);
+    --border-color: #D8E4DC;
+    --border-gold: rgba(197, 155, 39, 0.38);
     --gold: #C59B27;
-    --gold-bright: #D6B56C;
-    --gold-hover: #a37f1c;
-    --gold-bg: rgba(214, 181, 108, 0.1);
-    --primary-btn: #0F172A;
+    --gold-bright: #D4AF37;
+    --gold-hover: #A37F1C;
+    --gold-bg: rgba(212, 175, 55, 0.1);
+    --primary-btn: #0A140F;
     --primary-btn-text: #FFFFFF;
-    --shadow-card: 0 16px 40px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 16px 40px rgba(6, 10, 8, 0.08);
     --shadow-gold: 0 8px 25px rgba(197, 155, 39, 0.25);
 }
 
@@ -2751,11 +2753,11 @@ body.light-theme .advantage-desc {
     color: var(--text-primary);
 }
 
-/* PERMANENT DARK PAGE IMMUNITY (THE ENTIRE LANDING PAGE STAYS IN DARK MODE) */
+/* PERMANENT DARK PAGE IMMUNITY (DEEP EMERALD SLATE LANDING SHOWCASE) */
 .permanent-dark-page,
 [data-theme="light"] .permanent-dark-page,
 body.light-theme .permanent-dark-page {
-    background-color: #0B0B0B !important;
+    background-color: #060A08 !important;
     color: #FFFFFF !important;
 }
 
@@ -2774,7 +2776,7 @@ body.light-theme .permanent-dark-page .advantage-section,
 body.light-theme .permanent-dark-page .facilities-section,
 body.light-theme .permanent-dark-page .destinations-section,
 body.light-theme .permanent-dark-page .final-cta-section {
-    background: #0B0B0B !important;
+    background: #060A08 !important;
     color: #FFFFFF !important;
 }
 
@@ -2990,8 +2992,8 @@ body.light-theme .cta-trust-badges i,
     position: fixed;
     inset: 0;
     z-index: 999999;
-    background-color: #0A0A0A;
-    background-image: radial-gradient(circle at center, rgba(24, 24, 24, 0.98) 0%, rgba(8, 8, 8, 1) 100%);
+    background-color: #060A08;
+    background-image: radial-gradient(circle at center, rgba(11, 20, 16, 0.98) 0%, rgba(4, 7, 5, 1) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
