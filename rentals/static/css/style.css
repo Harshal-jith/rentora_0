@@ -565,13 +565,13 @@ body.hero-animate-active .hero-cta-editorial-group {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    background: linear-gradient(145deg, rgba(14, 28, 21, 0.82), rgba(7, 14, 10, 0.92));
+    background: linear-gradient(145deg, rgba(27, 21, 18, 0.88), rgba(18, 14, 12, 0.95));
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(82, 183, 136, 0.35);
+    border: 1px solid rgba(230, 197, 148, 0.32);
     border-radius: var(--radius-lg);
     padding: 18px 45px;
-    box-shadow: var(--shadow-card), 0 0 30px rgba(45, 106, 79, 0.2);
+    box-shadow: var(--shadow-card), 0 0 25px rgba(230, 197, 148, 0.12);
     max-width: 850px;
     width: 100%;
     opacity: 0;
@@ -579,6 +579,12 @@ body.hero-animate-active .hero-cta-editorial-group {
 
 body.hero-animate-active .hero-stats-glass-bar {
     animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+}
+
+.stat-glass-divider {
+    width: 1px;
+    height: 35px;
+    background: rgba(230, 197, 148, 0.25);
 }
 
 .stat-glass-item {
@@ -592,12 +598,12 @@ body.hero-animate-active .hero-stats-glass-bar {
     font-family: var(--font-btn);
     font-size: 1.35rem;
     font-weight: 700;
-    color: var(--gold-bright);
+    color: #F5E6D3;
 }
 
 .stat-label {
     font-size: 0.78rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.78);
     letter-spacing: 0.5px;
     margin-top: 2px;
 }
