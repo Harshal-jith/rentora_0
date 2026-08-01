@@ -2,52 +2,52 @@
    RENTORA LUXURY REAL ESTATE - SYSTEM CSS (ANIMATION REFINEMENT V1.2)
    ========================================================================== */
 
-/* DARK LUXURY AESTHETIC — DEEP EMERALD SLATE & PLATINUM SILVER (DEFAULT) */
+/* NATURAL ORGANIC LUXURY — WARM SANDSTONE & SOFT IVORY (DEFAULT) */
 [data-theme="dark"], body.dark-theme {
-    --bg-dark: #060A08;
-    --bg-main: #060A08;
-    --bg-secondary: #0B1410;
-    --bg-card: #0B1410;
-    --bg-card-glass: rgba(11, 20, 16, 0.76);
-    --bg-overlay: rgba(6, 10, 8, 0.82);
+    --bg-dark: #120E0C;
+    --bg-main: #120E0C;
+    --bg-secondary: #1B1512;
+    --bg-card: #1B1512;
+    --bg-card-glass: rgba(27, 21, 18, 0.85);
+    --bg-overlay: rgba(18, 14, 12, 0.82);
     --text-primary: #FFFFFF;
     --text-secondary: rgba(255, 255, 255, 0.78);
-    --text-muted: rgba(255, 255, 255, 0.52);
-    --border-color: rgba(255, 255, 255, 0.1);
-    --border-gold: rgba(52, 211, 153, 0.35);
-    --border-emerald: rgba(52, 211, 153, 0.28);
-    --gold: #34D399;
-    --gold-bright: #F8FAFC;
-    --gold-hover: #10B981;
-    --gold-bg: rgba(52, 211, 153, 0.12);
-    --emerald-glow: rgba(52, 211, 153, 0.3);
-    --primary-btn: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #CBD5E1 100%);
-    --primary-btn-text: #060A08;
-    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.75);
-    --shadow-gold: 0 12px 35px rgba(52, 211, 153, 0.28);
+    --text-muted: rgba(255, 255, 255, 0.54);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(230, 197, 148, 0.32);
+    --border-emerald: rgba(230, 197, 148, 0.22);
+    --gold: #E6C594;
+    --gold-bright: #F5E6D3;
+    --gold-hover: #D4B07B;
+    --gold-bg: rgba(230, 197, 148, 0.12);
+    --emerald-glow: rgba(230, 197, 148, 0.25);
+    --primary-btn: linear-gradient(135deg, #F5E6D3 0%, #E6C594 50%, #D4B07B 100%);
+    --primary-btn-text: #120E0C;
+    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.72);
+    --shadow-gold: 0 12px 35px rgba(230, 197, 148, 0.22);
 }
 
-/* LIGHT THEME (SLEEK EMERALD MARBLE & PLATINUM SILVER) */
+/* LIGHT THEME (NATURAL ORGANIC SANDSTONE MARBLE) */
 [data-theme="light"], body.light-theme {
-    --bg-dark: #F4F7F5;
-    --bg-main: #F4F7F5;
-    --bg-secondary: #E8EFEA;
+    --bg-dark: #F7F5F0;
+    --bg-main: #F7F5F0;
+    --bg-secondary: #EFECE6;
     --bg-card: #FFFFFF;
-    --bg-card-glass: rgba(255, 255, 255, 0.88);
-    --bg-overlay: rgba(6, 10, 8, 0.75);
-    --text-primary: #0A140F;
-    --text-secondary: rgba(10, 20, 15, 0.78);
-    --text-muted: rgba(10, 20, 15, 0.54);
-    --border-color: #D8E4DC;
-    --border-gold: rgba(52, 211, 153, 0.38);
-    --gold: #10B981;
-    --gold-bright: #34D399;
-    --gold-hover: #059669;
-    --gold-bg: rgba(52, 211, 153, 0.1);
-    --primary-btn: #0A140F;
+    --bg-card-glass: rgba(255, 255, 255, 0.9);
+    --bg-overlay: rgba(18, 14, 12, 0.75);
+    --text-primary: #1C1714;
+    --text-secondary: rgba(28, 23, 20, 0.78);
+    --text-muted: rgba(28, 23, 20, 0.54);
+    --border-color: #E2DDD5;
+    --border-gold: rgba(200, 155, 104, 0.38);
+    --gold: #C89B68;
+    --gold-bright: #E6C594;
+    --gold-hover: #B58855;
+    --gold-bg: rgba(230, 197, 148, 0.1);
+    --primary-btn: #1C1714;
     --primary-btn-text: #FFFFFF;
-    --shadow-card: 0 16px 40px rgba(6, 10, 8, 0.08);
-    --shadow-gold: 0 8px 25px rgba(52, 211, 153, 0.25);
+    --shadow-card: 0 16px 40px rgba(18, 14, 12, 0.08);
+    --shadow-gold: 0 8px 25px rgba(200, 155, 104, 0.25);
 }
 
 :root {
@@ -158,12 +158,12 @@ img {
     max-width: 1320px;
     z-index: 1000;
     padding: 12px 28px;
-    background: linear-gradient(145deg, rgba(14, 28, 21, 0.88), rgba(7, 14, 10, 0.95));
+    background: linear-gradient(145deg, rgba(27, 21, 18, 0.88), rgba(18, 14, 12, 0.95));
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(82, 183, 136, 0.4);
+    border: 1px solid rgba(230, 197, 148, 0.35);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card), 0 0 25px rgba(45, 106, 79, 0.2);
+    box-shadow: var(--shadow-card), 0 0 25px rgba(230, 197, 148, 0.12);
     transition: var(--transition-smooth);
     animation: fadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -317,34 +317,34 @@ img {
 .btn-full { width: 100%; }
 
 .btn-gold {
-    background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #CBD5E1 100%);
-    color: #060A08;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.25), 0 0 25px rgba(52, 211, 153, 0.3);
+    background: linear-gradient(135deg, #F5E6D3 0%, #E6C594 50%, #D4B07B 100%);
+    color: #120E0C;
+    box-shadow: 0 10px 30px rgba(230, 197, 148, 0.35);
     font-weight: 700;
 }
 
 .btn-gold:hover {
     transform: translateY(-2px);
-    background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 50%, #E2E8F0 100%);
-    box-shadow: 0 14px 40px rgba(255, 255, 255, 0.35), 0 0 30px rgba(52, 211, 153, 0.45);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F5E6D3 50%, #E6C594 100%);
+    box-shadow: 0 14px 40px rgba(230, 197, 148, 0.45);
     opacity: 0.98;
 }
 
 .btn-glass {
-    background: rgba(14, 28, 21, 0.85);
+    background: rgba(27, 21, 18, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(226, 232, 240, 0.35);
+    border: 1px solid rgba(230, 197, 148, 0.35);
     color: #FFFFFF;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .btn-glass:hover {
-    background: rgba(14, 28, 21, 0.98);
-    border-color: #34D399;
-    color: #34D399;
+    background: rgba(27, 21, 18, 0.98);
+    border-color: #E6C594;
+    color: #F5E6D3;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(52, 211, 153, 0.3);
+    box-shadow: 0 10px 30px rgba(230, 197, 148, 0.25);
 }
 
 .btn-outline {
@@ -441,8 +441,8 @@ body.hero-animate-active .hero-brand-logo-wrap {
     position: absolute;
     inset: 0;
     z-index: 3;
-    background: radial-gradient(circle at center, rgba(6, 15, 10, 0.35) 0%, rgba(6, 12, 9, 0.85) 70%, #060A08 100%),
-                linear-gradient(to bottom, rgba(6, 15, 10, 0.4) 0%, rgba(6, 12, 9, 0.2) 50%, var(--bg-dark) 100%);
+    background: radial-gradient(circle at center, rgba(18, 14, 12, 0.35) 0%, rgba(18, 14, 12, 0.82) 70%, #120E0C 100%),
+                linear-gradient(to bottom, rgba(18, 14, 12, 0.4) 0%, rgba(18, 14, 12, 0.2) 50%, var(--bg-dark) 100%);
     pointer-events: none;
 }
 
@@ -464,10 +464,10 @@ body.hero-animate-active .hero-brand-logo-wrap {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(11, 20, 16, 0.82);
+    background: rgba(27, 21, 18, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(82, 183, 136, 0.45);
+    border: 1px solid rgba(230, 197, 148, 0.4);
     color: var(--gold-bright);
     padding: 8px 24px;
     border-radius: 30px;
@@ -476,7 +476,7 @@ body.hero-animate-active .hero-brand-logo-wrap {
     letter-spacing: 2px;
     font-family: var(--font-btn);
     margin-bottom: 24px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(45, 106, 79, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(230, 197, 148, 0.2);
     opacity: 0;
 }
 
@@ -487,10 +487,10 @@ body.hero-animate-active .hero-edition-pill {
 .pill-dot {
     width: 8px;
     height: 8px;
-    background: #52B788;
+    background: #E6C594;
     border-radius: 50%;
     display: inline-block;
-    box-shadow: 0 0 10px #52B788;
+    box-shadow: 0 0 10px #E6C594;
     animation: pulseGlow 2s infinite;
 }
 
@@ -517,7 +517,7 @@ body.hero-animate-active .hero-title-editorial {
 }
 
 .gold-shimmer-text {
-    background: linear-gradient(135deg, #FFFFFF 0%, #A7F3D0 50%, #34D399 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #F5E6D3 50%, #E6C594 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
@@ -2145,11 +2145,11 @@ body.hero-animate-active .hero-stats-glass-bar {
 }
 
 .dashboard-banner {
-    background: linear-gradient(135deg, rgba(14, 28, 21, 0.95) 0%, rgba(6, 12, 9, 0.98) 100%);
-    border-bottom: 1px solid rgba(82, 183, 136, 0.35);
+    background: linear-gradient(135deg, rgba(27, 21, 18, 0.95) 0%, rgba(18, 14, 12, 0.98) 100%);
+    border-bottom: 1px solid rgba(230, 197, 148, 0.35);
     padding: 50px 0;
     margin-bottom: 45px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(45, 106, 79, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(230, 197, 148, 0.12);
 }
 
 .dashboard-banner-content {
@@ -2163,16 +2163,16 @@ body.hero-animate-active .hero-stats-glass-bar {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(14, 28, 21, 0.9);
-    border: 1px solid #52B788;
-    color: #F3E5AB;
+    background: rgba(27, 21, 18, 0.9);
+    border: 1px solid #E6C594;
+    color: #F5E6D3;
     padding: 6px 18px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
     font-family: var(--font-btn);
     margin-bottom: 14px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 12px rgba(82, 183, 136, 0.25);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 12px rgba(230, 197, 148, 0.2);
 }
 
 .dashboard-headline {
@@ -2203,9 +2203,9 @@ body.hero-animate-active .hero-stats-glass-bar {
 }
 
 .dash-stat-card {
-    background: linear-gradient(145deg, rgba(14, 28, 21, 0.92), rgba(7, 14, 10, 0.96));
-    border: 1px solid rgba(82, 183, 136, 0.4);
-    border-top: 3px solid #D4AF37;
+    background: linear-gradient(145deg, rgba(27, 21, 18, 0.92), rgba(18, 14, 12, 0.96));
+    border: 1px solid rgba(230, 197, 148, 0.35);
+    border-top: 3px solid #E6C594;
     border-radius: 16px;
     padding: 20px 28px;
     display: flex;
@@ -2213,14 +2213,14 @@ body.hero-animate-active .hero-stats-glass-bar {
     align-items: center;
     text-align: center;
     min-width: 150px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(45, 106, 79, 0.25);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(230, 197, 148, 0.18);
 }
 
 .dash-stat-value {
     font-family: var(--font-btn);
     font-size: 2rem;
     font-weight: 700;
-    color: #F3E5AB;
+    color: #F5E6D3;
 }
 
 .dash-stat-label {
@@ -2236,16 +2236,16 @@ body.hero-animate-active .hero-stats-glass-bar {
 }
 
 .dashboard-section-box {
-    background: linear-gradient(145deg, rgba(11, 22, 17, 0.94), rgba(6, 12, 9, 0.98));
-    border: 1px solid rgba(82, 183, 136, 0.38);
+    background: linear-gradient(145deg, rgba(24, 19, 16, 0.94), rgba(18, 14, 12, 0.98));
+    border: 1px solid rgba(230, 197, 148, 0.35);
     border-radius: 24px;
     padding: 36px 32px;
-    box-shadow: var(--shadow-card), 0 0 35px rgba(45, 106, 79, 0.2);
+    box-shadow: var(--shadow-card), 0 0 35px rgba(230, 197, 148, 0.15);
 }
 
 .dash-section-header {
     margin-bottom: 28px;
-    border-bottom: 1px solid rgba(82, 183, 136, 0.2);
+    border-bottom: 1px solid rgba(230, 197, 148, 0.2);
     padding-bottom: 18px;
 }
 
@@ -2287,7 +2287,7 @@ body.hero-animate-active .hero-stats-glass-bar {
 .dash-input-group label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #52B788;
+    color: #E6C594;
     font-family: var(--font-btn);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -2296,8 +2296,8 @@ body.hero-animate-active .hero-stats-glass-bar {
 .dash-input-group input, .dash-input-group select {
     width: 100%;
     padding: 13px 16px;
-    background: rgba(14, 28, 21, 0.85);
-    border: 1px solid rgba(82, 183, 136, 0.35);
+    background: rgba(27, 21, 18, 0.85);
+    border: 1px solid rgba(230, 197, 148, 0.35);
     border-radius: 12px;
     color: var(--text-primary);
     font-size: 0.94rem;
@@ -2305,8 +2305,8 @@ body.hero-animate-active .hero-stats-glass-bar {
 
 .dash-input-group input:focus, .dash-input-group select:focus {
     outline: none;
-    border-color: #D4AF37;
-    box-shadow: 0 0 16px rgba(212, 175, 55, 0.35);
+    border-color: #E6C594;
+    box-shadow: 0 0 16px rgba(230, 197, 148, 0.3);
 }
 
 .dash-search-actions {
