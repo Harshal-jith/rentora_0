@@ -178,6 +178,16 @@ class Command(BaseCommand):
             u.save()
             self.stdout.write(self.style.SUCCESS('Updated superuser credentials: admin'))
 
+        # Seed or update temporary demo user: user / password
+        if not User.objects.filter(username='user').exists():
+            User.objects.create_user(username='user', email='user@rentora.in', password='password')
+            self.stdout.write(self.style.SUCCESS('Created demo user: user/password'))
+        else:
+            u = User.objects.get(username='user')
+            u.set_password('password')
+            u.save()
+            self.stdout.write(self.style.SUCCESS('Updated demo user credentials: user/password'))
+
         count = 0
         for data in SAMPLE_PROPERTIES:
             obj, created = Property.objects.update_or_create(
