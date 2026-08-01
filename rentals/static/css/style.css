@@ -158,12 +158,12 @@ img {
     max-width: 1320px;
     z-index: 1000;
     padding: 12px 28px;
-    background: rgba(20, 20, 20, 0.65);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--border-gold);
+    background: linear-gradient(145deg, rgba(14, 28, 21, 0.88), rgba(7, 14, 10, 0.95));
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(82, 183, 136, 0.4);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card), 0 0 25px rgba(45, 106, 79, 0.2);
     transition: var(--transition-smooth);
     animation: fadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -2144,10 +2144,11 @@ body.hero-animate-active .hero-stats-glass-bar {
 }
 
 .dashboard-banner {
-    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(15, 15, 15, 0.98) 100%);
-    border-bottom: 1px solid var(--border-gold);
+    background: linear-gradient(135deg, rgba(14, 28, 21, 0.95) 0%, rgba(6, 12, 9, 0.98) 100%);
+    border-bottom: 1px solid rgba(82, 183, 136, 0.35);
     padding: 50px 0;
     margin-bottom: 45px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(45, 106, 79, 0.15);
 }
 
 .dashboard-banner-content {
@@ -2161,15 +2162,16 @@ body.hero-animate-active .hero-stats-glass-bar {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--gold-bg);
-    border: 1px solid var(--border-gold);
-    color: var(--gold-bright);
+    background: rgba(14, 28, 21, 0.9);
+    border: 1px solid #52B788;
+    color: #F3E5AB;
     padding: 6px 18px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
     font-family: var(--font-btn);
     margin-bottom: 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 12px rgba(82, 183, 136, 0.25);
 }
 
 .dashboard-headline {
@@ -2200,9 +2202,9 @@ body.hero-animate-active .hero-stats-glass-bar {
 }
 
 .dash-stat-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-top: 3px solid var(--gold);
+    background: linear-gradient(145deg, rgba(14, 28, 21, 0.92), rgba(7, 14, 10, 0.96));
+    border: 1px solid rgba(82, 183, 136, 0.4);
+    border-top: 3px solid #D4AF37;
     border-radius: 16px;
     padding: 20px 28px;
     display: flex;
@@ -2210,14 +2212,14 @@ body.hero-animate-active .hero-stats-glass-bar {
     align-items: center;
     text-align: center;
     min-width: 150px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(45, 106, 79, 0.25);
 }
 
 .dash-stat-value {
     font-family: var(--font-btn);
     font-size: 2rem;
     font-weight: 700;
-    color: var(--gold-bright);
+    color: #F3E5AB;
 }
 
 .dash-stat-label {
@@ -2233,16 +2235,16 @@ body.hero-animate-active .hero-stats-glass-bar {
 }
 
 .dashboard-section-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: linear-gradient(145deg, rgba(11, 22, 17, 0.94), rgba(6, 12, 9, 0.98));
+    border: 1px solid rgba(82, 183, 136, 0.38);
     border-radius: 24px;
     padding: 36px 32px;
-    box-shadow: var(--shadow-card);
+    box-shadow: var(--shadow-card), 0 0 35px rgba(45, 106, 79, 0.2);
 }
 
 .dash-section-header {
     margin-bottom: 28px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(82, 183, 136, 0.2);
     padding-bottom: 18px;
 }
 
@@ -2284,7 +2286,7 @@ body.hero-animate-active .hero-stats-glass-bar {
 .dash-input-group label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: #52B788;
     font-family: var(--font-btn);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -2293,8 +2295,8 @@ body.hero-animate-active .hero-stats-glass-bar {
 .dash-input-group input, .dash-input-group select {
     width: 100%;
     padding: 13px 16px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    background: rgba(14, 28, 21, 0.85);
+    border: 1px solid rgba(82, 183, 136, 0.35);
     border-radius: 12px;
     color: var(--text-primary);
     font-size: 0.94rem;
@@ -2302,8 +2304,8 @@ body.hero-animate-active .hero-stats-glass-bar {
 
 .dash-input-group input:focus, .dash-input-group select:focus {
     outline: none;
-    border-color: var(--gold-bright);
-    box-shadow: 0 0 12px rgba(214, 181, 108, 0.2);
+    border-color: #D4AF37;
+    box-shadow: 0 0 16px rgba(212, 175, 55, 0.35);
 }
 
 .dash-search-actions {
