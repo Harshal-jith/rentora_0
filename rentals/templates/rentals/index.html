@@ -20,26 +20,31 @@
     <!-- Ambient Dark Gradient Vignette -->
     <div class="hero-overlay-editorial"></div>
 
-    <!-- BOTANICAL TROPICAL FOLIAGE OVERLAYS (100% CLEAN TRANSPARENT PNG LEAVES MATCHING MOCKUP) -->
+    <!-- 3-LAYER BOTANICAL LUXURY HOSPITALITY FOLIAGE ENGINE -->
     <div class="botanical-foliage-wrap">
-        <!-- Top-Left Clean Golden Palm Frond -->
-        <div class="botanical-leaf botanical-leaf-tl">
-            <img src="{% static 'images/clean_golden_palm_leaf.png' %}" alt="Golden Palm Frond" class="real-leaf-img real-leaf-tl">
+        <!-- Layer 1: Foreground Depth-of-Field Blur Leaf (Top-Left) -->
+        <div class="botanical-leaf leaf-layer-1-dof-tl">
+            <img src="{% static 'images/botanical/foreground_blurred_leaf.png' %}" alt="Foreground Areca Leaf" class="real-leaf-img leaf-dof-blur">
         </div>
 
-        <!-- Top-Right Clean Emerald Fern Branch -->
-        <div class="botanical-leaf botanical-leaf-tr">
-            <img src="{% static 'images/clean_emerald_fern_leaf.png' %}" alt="Emerald Fern Branch" class="real-leaf-img real-leaf-tr">
+        <!-- Layer 2: Midground Sharp Areca Palm Frond (Top-Left Corner) -->
+        <div class="botanical-leaf leaf-layer-2-sharp-tl">
+            <img src="{% static 'images/botanical/areca_palm_frond.png' %}" alt="Areca Palm Frond" class="real-leaf-img leaf-midground-tl">
         </div>
 
-        <!-- Bottom-Left Clean Golden Palm Frond -->
-        <div class="botanical-leaf botanical-leaf-bl">
-            <img src="{% static 'images/clean_golden_palm_leaf.png' %}" alt="Golden Palm Frond" class="real-leaf-img real-leaf-bl">
+        <!-- Layer 2: Midground Sharp Kerala Fern Cluster (Top-Right Corner) -->
+        <div class="botanical-leaf leaf-layer-2-sharp-tr">
+            <img src="{% static 'images/botanical/fern_cluster_real.png' %}" alt="Kerala Fern Cluster" class="real-leaf-img leaf-midground-tr">
         </div>
 
-        <!-- Bottom-Right Clean Emerald Fern Branch -->
-        <div class="botanical-leaf botanical-leaf-br">
-            <img src="{% static 'images/clean_emerald_fern_leaf.png' %}" alt="Emerald Fern Branch" class="real-leaf-img real-leaf-br">
+        <!-- Layer 2: Midground Monstera Leaf (Bottom-Right Corner) -->
+        <div class="botanical-leaf leaf-layer-2-sharp-br">
+            <img src="{% static 'images/botanical/monstera_estate_real.png' %}" alt="Monstera Estate Leaf" class="real-leaf-img leaf-midground-br">
+        </div>
+
+        <!-- Layer 1: Foreground Depth-of-Field Blur Leaf (Bottom-Left) -->
+        <div class="botanical-leaf leaf-layer-1-dof-bl">
+            <img src="{% static 'images/botanical/foreground_blurred_leaf.png' %}" alt="Foreground Blurred Foliage" class="real-leaf-img leaf-dof-blur-bl">
         </div>
     </div>
 

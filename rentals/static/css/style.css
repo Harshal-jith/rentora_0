@@ -2,29 +2,29 @@
    RENTORA LUXURY REAL ESTATE - SYSTEM CSS (ANIMATION REFINEMENT V1.2)
    ========================================================================== */
 
-/* BOTANICAL ECOLOGICAL SANCTUARY (DEEP PINE EMERALD & SOFT SANDSTONE) */
+/* AMAN & ARCHITECTURAL DIGEST RESTRAINED LUXURY PALETTE */
 [data-theme="dark"], body.dark-theme {
-    --bg-dark: #04140F;
-    --bg-main: #04140F;
-    --bg-secondary: #08221A;
-    --bg-card: #08221A;
-    --bg-card-glass: rgba(8, 34, 26, 0.88);
-    --bg-overlay: rgba(4, 20, 15, 0.85);
-    --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.82);
-    --text-muted: rgba(255, 255, 255, 0.58);
-    --border-color: rgba(255, 255, 255, 0.1);
-    --border-gold: rgba(16, 185, 129, 0.38);
-    --border-emerald: rgba(52, 211, 153, 0.35);
-    --gold: #10B981;
-    --gold-bright: #34D399;
-    --gold-hover: #059669;
-    --gold-bg: rgba(16, 185, 129, 0.14);
-    --emerald-glow: rgba(16, 185, 129, 0.35);
-    --primary-btn: linear-gradient(135deg, #F7F4EF 0%, #EFEBE4 50%, #E2DDD5 100%);
-    --primary-btn-text: #04140F;
-    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.80);
-    --shadow-gold: 0 12px 35px rgba(16, 185, 129, 0.30);
+    --bg-dark: #090B0A;
+    --bg-main: #090B0A;
+    --bg-secondary: #0F1E18;
+    --bg-card: #0F1E18;
+    --bg-card-glass: rgba(18, 30, 24, 0.55);
+    --bg-overlay: rgba(9, 11, 10, 0.85);
+    --text-primary: #F5F2E8;
+    --text-secondary: rgba(245, 242, 232, 0.78);
+    --text-muted: rgba(245, 242, 232, 0.50);
+    --border-color: rgba(245, 242, 232, 0.12);
+    --border-gold: rgba(216, 183, 104, 0.35);
+    --border-emerald: rgba(79, 168, 138, 0.35);
+    --gold: #D8B768;
+    --gold-bright: #F5F2E8;
+    --gold-hover: #C5A457;
+    --gold-bg: rgba(216, 183, 104, 0.12);
+    --emerald-glow: rgba(79, 168, 138, 0.25);
+    --primary-btn: linear-gradient(135deg, #F5F2E8 0%, #E6E2D5 100%);
+    --primary-btn-text: #090B0A;
+    --shadow-card: 0 25px 60px rgba(0, 0, 0, 0.85);
+    --shadow-gold: 0 15px 40px rgba(216, 183, 104, 0.20);
 }
 
 /* LIGHT THEME (SLEEK SAPPHIRE MARBLE) */
@@ -3244,109 +3244,138 @@ body.light-theme .cta-trust-badges i,
 }
 
 /* ==========================================================================
-   BOTANICAL FOLIAGE LEAF CORNER OVERLAYS & EMERALD HALO GLOW
+   3-LAYER BOTANICAL LUXURY HOSPITALITY FOLIAGE ENGINE (AMAN RESORTS)
    ========================================================================== */
 
 .botanical-foliage-wrap {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 3;
+    z-index: 4;
     overflow: hidden;
 }
 
 .botanical-leaf {
     position: absolute;
     pointer-events: none;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Photorealistic Leaf Image Overlay Styling */
 .real-leaf-img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.92)) drop-shadow(0 0 30px rgba(16, 185, 129, 0.35));
     pointer-events: none;
     user-select: none;
 }
 
-.real-leaf-tl {
-    transform: rotate(0deg);
+/* Layer 1: Immediate Foreground Depth-of-Field Blur Leaf (Top-Left) */
+.leaf-layer-1-dof-tl {
+    top: -90px;
+    left: -100px;
+    width: clamp(380px, 42vw, 680px);
+    z-index: 10;
+    opacity: 0.70;
 }
 
-.real-leaf-tr {
-    transform: rotate(0deg);
+.leaf-dof-blur {
+    filter: blur(8px) drop-shadow(0 25px 50px rgba(0, 0, 0, 0.95));
+    animation: gentleBreezeSlow 22s ease-in-out infinite alternate;
 }
 
-.real-leaf-bl {
-    transform: scaleY(-1) rotate(0deg);
+/* Layer 1: Immediate Foreground Depth-of-Field Blur Leaf (Bottom-Left) */
+.leaf-layer-1-dof-bl {
+    bottom: -110px;
+    left: -90px;
+    width: clamp(360px, 40vw, 640px);
+    z-index: 10;
+    opacity: 0.65;
 }
 
-.real-leaf-br {
-    transform: scaleY(-1) rotate(0deg);
+.leaf-dof-blur-bl {
+    filter: blur(10px) drop-shadow(0 25px 50px rgba(0, 0, 0, 0.95));
+    transform: scaleY(-1);
+    animation: gentleBreezeSlow 24s ease-in-out infinite alternate;
 }
 
-/* Top-Left Golden Palm Frond */
-.botanical-leaf-tl {
-    top: -50px;
-    left: -60px;
-    width: clamp(320px, 36vw, 560px);
-    height: auto;
-    opacity: 0.95;
-    animation: leafFloatTL 10s ease-in-out infinite alternate;
-}
-
-/* Top-Right Emerald Fern Branch */
-.botanical-leaf-tr {
-    top: -50px;
-    right: -60px;
-    width: clamp(320px, 36vw, 560px);
-    height: auto;
-    opacity: 0.95;
-    animation: leafFloatTR 12s ease-in-out infinite alternate;
-}
-
-/* Bottom-Left Golden Palm Frond */
-.botanical-leaf-bl {
-    bottom: -60px;
-    left: -60px;
-    width: clamp(320px, 36vw, 560px);
-    height: auto;
+/* Layer 2: Midground Sharp Areca Palm Frond (Top-Left Corner) */
+.leaf-layer-2-sharp-tl {
+    top: -40px;
+    left: -50px;
+    width: clamp(320px, 35vw, 550px);
+    z-index: 5;
     opacity: 0.90;
-    animation: leafFloatBL 11s ease-in-out infinite alternate;
 }
 
-/* Bottom-Right Emerald Fern Branch */
-.botanical-leaf-br {
+.leaf-midground-tl {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85));
+    animation: gentleBreezeMedium 18s ease-in-out infinite alternate;
+}
+
+/* Layer 2: Midground Sharp Kerala Fern Cluster (Top-Right Corner) */
+.leaf-layer-2-sharp-tr {
+    top: -40px;
+    right: -50px;
+    width: clamp(320px, 35vw, 550px);
+    z-index: 5;
+    opacity: 0.92;
+}
+
+.leaf-midground-tr {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85));
+    animation: gentleBreezeMedium 20s ease-in-out infinite alternate;
+}
+
+/* Layer 2: Midground Monstera Leaf (Bottom-Right Corner) */
+.leaf-layer-2-sharp-br {
     bottom: -60px;
-    right: -60px;
-    width: clamp(320px, 36vw, 560px);
-    height: auto;
-    opacity: 0.90;
-    animation: leafFloatBR 13s ease-in-out infinite alternate;
+    right: -50px;
+    width: clamp(300px, 32vw, 520px);
+    z-index: 5;
+    opacity: 0.85;
 }
 
-@keyframes leafFloatTL {
-    0% { transform: translateY(0) rotate(0deg) scale(1); }
-    50% { transform: translateY(-15px) rotate(2deg) scale(1.02); }
-    100% { transform: translateY(0) rotate(0deg) scale(1); }
+.leaf-midground-br {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85));
+    animation: gentleBreezeMedium 19s ease-in-out infinite alternate;
 }
 
-@keyframes leafFloatTR {
-    0% { transform: translateY(0) rotate(0deg) scale(1); }
-    50% { transform: translateY(-18px) rotate(-2.5deg) scale(1.02); }
-    100% { transform: translateY(0) rotate(0deg) scale(1); }
+/* Ultra-Calm Swaying Micro-Animations (Unnoticeable Rainforest Breeze) */
+@keyframes gentleBreezeSlow {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1.2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
 }
 
-@keyframes leafFloatBL {
-    0% { transform: translateY(0) rotate(0deg) scale(1); }
-    50% { transform: translateY(-12px) rotate(-1.5deg) scale(1.01); }
-    100% { transform: translateY(0) rotate(0deg) scale(1); }
+@keyframes gentleBreezeMedium {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(-1.5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
 }
 
-@keyframes leafFloatBR {
-    0% { transform: translateY(0) rotate(0deg) scale(1); }
-    50% { transform: translateY(-16px) rotate(2deg) scale(1.02); }
-    100% { transform: translateY(0) rotate(0deg) scale(1); }
+/* Apple Vision Pro Glass Stats Bar & Action Buttons */
+.btn-gold, .btn-editorial-primary, .btn-dash-search {
+    background: linear-gradient(135deg, #F5F2E8 0%, #E6E2D5 100%) !important;
+    color: #090B0A !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.40), 0 0 25px rgba(216, 183, 104, 0.20) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.03em !important;
+}
+
+.hero-stats-glass-bar {
+    background: rgba(18, 30, 24, 0.55) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(245, 242, 232, 0.14) !important;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.stat-number {
+    color: #D8B768 !important;
+    text-shadow: 0 0 15px rgba(216, 183, 104, 0.35) !important;
+}
+
+.stat-glass-divider {
+    background: rgba(245, 242, 232, 0.15) !important;
 }
