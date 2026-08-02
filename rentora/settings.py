@@ -105,13 +105,19 @@ EMAIL_BACKEND = raw_backend if raw_backend else 'django.core.mail.backends.conso
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com').strip() or 'smtp.gmail.com'
 
-raw_port = os.environ.get('EMAIL_PORT', '587').strip()
+raw_port = os.environ.get('EMAIL_PORT', '465').strip()
 try:
-    EMAIL_PORT = int(raw_port) if raw_port else 587
+    EMAIL_PORT = int(raw_port) if raw_port else 465
 except ValueError:
-    EMAIL_PORT = 587
+    EMAIL_PORT = 465
 
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').strip().lower() in ('true', '1', 't')
+if EMAIL_PORT == 465:
+    EMAIL_USE_SSL = True
+    EMAIL_USE_TLS = False
+else:
+    EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'False').strip().lower() in ('true', '1', 't')
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').strip().lower() in ('true', '1', 't')
+
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '').strip()
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '').strip().replace(' ', '')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', '').strip() or EMAIL_HOST_USER or 'concierge@rentora.in'
