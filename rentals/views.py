@@ -36,7 +36,7 @@ from django.conf import settings
 def send_booking_confirmation_email(inquiry):
     try:
         if not inquiry.email:
-            return
+            return False
         
         property_obj = inquiry.property
         is_over_capacity = False
@@ -46,7 +46,6 @@ def send_booking_confirmation_email(inquiry):
         ref_id = f"{inquiry.id:06d}"
         subject = f"Booking Inquiry Confirmed #{ref_id} - RENTORA Luxury Estates"
         
-        # Gmail SMTP requires from_email to match authenticated user
         sender = getattr(settings, 'EMAIL_HOST_USER', '')
         if sender and '@' in sender:
             from_email = f"Rentora Concierge <{sender}>"
@@ -71,10 +70,12 @@ def send_booking_confirmation_email(inquiry):
 
         msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
         msg.attach_alternative(html_content, "text/html")
-        sent_count = msg.send(fail_silently=False)
-        print(f"Email dispatched successfully to {to_email} (count: {sent_count})")
+        sent_count = msg.send(fail_silently=True)
+        print(f"Email dispatch to {to_email} finished (sent: {sent_count})")
+        return sent_count > 0
     except Exception as e:
-        print(f"Email dispatch exception: {type(e).__name__} - {e}")
+        print(f"Email dispatch exception caught safely: {type(e).__name__} - {e}")
+        return False
 
 def home_view(request):
     log_visitor(request)
