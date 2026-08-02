@@ -3242,3 +3242,85 @@ body.light-theme .cta-trust-badges i,
     border: 1px solid rgba(245, 158, 11, 0.45);
     color: #FDE68A;
 }
+
+/* ==========================================================================
+   BOTANICAL FOLIAGE LEAF CORNER OVERLAYS & EMERALD HALO GLOW
+   ========================================================================== */
+
+.botanical-foliage-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.botanical-leaf {
+    position: absolute;
+    pointer-events: none;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Top-Left Golden Palm Frond */
+.botanical-leaf-tl {
+    top: -20px;
+    left: -30px;
+    width: clamp(280px, 32vw, 480px);
+    height: auto;
+    opacity: 0.85;
+    animation: leafFloatTL 10s ease-in-out infinite alternate;
+}
+
+/* Top-Right Emerald Fern Branch */
+.botanical-leaf-tr {
+    top: -10px;
+    right: -40px;
+    width: clamp(300px, 35vw, 520px);
+    height: auto;
+    opacity: 0.88;
+    animation: leafFloatTR 12s ease-in-out infinite alternate;
+}
+
+/* Bottom-Left Golden Palm Frond */
+.botanical-leaf-bl {
+    bottom: -40px;
+    left: -40px;
+    width: clamp(300px, 34vw, 500px);
+    height: auto;
+    opacity: 0.80;
+    animation: leafFloatBL 11s ease-in-out infinite alternate;
+}
+
+/* Bottom-Right Emerald Fern Branch */
+.botanical-leaf-br {
+    bottom: -30px;
+    right: -50px;
+    width: clamp(320px, 36vw, 540px);
+    height: auto;
+    opacity: 0.85;
+    animation: leafFloatBR 13s ease-in-out infinite alternate;
+}
+
+@keyframes leafFloatTL {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-15px) rotate(2deg) scale(1.02); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes leafFloatTR {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-18px) rotate(-2.5deg) scale(1.02); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes leafFloatBL {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-12px) rotate(-1.5deg) scale(1.01); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes leafFloatBR {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-16px) rotate(2deg) scale(1.02); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
