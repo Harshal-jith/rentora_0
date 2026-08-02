@@ -88,6 +88,29 @@ body::before {
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
+/* AMBIENT BOTANICAL TROPICAL FOLIAGE WATERMARKS */
+body::after {
+    content: '';
+    position: fixed;
+    top: 6%;
+    right: -60px;
+    width: 550px;
+    height: 650px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 600' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M250 30C250 180 380 280 460 480C360 440 250 340 250 30Z' fill='%2310B981' fill-opacity='0.8'/%3E%3Cpath d='M250 30C250 180 120 280 40 480C140 440 250 340 250 30Z' fill='%2334D399' fill-opacity='0.7'/%3E%3Cpath d='M250 30V560' stroke='%23059669' stroke-width='4'/%3E%3Cpath d='M250 130L360 200M250 230L400 320M250 330L440 430' stroke='%2310B981' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M250 130L140 200M250 230L100 320M250 330L60 430' stroke='%2334D399' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: leafFloatSlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes leafFloatSlow {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 0.14; }
+    50% { transform: translateY(-22px) rotate(3.5deg); opacity: 0.19; }
+    100% { transform: translateY(0px) rotate(0deg); opacity: 0.14; }
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
     line-height: 1.25;
@@ -519,7 +542,7 @@ body.hero-animate-active .hero-title-editorial {
 }
 
 .gold-shimmer-text {
-    background: linear-gradient(135deg, #FFFFFF 0%, #BAE6FD 50%, #38BDF8 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #A7F3D0 40%, #10B981 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
