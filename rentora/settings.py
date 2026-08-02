@@ -100,10 +100,18 @@ LOGIN_URL = '/login/'
 
 # Email Configuration
 import os
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
-EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
-EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
+raw_backend = os.environ.get('EMAIL_BACKEND', '').strip()
+EMAIL_BACKEND = raw_backend if raw_backend else 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com').strip() or 'smtp.gmail.com'
+
+raw_port = os.environ.get('EMAIL_PORT', '587').strip()
+try:
+    EMAIL_PORT = int(raw_port) if raw_port else 587
+except ValueError:
+    EMAIL_PORT = 587
+
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').strip().lower() in ('true', '1', 't')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '').strip()
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '').strip().replace(' ', '')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER or 'concierge@rentora.in')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', '').strip() or EMAIL_HOST_USER or 'concierge@rentora.in'
