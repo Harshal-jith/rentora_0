@@ -202,7 +202,11 @@ def property_detail_view(request, slug):
         phone = request.POST.get('phone')
         check_in = request.POST.get('check_in') or None
         check_out = request.POST.get('check_out') or None
-        guests = request.POST.get('guests', 2)
+        try:
+            guests = int(request.POST.get('guests', 2))
+        except (ValueError, TypeError):
+            guests = 2
+
         message = request.POST.get('message', '')
 
         Inquiry.objects.create(
@@ -216,7 +220,12 @@ def property_detail_view(request, slug):
             message=message,
             ip_address=get_client_ip(request)
         )
-        messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! Our concierge will get back to you shortly.")
+
+        if guests > property_obj.max_guests:
+            messages.warning(request, f"Your inquiry for {guests} guests (exceeding standard max of {property_obj.max_guests}) has been logged. Our VIP Concierge will contact you to arrange special bedding & suite setup.")
+        else:
+            messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! Our concierge will get back to you shortly.")
+
         return redirect('property_detail', slug=property_obj.slug)
 
     context = {
