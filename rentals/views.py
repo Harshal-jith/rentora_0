@@ -3,9 +3,11 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.db.models import Q
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.http import JsonResponse
+from django.conf import settings
 from .models import Property, Inquiry, VisitorLog, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 
 def get_client_ip(request):
@@ -328,3 +330,43 @@ def logout_view(request):
     logout(request)
     messages.info(request, "You have been logged out.")
     return redirect('home')
+
+def test_email_view(request):
+    to_email = request.GET.get('to') or getattr(settings, 'EMAIL_HOST_USER', '') or 'test@example.com'
+    backend = getattr(settings, 'EMAIL_BACKEND', '')
+    host = getattr(settings, 'EMAIL_HOST', '')
+    port = getattr(settings, 'EMAIL_PORT', '')
+    user = getattr(settings, 'EMAIL_HOST_USER', '')
+    pass_set = bool(getattr(settings, 'EMAIL_HOST_PASSWORD', ''))
+
+    config_info = {
+        'EMAIL_BACKEND': backend,
+        'EMAIL_HOST': host,
+        'EMAIL_PORT': port,
+        'EMAIL_HOST_USER': user,
+        'EMAIL_HOST_PASSWORD_SET': pass_set,
+        'TARGET_EMAIL': to_email
+    }
+
+    try:
+        sender = user if (user and '@' in user) else None
+        from_str = f"Rentora Concierge <{sender}>" if sender else None
+        sent = send_mail(
+            subject="RENTORA Test Email Diagnostic",
+            message="This is an automated test email from Rentora to verify live SMTP settings.",
+            from_email=from_str,
+            recipient_list=[to_email],
+            fail_silently=False
+        )
+        return JsonResponse({
+            'status': 'SUCCESS',
+            'message': f'Test email dispatched successfully to {to_email}! (Count: {sent})',
+            'config': config_info
+        })
+    except Exception as e:
+        return JsonResponse({
+            'status': 'ERROR',
+            'error_type': type(e).__name__,
+            'error_message': str(e),
+            'config': config_info
+        }, status=500)
