@@ -101,7 +101,12 @@ LOGIN_URL = '/login/'
 # Email Configuration
 import os
 raw_backend = os.environ.get('EMAIL_BACKEND', '').strip()
-EMAIL_BACKEND = raw_backend if raw_backend else 'django.core.mail.backends.console.EmailBackend'
+if raw_backend:
+    EMAIL_BACKEND = raw_backend
+elif os.environ.get('RESEND_API_KEY', '').strip():
+    EMAIL_BACKEND = 'rentals.email_backend.ResendEmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com').strip() or 'smtp.gmail.com'
 
