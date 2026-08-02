@@ -369,4 +369,4 @@ def test_email_view(request):
             'error_type': type(e).__name__,
             'error_message': str(e),
             'config': config_info
-        }, status=500)
+        })
