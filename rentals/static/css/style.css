@@ -2,29 +2,29 @@
    RENTORA LUXURY REAL ESTATE - SYSTEM CSS (ANIMATION REFINEMENT V1.2)
    ========================================================================== */
 
-/* ROYAL MIDNIGHT SAPPHIRE & CRISP PLATINUM (DEFAULT) */
+/* BOTANICAL ECOLOGICAL SANCTUARY (DEEP PINE EMERALD & SOFT SANDSTONE) */
 [data-theme="dark"], body.dark-theme {
-    --bg-dark: #090D16;
-    --bg-main: #090D16;
-    --bg-secondary: #0F172A;
-    --bg-card: #0F172A;
-    --bg-card-glass: rgba(15, 23, 42, 0.82);
-    --bg-overlay: rgba(9, 13, 22, 0.85);
+    --bg-dark: #04140F;
+    --bg-main: #04140F;
+    --bg-secondary: #08221A;
+    --bg-card: #08221A;
+    --bg-card-glass: rgba(8, 34, 26, 0.88);
+    --bg-overlay: rgba(4, 20, 15, 0.85);
     --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.78);
-    --text-muted: rgba(255, 255, 255, 0.52);
+    --text-secondary: rgba(255, 255, 255, 0.82);
+    --text-muted: rgba(255, 255, 255, 0.58);
     --border-color: rgba(255, 255, 255, 0.1);
-    --border-gold: rgba(56, 189, 248, 0.32);
-    --border-emerald: rgba(56, 189, 248, 0.22);
-    --gold: #38BDF8;
-    --gold-bright: #FFFFFF;
-    --gold-hover: #0284C7;
-    --gold-bg: rgba(56, 189, 248, 0.12);
-    --emerald-glow: rgba(56, 189, 248, 0.3);
-    --primary-btn: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #CBD5E1 100%);
-    --primary-btn-text: #090D16;
-    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.75);
-    --shadow-gold: 0 12px 35px rgba(56, 189, 248, 0.28);
+    --border-gold: rgba(16, 185, 129, 0.38);
+    --border-emerald: rgba(52, 211, 153, 0.35);
+    --gold: #10B981;
+    --gold-bright: #34D399;
+    --gold-hover: #059669;
+    --gold-bg: rgba(16, 185, 129, 0.14);
+    --emerald-glow: rgba(16, 185, 129, 0.35);
+    --primary-btn: linear-gradient(135deg, #F7F4EF 0%, #EFEBE4 50%, #E2DDD5 100%);
+    --primary-btn-text: #04140F;
+    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.80);
+    --shadow-gold: 0 12px 35px rgba(16, 185, 129, 0.30);
 }
 
 /* LIGHT THEME (SLEEK SAPPHIRE MARBLE) */
