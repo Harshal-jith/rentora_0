@@ -29,6 +29,8 @@ def log_visitor(request, property_obj=None):
     except Exception:
         pass
 
+from django.conf import settings
+
 def send_booking_confirmation_email(inquiry):
     try:
         if not inquiry.email:
@@ -41,7 +43,14 @@ def send_booking_confirmation_email(inquiry):
 
         ref_id = f"{inquiry.id:06d}"
         subject = f"Booking Inquiry Confirmed #{ref_id} - RENTORA Luxury Estates"
-        from_email = "Rentora Concierge <concierge@rentora.in>"
+        
+        # Gmail SMTP requires from_email to match authenticated user
+        sender = getattr(settings, 'EMAIL_HOST_USER', '')
+        if sender and '@' in sender:
+            from_email = f"Rentora Concierge <{sender}>"
+        else:
+            from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'concierge@rentora.in')
+
         to_email = [inquiry.email]
 
         context = {
@@ -60,9 +69,10 @@ def send_booking_confirmation_email(inquiry):
 
         msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
         msg.attach_alternative(html_content, "text/html")
-        msg.send(fail_silently=True)
+        sent_count = msg.send(fail_silently=False)
+        print(f"Email dispatched successfully to {to_email} (count: {sent_count})")
     except Exception as e:
-        print(f"Email dispatch log: {e}")
+        print(f"Email dispatch exception: {type(e).__name__} - {e}")
 
 def home_view(request):
     log_visitor(request)
