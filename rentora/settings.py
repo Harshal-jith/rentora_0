@@ -111,12 +111,13 @@ try:
 except ValueError:
     EMAIL_PORT = 465
 
-if EMAIL_PORT == 465:
+use_ssl_env = os.environ.get('EMAIL_USE_SSL', '').strip().lower()
+if use_ssl_env in ('true', '1', 't') or EMAIL_PORT == 465:
     EMAIL_USE_SSL = True
     EMAIL_USE_TLS = False
 else:
-    EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'False').strip().lower() in ('true', '1', 't')
-    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').strip().lower() in ('true', '1', 't')
+    EMAIL_USE_SSL = False
+    EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '').strip()
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '').strip().replace(' ', '')
