@@ -3,6 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.db.models import Q
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from .models import Property, Inquiry, VisitorLog, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 
 def get_client_ip(request):
@@ -25,6 +28,41 @@ def log_visitor(request, property_obj=None):
         )
     except Exception:
         pass
+
+def send_booking_confirmation_email(inquiry):
+    try:
+        if not inquiry.email:
+            return
+        
+        property_obj = inquiry.property
+        is_over_capacity = False
+        if property_obj and inquiry.guests > property_obj.max_guests:
+            is_over_capacity = True
+
+        ref_id = f"{inquiry.id:06d}"
+        subject = f"Booking Inquiry Confirmed #{ref_id} - RENTORA Luxury Estates"
+        from_email = "Rentora Concierge <concierge@rentora.in>"
+        to_email = [inquiry.email]
+
+        context = {
+            'inquiry_id': ref_id,
+            'name': inquiry.name,
+            'email': inquiry.email,
+            'property': property_obj,
+            'check_in': inquiry.check_in,
+            'check_out': inquiry.check_out,
+            'guests': inquiry.guests,
+            'is_over_capacity': is_over_capacity,
+        }
+
+        html_content = render_to_string('emails/booking_confirmation.html', context)
+        text_content = strip_tags(html_content)
+
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send(fail_silently=True)
+    except Exception as e:
+        print(f"Email dispatch log: {e}")
 
 def home_view(request):
     log_visitor(request)
@@ -67,7 +105,7 @@ def home_view(request):
             message = request.POST.get('message')
             guests = request.POST.get('guests', 2)
             
-            Inquiry.objects.create(
+            inquiry = Inquiry.objects.create(
                 name=name,
                 email=email,
                 phone=phone,
@@ -75,7 +113,8 @@ def home_view(request):
                 message=message,
                 ip_address=get_client_ip(request)
             )
-            messages.success(request, "Thank you! Our concierge team will contact you within 2 hours with curated options.")
+            send_booking_confirmation_email(inquiry)
+            messages.success(request, f"Thank you! Booking confirmation (#REN-{inquiry.id:06d}) sent to {email}. Our concierge will contact you within 2 hours.")
             return redirect('home')
 
     context = {
@@ -209,7 +248,7 @@ def property_detail_view(request, slug):
 
         message = request.POST.get('message', '')
 
-        Inquiry.objects.create(
+        inquiry = Inquiry.objects.create(
             property=property_obj,
             name=name,
             email=email,
@@ -220,11 +259,13 @@ def property_detail_view(request, slug):
             message=message,
             ip_address=get_client_ip(request)
         )
+        send_booking_confirmation_email(inquiry)
 
+        ref_id = f"#REN-{inquiry.id:06d}"
         if guests > property_obj.max_guests:
-            messages.warning(request, f"Your inquiry for {guests} guests (exceeding standard max of {property_obj.max_guests}) has been logged. Our VIP Concierge will contact you to arrange special bedding & suite setup.")
+            messages.warning(request, f"Confirmation {ref_id} sent to {email}! Note: {guests} guests exceeds standard max ({property_obj.max_guests}). VIP Concierge will arrange special suite setup.")
         else:
-            messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! Our concierge will get back to you shortly.")
+            messages.success(request, f"🎉 Booking inquiry {ref_id} for '{property_obj.title}' submitted! Confirmation email sent to {email}.")
 
         return redirect('property_detail', slug=property_obj.slug)
 

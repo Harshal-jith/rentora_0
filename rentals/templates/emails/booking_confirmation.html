@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Inquiry Confirmation | RENTORA Kerala</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #090D16;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #0F172A;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+        .email-header {
+            background: linear-gradient(135deg, #0F172A 0%, #090D16 100%);
+            padding: 35px 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        .brand-name {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .brand-sub {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #38BDF8;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        .email-body {
+            padding: 35px 30px;
+        }
+        .greeting {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .intro-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.82);
+            margin-bottom: 25px;
+        }
+        .ref-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid #38BDF8;
+            color: #38BDF8;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+        .details-box {
+            background: rgba(9, 13, 22, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 14px;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .detail-val {
+            color: #FFFFFF;
+            font-weight: 600;
+            text-align: right;
+        }
+        .status-badge {
+            color: #38BDF8;
+            font-weight: 700;
+        }
+        .warning-badge {
+            color: #FBBF24;
+            font-weight: 700;
+        }
+        .concierge-box {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(15, 23, 42, 0.6) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .concierge-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #38BDF8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        .concierge-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            line-height: 1.5;
+        }
+        .email-footer {
+            background: #090D16;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .footer-links {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #38BDF8;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="email-header">
+            <div class="brand-name">RENTORA</div>
+            <div class="brand-sub">Luxury Estates & Private Villas</div>
+        </div>
+
+        <div class="email-body">
+            <h2 class="greeting">Booking Inquiry Confirmed</h2>
+            <p class="intro-text">Dear <strong>{{ name }}</strong>,</p>
+            <p class="intro-text">
+                Thank you for choosing Rentora. We have successfully received your reservation inquiry for <strong>{{ property.title|default:"Luxury Estate" }}</strong>.
+            </p>
+
+            <div class="ref-badge">REFERENCE ID: #REN-{{ inquiry_id|default:"1001" }}</div>
+
+            <div class="details-box">
+                <div class="detail-row">
+                    <span class="detail-label">Estate / Property:</span>
+                    <span class="detail-val">{{ property.title|default:"Rentora Estate" }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Location:</span>
+                    <span class="detail-val">{{ property.location_display_name|default:"Kerala" }}</span>
+                </div>
+                {% if check_in %}
+                <div class="detail-row">
+                    <span class="detail-label">Check-In Date:</span>
+                    <span class="detail-val">{{ check_in }}</span>
+                </div>
+                {% endif %}
+                {% if check_out %}
+                <div class="detail-row">
+                    <span class="detail-label">Check-Out Date:</span>
+                    <span class="detail-val">{{ check_out }}</span>
+                </div>
+                {% endif %}
+                <div class="detail-row">
+                    <span class="detail-label">Guests Count:</span>
+                    <span class="detail-val">{{ guests }} Guests {% if is_over_capacity %}<span class="warning-badge">(Concierge Approval Required)</span>{% endif %}</span>
+                </div>
+                {% if property.price_per_night %}
+                <div class="detail-row">
+                    <span class="detail-label">Rate / Night:</span>
+                    <span class="detail-val">₹{{ property.price_per_night|floatformat:0 }}</span>
+                </div>
+                {% endif %}
+                <div class="detail-row">
+                    <span class="detail-label">Inquiry Status:</span>
+                    <span class="detail-val status-badge">CONFIRMED & LOGGED</span>
+                </div>
+            </div>
+
+            <div class="concierge-box">
+                <div class="concierge-title">⚡ 15-Minute Concierge Guarantee</div>
+                <p class="concierge-text">
+                    Our dedicated VIP Concierge host is reviewing your requested dates and custom preferences. You will receive a direct WhatsApp message or call within 15 minutes to finalize your stay.
+                </p>
+            </div>
+        </div>
+
+        <div class="email-footer">
+            <div class="footer-links">
+                <a href="https://rentora-7gdf.onrender.com/properties/">Explore Estates</a> |
+                <a href="https://rentora-7gdf.onrender.com/dashboard/">Member Dashboard</a>
+            </div>
+            <p>&copy; 2026 RENTORA Luxury Estates Kerala. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
