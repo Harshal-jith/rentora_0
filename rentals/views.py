@@ -3,11 +3,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.db.models import Q
-from django.core.mail import EmailMultiAlternatives, send_mail
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
-from django.http import JsonResponse
-from django.conf import settings
 from .models import Property, Inquiry, VisitorLog, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 
 def get_client_ip(request):
@@ -30,52 +25,6 @@ def log_visitor(request, property_obj=None):
         )
     except Exception:
         pass
-
-from django.conf import settings
-
-def send_booking_confirmation_email(inquiry):
-    try:
-        if not inquiry.email:
-            return False
-        
-        property_obj = inquiry.property
-        is_over_capacity = False
-        if property_obj and inquiry.guests > property_obj.max_guests:
-            is_over_capacity = True
-
-        ref_id = f"{inquiry.id:06d}"
-        subject = f"Booking Inquiry Confirmed #{ref_id} - RENTORA Luxury Estates"
-        
-        sender = getattr(settings, 'EMAIL_HOST_USER', '')
-        if sender and '@' in sender:
-            from_email = f"Rentora Concierge <{sender}>"
-        else:
-            from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'concierge@rentora.in')
-
-        to_email = [inquiry.email]
-
-        context = {
-            'inquiry_id': ref_id,
-            'name': inquiry.name,
-            'email': inquiry.email,
-            'property': property_obj,
-            'check_in': inquiry.check_in,
-            'check_out': inquiry.check_out,
-            'guests': inquiry.guests,
-            'is_over_capacity': is_over_capacity,
-        }
-
-        html_content = render_to_string('emails/booking_confirmation.html', context)
-        text_content = strip_tags(html_content)
-
-        msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
-        msg.attach_alternative(html_content, "text/html")
-        sent_count = msg.send(fail_silently=True)
-        print(f"Email dispatch to {to_email} finished (sent: {sent_count})")
-        return sent_count > 0
-    except Exception as e:
-        print(f"Email dispatch exception caught safely: {type(e).__name__} - {e}")
-        return False
 
 def home_view(request):
     log_visitor(request)
@@ -118,7 +67,7 @@ def home_view(request):
             message = request.POST.get('message')
             guests = request.POST.get('guests', 2)
             
-            inquiry = Inquiry.objects.create(
+            Inquiry.objects.create(
                 name=name,
                 email=email,
                 phone=phone,
@@ -126,8 +75,7 @@ def home_view(request):
                 message=message,
                 ip_address=get_client_ip(request)
             )
-            send_booking_confirmation_email(inquiry)
-            messages.success(request, f"Thank you! Booking confirmation (#REN-{inquiry.id:06d}) sent to {email}. Our concierge will contact you within 2 hours.")
+            messages.success(request, "Thank you! Our concierge team will contact you within 2 hours with curated options.")
             return redirect('home')
 
     context = {
@@ -254,14 +202,10 @@ def property_detail_view(request, slug):
         phone = request.POST.get('phone')
         check_in = request.POST.get('check_in') or None
         check_out = request.POST.get('check_out') or None
-        try:
-            guests = int(request.POST.get('guests', 2))
-        except (ValueError, TypeError):
-            guests = 2
-
+        guests = request.POST.get('guests', 2)
         message = request.POST.get('message', '')
 
-        inquiry = Inquiry.objects.create(
+        Inquiry.objects.create(
             property=property_obj,
             name=name,
             email=email,
@@ -272,14 +216,7 @@ def property_detail_view(request, slug):
             message=message,
             ip_address=get_client_ip(request)
         )
-        send_booking_confirmation_email(inquiry)
-
-        ref_id = f"#REN-{inquiry.id:06d}"
-        if guests > property_obj.max_guests:
-            messages.warning(request, f"Confirmation {ref_id} sent to {email}! Note: {guests} guests exceeds standard max ({property_obj.max_guests}). VIP Concierge will arrange special suite setup.")
-        else:
-            messages.success(request, f"🎉 Booking inquiry {ref_id} for '{property_obj.title}' submitted! Confirmation email sent to {email}.")
-
+        messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! Our concierge will get back to you shortly.")
         return redirect('property_detail', slug=property_obj.slug)
 
     context = {
@@ -331,50 +268,3 @@ def logout_view(request):
     logout(request)
     messages.info(request, "You have been logged out.")
     return redirect('home')
-
-def test_email_view(request):
-    try:
-        to_email = request.GET.get('to') or getattr(settings, 'EMAIL_HOST_USER', '') or 'test@example.com'
-        backend = getattr(settings, 'EMAIL_BACKEND', '')
-        host = getattr(settings, 'EMAIL_HOST', '')
-        port = getattr(settings, 'EMAIL_PORT', '')
-        user = getattr(settings, 'EMAIL_HOST_USER', '')
-        pass_set = bool(getattr(settings, 'EMAIL_HOST_PASSWORD', ''))
-
-        config_info = {
-            'EMAIL_BACKEND': backend,
-            'EMAIL_HOST': host,
-            'EMAIL_PORT': port,
-            'EMAIL_HOST_USER': user,
-            'EMAIL_HOST_PASSWORD_SET': pass_set,
-            'TARGET_EMAIL': to_email
-        }
-
-        try:
-            sender = user if (user and '@' in user) else None
-            from_str = f"Rentora Concierge <{sender}>" if sender else None
-            sent = send_mail(
-                subject="RENTORA Test Email Diagnostic",
-                message="This is an automated test email from Rentora to verify live SMTP settings.",
-                from_email=from_str,
-                recipient_list=[to_email],
-                fail_silently=False
-            )
-            return JsonResponse({
-                'status': 'SUCCESS',
-                'message': f'Test email dispatched successfully to {to_email}! (Count: {sent})',
-                'config': config_info
-            })
-        except BaseException as e:
-            return JsonResponse({
-                'status': 'SMTP_ERROR',
-                'error_type': type(e).__name__,
-                'error_message': str(e),
-                'config': config_info
-            })
-    except BaseException as outer_e:
-        return JsonResponse({
-            'status': 'VIEW_OUTER_ERROR',
-            'error_type': type(outer_e).__name__,
-            'error_message': str(outer_e)
-        })

@@ -97,33 +97,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
-
-# Email Configuration
-import os
-raw_backend = os.environ.get('EMAIL_BACKEND', '').strip()
-if raw_backend:
-    EMAIL_BACKEND = raw_backend
-elif os.environ.get('RESEND_API_KEY', '').strip():
-    EMAIL_BACKEND = 'rentals.email_backend.ResendEmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com').strip() or 'smtp.gmail.com'
-
-raw_port = os.environ.get('EMAIL_PORT', '465').strip()
-try:
-    EMAIL_PORT = int(raw_port) if raw_port else 465
-except ValueError:
-    EMAIL_PORT = 465
-
-use_ssl_env = os.environ.get('EMAIL_USE_SSL', '').strip().lower()
-if use_ssl_env in ('true', '1', 't') or EMAIL_PORT == 465:
-    EMAIL_USE_SSL = True
-    EMAIL_USE_TLS = False
-else:
-    EMAIL_USE_SSL = False
-    EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '').strip()
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '').strip().replace(' ', '')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', '').strip() or EMAIL_HOST_USER or 'concierge@rentora.in'

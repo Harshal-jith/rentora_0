@@ -42,9 +42,9 @@ SAMPLE_PROPERTIES = [
         "max_guests": 10,
         "short_description": "Restored 1920s British colonial tea plantation manor perched high amidst misty peaks and rolling tea gardens.",
         "description": "Perched 1,600 meters above sea level, Munnar Tea Country Manor is a palatial heritage estate surrounded by 150 acres of private organic tea plantations. Enjoy crisp mountain breezes from your wraparound veranda, cozy up by stone fireplaces in every suite, and savour custom farm-to-table cuisine prepared by top culinary masters.",
-        "main_image": "https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=1200&q=80",
+        "main_image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
         "gallery_json": [
-            "https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
             "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
             "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
         ],
@@ -146,10 +146,10 @@ SAMPLE_PROPERTIES = [
         "bathrooms": 3,
         "max_guests": 6,
         "short_description": "Ultra-luxury 3-bedroom Kettuvallam houseboat featuring air-conditioned glass lounge and upper sun deck.",
-        "description": "The pinnacle of backwater luxury. This handcrafted 120-foot houseboat features three spacious glass-fronted bedrooms, a private chef specializing in Karimeen Pollichathu and fresh backwater seafood, an upper-deck lounge with plush sunbeds, and a private motorboat tender for narrow canal explorations.",
-        "main_image": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80",
+        "description": "The pinnacle of backwater luxury. This handcrafted 120-foot houseboat features three spacious glass-fronted bedrooms, a private chef specializing in Karimeen Pollichathu and fresh backwater seafood, a upper-deck lounge with plush sunbeds, and a private motorboat tender for narrow canal explorations.",
+        "main_image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
         "gallery_json": [
-            "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
             "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80"
         ],
         "amenities_json": [
@@ -158,81 +158,6 @@ SAMPLE_PROPERTIES = [
         ],
         "rating": 5.0,
         "reviews_count": 16,
-        "is_featured": True
-    },
-    {
-        "title": "Kovalam Royal Palms Ocean Estate",
-        "slug": "kovalam-royal-palms-ocean-estate",
-        "location": "kovalam",
-        "location_display_name": "Private Cove, Kovalam Beach",
-        "property_type": "estate",
-        "price_per_night": 52000,
-        "bedrooms": 5,
-        "bathrooms": 6,
-        "max_guests": 10,
-        "short_description": "Private beachside sanctuary surrounded by towering coconut palms with private sandy cove & infinity pool.",
-        "description": "Located on an exclusive private promontory in Kovalam, the Royal Palms Ocean Estate offers direct access to a private secluded beach cove. Features an Olympic-length infinity pool overlooking the Arabian Sea, private open-air dining pavilions, and dedicated Ayurvedic massage therapists.",
-        "main_image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80",
-        "gallery_json": [
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
-        ],
-        "amenities_json": [
-            "Private Sandy Beach Cove", "Olympic Infinity Pool", "Personal Ayurvedic Therapists", 
-            "Seafood Culinary Master", "Helipad & Yacht Docking", "24/7 Butler Service"
-        ],
-        "rating": 4.99,
-        "reviews_count": 21,
-        "is_featured": True
-    },
-    {
-        "title": "Athirappilly Forest Mist Waterfall Chalet",
-        "slug": "athirappilly-forest-mist-waterfall-chalet",
-        "location": "athirappilly",
-        "location_display_name": "Vazhachal Forest Reserve, Athirappilly",
-        "property_type": "chalet",
-        "price_per_night": 36000,
-        "bedrooms": 3,
-        "bathrooms": 3,
-        "max_guests": 6,
-        "short_description": "Modern teakwood chalet perched over river cascades and mist-clad forest waterfalls with private heated hot tub.",
-        "description": "Experience the majestic sound of cascading waterfalls from your private glass lounge. Nestled inside the dense Vazhachal forest reserve, this eco-luxury chalet features local teakwood craftsmanship, private riverfront observation deck, heated outdoor hot tub, and private jungle safari tours.",
-        "main_image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
-        "gallery_json": [
-            "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=80"
-        ],
-        "amenities_json": [
-            "Waterfall Panorama Deck", "Private Riverfront Lounge", "Heated Forest Hot Tub", 
-            "Guided Jungle Safaris", "Organic Wild Honey Tastings", "24/7 Concierge"
-        ],
-        "rating": 4.94,
-        "reviews_count": 17,
-        "is_featured": False
-    },
-    {
-        "title": "Bekal Fort Sunset Sands Villa",
-        "slug": "bekal-fort-sunset-sands-villa",
-        "location": "kasaragod",
-        "location_display_name": "Bekal Fort Promenade, Kasaragod",
-        "property_type": "villa",
-        "price_per_night": 44000,
-        "bedrooms": 4,
-        "bathrooms": 4,
-        "max_guests": 8,
-        "short_description": "Beachfront villa steps away from historic Bekal Fort with private illuminated infinity plunge pool.",
-        "description": "Combining northern Kerala coastal heritage with modern resort luxury. Enjoy front-row views of Bekal Fort illuminated at dusk, relax in your private heated infinity plunge pool, and indulge in authentic Malabar seafood dining curated by master chefs.",
-        "main_image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
-        "gallery_json": [
-            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
-            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"
-        ],
-        "amenities_json": [
-            "Bekal Fort Sunset View", "Illuminated Infinity Plunge Pool", "Authentic Malabar Seafood Chef", 
-            "Private Beach Access", "Ayurvedic Wellness Spa", "High-Speed WiFi"
-        ],
-        "rating": 4.97,
-        "reviews_count": 25,
         "is_featured": True
     }
 ]
@@ -253,16 +178,6 @@ class Command(BaseCommand):
             u.save()
             self.stdout.write(self.style.SUCCESS('Updated superuser credentials: admin'))
 
-        # Seed or update temporary demo user: user / password
-        if not User.objects.filter(username='user').exists():
-            User.objects.create_user(username='user', email='user@rentora.in', password='password')
-            self.stdout.write(self.style.SUCCESS('Created demo user: user/password'))
-        else:
-            u = User.objects.get(username='user')
-            u.set_password('password')
-            u.save()
-            self.stdout.write(self.style.SUCCESS('Updated demo user credentials: user/password'))
-
         count = 0
         for data in SAMPLE_PROPERTIES:
             obj, created = Property.objects.update_or_create(
@@ -271,4 +186,5 @@ class Command(BaseCommand):
             )
             if created:
                 count += 1
-        self.stdout.write(self.style.SUCCESS(f'Successfully seeded {count} new properties (Total in database: {Property.objects.count()}).'))
+        self.stdout.write(self.style.SUCCESS(f'Successfully seeded {count} luxury properties (Total: {Property.objects.count()}).'))
+

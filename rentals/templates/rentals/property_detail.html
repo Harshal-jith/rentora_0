@@ -153,15 +153,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Number of Guests (Max Capacity: {{ property.max_guests }})</label>
-                        <div class="guest-stepper-wrap">
-                            <button type="button" class="btn-stepper" onclick="stepGuests(-1)"><i class="fa-solid fa-minus"></i></button>
-                            <input type="number" id="guestInput" name="guests" class="form-control text-center guest-num-input" value="2" min="1" max="30" oninput="validateGuestCapacity({{ property.max_guests }})" onchange="validateGuestCapacity({{ property.max_guests }})" required>
-                            <button type="button" class="btn-stepper" onclick="stepGuests(1)"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                        
-                        <!-- Dynamic Capacity Notification Box -->
-                        <div id="capacityNotice" class="capacity-notice-box" style="display: none;"></div>
+                        <label>Number of Guests</label>
+                        <select name="guests" class="form-control">
+                            {% for i in "12345678910"|make_list %}
+                            <option value="{{ i }}" {% if i == "2" %}selected{% endif %}>{{ i }} Guests</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -220,46 +217,5 @@ function changeMainImage(url, el) {
     document.querySelectorAll('.thumb-item').forEach(item => item.classList.remove('active'));
     if (el) el.classList.add('active');
 }
-
-const maxGuestsLimit = {{ property.max_guests }};
-
-function stepGuests(delta) {
-    const input = document.getElementById('guestInput');
-    if (!input) return;
-    let val = parseInt(input.value) || 1;
-    val += delta;
-    if (val < 1) val = 1;
-    input.value = val;
-    validateGuestCapacity(maxGuestsLimit);
-}
-
-function validateGuestCapacity(maxLimit) {
-    const input = document.getElementById('guestInput');
-    const notice = document.getElementById('capacityNotice');
-    if (!input || !notice) return;
-
-    const currentVal = parseInt(input.value) || 1;
-
-    if (currentVal > maxLimit) {
-        input.classList.add('input-warning');
-        input.classList.remove('input-info');
-        notice.className = "capacity-notice-box notice-warning";
-        notice.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <strong>Exceeds Maximum Capacity!</strong> Standard capacity is ${maxLimit} guests max. Your request will require special concierge approval & extra suite arrangements.`;
-        notice.style.display = "block";
-    } else if (currentVal === maxLimit) {
-        input.classList.remove('input-warning');
-        input.classList.add('input-info');
-        notice.className = "capacity-notice-box notice-info";
-        notice.innerHTML = `<i class="fa-solid fa-circle-info"></i> <strong>Maximum Capacity Reached:</strong> You have selected the maximum capacity limit (${maxLimit} guests) for this estate.`;
-        notice.style.display = "block";
-    } else {
-        input.classList.remove('input-warning', 'input-info');
-        notice.style.display = "none";
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    validateGuestCapacity(maxGuestsLimit);
-});
 </script>
 {% endblock %}
