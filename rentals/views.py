@@ -268,3 +268,7 @@ def logout_view(request):
     logout(request)
     messages.info(request, "You have been logged out.")
     return redirect('home')
+
+def custom_404_view(request, exception=None):
+    return render(request, 'rentals/404.html', status=404)
+

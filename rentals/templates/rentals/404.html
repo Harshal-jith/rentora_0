@@ -1,0 +1,34 @@
+{% extends 'rentals/base.html' %}
+{% load static %}
+
+{% block title %}404 — Estate Not Found | Rentora Luxury Hospitality{% endblock %}
+
+{% block content %}
+<div class="page-header-container" style="min-height: 78vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 60px;">
+    <div class="advantage-card-glass" style="max-width: 620px; width: 100%; padding: 48px 36px; border: 1px solid var(--border-gold); background: rgba(20, 20, 20, 0.72); backdrop-filter: blur(24px); border-radius: var(--radius-lg); margin: 0 auto; box-shadow: var(--shadow-card);">
+        
+        <div style="font-family: var(--font-heading); font-size: clamp(4rem, 8vw, 6.5rem); font-weight: 700; line-height: 1; margin-bottom: 12px;" class="gold-shimmer-text">
+            404
+        </div>
+
+        <div style="width: 80px; height: 1.5px; background: var(--gold-bright); margin: 0 auto 24px; box-shadow: 0 0 10px rgba(214, 181, 108, 0.6);"></div>
+
+        <h1 class="serif-title" style="font-size: 1.8rem; margin-bottom: 16px; color: var(--text-primary);">
+            Sanctuary Not Found
+        </h1>
+
+        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65; margin-bottom: 36px;">
+            The requested page or private estate listing does not exist, has been relocated, or is temporarily offline.
+        </p>
+
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="{% url 'home' %}" class="btn btn-gold btn-md">
+                <i class="fa-solid fa-compass"></i> Return to Home
+            </a>
+            <a href="{% url 'properties' %}" class="btn btn-glass btn-md">
+                <i class="fa-solid fa-building-user"></i> Explore Private Estates
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
