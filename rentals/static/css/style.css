@@ -356,15 +356,14 @@ img {
 /* SECTION 1: ARCHITECTURAL EDITORIAL HERO (FULL REBUILD) */
 .hero-editorial-fullscreen {
     position: relative;
-    min-height: 860px;
     height: 100vh;
+    min-height: 740px;
     width: 100%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 125px;
-    padding-bottom: 60px;
+    padding-top: 15px;
     background-color: var(--bg-dark);
 }
 
@@ -398,7 +397,7 @@ img {
 
 /* Prominent Transparent Rentora Brand Logo (Top Center) */
 .hero-brand-logo-wrap {
-    margin: 0 auto 36px;
+    margin: -10px auto 36px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -420,7 +419,7 @@ body.hero-animate-active .hero-brand-logo-wrap {
 }
 
 .hero-main-logo {
-    height: 48px;
+    height: 52px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.75));
@@ -444,9 +443,9 @@ body.hero-animate-active .hero-brand-logo-wrap {
 .hero-content-editorial {
     position: relative;
     z-index: 10;
-    max-width: 1080px;
+    max-width: 1050px;
     margin: 0 auto;
-    padding: 0 28px;
+    padding: 0 24px 0;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -470,7 +469,7 @@ body.hero-animate-active .hero-brand-logo-wrap {
     font-weight: 700;
     letter-spacing: 2px;
     font-family: var(--font-btn);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     opacity: 0;
 }
@@ -497,11 +496,11 @@ body.hero-animate-active .hero-edition-pill {
     font-family: var(--font-heading);
     font-style: normal;
     font-weight: 700;
-    letter-spacing: -0.02em;
-    font-size: clamp(2.3rem, 4.4vw, 3.7rem);
-    line-height: 1.26;
+    letter-spacing: -0.005em;
+    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+    line-height: 1.24;
     color: var(--text-primary);
-    margin-bottom: 26px;
+    margin-bottom: 28px;
     text-shadow: 0 4px 35px rgba(0, 0, 0, 0.8);
     opacity: 0;
 }
@@ -518,13 +517,12 @@ body.hero-animate-active .hero-title-editorial {
 }
 
 .hero-subtitle-editorial {
-    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    font-size: clamp(1.05rem, 1.8vw, 1.22rem);
     color: var(--text-secondary);
-    max-width: 740px;
-    margin: 0 auto 46px;
-    line-height: 1.75;
+    max-width: 820px;
+    margin: 0 auto 42px;
+    line-height: 1.8;
     font-weight: 400;
-    letter-spacing: 0.2px;
     opacity: 0;
 }
 
@@ -534,10 +532,10 @@ body.hero-animate-active .hero-subtitle-editorial {
 
 .hero-cta-editorial-group {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 54px;
+    margin-bottom: 42px;
     opacity: 0;
 }
 
@@ -546,7 +544,7 @@ body.hero-animate-active .hero-cta-editorial-group {
 }
 
 .btn-editorial-primary, .btn-editorial-secondary {
-    padding: 18px 40px;
+    padding: 16px 36px;
     font-size: 0.98rem;
     border-radius: var(--radius-md);
     font-weight: 600;
@@ -567,7 +565,6 @@ body.hero-animate-active .hero-cta-editorial-group {
     box-shadow: var(--shadow-card);
     max-width: 850px;
     width: 100%;
-    margin-top: 10px;
     opacity: 0;
 }
 
