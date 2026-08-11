@@ -532,9 +532,10 @@ body.hero-animate-active .hero-subtitle-editorial {
 
 .hero-cta-editorial-group {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 42px;
     opacity: 0;
 }

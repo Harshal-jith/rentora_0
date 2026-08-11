@@ -52,6 +52,15 @@
             <a href="#facilities" class="btn btn-glass btn-editorial-secondary">
                 <span>In-Villa Facilities</span> <i class="fa-solid fa-gem"></i>
             </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-glass btn-editorial-secondary">
+                <span>My Dashboard</span> <i class="fa-solid fa-user"></i>
+            </a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-gold btn-editorial-primary">
+                <span>Sign In / Register</span> <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+            {% endif %}
         </div>
 
         <!-- Bottom Luxury Stats Bar -->
