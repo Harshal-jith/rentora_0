@@ -63,36 +63,6 @@
             {% endif %}
         </div>
 
-        <!-- Dynamic Featured Estates Showcase Reel -->
-        {% if featured_properties %}
-        <div class="hero-properties-showcase">
-            <div class="hero-showcase-header">
-                <span class="sub-heading-gold"><i class="fa-solid fa-crown text-gold"></i> FEATURED PRIVATE ESTATES</span>
-            </div>
-            <div class="hero-properties-grid">
-                {% for property in featured_properties|slice:":3" %}
-                <a href="{% url 'property_detail' property.slug %}" class="hero-property-card-glass">
-                    <div class="hero-card-img-wrap">
-                        {% if property.image %}
-                        <img src="{{ property.image.url }}" alt="{{ property.title }}" loading="lazy">
-                        {% else %}
-                        <img src="{% static 'images/hero_bg_1.jpg' %}" alt="{{ property.title }}" loading="lazy">
-                        {% endif %}
-                        <span class="hero-card-price">₹{{ property.price_per_night|floatformat:0 }}/night</span>
-                    </div>
-                    <div class="hero-card-body">
-                        <span class="hero-card-type">{{ property.get_property_type_display }}</span>
-                        <h4 class="hero-card-title">{{ property.title }}</h4>
-                        <div class="hero-card-location">
-                            <i class="fa-solid fa-location-dot text-gold"></i> {{ property.get_location_display }}
-                        </div>
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-
         <!-- Bottom Luxury Stats Bar -->
         <div class="hero-stats-glass-bar">
             <div class="stat-glass-item">
@@ -113,7 +83,61 @@
     </div>
 </section>
 
-<!-- SECTION 2: THE RENTORA ADVANTAGE (HORIZONTALLY SCROLLING FEATURE CAROUSEL) -->
+<!-- SECTION 2: FEATURED PRIVATE ESTATES SHOWCASE -->
+<section class="section featured-estates-section" id="estates">
+    <div class="section-container advantage-header-wrap">
+        <span class="sub-heading-gold reveal-popup">CURATED SANCTUARIES</span>
+        <h2 class="serif-title advantage-title reveal-popup">Featured Private Estates</h2>
+        <p class="advantage-desc reveal-popup">Explore Kerala's most exclusive oceanfront villas, heritage tea manors, and presidential houseboats.</p>
+    </div>
+
+    <div class="section-container">
+        <div class="property-grid">
+            {% for property in featured_properties %}
+            <div class="property-card reveal-popup">
+                <div class="card-image-wrap">
+                    {% if property.image %}
+                    <img src="{{ property.image.url }}" alt="{{ property.title }}" loading="lazy">
+                    {% else %}
+                    <img src="{% static 'images/hero_night.jpg' %}" alt="{{ property.title }}" loading="lazy">
+                    {% endif %}
+                    <span class="card-badge"><i class="fa-solid fa-location-dot"></i> {{ property.location }}</span>
+                    <span class="card-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-location">{{ property.get_property_type_display|default:"Private Estate" }}</div>
+                    <h3 class="card-title">{{ property.title }}</h3>
+                    <p class="card-desc">{{ property.description|truncatewords:14 }}</p>
+                    
+                    <div class="card-specs">
+                        <span><i class="fa-solid fa-users text-gold"></i> {{ property.max_guests }} Guests</span>
+                        <span><i class="fa-solid fa-bed text-gold"></i> {{ property.bedrooms }} Bedrooms</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-val">₹{{ property.price_per_night }}</span>
+                            <span class="price-unit">/ night</span>
+                        </div>
+                        <a href="{% url 'property_detail' property.slug %}" class="btn btn-gold btn-sm">
+                            <span>Explore</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;" class="reveal-popup">
+            <a href="{% url 'properties' %}" class="btn btn-glass btn-editorial-primary">
+                <span>View Full Private Collection</span> <i class="fa-solid fa-compass"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 3: THE RENTORA ADVANTAGE (HORIZONTALLY SCROLLING FEATURE CAROUSEL) -->
 <section class="section advantage-section" id="advantage">
     <div class="section-container advantage-header-wrap">
         <span class="sub-heading-gold reveal-popup">THE RENTORA ADVANTAGE</span>
