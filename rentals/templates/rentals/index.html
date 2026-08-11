@@ -63,6 +63,36 @@
             {% endif %}
         </div>
 
+        <!-- Dynamic Featured Estates Showcase Reel -->
+        {% if featured_properties %}
+        <div class="hero-properties-showcase">
+            <div class="hero-showcase-header">
+                <span class="sub-heading-gold"><i class="fa-solid fa-crown text-gold"></i> FEATURED PRIVATE ESTATES</span>
+            </div>
+            <div class="hero-properties-grid">
+                {% for property in featured_properties|slice:":3" %}
+                <a href="{% url 'property_detail' property.slug %}" class="hero-property-card-glass">
+                    <div class="hero-card-img-wrap">
+                        {% if property.image %}
+                        <img src="{{ property.image.url }}" alt="{{ property.title }}" loading="lazy">
+                        {% else %}
+                        <img src="{% static 'images/hero_bg_1.jpg' %}" alt="{{ property.title }}" loading="lazy">
+                        {% endif %}
+                        <span class="hero-card-price">₹{{ property.price_per_night|floatformat:0 }}/night</span>
+                    </div>
+                    <div class="hero-card-body">
+                        <span class="hero-card-type">{{ property.get_property_type_display }}</span>
+                        <h4 class="hero-card-title">{{ property.title }}</h4>
+                        <div class="hero-card-location">
+                            <i class="fa-solid fa-location-dot text-gold"></i> {{ property.get_location_display }}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
         <!-- Bottom Luxury Stats Bar -->
         <div class="hero-stats-glass-bar">
             <div class="stat-glass-item">

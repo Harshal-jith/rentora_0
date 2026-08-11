@@ -551,6 +551,119 @@ body.hero-animate-active .hero-cta-editorial-group {
     font-weight: 600;
 }
 
+/* Dynamic Hero Featured Estates Showcase */
+.hero-properties-showcase {
+    width: 100%;
+    max-width: 1020px;
+    margin: 0 auto 36px;
+    opacity: 0;
+}
+
+body.hero-animate-active .hero-properties-showcase {
+    animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.15s forwards;
+}
+
+.hero-showcase-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.hero-properties-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.hero-property-card-glass {
+    background: rgba(18, 18, 18, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(214, 181, 108, 0.35);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.hero-property-card-glass:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--gold-bright);
+    box-shadow: 0 16px 40px rgba(214, 181, 108, 0.25);
+}
+
+.hero-card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.hero-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-property-card-glass:hover .hero-card-img-wrap img {
+    transform: scale(1.08);
+}
+
+.hero-card-price {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.hero-card-body {
+    padding: 14px 16px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hero-card-type {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.hero-card-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hero-card-location {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
 /* Floating Glass Stats Bar */
 .hero-stats-glass-bar {
     display: flex;
