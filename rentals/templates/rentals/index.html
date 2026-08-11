@@ -93,7 +93,7 @@
 
     <div class="section-container mana-sticky-stack-container">
         {% for property in featured_properties %}
-        <div class="mana-sticky-card reveal-popup" style="--card-index: {{ forloop.counter }};">
+        <div class="mana-sticky-card" style="--card-index: {{ forloop.counter }};">
             <div class="mana-card-inner">
                 
                 <!-- Left: Full High-Res Image with Overlay Badges -->
@@ -101,7 +101,7 @@
                     {% if property.main_image %}
                     <img src="{{ property.main_image }}" alt="{{ property.title }}" loading="lazy" class="mana-card-img">
                     {% else %}
-                    <img src="{% static 'images/hero_night.jpg' %}" alt="{{ property.title }}" loading="lazy" class="mana-card-img">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80" alt="{{ property.title }}" loading="lazy" class="mana-card-img">
                     {% endif %}
                     
                     <div class="mana-media-overlay"></div>

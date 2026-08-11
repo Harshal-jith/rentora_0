@@ -619,6 +619,8 @@ body.hero-animate-active .hero-stats-glass-bar {
     top: calc(100px + var(--card-index) * 15px);
     z-index: calc(10 + var(--card-index));
     margin-bottom: 40px;
+    opacity: 1;
+    will-change: transform, top;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
