@@ -390,9 +390,54 @@ img {
     opacity: 0.85;
 }
 
+@keyframes heroCinematicReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 36px, 0) scale(0.96);
+        filter: blur(14px);
+    }
+    60% {
+        opacity: 0.9;
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+        filter: blur(0);
+    }
+}
+
 @keyframes heroFadeDown {
     from { opacity: 0; transform: translateY(-24px); filter: blur(10px); }
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Ambient Golden Radial Flare Glow */
+.hero-radial-flare {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    width: 680px;
+    height: 480px;
+    background: radial-gradient(ellipse at center, rgba(214, 181, 108, 0.22) 0%, rgba(214, 181, 108, 0.05) 50%, rgba(0, 0, 0, 0) 75%);
+    border-radius: 50%;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 2.0s ease, transform 2.0s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+body.hero-animate-active .hero-radial-flare {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    animation: auraBreathing 6s ease-in-out 1.2s infinite alternate;
+}
+
+@keyframes auraBreathing {
+    0% { transform: translate(-50%, -50%) scale(1.0); opacity: 0.75; }
+    100% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
 }
 
 /* Prominent Transparent Rentora Brand Logo (Top Center) */
@@ -407,7 +452,7 @@ img {
 }
 
 body.hero-animate-active .hero-brand-logo-wrap {
-    animation: heroFadeDown 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
 .hero-brand-logo-wrap a {
@@ -475,7 +520,7 @@ body.hero-animate-active .hero-brand-logo-wrap {
 }
 
 body.hero-animate-active .hero-edition-pill {
-    animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
 }
 
 .pill-dot {
@@ -506,14 +551,25 @@ body.hero-animate-active .hero-edition-pill {
 }
 
 body.hero-animate-active .hero-title-editorial {
-    animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
 }
 
 .gold-shimmer-text {
-    background: linear-gradient(135deg, #D6B56C 0%, #FFF3D1 50%, #E8CE92 100%);
+    background: linear-gradient(120deg, #D6B56C 0%, #FFF8E7 25%, #E8CE92 50%, #D6B56C 75%, #FFF8E7 100%);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
+    display: inline-block;
+}
+
+body.hero-animate-active .gold-shimmer-text {
+    animation: titleLightSweep 3.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s infinite alternate;
+}
+
+@keyframes titleLightSweep {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 .hero-subtitle-editorial {
@@ -527,7 +583,7 @@ body.hero-animate-active .hero-title-editorial {
 }
 
 body.hero-animate-active .hero-subtitle-editorial {
-    animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
 }
 
 .hero-cta-editorial-group {
@@ -541,7 +597,7 @@ body.hero-animate-active .hero-subtitle-editorial {
 }
 
 body.hero-animate-active .hero-cta-editorial-group {
-    animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
 }
 
 .btn-editorial-primary, .btn-editorial-secondary {

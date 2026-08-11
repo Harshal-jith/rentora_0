@@ -131,9 +131,7 @@ function initThemeToggle() {
    -------------------------------------------------------------------------- */
 function initHeroParallax() {
     const heroSection = document.querySelector('.hero-section');
-    const layer = document.querySelector('.parallax-layer');
-
-    if (!heroSection || !layer) return;
+    if (!heroSection) return;
 
     let mouseX = 0, mouseY = 0;
     let targetX = 0, targetY = 0;
@@ -147,11 +145,18 @@ function initHeroParallax() {
     }, { passive: true });
 
     function animateParallax() {
-        targetX += (mouseX - targetX) * 0.025;
-        targetY += (mouseY - targetY) * 0.025;
+        targetX += (mouseX - targetX) * 0.04;
+        targetY += (mouseY - targetY) * 0.04;
 
-        // Strictly capped between 2px and 3.5px max offset
-        if (layer) layer.style.transform = `scale(1.03) translate3d(${targetX * 3.5}px, ${targetY * 3.5}px, 0)`;
+        const activeBg = heroSection.querySelector('.hero-bg-layer.active');
+        if (activeBg) {
+            activeBg.style.transform = `scale(1.05) translate3d(${targetX * -15}px, ${targetY * -15}px, 0)`;
+        }
+
+        const flare = heroSection.querySelector('.hero-radial-flare');
+        if (flare && document.body.classList.contains('hero-animate-active')) {
+            flare.style.transform = `translate(-50%, -50%) translate3d(${targetX * 22}px, ${targetY * 22}px, 0) scale(1.1)`;
+        }
 
         requestAnimationFrame(animateParallax);
     }
