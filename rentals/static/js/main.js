@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFeatureCarousel();
     initScrollObserver();
     initMobileNav();
+    initHeroScrollDampener();
 });
 
 /* --------------------------------------------------------------------------
@@ -378,3 +379,74 @@ function initMobileNav() {
         });
     }
 }
+
+/* --------------------------------------------------------------------------
+   7. Kinetic Hero Scroll Speed Control & Parallax Deceleration Engine
+   -------------------------------------------------------------------------- */
+function initHeroScrollDampener() {
+    const heroSection = document.getElementById('hero');
+    const heroContent = document.querySelector('.hero-content-editorial');
+    const flare = document.querySelector('.hero-radial-flare');
+    const statsBar = document.querySelector('.hero-stats-glass-bar');
+
+    if (!heroSection) return;
+
+    // Smooth Scroll Animation Frame Loop for Parallax Fade-Out
+    function renderScrollEffects() {
+        const scrollY = window.scrollY;
+        const heroHeight = heroSection.offsetHeight || window.innerHeight;
+
+        // Apply Parallax Fade-out & Slow Scale when scrolling out of Hero
+        if (scrollY <= heroHeight * 1.1) {
+            const scrollRatio = Math.min(1, scrollY / heroHeight);
+            
+            if (heroContent) {
+                const opacity = Math.max(0, 1 - (scrollRatio * 1.35));
+                const translateY = scrollY * 0.38;
+                const blur = scrollRatio * 8;
+                heroContent.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
+                heroContent.style.opacity = opacity.toFixed(3);
+                heroContent.style.filter = `blur(${blur.toFixed(1)}px)`;
+            }
+
+            if (flare) {
+                const flareOpacity = Math.max(0, 1 - (scrollRatio * 1.5));
+                flare.style.opacity = flareOpacity.toFixed(3);
+            }
+
+            if (statsBar) {
+                const barOpacity = Math.max(0, 1 - (scrollRatio * 1.6));
+                statsBar.style.opacity = barOpacity.toFixed(3);
+            }
+        } else {
+            // Reset inline styles when scrolled past hero
+            if (heroContent) {
+                heroContent.style.transform = '';
+                heroContent.style.opacity = '';
+                heroContent.style.filter = '';
+            }
+        }
+
+        requestAnimationFrame(renderScrollEffects);
+    }
+
+    requestAnimationFrame(renderScrollEffects);
+
+    // Smooth Click-to-Anchor Scroll (1.2s smooth glide)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+}
+
