@@ -178,6 +178,15 @@ class Command(BaseCommand):
             u.save()
             self.stdout.write(self.style.SUCCESS('Updated superuser credentials: admin'))
 
+        # Temporary normal user: user / password
+        u_temp, created_temp = User.objects.get_or_create(username='user', defaults={'email': 'user@rentora.in'})
+        u_temp.set_password('password')
+        u_temp.is_staff = False
+        u_temp.is_superuser = False
+        u_temp.save()
+        self.stdout.write(self.style.SUCCESS('Updated normal user credentials: user / password'))
+
+
         count = 0
         for data in SAMPLE_PROPERTIES:
             obj, created = Property.objects.update_or_create(
