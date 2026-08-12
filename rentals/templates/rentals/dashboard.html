@@ -1,28 +1,53 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Member Dashboard | Rentora Luxury Hospitality{% endblock %}
+{% block title %}Welcome, {{ user.username }} — Rentora Member Dashboard{% endblock %}
 
 {% block content %}
 <div class="dashboard-page-wrapper">
 
-    <!-- Top Dashboard Header Banner -->
+    <!-- Top Dashboard Luxury Welcome Banner -->
     <div class="dashboard-banner">
         <div class="section-container dashboard-banner-content">
             <div class="user-welcome-info">
-                <span class="user-vip-pill"><i class="fa-solid fa-shield-halved"></i> MEMBER DASHBOARD</span>
-                <h1 class="page-title dashboard-headline">Welcome, {{ user.username }}</h1>
-                <p class="page-subtitle dashboard-subcopy">Explore Luxury Kerala Rentals — <span class="gold-shimmer-text">Handpicked estates, private backwater villas, and oceanfront sanctuaries.</span></p>
+                <div class="welcome-badge-row">
+                    <span class="user-vip-pill"><i class="fa-solid fa-crown text-gold"></i> VIP MEMBER ACCESS</span>
+                    <span class="verified-status-pill"><i class="fa-solid fa-circle-check"></i> Account Active</span>
+                </div>
+                
+                <h1 class="page-title dashboard-headline">
+                    Welcome to Rentora, <span class="gold-shimmer-text">{{ user.username }}</span>
+                </h1>
+                
+                <p class="page-subtitle dashboard-subcopy">
+                    Your portal to Kerala’s finest private sanctuaries. Handpicked backwater villas, tea estate manors, and oceanfront retreats with dedicated 24/7 concierge service.
+                </p>
+
+                <!-- Quick Member Action Buttons -->
+                <div class="welcome-actions-row">
+                    <a href="{% url 'properties' %}" class="btn btn-gold btn-sm">
+                        <i class="fa-solid fa-compass"></i> Explore Private Estates
+                    </a>
+                    <a href="#my-bookings" class="btn btn-glass btn-sm">
+                        <i class="fa-solid fa-calendar-check"></i> My Reservations
+                    </a>
+                </div>
             </div>
             
             <div class="dashboard-quick-stats">
                 <div class="dash-stat-card">
-                    <span class="dash-stat-value">{{ user_inquiries.count }}</span>
-                    <span class="dash-stat-label">Active Bookings</span>
+                    <div class="dash-stat-icon"><i class="fa-solid fa-calendar-days text-gold"></i></div>
+                    <div>
+                        <span class="dash-stat-value">{{ user_inquiries.count }}</span>
+                        <span class="dash-stat-label">Active Reservations</span>
+                    </div>
                 </div>
                 <div class="dash-stat-card">
-                    <span class="dash-stat-value">100%</span>
-                    <span class="dash-stat-label">Personal Concierge Coverage</span>
+                    <div class="dash-stat-icon"><i class="fa-solid fa-user-shield text-gold"></i></div>
+                    <div>
+                        <span class="dash-stat-value">24/7</span>
+                        <span class="dash-stat-label">Dedicated Host Coverage</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,6 +55,39 @@
 
     <!-- Main Dashboard Container -->
     <div class="section-container dashboard-main-grid">
+
+        <!-- SECTION 0: NEW USER ONBOARDING STEPS (If no bookings yet) -->
+        {% if user_inquiries.count == 0 %}
+        <div class="dashboard-section-box welcome-onboarding-box">
+            <div class="dash-section-header">
+                <h2><i class="fa-solid fa-sparkles text-gold"></i> Getting Started with Rentora</h2>
+                <p>Welcome to our exclusive hospitality platform! Here is how to make the most of your membership:</p>
+            </div>
+
+            <div class="onboarding-steps-grid">
+                <div class="onboarding-step-card">
+                    <div class="step-badge">01</div>
+                    <div class="step-icon-wrap"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+                    <h3>Discover Verified Estates</h3>
+                    <p>Filter Kerala’s private retreats by location (Alleppey, Munnar, Kovalam) and property type.</p>
+                </div>
+
+                <div class="onboarding-step-card">
+                    <div class="step-badge">02</div>
+                    <div class="step-icon-wrap"><i class="fa-solid fa-bell-concierge"></i></div>
+                    <h3>Personal Concierge</h3>
+                    <p>Request bespoke in-villa dining by master chefs, private lagoon charters, and helipad transfers.</p>
+                </div>
+
+                <div class="onboarding-step-card">
+                    <div class="step-badge">03</div>
+                    <div class="step-icon-wrap"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h3>Instant Reservations</h3>
+                    <p>Book your preferred dates seamlessly. Track your reservation confirmation right here in real time.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
         <!-- SECTION A: PROPERTY SEARCH & FILTER BAR -->
         <div class="dashboard-section-box">
