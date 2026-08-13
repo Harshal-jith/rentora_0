@@ -6,6 +6,11 @@
 <!-- Clean Hero: No Header/Navbar on Landing Page -->
 {% block navbar %}{% endblock %}
 
+{% block extra_css %}
+<link rel="preload" as="image" href="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" fetchpriority="high">
+<link rel="preload" as="image" href="{% static 'images/scene_arrival_1784964424610.jpg' %}">
+{% endblock %}
+
 {% block content %}
 <div class="landing-page-wrapper permanent-dark-page">
 <!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO -->

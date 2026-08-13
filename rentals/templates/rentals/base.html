@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4.7">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4.8">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
@@ -178,7 +178,11 @@
                 preloader.classList.add("start-reveal");
             }, 80);
 
-            // Smooth luxury dismiss transition (1.4s total)
+            // Pre-cache hero background image in memory for instant 0ms rendering
+            const heroImg = new Image();
+            heroImg.src = "{% static 'images/hero_mid_villa_1784964394119.jpg' %}";
+
+            // Smooth luxury dismiss transition
             let isDismissed = false;
             const dismiss = function() {
                 if (isDismissed) return;
@@ -193,12 +197,19 @@
                 }, 650);
             };
 
-            window.addEventListener("load", function() {
-                setTimeout(dismiss, 1350);
-            });
+            if (heroImg.complete) {
+                setTimeout(dismiss, 1100);
+            } else {
+                heroImg.onload = function() {
+                    setTimeout(dismiss, 1100);
+                };
+                window.addEventListener("load", function() {
+                    setTimeout(dismiss, 1200);
+                });
+            }
 
-            // Fallback safety timeout (1.9s max)
-            setTimeout(dismiss, 1900);
+            // Fallback safety timeout (1.6s max)
+            setTimeout(dismiss, 1600);
         })();
     </script>
     {% endif %}
