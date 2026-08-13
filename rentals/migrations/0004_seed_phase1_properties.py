@@ -1,5 +1,4 @@
-from django.core.management.base import BaseCommand
-from rentals.models import Property
+from django.db import migrations
 
 SAMPLE_PROPERTIES = [
     {
@@ -204,41 +203,25 @@ SAMPLE_PROPERTIES = [
     }
 ]
 
-class Command(BaseCommand):
-    help = 'Seeds initial luxury properties into database and ensures admin superuser'
+def seed_phase1_properties(apps, schema_editor):
+    Property = apps.get_model('rentals', 'Property')
+    valid_slugs = [p['slug'] for p in SAMPLE_PROPERTIES]
+    Property.objects.exclude(slug__in=valid_slugs).delete()
+    for data in SAMPLE_PROPERTIES:
+        Property.objects.update_or_create(
+            slug=data['slug'],
+            defaults=data
+        )
 
-    def handle(self, *args, **options):
-        from django.contrib.auth.models import User
-        if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser('admin', 'admin@rentora.in', 'RentoraAdmin2026!')
-            self.stdout.write(self.style.SUCCESS('Created superuser: admin'))
-        else:
-            u = User.objects.get(username='admin')
-            u.set_password('RentoraAdmin2026!')
-            u.is_superuser = True
-            u.is_staff = True
-            u.save()
-            self.stdout.write(self.style.SUCCESS('Updated superuser credentials: admin'))
+def reverse_func(apps, schema_editor):
+    pass
 
-        # Temporary normal user: user / password
-        u_temp, created_temp = User.objects.get_or_create(username='user', defaults={'email': 'user@rentora.in'})
-        u_temp.set_password('password')
-        u_temp.is_staff = False
-        u_temp.is_superuser = False
-        u_temp.save()
-        self.stdout.write(self.style.SUCCESS('Updated normal user credentials: user / password'))
+class Migration(migrations.Migration):
 
+    dependencies = [
+        ('rentals', '0003_seed_default_users'),
+    ]
 
-        # Purge legacy properties not in current SAMPLE_PROPERTIES
-        valid_slugs = [p['slug'] for p in SAMPLE_PROPERTIES]
-        Property.objects.exclude(slug__in=valid_slugs).delete()
-
-        count = 0
-        for data in SAMPLE_PROPERTIES:
-            obj, created = Property.objects.update_or_create(
-                slug=data['slug'],
-                defaults=data
-            )
-            count += 1
-        self.stdout.write(self.style.SUCCESS(f'Successfully seeded {count} luxury properties (Total in DB: {Property.objects.count()}).'))
-
+    operations = [
+        migrations.RunPython(seed_phase1_properties, reverse_code=reverse_func),
+    ]

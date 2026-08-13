@@ -8,6 +8,8 @@ LOCATION_CHOICES = [
     ('fort_kochi', 'Fort Kochi - Heritage & Culture'),
     ('wayanad', 'Wayanad - Rainforest & Sanctuary'),
     ('kumarakom', 'Kumarakom - Lake & Lagoon'),
+    ('vagamon', 'Vagamon - Misty Pine Valleys'),
+    ('kovalam', 'Kovalam - Gold Sand Coastal Reserve'),
 ]
 
 PROPERTY_TYPE_CHOICES = [
@@ -16,6 +18,7 @@ PROPERTY_TYPE_CHOICES = [
     ('estate', 'Plantation Estate Manor'),
     ('bungalow', 'Colonial Heritage Bungalow'),
     ('cottage', 'Cliffside Ocean Cottage'),
+    ('residence', 'Modern High-End Residence'),
 ]
 
 class Property(models.Model):
