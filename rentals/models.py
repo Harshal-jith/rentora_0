@@ -10,6 +10,10 @@ LOCATION_CHOICES = [
     ('kumarakom', 'Kumarakom - Lake & Lagoon'),
     ('vagamon', 'Vagamon - Misty Pine Valleys'),
     ('kovalam', 'Kovalam - Gold Sand Coastal Reserve'),
+    ('athirappilly', 'Athirappilly - Rainforest & Waterfalls'),
+    ('thekkady', 'Thekkady - Spice Plantation Sanctuary'),
+    ('idukki', 'Idukki - High Range Valleys'),
+    ('kannur', 'Kannur - Malabar Coast Cliffs'),
 ]
 
 PROPERTY_TYPE_CHOICES = [
