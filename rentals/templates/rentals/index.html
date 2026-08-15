@@ -27,33 +27,26 @@
 ]
 </script>
 
-<!-- ACT 1: ARRIVAL — AMAN-INSPIRED FULL-BLEED LUXURY HERO -->
-<section class="hero-section hero-cinematic-fullscreen" id="hero" aria-label="Rentora Luxury Villa Rentals Hero">
+<!-- ACT 1: ARRIVAL — 50/50 ASYMMETRICAL LUXURY EDITORIAL HERO -->
+<section class="hero-section hero-split-5050" id="hero" aria-label="Rentora Luxury Villa Rentals Hero">
 
-    <!-- Dual-Layer Continuous Cross-Fade Background Engine -->
-    <div class="hero-crossfade-container" aria-hidden="true">
-        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% if featured_properties.0.main_image %}{{ featured_properties.0.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}');"></div>
-        <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
-    </div>
-
-    <!-- Multi-Stage Dark Charcoal Layered Gradient Vignette Overlay -->
-    <div class="hero-overlay-cinematic" aria-hidden="true"></div>
-
-    <!-- Editorial Hero Layout Container -->
-    <div class="hero-cinematic-container">
-
-        <!-- Left Column: Typography & Dual CTAs -->
-        <div class="hero-editorial-left">
+    <!-- Left Half Column: Deep Charcoal Obsidian Content Panel -->
+    <div class="hero-split-left">
+        <div class="hero-split-left-inner">
+            <!-- Small Champagne Eyebrow -->
             <span class="hero-eyebrow-text">KERALA’S PRIVATE ESCAPES</span>
 
-            <h1 class="hero-title-cinematic">
+            <!-- High-Contrast Serif Headline (Playfair Display) -->
+            <h1 class="hero-title-cinematic-serif">
                 BESPOKE PRIVATE<br>ESTATES
             </h1>
 
+            <!-- Modern Sans-Serif Subheadline -->
             <p class="hero-subline-cinematic">
                 Exceptional villas. Extraordinary Kerala.
             </p>
 
+            <!-- Dual CTA Group -->
             <div class="hero-cta-cinematic-group">
                 <a href="#discovery" class="btn btn-gold btn-hero-primary">
                     <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
@@ -63,27 +56,34 @@
                 </a>
             </div>
         </div>
+    </div>
 
-        <!-- Right Column: Anchored Luxury Stat Strip -->
-        <div class="hero-editorial-right">
-            <div class="hero-stat-strip-card" id="heroStatStrip">
-                <div class="hero-stat-item">
-                    <span class="stat-num">40+</span>
-                    <span class="stat-label">PRIVATE ESTATES</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat-item">
-                    <span class="stat-num">12</span>
-                    <span class="stat-label">KERALA REGIONS</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat-item">
-                    <span class="stat-num">5★</span>
-                    <span class="stat-label">VIP CONCIERGE</span>
-                </div>
-            </div>
+    <!-- Right Half Column: Edge-to-Edge Bleed Villa Image Hook -->
+    <div class="hero-split-right">
+        <!-- Dual-Layer Continuous Cross-Fade Background Engine for Right Column -->
+        <div class="hero-split-crossfade-container" aria-hidden="true">
+            <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% if featured_properties.0.main_image %}{{ featured_properties.0.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}');"></div>
+            <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
+            <div class="hero-right-vignette" aria-hidden="true"></div>
         </div>
 
+        <!-- Glassmorphism Floating Stats Box Overlaid on Bottom of Right Column Image -->
+        <div class="hero-stat-strip-card hero-glass-overlay-card" id="heroStatStrip">
+            <div class="hero-stat-item">
+                <span class="stat-num">40+</span>
+                <span class="stat-label">PRIVATE ESTATES</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat-item">
+                <span class="stat-num">12</span>
+                <span class="stat-label">KERALA REGIONS</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat-item">
+                <span class="stat-num">5★</span>
+                <span class="stat-label">VIP CONCIERGE</span>
+            </div>
+        </div>
     </div>
 
     <!-- Bottom Scroll Indicator with Bouncing Chevron -->
