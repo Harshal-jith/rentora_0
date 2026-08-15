@@ -35,9 +35,9 @@
     </div>
     {% endif %}
 
-    <!-- Floating Luxury Header Navigation Bar -->
+    <!-- Floating Luxury Header Navigation Bar (Initially hidden on hero, emerges on scroll) -->
     {% block navbar %}
-    <header class="navbar navbar-glass" id="navbar">
+    <header class="navbar navbar-glass {% if request.resolver_match.url_name == 'home' %}navbar-hero-hidden{% endif %}" id="navbar">
         <div class="nav-container">
             
             <!-- Left: Rentora Brand Logo -->

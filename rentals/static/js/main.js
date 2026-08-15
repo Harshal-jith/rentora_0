@@ -146,20 +146,20 @@ function initHeroSlideshow() {
         inactiveLayer = temp;
 
         // 2. Animate Card Content Text Change
-        const cardContent = document.querySelector('.card-main-content');
+        const cardContent = document.querySelector('.annotation-body');
         if (cardContent && !reducedMotion) {
             cardContent.classList.add('animating');
             setTimeout(() => {
-                if (cardLocation) cardLocation.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${item.location}`;
-                if (cardTitle) cardTitle.textContent = item.title;
-                if (cardPrice) cardPrice.textContent = item.price;
+                if (cardLocation) cardLocation.textContent = (item.location || '').toUpperCase();
+                if (cardTitle) cardTitle.textContent = (item.title || '').toUpperCase();
+                if (cardPrice) cardPrice.textContent = (item.price || '').toUpperCase();
                 if (cardLink) cardLink.href = item.url;
                 cardContent.classList.remove('animating');
             }, 300);
         } else {
-            if (cardLocation) cardLocation.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${item.location}`;
-            if (cardTitle) cardTitle.textContent = item.title;
-            if (cardPrice) cardPrice.textContent = item.price;
+            if (cardLocation) cardLocation.textContent = (item.location || '').toUpperCase();
+            if (cardTitle) cardTitle.textContent = (item.title || '').toUpperCase();
+            if (cardPrice) cardPrice.textContent = (item.price || '').toUpperCase();
             if (cardLink) cardLink.href = item.url;
         }
 
@@ -287,9 +287,9 @@ function initHeroParallax() {
             activeBg.style.transform = `scale(1.04) translate3d(${targetX * -12}px, ${targetY * -12}px, 0)`;
         }
 
-        const card = heroSection.querySelector('.hero-property-discovery-card');
+        const card = heroSection.querySelector('.hero-editorial-annotation-card');
         if (card) {
-            card.style.transform = `translate3d(${targetX * 8}px, ${targetY * 8}px, 0)`;
+            card.style.transform = `translate3d(${targetX * 6}px, ${targetY * 6}px, 0)`;
         }
 
         requestAnimationFrame(animateParallax);
@@ -299,14 +299,14 @@ function initHeroParallax() {
 }
 
 /* --------------------------------------------------------------------------
-   Navbar Scroll Observer (Transparent over Hero -> Glass on Scroll)
+   Navbar Scroll Observer (Hidden on Hero -> Emerges on Scroll)
    -------------------------------------------------------------------------- */
 function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
 
     function handleScroll() {
-        if (window.scrollY > 40) {
+        if (window.scrollY > 80) {
             navbar.classList.add('navbar-scrolled');
         } else {
             navbar.classList.remove('navbar-scrolled');
