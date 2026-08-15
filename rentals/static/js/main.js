@@ -493,5 +493,58 @@ function initMarqueeScrollSlide() {
 
 document.addEventListener("DOMContentLoaded", function() {
     initMarqueeScrollSlide();
+    initStickyStackingCards();
 });
+
+/* --------------------------------------------------------------------------
+   9. Sticky Stacking Cards Motion Engine (3D Card Scale & Stacking)
+   -------------------------------------------------------------------------- */
+function initStickyStackingCards() {
+    const cardSections = document.querySelectorAll(".sticky-stacking-section");
+    if (!cardSections.length) return;
+
+    function updateCardStacking() {
+        cardSections.forEach(section => {
+            const cards = section.querySelectorAll(".sticky-stack-card");
+            if (!cards.length) return;
+
+            const winHeight = window.innerHeight;
+
+            cards.forEach((card, index) => {
+                const offsetTop = 100 + (index * 26);
+                card.style.top = `${offsetTop}px`;
+
+                if (index < cards.length - 1) {
+                    const nextCard = cards[index + 1];
+                    const nextRect = nextCard.getBoundingClientRect();
+                    const distance = nextRect.top - offsetTop;
+
+                    if (distance < winHeight * 0.55) {
+                        const progress = Math.max(0, Math.min(1, (winHeight * 0.55 - distance) / (winHeight * 0.55)));
+                        const scale = 1 - (progress * 0.04);
+                        const brightness = 1 - (progress * 0.2);
+                        card.style.transform = `scale(${scale.toFixed(4)})`;
+                        card.style.filter = `brightness(${brightness.toFixed(2)})`;
+                    } else {
+                        card.style.transform = `scale(1)`;
+                        card.style.filter = `brightness(1)`;
+                    }
+                }
+            });
+        });
+    }
+
+    let ticking = false;
+    window.addEventListener("scroll", function() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateCardStacking();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    updateCardStacking();
+}
 

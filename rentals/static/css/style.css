@@ -598,6 +598,150 @@ body.hero-animate-active .hero-brand-logo-wrap {
     line-height: 1.3;
 }
 
+/* STICKY STACKING CARDS SLIDE SECTION (MATCHING SCREENSHOT) */
+.sticky-stacking-section {
+    position: relative;
+    padding: 80px 0 120px 0;
+    background: #0C0C0C;
+    border-top: 1px solid rgba(215, 226, 234, 0.08);
+}
+
+.stack-cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sticky-stack-card {
+    position: sticky;
+    top: 100px;
+    background: #0C0C0C;
+    border: 2px solid #D7E2EA;
+    border-radius: 36px;
+    padding: 28px;
+    box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.8);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), scale 0.35s ease, filter 0.35s ease;
+    will-change: transform, scale, filter;
+}
+
+@media (min-width: 768px) {
+    .sticky-stack-card {
+        border-radius: 52px;
+        padding: 40px;
+    }
+}
+
+.stack-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    gap: 20px;
+}
+
+.stack-card-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stack-card-number {
+    font-family: var(--font-btn);
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    font-weight: 900;
+    color: #D7E2EA;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.stack-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stack-card-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-bright);
+}
+
+.stack-card-title {
+    font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.25;
+}
+
+.stack-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #D7E2EA;
+    color: #D7E2EA;
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.stack-card-btn:hover {
+    background: rgba(215, 226, 234, 0.15);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.stack-card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+@media (min-width: 768px) {
+    .stack-card-grid {
+        grid-template-columns: 4fr 6fr;
+        gap: 22px;
+    }
+}
+
+.grid-col-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.grid-img-small {
+    width: 100%;
+    height: clamp(120px, 14vw, 190px);
+    border-radius: 24px;
+    object-fit: cover;
+    border: 1px solid rgba(215, 226, 234, 0.16);
+}
+
+.grid-img-tall {
+    width: 100%;
+    height: clamp(260px, 30vw, 410px);
+    border-radius: 28px;
+    object-fit: cover;
+    border: 1px solid rgba(215, 226, 234, 0.16);
+}
+
+.stack-card-desc {
+    color: #BBCCD7;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-top: 4px;
+}
+
 .hero-edition-pill {
     display: inline-flex;
     align-items: center;

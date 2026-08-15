@@ -137,177 +137,168 @@
     </div>
 </section>
 
-<!-- SECTION 2: THE RENTORA ADVANTAGE (HORIZONTALLY SCROLLING FEATURE CAROUSEL) -->
-<section class="section advantage-section" id="advantage">
+<!-- SECTION 3: THE RENTORA ADVANTAGE (STICKY STACKING CARDS SLIDE ANIMATION) -->
+<section class="section sticky-stacking-section" id="advantage">
     <div class="section-container advantage-header-wrap">
         <span class="sub-heading-gold reveal-popup">THE RENTORA ADVANTAGE</span>
         <h2 class="serif-title advantage-title reveal-popup">Bespoke Services for Luxury Travelers</h2>
         <p class="advantage-desc reveal-popup">We manage and curate Kerala's most sought-after private estates, houseboats and cliffside residences.</p>
     </div>
 
-    <!-- Infinite Auto-Scrolling Feature Carousel -->
-    <div class="carousel-outer-wrapper">
-        <div class="carousel-track" id="featureCarouselTrack">
-            
-            <!-- Facility Card 1 -->
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-shield-halved text-gold-icon"></i>
+    <div class="stack-cards-wrapper">
+        <!-- Sticky Card 01 -->
+        <div class="sticky-stack-card">
+            <div class="stack-card-header">
+                <div class="stack-card-info">
+                    <span class="stack-card-number">01</span>
+                    <div class="stack-card-meta">
+                        <span class="stack-card-tag">SIGNATURE SERVICE</span>
+                        <h3 class="stack-card-title">100% Verified Private Estates</h3>
+                    </div>
                 </div>
-                <h3>100% Verified Estates</h3>
-                <p>Every estate undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
-                <div class="card-reflection"></div>
+                <a href="{% url 'properties' %}" class="stack-card-btn">EXPLORE ESTATES</a>
             </div>
-
-            <!-- Facility Card 2 -->
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-utensils text-gold-icon"></i>
+            <div class="stack-card-grid">
+                <div class="grid-col-stacked">
+                    <img src="{% static 'images/properties/prop_01_wayanad.jpg' %}" alt="Wayanad Estate" class="grid-img-small">
+                    <img src="{% static 'images/properties/prop_02_munnar.jpg' %}" alt="Munnar Estate" class="grid-img-small">
+                    <p class="stack-card-desc">Every estate undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
                 </div>
-                <h3>Private Culinary Masters</h3>
-                <p>Indulge in custom multi-course dining, sea-to-table seafood grills, and organic plantation gastronomy prepared by top private chefs.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-            <!-- Facility Card 3 -->
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-ship text-gold-icon"></i>
+                <div class="grid-col-hero">
+                    <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Cliffside" class="grid-img-tall">
                 </div>
-                <h3>Private Backwater Charters</h3>
-                <p>Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
-                <div class="card-reflection"></div>
             </div>
+        </div>
 
-            <!-- Facility Card 4 -->
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-plane text-gold-icon"></i>
+        <!-- Sticky Card 02 -->
+        <div class="sticky-stack-card">
+            <div class="stack-card-header">
+                <div class="stack-card-info">
+                    <span class="stack-card-number">02</span>
+                    <div class="stack-card-meta">
+                        <span class="stack-card-tag">CULINARY MASTERY</span>
+                        <h3 class="stack-card-title">Private Master Chefs & Gastronomy</h3>
+                    </div>
                 </div>
-                <h3>Helicopter & SUV Transfers</h3>
-                <p>Seamless airport transfers via luxury SUVs or direct helicopter arrivals at private estate helipads across Munnar and Wayanad.</p>
-                <div class="card-reflection"></div>
+                <a href="{% url 'properties' %}" class="stack-card-btn">VIEW MENU</a>
             </div>
-
-            <!-- Facility Card 5 -->
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-lock text-gold-icon"></i>
+            <div class="stack-card-grid">
+                <div class="grid-col-stacked">
+                    <img src="{% static 'images/scene_wine_cellar_1784963481411.jpg' %}" alt="Wine Cellar" class="grid-img-small">
+                    <img src="{% static 'images/scene_living_room_1784963440870.jpg' %}" alt="Dining Room" class="grid-img-small">
+                    <p class="stack-card-desc">Indulge in custom multi-course dining, sea-to-table seafood grills, and organic plantation gastronomy prepared by top private chefs.</p>
                 </div>
-                <h3>Confidential Private Stays</h3>
-                <p>Discreet high-security estates featuring private access gates, dedicated staff quarters, and total privacy for high-net-worth guests.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-            <!-- Facility Card 6 -->
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-bell text-gold-icon"></i>
+                <div class="grid-col-hero">
+                    <img src="{% static 'images/properties/prop_04_kumarakom.jpg' %}" alt="Kumarakom Lake Pavilion" class="grid-img-tall">
                 </div>
-                <h3>24/7 Dedicated Estate Manager</h3>
-                <p>Your personal host is available around the clock to coordinate private excursions, yacht rentals, bespoke concierge requests, and wellness appointments.</p>
-                <div class="card-reflection"></div>
             </div>
+        </div>
 
+        <!-- Sticky Card 03 -->
+        <div class="sticky-stack-card">
+            <div class="stack-card-header">
+                <div class="stack-card-info">
+                    <span class="stack-card-number">03</span>
+                    <div class="stack-card-meta">
+                        <span class="stack-card-tag">VIP TRANSFERS</span>
+                        <h3 class="stack-card-title">Private Charters & Helipad Transfers</h3>
+                    </div>
+                </div>
+                <a href="{% url 'properties' %}" class="stack-card-btn">VIP ACCESS</a>
+            </div>
+            <div class="stack-card-grid">
+                <div class="grid-col-stacked">
+                    <img src="{% static 'images/properties/prop_05_alleppey.jpg' %}" alt="Alleppey Yacht" class="grid-img-small">
+                    <img src="{% static 'images/properties/prop_07_kovalam.jpg' %}" alt="Kovalam Coast" class="grid-img-small">
+                    <p class="stack-card-desc">Seamless airport transfers via luxury SUVs or direct helicopter arrivals at private estate helipads across Munnar and Wayanad.</p>
+                </div>
+                <div class="grid-col-hero">
+                    <img src="{% static 'images/properties/prop_08_kochi.jpg' %}" alt="Kochi Heritage Manor" class="grid-img-tall">
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE -->
-<section class="section facilities-section" id="facilities">
+<!-- SECTION 4: PREMIUM LUXURY FACILITIES SHOWCASE (STICKY STACKING CARDS SLIDE ANIMATION) -->
+<section class="section sticky-stacking-section" id="facilities">
     <div class="section-container advantage-header-wrap">
         <span class="sub-heading-gold reveal-popup">UNPARALLELED AMENITIES</span>
         <h2 class="serif-title advantage-title reveal-popup">World-Class In-Villa Facilities</h2>
         <p class="advantage-desc reveal-popup">Designed to provide absolute privacy, comfort, and uncompromising luxury throughout your stay.</p>
     </div>
 
-    <div class="section-container">
-        <div class="facilities-grid">
-            
-            <!-- Facility Item 1 -->
-            <div class="facility-card-glass reveal-popup">
-                <div class="facility-header">
-                    <div class="facility-icon"><i class="fa-solid fa-spa text-gold-icon"></i></div>
-                    <span class="facility-number">01</span>
+    <div class="stack-cards-wrapper">
+        <!-- Sticky Card 01 -->
+        <div class="sticky-stack-card">
+            <div class="stack-card-header">
+                <div class="stack-card-info">
+                    <span class="stack-card-number">01</span>
+                    <div class="stack-card-meta">
+                        <span class="stack-card-tag">AYURVEDIC WELLNESS</span>
+                        <h3 class="stack-card-title">In-Villa Ayurvedic Spa & Therapy</h3>
+                    </div>
                 </div>
-                <h3>In-Villa Ayurvedic Wellness</h3>
-                <p>Private treatment rooms with certified Ayurvedic practitioners offering personalized Panchakarma, herbal baths, and holistic massages in complete privacy.</p>
-                <ul class="facility-features-list">
-                    <li><i class="fa-solid fa-check"></i> Master Herbal Therapists</li>
-                    <li><i class="fa-solid fa-check"></i> Private Treatment Suites</li>
-                </ul>
+                <a href="{% url 'properties' %}" class="stack-card-btn">SPA SUITE</a>
             </div>
-
-            <!-- Facility Item 2 -->
-            <div class="facility-card-glass reveal-popup">
-                <div class="facility-header">
-                    <div class="facility-icon"><i class="fa-solid fa-anchor text-gold-icon"></i></div>
-                    <span class="facility-number">02</span>
+            <div class="stack-card-grid">
+                <div class="grid-col-stacked">
+                    <img src="{% static 'images/properties/prop_06_vagamon.jpg' %}" alt="Spa Lounge" class="grid-img-small">
+                    <img src="{% static 'images/properties/prop_09_athirappilly.jpg' %}" alt="Rainforest Spa" class="grid-img-small">
+                    <p class="stack-card-desc">Private treatment rooms with certified Ayurvedic practitioners offering personalized Panchakarma, herbal baths, and holistic massages in complete privacy.</p>
                 </div>
-                <h3>Private Yacht & Lagoon Charters</h3>
-                <p>Exclusive access to private luxury yachts, presidential houseboats, and speedboats for sunset cruises across serene backwaters.</p>
-                <ul class="facility-features-list">
-                    <li><i class="fa-solid fa-check"></i> Private Captain & Crew</li>
-                    <li><i class="fa-solid fa-check"></i> Sunset Backwater Dining</li>
-                </ul>
-            </div>
-
-            <!-- Facility Item 3 -->
-            <div class="facility-card-glass reveal-popup">
-                <div class="facility-header">
-                    <div class="facility-icon"><i class="fa-solid fa-water-ladder text-gold-icon"></i></div>
-                    <span class="facility-number">03</span>
+                <div class="grid-col-hero">
+                    <img src="{% static 'images/properties/prop_10_thekkady.jpg' %}" alt="Thekkady Spice Garden" class="grid-img-tall">
                 </div>
-                <h3>Temperature-Controlled Infinity Pools</h3>
-                <p>Private heated infinity pools overlooking serene ocean cliffs and tea garden valleys, complete with underwater audio systems.</p>
-                <ul class="facility-features-list">
-                    <li><i class="fa-solid fa-check"></i> Hydrotherapy Jets</li>
-                    <li><i class="fa-solid fa-check"></i> Sunken Pool Lounges</li>
-                </ul>
             </div>
+        </div>
 
-            <!-- Facility Item 4 -->
-            <div class="facility-card-glass reveal-popup">
-                <div class="facility-header">
-                    <div class="facility-icon"><i class="fa-solid fa-wifi text-gold-icon"></i></div>
-                    <span class="facility-number">04</span>
+        <!-- Sticky Card 02 -->
+        <div class="sticky-stack-card">
+            <div class="stack-card-header">
+                <div class="stack-card-info">
+                    <span class="stack-card-number">02</span>
+                    <div class="stack-card-meta">
+                        <span class="stack-card-tag">MARITIME EXPERIENCE</span>
+                        <h3 class="stack-card-title">Private Yacht & Backwater Charters</h3>
+                    </div>
                 </div>
-                <h3>Ultra-High-Speed Starlink Connectivity</h3>
-                <p>Dedicated gigabit satellite internet and encrypted mesh Wi-Fi 6 coverage across every acre of private estate grounds.</p>
-                <ul class="facility-features-list">
-                    <li><i class="fa-solid fa-check"></i> 1 Gbps Fiber Mesh</li>
-                    <li><i class="fa-solid fa-check"></i> Executive Workspace Suites</li>
-                </ul>
+                <a href="{% url 'properties' %}" class="stack-card-btn">CRUISER DOCK</a>
             </div>
-
-            <!-- Facility Item 5 -->
-            <div class="facility-card-glass reveal-popup">
-                <div class="facility-header">
-                    <div class="facility-icon"><i class="fa-solid fa-user-shield text-gold-icon"></i></div>
-                    <span class="facility-number">05</span>
+            <div class="stack-card-grid">
+                <div class="grid-col-stacked">
+                    <img src="{% static 'images/properties/prop_04_kumarakom.jpg' %}" alt="Lake Vembanad" class="grid-img-small">
+                    <img src="{% static 'images/properties/prop_05_alleppey.jpg' %}" alt="Alleppey Dock" class="grid-img-small">
+                    <p class="stack-card-desc">Exclusive access to private luxury yachts, presidential houseboats, and speedboats for sunset cruises across serene backwaters.</p>
                 </div>
-                <h3>24/7 VIP Security & Gatekeepers</h3>
-                <p>Discreet round-the-clock perimeter security, biometric access gates, thermal surveillance, and dedicated staff quarters for total privacy.</p>
-                <ul class="facility-features-list">
-                    <li><i class="fa-solid fa-check"></i> Biometric Access Control</li>
-                    <li><i class="fa-solid fa-check"></i> Complete VIP Privacy</li>
-                </ul>
-            </div>
-
-            <!-- Facility Item 6 -->
-            <div class="facility-card-glass reveal-popup">
-                <div class="facility-header">
-                    <div class="facility-icon"><i class="fa-solid fa-helicopter text-gold-icon"></i></div>
-                    <span class="facility-number">06</span>
+                <div class="grid-col-hero">
+                    <img src="{% static 'images/properties/prop_08_kochi.jpg' %}" alt="Fort Kochi Harbor" class="grid-img-tall">
                 </div>
-                <h3>Private Helipads & Chauffeur Fleet</h3>
-                <p>Direct helicopter landings at estate helipads combined with a fleet of armored Maybach SUVs for seamless airport transfers.</p>
-                <ul class="facility-features-list">
-                    <li><i class="fa-solid fa-check"></i> On-Site Estate Helipads</li>
-                    <li><i class="fa-solid fa-check"></i> Chauffeur Maybach SUV Fleet</li>
-                </ul>
             </div>
+        </div>
 
+        <!-- Sticky Card 03 -->
+        <div class="sticky-stack-card">
+            <div class="stack-card-header">
+                <div class="stack-card-info">
+                    <span class="stack-card-number">03</span>
+                    <div class="stack-card-meta">
+                        <span class="stack-card-tag">HYDROTHERAPY</span>
+                        <h3 class="stack-card-title">Heated Infinity Pools & Jacuzzis</h3>
+                    </div>
+                </div>
+                <a href="{% url 'properties' %}" class="stack-card-btn">INFINITY POOL</a>
+            </div>
+            <div class="stack-card-grid">
+                <div class="grid-col-stacked">
+                    <img src="{% static 'images/properties/prop_01_wayanad.jpg' %}" alt="Wayanad Infinity Pool" class="grid-img-small">
+                    <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Cliff Pool" class="grid-img-small">
+                    <p class="stack-card-desc">Private heated infinity pools overlooking serene ocean cliffs and tea garden valleys, complete with hydrotherapy jets and underwater audio systems.</p>
+                </div>
+                <div class="grid-col-hero">
+                    <img src="{% static 'images/properties/prop_11_idukki.jpg' %}" alt="Idukki Stargazing Deck" class="grid-img-tall">
+                </div>
+            </div>
         </div>
     </div>
 </section>
