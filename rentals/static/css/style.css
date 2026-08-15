@@ -733,55 +733,45 @@ body.hero-animate-active .hero-brand-logo-wrap {
     transform: translateY(-2px);
 }
 
-.stack-card-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+/* SINGLE IMAGE CARD LAYOUT & HIGH LEGIBILITY TYPOGRAPHY */
+.stack-card-single-body {
+    display: flex;
+    flex-direction: column;
     gap: 18px;
 }
 
-@media (min-width: 768px) {
-    .stack-card-grid {
-        grid-template-columns: 4fr 6fr;
-        gap: 24px;
-    }
-}
-
-.grid-col-stacked {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.grid-img-small {
+.card-hero-img-wrap {
     width: 100%;
-    height: clamp(120px, 14vw, 190px);
-    border-radius: 24px;
-    object-fit: cover;
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.5s ease, border-color 0.5s ease;
+    height: clamp(220px, 28vw, 380px);
+    border-radius: 26px;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.32);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
 }
 
-.grid-img-tall {
+.card-single-hero-img {
     width: 100%;
-    height: clamp(260px, 30vw, 410px);
-    border-radius: 28px;
+    height: 100%;
     object-fit: cover;
-    border: 1px solid rgba(212, 175, 55, 0.28);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-    transition: transform 0.5s ease, border-color 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sticky-stack-card:hover .grid-img-small,
-.sticky-stack-card:hover .grid-img-tall {
-    border-color: rgba(212, 175, 55, 0.5);
+.sticky-stack-card:hover .card-single-hero-img {
+    transform: scale(1.04);
 }
 
-.stack-card-desc {
-    color: #D8D0C5;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    margin-top: 4px;
+.stack-card-desc-high-contrast {
+    color: #F4F8FB;
+    font-size: clamp(0.95rem, 1.5vw, 1.12rem);
+    line-height: 1.65;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    background: rgba(10, 10, 10, 0.78);
+    padding: 16px 22px;
+    border-radius: 18px;
+    border-left: 3.5px solid var(--gold-bright);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    margin-top: 2px;
 }
 
 .hero-edition-pill {
