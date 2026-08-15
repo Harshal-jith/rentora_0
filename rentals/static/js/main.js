@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollObserver();
     initMobileNav();
     initHeroScrollDampener();
+    initNavbarScroll();
 });
 
 /* --------------------------------------------------------------------------
@@ -63,38 +64,167 @@ function initSeamlessAuthVideoLoop() {
 }
 
 /* --------------------------------------------------------------------------
-   Hero Dynamic Background Slideshow (Butter-Smooth Dual-Layer Crossfade)
+   Hero Dynamic Background Slideshow (Cinematic Crossfade + Property Card Sync)
    -------------------------------------------------------------------------- */
 function initHeroSlideshow() {
     const layerA = document.getElementById('bgLayerA');
     const layerB = document.getElementById('bgLayerB');
+    const cardTitle = document.getElementById('cardPropTitle');
+    const cardLocation = document.getElementById('cardPropLocation');
+    const cardPrice = document.getElementById('cardPropPrice');
+    const cardLink = document.getElementById('cardPropLink');
+    const slideCounter = document.getElementById('heroSlideCounter');
+    const progressBar = document.getElementById('heroProgressBar');
+    const pillsContainer = document.getElementById('heroSlidePills');
+    const jsonScript = document.getElementById('heroFeaturedPropertiesJson');
+
     if (!layerA || !layerB) return;
 
-    const bgImages = [
-        '/static/images/hero_mid_villa_1784964394119.jpg',
-        '/static/images/scene_night_exterior_1784963519950.jpg',
-        '/static/images/scene_kerala_estate_1784963501632.jpg',
-        '/static/images/hero_fg_pool_1784964408615.jpg'
-    ];
+    let properties = [];
+    if (jsonScript && jsonScript.textContent) {
+        try {
+            properties = JSON.parse(jsonScript.textContent);
+        } catch (e) {
+            properties = [];
+        }
+    }
 
+    // Fallback properties if JSON is empty
+    if (!properties || !properties.length) {
+        properties = [
+            {
+                title: "Wayanad Mistwood Sanctuary Estate",
+                location: "Lakkidi Rainforest, Wayanad",
+                price: "From ₹45,000 / night",
+                image: "/static/images/properties/prop_01_wayanad.jpg",
+                url: "/properties/wayanad-mistwood-sanctuary-estate/"
+            },
+            {
+                title: "Munnar Celestial Tea Haven Manor",
+                location: "Chithirapuram Tea Hills, Munnar",
+                price: "From ₹48,000 / night",
+                image: "/static/images/properties/prop_02_munnar.jpg",
+                url: "/properties/munnar-celestial-tea-haven-manor/"
+            },
+            {
+                title: "Varkala Azure Cliffside Ocean Residence",
+                location: "North Cliff Promenade, Varkala",
+                price: "From ₹38,000 / night",
+                image: "/static/images/properties/prop_03_varkala.jpg",
+                url: "/properties/varkala-azure-cliffside-ocean-residence/"
+            },
+            {
+                title: "Kumarakom Lotus Lakefront Pavilion",
+                location: "Vembanad Lake Shoreline, Kumarakom",
+                price: "From ₹42,000 / night",
+                image: "/static/images/properties/prop_04_kumarakom.jpg",
+                url: "/properties/kumarakom-lotus-lakefront-pavilion/"
+            }
+        ];
+    }
+
+    const totalSlides = properties.length;
     let currentIndex = 0;
     let activeLayer = layerA;
     let inactiveLayer = layerB;
+    let slideTimer = null;
+    const SLIDE_DURATION = 7000;
 
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % bgImages.length;
-        const nextImage = bgImages[currentIndex];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Prepare inactive layer with next image
-        inactiveLayer.style.backgroundImage = `url('${nextImage}')`;
+    function updateCardAndBackground(index) {
+        const item = properties[index];
+        if (!item) return;
+
+        // 1. Crossfade Background
+        inactiveLayer.style.backgroundImage = `url('${item.image}')`;
         inactiveLayer.classList.add('active');
         activeLayer.classList.remove('active');
 
-        // Swap active and inactive layer pointers
         const temp = activeLayer;
         activeLayer = inactiveLayer;
         inactiveLayer = temp;
-    }, 5500);
+
+        // 2. Animate Card Content Text Change
+        const cardContent = document.querySelector('.card-main-content');
+        if (cardContent && !reducedMotion) {
+            cardContent.classList.add('animating');
+            setTimeout(() => {
+                if (cardLocation) cardLocation.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${item.location}`;
+                if (cardTitle) cardTitle.textContent = item.title;
+                if (cardPrice) cardPrice.textContent = item.price;
+                if (cardLink) cardLink.href = item.url;
+                cardContent.classList.remove('animating');
+            }, 300);
+        } else {
+            if (cardLocation) cardLocation.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${item.location}`;
+            if (cardTitle) cardTitle.textContent = item.title;
+            if (cardPrice) cardPrice.textContent = item.price;
+            if (cardLink) cardLink.href = item.url;
+        }
+
+        // 3. Update Slide Counter
+        if (slideCounter) {
+            const currEl = slideCounter.querySelector('.curr-num');
+            const totalEl = slideCounter.querySelector('.total-num');
+            if (currEl) currEl.textContent = String(index + 1).padStart(2, '0');
+            if (totalEl) totalEl.textContent = String(totalSlides).padStart(2, '0');
+        }
+
+        // 4. Update Navigation Pills
+        if (pillsContainer) {
+            const pills = pillsContainer.querySelectorAll('.slide-pill-btn');
+            pills.forEach((pill, i) => {
+                if (i === index) pill.classList.add('active');
+                else pill.classList.remove('active');
+            });
+        }
+
+        // 5. Reset & Start Progress Bar
+        startProgressBar();
+    }
+
+    function startProgressBar() {
+        if (progressBar) {
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            void progressBar.offsetWidth; // Reflow
+            progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
+            progressBar.style.width = '100%';
+        }
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCardAndBackground(currentIndex);
+        resetAutoTimer();
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCardAndBackground(currentIndex);
+    }
+
+    function resetAutoTimer() {
+        if (slideTimer) clearInterval(slideTimer);
+        if (!reducedMotion) {
+            slideTimer = setInterval(nextSlide, SLIDE_DURATION);
+        }
+    }
+
+    // Attach Click Event Listeners to Nav Pills
+    if (pillsContainer) {
+        const pills = pillsContainer.querySelectorAll('.slide-pill-btn');
+        pills.forEach((pill, i) => {
+            pill.addEventListener('click', () => {
+                goToSlide(i);
+            });
+        });
+    }
+
+    // Initial setup
+    updateCardAndBackground(0);
+    resetAutoTimer();
 }
 
 /* --------------------------------------------------------------------------
@@ -118,7 +248,8 @@ function initThemeToggle() {
 
     function setTheme(theme) {
         htmlEl.setAttribute('data-theme', theme);
-        document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
+        document.body.classList.remove('dark-theme', 'light-theme');
+        document.body.classList.add(theme === 'dark' ? 'dark-theme' : 'light-theme');
         localStorage.setItem('rentora_theme', theme);
 
         if (themeIcon) {
@@ -128,11 +259,13 @@ function initThemeToggle() {
 }
 
 /* --------------------------------------------------------------------------
-   2. Ultra-Subtle Hero Parallax (Fixed Camera: Max 3-5px Total Movement)
+   2. Desktop Mouse Parallax (3-8px Depth Movement)
    -------------------------------------------------------------------------- */
 function initHeroParallax() {
     const heroSection = document.querySelector('.hero-section');
     if (!heroSection) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 992) return;
 
     let mouseX = 0, mouseY = 0;
     let targetX = 0, targetY = 0;
@@ -146,23 +279,42 @@ function initHeroParallax() {
     }, { passive: true });
 
     function animateParallax() {
-        targetX += (mouseX - targetX) * 0.04;
-        targetY += (mouseY - targetY) * 0.04;
+        targetX += (mouseX - targetX) * 0.05;
+        targetY += (mouseY - targetY) * 0.05;
 
         const activeBg = heroSection.querySelector('.hero-bg-layer.active');
         if (activeBg) {
-            activeBg.style.transform = `scale(1.05) translate3d(${targetX * -15}px, ${targetY * -15}px, 0)`;
+            activeBg.style.transform = `scale(1.04) translate3d(${targetX * -12}px, ${targetY * -12}px, 0)`;
         }
 
-        const flare = heroSection.querySelector('.hero-radial-flare');
-        if (flare && document.body.classList.contains('hero-animate-active')) {
-            flare.style.transform = `translate(-50%, -50%) translate3d(${targetX * 22}px, ${targetY * 22}px, 0) scale(1.1)`;
+        const card = heroSection.querySelector('.hero-property-discovery-card');
+        if (card) {
+            card.style.transform = `translate3d(${targetX * 8}px, ${targetY * 8}px, 0)`;
         }
 
         requestAnimationFrame(animateParallax);
     }
 
     requestAnimationFrame(animateParallax);
+}
+
+/* --------------------------------------------------------------------------
+   Navbar Scroll Observer (Transparent over Hero -> Glass on Scroll)
+   -------------------------------------------------------------------------- */
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    function handleScroll() {
+        if (window.scrollY > 40) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 }
 
 /* --------------------------------------------------------------------------

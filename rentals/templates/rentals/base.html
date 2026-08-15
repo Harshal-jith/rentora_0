@@ -20,25 +20,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4.9">
     {% block extra_css %}{% endblock %}
 </head>
-<body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
-
-    <!-- RENTORA CINEMATIC BRAND LOGO REVEAL PRELOADER (HERO LANDING PAGE ONLY) -->
-    {% if request.resolver_match.url_name == 'home' %}
-    <div id="rentoraPreloader" class="rentora-preloader-overlay">
-        <div class="preloader-content">
-            <!-- Brand Logo Reveal (Pure Transparent Logo) -->
-            <div class="preloader-logo-reveal-box">
-                <img src="{% static 'images/logo_dark.png' %}" alt="Rentora Luxury Hospitality" class="preloader-revealed-logo">
-            </div>
-
-            <!-- Expanding Gold Line -->
-            <div class="preloader-gold-hairline"></div>
-
-            <!-- Official Tagline -->
-            <p class="preloader-official-tagline">Stay Beyond Extraordinary</p>
-        </div>
-    </div>
-    {% endif %}
+<body class="dark-theme hero-animate-active {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
 
     <!-- Django Flash Messages -->
     {% if messages %}
@@ -53,26 +35,28 @@
     </div>
     {% endif %}
 
-    <!-- Floating Glass Navigation Bar (CENTERED LOGO LUXURY HEADER) -->
+    <!-- Floating Luxury Header Navigation Bar -->
     {% block navbar %}
     <header class="navbar navbar-glass" id="navbar">
-        <div class="nav-container nav-container-centered">
+        <div class="nav-container">
             
-            <!-- Left: Navigation Links -->
-            <nav class="nav-links">
-                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Estates</a>
-                <a href="{% url 'home' %}#facilities" class="nav-link">Facilities</a>
-            </nav>
-
-            <!-- Center: Rentora Brand Logo (CENTERED) -->
-            <a href="{% url 'home' %}" class="brand-logo brand-logo-center" aria-label="Rentora Home">
+            <!-- Left: Rentora Brand Logo -->
+            <a href="{% url 'home' %}" class="brand-logo" aria-label="Rentora Home">
                 <div class="logo-wrapper">
                     <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="logo-img logo-dark">
                     <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="logo-img logo-light">
                 </div>
             </a>
 
-            <!-- Right: Actions & Auth Glass Buttons -->
+            <!-- Center: Editorial Navigation Links -->
+            <nav class="nav-links">
+                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Estates</a>
+                <a href="{% url 'home' %}#destinations" class="nav-link">Destinations</a>
+                <a href="{% url 'home' %}#facilities" class="nav-link">Facilities</a>
+                <a href="{% url 'home' %}#advantage" class="nav-link">About</a>
+            </nav>
+
+            <!-- Right: Actions & Auth Buttons -->
             <div class="nav-actions">
                 <!-- Dark / Light Theme Switcher -->
                 <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">

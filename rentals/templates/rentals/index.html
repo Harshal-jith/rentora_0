@@ -1,94 +1,135 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Rentora — The Sanctuary of Uncompromised Luxury{% endblock %}
-
-<!-- Clean Hero: No Header/Navbar on Landing Page -->
-{% block navbar %}{% endblock %}
+{% block title %}Rentora — Bespoke Private Estates in Kerala{% endblock %}
 
 {% block extra_css %}
-<link rel="preload" as="image" href="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" fetchpriority="high">
-<link rel="preload" as="image" href="{% static 'images/scene_arrival_1784964424610.jpg' %}">
+<link rel="preload" as="image" href="{% static 'images/properties/prop_01_wayanad.jpg' %}" fetchpriority="high">
+<link rel="preload" as="image" href="{% static 'images/properties/prop_02_munnar.jpg' %}">
 {% endblock %}
 
 {% block content %}
 <div class="landing-page-wrapper permanent-dark-page">
-<!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO -->
-<section class="hero-section hero-editorial-fullscreen" id="hero">
+
+<!-- JSON DATA EMBED FOR HERO SLIDESHOW -->
+<script id="heroFeaturedPropertiesJson" type="application/json">
+[
+    {% for prop in featured_properties|slice:":4" %}
+    {
+        "id": {{ prop.id }},
+        "title": "{{ prop.title|escapejs }}",
+        "location": "{{ prop.location_display_name|escapejs }}",
+        "price": "From ₹{{ prop.price_per_night|floatformat:0 }} / night",
+        "image": "{% if prop.main_image %}{{ prop.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}",
+        "url": "{% url 'property_detail' prop.slug %}"
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+]
+</script>
+
+<!-- SECTION 1: ARCHITECTURAL CINEMATIC LUXURY HERO (100VH) -->
+<section class="hero-section hero-cinematic-fullscreen" id="hero">
 
     <!-- Dual-Layer Continuous Cross-Fade Background Engine -->
     <div class="hero-crossfade-container">
-        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
+        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% if featured_properties.0.main_image %}{{ featured_properties.0.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}');"></div>
         <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
     </div>
 
-    <!-- Ambient Dark Gradient Vignette -->
-    <div class="hero-overlay-editorial"></div>
+    <!-- Multi-Stage Dark Editorial Gradient Vignette Overlay -->
+    <div class="hero-overlay-cinematic"></div>
 
     <!-- Ambient Golden Radial Flare Glow -->
     <div class="hero-radial-flare"></div>
 
-    <!-- Floating Gold Particle Canvas -->
+    <!-- Floating Dust Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Editorial Hero Core Layout -->
-    <div class="hero-content-editorial">
-        
-        <!-- Large Transparent Rentora Brand Logo (Top Center - Permanent Dark) -->
-        <div class="hero-brand-logo-wrap">
-            <a href="{% url 'home' %}" aria-label="Rentora Luxury Hospitality">
-                <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-main-logo hero-permanent-dark-logo">
-            </a>
-        </div>
+    <!-- Editorial Hero Core Grid Layout -->
+    <div class="hero-cinematic-container">
 
-        <!-- Headline (Playfair Display & Gold Shimmer) -->
-        <h1 class="hero-title-editorial">
-            Kerala’s Sanctuary of<br>
-            <span class="gold-shimmer-text">Bespoke Private Estates</span>
-        </h1>
-
-        <!-- Subtitle -->
-        <p class="hero-subtitle-editorial">
-            Kerala's premiere private hospitality platform. Experience 100% verified estates, in-villa culinary masters, private helipads, and 24/7 dedicated estate concierge.
-        </p>
-
-        <!-- Action Buttons -->
-        <div class="hero-cta-editorial-group">
-            <a href="#advantage" class="btn btn-gold btn-editorial-primary">
-                <span>Explore Advantage</span> <i class="fa-solid fa-arrow-right"></i>
-            </a>
-            <a href="#facilities" class="btn btn-glass btn-editorial-secondary">
-                <span>In-Villa Facilities</span> <i class="fa-solid fa-gem"></i>
-            </a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'dashboard' %}" class="btn btn-glass btn-editorial-secondary">
-                <span>My Dashboard</span> <i class="fa-solid fa-user"></i>
-            </a>
-            {% else %}
-            <a href="{% url 'login' %}" class="btn btn-gold btn-editorial-primary">
-                <span>Sign In / Register</span> <i class="fa-solid fa-right-to-bracket"></i>
-            </a>
-            {% endif %}
-        </div>
-
-        <!-- Bottom Luxury Stats Bar -->
-        <div class="hero-stats-glass-bar">
-            <div class="stat-glass-item">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Verified Private Estates</span>
+        <!-- Left Column: Editorial Typography & CTAs -->
+        <div class="hero-editorial-left">
+            <!-- Subtle Destination Pill -->
+            <div class="hero-destination-pill">
+                <i class="fa-solid fa-location-dot text-gold"></i> KERALA, INDIA
             </div>
-            <div class="stat-glass-divider"></div>
-            <div class="stat-glass-item">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">Personal Estate Host</span>
-            </div>
-            <div class="stat-glass-divider"></div>
-            <div class="stat-glass-item">
-                <span class="stat-number">5-Star</span>
-                <span class="stat-label">Private Culinary Chefs</span>
+
+            <!-- Small Eyebrow -->
+            <span class="hero-eyebrow-text">KERALA’S PRIVATE ESCAPES</span>
+
+            <!-- Main Heading (Playfair Display Luxury Serif) -->
+            <h1 class="hero-title-cinematic">
+                BESPOKE PRIVATE ESTATES
+            </h1>
+
+            <!-- Supporting Line -->
+            <p class="hero-subline-cinematic">
+                Exceptional villas. Extraordinary Kerala.
+            </p>
+
+            <!-- Primary CTA Group -->
+            <div class="hero-cta-cinematic-group">
+                <a href="{% url 'properties' %}" class="btn btn-cinematic-primary">
+                    <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+                <a href="#advantage" class="btn btn-cinematic-secondary">
+                    <span>OUR STORY</span>
+                </a>
             </div>
         </div>
+
+        <!-- Right Column: Floating Property Discovery Card & Controls -->
+        <div class="hero-editorial-right">
+            
+            <!-- Floating Property Card -->
+            <div class="hero-property-discovery-card" id="heroPropertyCard">
+                <div class="card-top-indicator">
+                    <span class="slide-count-badge" id="heroSlideCounter"><span class="curr-num">01</span> / <span class="total-num">04</span></span>
+                    <div class="card-progress-track">
+                        <div class="card-progress-bar" id="heroProgressBar"></div>
+                    </div>
+                </div>
+
+                <div class="card-main-content">
+                    <span class="card-prop-location" id="cardPropLocation">
+                        <i class="fa-solid fa-location-dot"></i> {{ featured_properties.0.location_display_name|default:"Lakkidi Rainforest, Wayanad" }}
+                    </span>
+                    <h3 class="card-prop-title" id="cardPropTitle">
+                        {{ featured_properties.0.title|default:"Wayanad Mistwood Sanctuary Estate" }}
+                    </h3>
+                    <div class="card-prop-price" id="cardPropPrice">
+                        From ₹{{ featured_properties.0.price_per_night|floatformat:0|default:"45,000" }} / night
+                    </div>
+                </div>
+
+                <a href="{% if featured_properties.0 %}{% url 'property_detail' featured_properties.0.slug %}{% else %}{% url 'properties' %}{% endif %}" class="card-cta-link" id="cardPropLink">
+                    <span>VIEW ESTATE</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Slide Navigation Pills -->
+            <div class="hero-slide-nav-pills" id="heroSlidePills">
+                {% for prop in featured_properties|slice:":4" %}
+                <button class="slide-pill-btn {% if forloop.first %}active{% endif %}" data-slide-index="{{ forloop.counter0 }}" aria-label="Go to slide {{ forloop.counter }}">
+                    <span class="pill-num">0{{ forloop.counter }}</span>
+                    <span class="pill-title">{{ prop.title|truncatechars:18 }}</span>
+                </button>
+                {% endfor %}
+            </div>
+
+        </div>
+
     </div>
+
+    <!-- Bottom Scroll Indicator -->
+    <a href="#advantage" class="hero-scroll-indicator" aria-label="Scroll to discover">
+        <span class="scroll-label">SCROLL TO DISCOVER</span>
+        <div class="scroll-arrow-icon">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </a>
+
 </section>
 
 <!-- SECTION 2: THE RENTORA ADVANTAGE (HORIZONTALLY SCROLLING FEATURE CAROUSEL) -->
