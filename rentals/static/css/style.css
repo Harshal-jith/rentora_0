@@ -150,36 +150,26 @@ img {
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* FLOATING GLASS NAVBAR (INITIALLY HIDDEN ON HERO) */
+/* LUXURY STICKY GLASS NAVBAR */
 .navbar-glass {
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 48px);
-    max-width: 1320px;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    padding: 12px 28px;
-    background: rgba(20, 20, 20, 0.65);
+    padding: 18px 48px;
+    background: rgba(10, 12, 11, 0.72);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--border-gold);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+    transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.navbar-glass.navbar-hero-hidden {
-    opacity: 0;
-    transform: translate(-50%, -24px);
-    pointer-events: none;
-    animation: none;
-}
-
-.navbar-glass.navbar-hero-hidden.navbar-scrolled {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    pointer-events: auto;
+.navbar-glass.navbar-scrolled {
+    background: rgba(8, 10, 9, 0.94);
+    padding: 14px 48px;
+    border-bottom-color: rgba(212, 175, 55, 0.45);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* REFINED HERO EDITORIAL ANNOTATION CARD (SUBTLE LUXURY LABEL) */
