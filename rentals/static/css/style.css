@@ -150,25 +150,27 @@ img {
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* LUXURY STICKY GLASS NAVBAR */
+/* LUXURY STICKY GLASS NAVBAR (TRANSPARENT AT TOP -> BLURRED ON SCROLL) */
 .navbar-glass {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 18px 48px;
-    background: rgba(10, 12, 11, 0.72);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.22);
-    transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    padding: 20px 48px;
+    background: rgba(10, 10, 10, 0.15);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
 }
 
 .navbar-glass.navbar-scrolled {
-    background: rgba(8, 10, 9, 0.94);
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     padding: 14px 48px;
-    border-bottom-color: rgba(212, 175, 55, 0.45);
+    border-bottom-color: rgba(212, 175, 55, 0.35);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -746,176 +748,149 @@ body.hero-animate-active .hero-single-bg-layer {
     inset: 0;
     z-index: 3;
     background: 
-        linear-gradient(180deg, rgba(8, 10, 9, 0.65) 0%, rgba(8, 10, 9, 0.22) 50%, rgba(8, 10, 9, 0.88) 100%),
-        radial-gradient(circle at 50% 50%, rgba(8, 10, 9, 0.25) 0%, rgba(8, 10, 9, 0.65) 100%);
+        linear-gradient(180deg, rgba(10, 10, 10, 0.45) 0%, rgba(10, 10, 10, 0.25) 40%, rgba(10, 10, 10, 0.88) 100%),
+        linear-gradient(90deg, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.55) 50%, rgba(10, 10, 10, 0.15) 100%);
     pointer-events: none;
 }
 
-/* Centered Editorial Container */
-.hero-cinematic-centered {
+/* Core Grid Layout Container */
+.hero-cinematic-container {
     position: relative;
     z-index: 10;
-    max-width: 960px;
+    max-width: 1440px;
     width: 90%;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 48px;
+    align-items: flex-end;
+    padding-bottom: 75px;
+    padding-top: 100px;
+}
+
+/* Left Column Typography */
+.hero-editorial-left {
+    max-width: 650px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 60px;
-}
-
-.hero-editorial-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Standalone Luxury Rentora Logo in Hero */
-.hero-brand-logo {
-    display: inline-block;
-    margin-bottom: 24px;
-    opacity: 0;
-    text-decoration: none;
-}
-
-.hero-logo-wrapper {
-    position: relative;
-    display: inline-block;
-    height: 48px;
-    width: 220px;
-}
-
-.hero-logo-wrapper .logo-img {
-    height: 48px;
-    width: 220px;
-    object-fit: contain;
-    display: block;
-}
-
-body.hero-animate-active .hero-brand-logo {
-    animation: heroCinematicReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .hero-eyebrow-text {
     font-family: var(--font-btn);
-    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
-    font-weight: 600;
-    letter-spacing: 4px;
+    font-size: clamp(0.8rem, 1.1vw, 0.92rem);
+    font-weight: 700;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
-    color: rgba(248, 245, 240, 0.82);
-    margin-bottom: 18px;
+    color: var(--gold-bright);
+    margin-bottom: 16px;
     display: block;
     opacity: 0;
 }
 
 body.hero-animate-active .hero-eyebrow-text {
-    animation: heroCinematicReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    animation: heroCinematicReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
 
 .hero-title-cinematic {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(3.0rem, 6.8vw, 6.5rem);
-    font-weight: 500;
-    line-height: 1.06;
-    letter-spacing: -0.5px;
-    color: #f8f5f0;
+    font-family: var(--font-heading), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: clamp(2.5rem, 5.5vw, 5.0rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: #ffffff;
     margin-bottom: 22px;
-    text-shadow: 0 4px 35px rgba(0, 0, 0, 0.65);
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
     opacity: 0;
+    text-transform: uppercase;
 }
 
 body.hero-animate-active .hero-title-cinematic {
-    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
 .hero-subline-cinematic {
-    font-family: var(--font-body);
-    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-    color: rgba(248, 245, 240, 0.88);
-    font-weight: 300;
+    font-family: var(--font-body), 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 500;
     line-height: 1.5;
     margin-bottom: 38px;
-    max-width: 580px;
+    max-width: 560px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
     opacity: 0;
 }
 
 body.hero-animate-active .hero-subline-cinematic {
-    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
 }
 
 .hero-cta-cinematic-group {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 16px;
     opacity: 0;
 }
 
 body.hero-animate-active .hero-cta-cinematic-group {
-    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
 }
 
-.btn-cinematic-primary {
+.btn-hero-primary {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     padding: 16px 36px;
-    background: rgba(212, 175, 55, 0.16);
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    color: #f8f5f0;
+    background: var(--gold-bright);
+    border: none;
+    color: #080a09;
     font-family: var(--font-btn);
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    border-radius: 4px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-cinematic-primary:hover {
-    background: rgba(212, 175, 55, 0.35);
-    border-color: rgba(212, 175, 55, 0.85);
-    color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(212, 175, 55, 0.28);
+.btn-hero-primary:hover {
+    background: #e5be48;
+    color: #080a09;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.55);
 }
 
-.btn-cinematic-primary i {
+.btn-hero-primary i {
     transition: transform 0.3s ease;
 }
 
-.btn-cinematic-primary:hover i {
+.btn-hero-primary:hover i {
     transform: translateX(6px);
 }
 
-.btn-cinematic-secondary {
+.btn-hero-secondary {
     display: inline-flex;
     align-items: center;
     padding: 16px 28px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    color: rgba(248, 245, 240, 0.85);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
     font-family: var(--font-btn);
-    font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    border-radius: 4px;
+    border-radius: 6px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
 }
 
-.btn-cinematic-secondary:hover {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.35);
+.btn-hero-secondary:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.45);
     color: #ffffff;
     transform: translateY(-2px);
 }
