@@ -27,37 +27,33 @@
 ]
 </script>
 
-<!-- ACT 1: ARRIVAL — IMMERSIVE CINEMATIC HERO (100VH) -->
-<section class="hero-section hero-cinematic-fullscreen" id="hero">
+<!-- ACT 1: ARRIVAL — AMAN-INSPIRED FULL-BLEED LUXURY HERO -->
+<section class="hero-section hero-cinematic-fullscreen" id="hero" aria-label="Rentora Luxury Villa Rentals Hero">
 
     <!-- Dual-Layer Continuous Cross-Fade Background Engine -->
-    <div class="hero-crossfade-container">
+    <div class="hero-crossfade-container" aria-hidden="true">
         <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% if featured_properties.0.main_image %}{{ featured_properties.0.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}');"></div>
         <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
     </div>
 
-    <!-- Multi-Stage Dark Editorial Gradient Vignette Overlay -->
-    <div class="hero-overlay-cinematic"></div>
+    <!-- Multi-Stage Dark Charcoal Layered Gradient Vignette Overlay -->
+    <div class="hero-overlay-cinematic" aria-hidden="true"></div>
 
-    <!-- Editorial Hero Layout -->
+    <!-- Editorial Hero Layout Container -->
     <div class="hero-cinematic-container">
 
-        <!-- Left Column: Editorial Essential Typography -->
+        <!-- Left Column: Typography & Dual CTAs -->
         <div class="hero-editorial-left">
-            <!-- Small Eyebrow -->
             <span class="hero-eyebrow-text">KERALA’S PRIVATE ESCAPES</span>
 
-            <!-- Main Heading (Playfair Display Luxury Serif) -->
             <h1 class="hero-title-cinematic">
                 BESPOKE PRIVATE<br>ESTATES
             </h1>
 
-            <!-- Supporting Line -->
             <p class="hero-subline-cinematic">
                 Exceptional villas. Extraordinary Kerala.
             </p>
 
-            <!-- Primary & Secondary CTA Group -->
             <div class="hero-cta-cinematic-group">
                 <a href="#discovery" class="btn btn-gold btn-hero-primary">
                     <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
@@ -68,49 +64,30 @@
             </div>
         </div>
 
-        <!-- Right Column: Subtle Editorial Annotation Label -->
+        <!-- Right Column: Anchored Luxury Stat Strip -->
         <div class="hero-editorial-right">
-            
-            <div class="hero-editorial-annotation-card" id="heroPropertyCard">
-                <div class="annotation-top-row">
-                    <span class="annotation-slide-num" id="heroSlideCounter"><span class="curr-num">01</span> / <span class="total-num">04</span></span>
-                    <div class="annotation-progress-line">
-                        <div class="annotation-progress-bar" id="heroProgressBar"></div>
-                    </div>
+            <div class="hero-stat-strip-card" id="heroStatStrip">
+                <div class="hero-stat-item">
+                    <span class="stat-num">40+</span>
+                    <span class="stat-label">PRIVATE ESTATES</span>
                 </div>
-
-                <div class="annotation-body">
-                    <h3 class="annotation-title" id="cardPropTitle">
-                        {{ featured_properties.0.title|upper|default:"WAYANAD MISTWOOD SANCTUARY ESTATE" }}
-                    </h3>
-                    <span class="annotation-location" id="cardPropLocation">
-                        {{ featured_properties.0.location_display_name|upper|default:"LAKKIDI RAINFOREST, WAYANAD" }}
-                    </span>
-                    <div class="annotation-price" id="cardPropPrice">
-                        FROM ₹{{ featured_properties.0.price_per_night|floatformat:0|default:"45,000" }} / NIGHT
-                    </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item">
+                    <span class="stat-num">12</span>
+                    <span class="stat-label">KERALA REGIONS</span>
                 </div>
-
-                <a href="{% if featured_properties.0 %}{% url 'property_detail' featured_properties.0.slug %}{% else %}{% url 'properties' %}{% endif %}" class="annotation-link" id="cardPropLink">
-                    <span>VIEW ESTATE</span> <i class="fa-solid fa-arrow-right-long"></i>
-                </a>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item">
+                    <span class="stat-num">5★</span>
+                    <span class="stat-label">VIP CONCIERGE</span>
+                </div>
             </div>
-
-            <!-- Slide Navigation Pills -->
-            <div class="hero-slide-nav-pills" id="heroSlidePills">
-                {% for prop in featured_properties|slice:":4" %}
-                <button class="slide-pill-btn {% if forloop.first %}active{% endif %}" data-slide-index="{{ forloop.counter0 }}" aria-label="Go to slide {{ forloop.counter }}">
-                    <span class="pill-num">0{{ forloop.counter }}</span>
-                </button>
-                {% endfor %}
-            </div>
-
         </div>
 
     </div>
 
-    <!-- Bottom Scroll Indicator -->
-    <a href="#discovery" class="hero-scroll-indicator" aria-label="Scroll to discover">
+    <!-- Bottom Scroll Indicator with Bouncing Chevron -->
+    <a href="#discovery" class="hero-scroll-indicator" aria-label="Scroll to discover featured estates">
         <span class="scroll-label">SCROLL TO DISCOVER</span>
         <div class="scroll-arrow-icon">
             <i class="fa-solid fa-chevron-down"></i>
