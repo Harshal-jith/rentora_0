@@ -601,10 +601,10 @@ body.hero-animate-active .hero-brand-logo-wrap {
 /* STICKY STACKING CARDS SLIDE SECTION (HERO GOLD LUXURY THEME) */
 .sticky-stacking-section {
     position: relative;
-    padding: 90px 0 130px 0;
+    padding: 90px 0 160px 0;
     background: #0C0C0C;
     border-top: 1px solid rgba(212, 175, 55, 0.15);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .sticky-stacking-section::before {
@@ -623,10 +623,10 @@ body.hero-animate-active .hero-brand-logo-wrap {
 .stack-cards-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 90px;
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px 200px 20px;
     position: relative;
     z-index: 2;
 }
