@@ -785,6 +785,32 @@ body.hero-animate-active .hero-single-bg-layer {
     text-align: center;
 }
 
+/* Standalone Luxury Rentora Logo in Hero */
+.hero-brand-logo {
+    display: inline-block;
+    margin-bottom: 24px;
+    opacity: 0;
+    text-decoration: none;
+}
+
+.hero-logo-wrapper {
+    position: relative;
+    display: inline-block;
+    height: 48px;
+    width: 220px;
+}
+
+.hero-logo-wrapper .logo-img {
+    height: 48px;
+    width: 220px;
+    object-fit: contain;
+    display: block;
+}
+
+body.hero-animate-active .hero-brand-logo {
+    animation: heroCinematicReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
 .hero-eyebrow-text {
     font-family: var(--font-btn);
     font-size: clamp(0.8rem, 1.2vw, 0.95rem);
@@ -798,7 +824,7 @@ body.hero-animate-active .hero-single-bg-layer {
 }
 
 body.hero-animate-active .hero-eyebrow-text {
-    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    animation: heroCinematicReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
 .hero-title-cinematic {
@@ -814,7 +840,7 @@ body.hero-animate-active .hero-eyebrow-text {
 }
 
 body.hero-animate-active .hero-title-cinematic {
-    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
 }
 
 .hero-subline-cinematic {
@@ -829,7 +855,7 @@ body.hero-animate-active .hero-title-cinematic {
 }
 
 body.hero-animate-active .hero-subline-cinematic {
-    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.4s forwards;
+    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
 }
 
 .hero-cta-cinematic-group {
@@ -840,7 +866,7 @@ body.hero-animate-active .hero-subline-cinematic {
 }
 
 body.hero-animate-active .hero-cta-cinematic-group {
-    animation: heroCinematicReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.7s forwards;
+    animation: heroCinematicReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
 }
 
 .btn-cinematic-primary {

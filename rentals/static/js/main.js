@@ -146,14 +146,17 @@ function initHeroParallax() {
 }
 
 /* --------------------------------------------------------------------------
-   Navbar Scroll Observer (Hidden on Hero -> Emerges on Scroll)
+   Navbar Scroll Observer (100% Hidden on Hero -> Emerges after Scrolling Past Hero)
    -------------------------------------------------------------------------- */
 function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
 
     function handleScroll() {
-        if (window.scrollY > 80) {
+        const heroSection = document.getElementById('hero');
+        const scrollThreshold = heroSection ? (heroSection.offsetHeight - 120) : 300;
+
+        if (window.scrollY > scrollThreshold) {
             navbar.classList.add('navbar-scrolled');
         } else {
             navbar.classList.remove('navbar-scrolled');
