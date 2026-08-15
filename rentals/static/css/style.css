@@ -503,6 +503,101 @@ body.hero-animate-active .hero-brand-logo-wrap {
     width: 100%;
 }
 
+/* DUAL-ROW SCROLL-DRIVEN MARQUEE SLIDER SECTION (RIGHT BELOW HERO) */
+.marquee-scroll-section {
+    background-color: #0C0C0C;
+    padding: 70px 0 90px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    border-top: 1px solid rgba(215, 226, 234, 0.08);
+}
+
+.marquee-header-wrap {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.marquee-rows-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+.marquee-row {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 18px;
+    will-change: transform;
+    transition: transform 0.08s ease-out;
+}
+
+.marquee-tile {
+    flex: 0 0 420px;
+    height: 270px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background: #181818;
+    border: 1px solid rgba(215, 226, 234, 0.14);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .marquee-tile {
+        flex: 0 0 300px;
+        height: 200px;
+        border-radius: 16px;
+    }
+}
+
+.marquee-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.marquee-tile:hover img {
+    transform: scale(1.08);
+}
+
+.marquee-tile .tile-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(180deg, transparent 0%, rgba(12, 12, 12, 0.92) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    pointer-events: none;
+}
+
+.tile-location {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold-bright);
+    font-weight: 600;
+}
+
+.tile-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #D7E2EA;
+    line-height: 1.3;
+}
+
 .hero-edition-pill {
     display: inline-flex;
     align-items: center;

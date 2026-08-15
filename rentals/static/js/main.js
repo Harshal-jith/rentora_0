@@ -450,3 +450,48 @@ function initHeroScrollDampener() {
     });
 }
 
+/* --------------------------------------------------------------------------
+   8. Dual-Row Scroll-Driven Marquee Slide Engine
+   -------------------------------------------------------------------------- */
+function initMarqueeScrollSlide() {
+    const row1 = document.getElementById("marqueeRow1");
+    const row2 = document.getElementById("marqueeRow2");
+    const section = document.getElementById("marquee");
+    if (!row1 || !row2 || !section) return;
+
+    const track1 = row1.querySelector(".marquee-track");
+    const track2 = row2.querySelector(".marquee-track");
+
+    let ticking = false;
+
+    function updateScrollSlide() {
+        const rect = section.getBoundingClientRect();
+        const winHeight = window.innerHeight;
+        
+        if (rect.top <= winHeight && rect.bottom >= 0) {
+            const scrollOffset = (window.scrollY - section.offsetTop + winHeight) * 0.35;
+            
+            if (track1) {
+                track1.style.transform = `translate3d(${scrollOffset - 300}px, 0, 0)`;
+            }
+            if (track2) {
+                track2.style.transform = `translate3d(${-(scrollOffset - 300)}px, 0, 0)`;
+            }
+        }
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", function() {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollSlide);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    updateScrollSlide();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initMarqueeScrollSlide();
+});
+
