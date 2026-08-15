@@ -27,66 +27,60 @@
 ]
 </script>
 
-<!-- ACT 1: ARRIVAL — 50/50 ASYMMETRICAL LUXURY EDITORIAL HERO -->
-<section class="hero-section hero-split-5050" id="hero" aria-label="Rentora Luxury Villa Rentals Hero">
+<!-- ACT 1: AMAN-INSPIRED 50/50 ASYMMETRICAL SPLIT LUXURY HERO -->
+<section class="hero-wrapper hero-split-5050" id="hero" aria-label="Rentora Luxury Villa Rentals Hero">
 
-    <!-- Left Half Column: Deep Charcoal Obsidian Content Panel -->
-    <div class="hero-split-left">
-        <div class="hero-split-left-inner">
-            <!-- Small Champagne Eyebrow -->
-            <span class="hero-eyebrow-text">KERALA’S PRIVATE ESCAPES</span>
+    <!-- Left Column: Deep Charcoal Obsidian Content Payload -->
+    <div class="hero-content">
+        <span class="hero-eyebrow">KERALA’S PRIVATE ESCAPES</span>
 
-            <!-- High-Contrast Serif Headline (Playfair Display) -->
-            <h1 class="hero-title-cinematic-serif">
-                BESPOKE PRIVATE<br>ESTATES
-            </h1>
+        <h1 class="hero-h1">
+            BESPOKE PRIVATE<br>ESTATES
+        </h1>
 
-            <!-- Modern Sans-Serif Subheadline -->
-            <p class="hero-subline-cinematic">
-                Exceptional villas. Extraordinary Kerala.
-            </p>
+        <p class="hero-subheadline">
+            Exceptional villas. Extraordinary Kerala.
+        </p>
 
-            <!-- Dual CTA Group -->
-            <div class="hero-cta-cinematic-group">
-                <a href="#discovery" class="btn btn-gold btn-hero-primary">
-                    <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
-                </a>
-                <a href="#facilities" class="btn btn-glass btn-hero-secondary">
-                    <span>VIEW FACILITIES</span>
-                </a>
-            </div>
+        <div class="hero-buttons">
+            <a href="#discovery" class="btn-primary">
+                <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
+            <a href="#facilities" class="btn-secondary">
+                <span>VIEW FACILITIES</span>
+            </a>
         </div>
     </div>
 
-    <!-- Right Half Column: Edge-to-Edge Bleed Villa Image Hook -->
-    <div class="hero-split-right">
-        <!-- Dual-Layer Continuous Cross-Fade Background Engine for Right Column -->
-        <div class="hero-split-crossfade-container" aria-hidden="true">
+    <!-- Right Column: Edge-to-Edge Bleed Villa Image Hook -->
+    <div class="hero-media">
+        <!-- Dual-Layer Continuous Cross-Fade & Ken Burns Zoom Background Engine -->
+        <div class="hero-media-crossfade" aria-hidden="true">
             <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% if featured_properties.0.main_image %}{{ featured_properties.0.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}');"></div>
             <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
-            <div class="hero-right-vignette" aria-hidden="true"></div>
+            <div class="hero-media-vignette" aria-hidden="true"></div>
         </div>
 
-        <!-- Glassmorphism Floating Stats Box Overlaid on Bottom of Right Column Image -->
-        <div class="hero-stat-strip-card hero-glass-overlay-card" id="heroStatStrip">
-            <div class="hero-stat-item">
+        <!-- Glassmorphism Stats Box Overlay -->
+        <div class="stats-overlay" id="heroStatStrip">
+            <div class="stat-item">
                 <span class="stat-num">40+</span>
                 <span class="stat-label">PRIVATE ESTATES</span>
             </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat-item">
+            <div class="stat-divider"></div>
+            <div class="stat-item">
                 <span class="stat-num">12</span>
                 <span class="stat-label">KERALA REGIONS</span>
             </div>
-            <div class="hero-stat-divider"></div>
-            <div class="hero-stat-item">
+            <div class="stat-divider"></div>
+            <div class="stat-item">
                 <span class="stat-num">5★</span>
                 <span class="stat-label">VIP CONCIERGE</span>
             </div>
         </div>
     </div>
 
-    <!-- Bottom Scroll Indicator with Bouncing Chevron -->
+    <!-- Bottom Scroll Indicator -->
     <a href="#discovery" class="hero-scroll-indicator" aria-label="Scroll to discover featured estates">
         <span class="scroll-label">SCROLL TO DISCOVER</span>
         <div class="scroll-arrow-icon">
