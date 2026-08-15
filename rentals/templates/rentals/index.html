@@ -1,158 +1,173 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Rentora — Bespoke Private Estates in Kerala{% endblock %}
+{% block title %}Rentora — The Sanctuary of Uncompromised Luxury{% endblock %}
+
+<!-- Clean Hero: No Header/Navbar on Landing Page -->
+{% block navbar %}{% endblock %}
 
 {% block extra_css %}
-<link rel="preload" as="image" href="{% static 'images/properties/prop_01_wayanad.jpg' %}" fetchpriority="high">
-<link rel="preload" as="image" href="{% static 'images/properties/prop_02_munnar.jpg' %}">
+<link rel="preload" as="image" href="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" fetchpriority="high">
+<link rel="preload" as="image" href="{% static 'images/scene_arrival_1784964424610.jpg' %}">
 {% endblock %}
 
 {% block content %}
 <div class="landing-page-wrapper permanent-dark-page">
+<!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO -->
+<section class="hero-section hero-editorial-fullscreen" id="hero">
 
-<!-- JSON DATA EMBED FOR HERO SLIDESHOW -->
-<script id="heroFeaturedPropertiesJson" type="application/json">
-[
-    {% for prop in featured_properties|slice:":4" %}
-    {
-        "id": {{ prop.id }},
-        "title": "{{ prop.title|escapejs }}",
-        "location": "{{ prop.location_display_name|escapejs }}",
-        "price": "From ₹{{ prop.price_per_night|floatformat:0 }} / night",
-        "image": "{% if prop.main_image %}{{ prop.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}",
-        "url": "{% url 'property_detail' prop.slug %}"
-    }{% if not forloop.last %},{% endif %}
-    {% endfor %}
-]
-</script>
+    <!-- Dual-Layer Continuous Cross-Fade Background Engine -->
+    <div class="hero-crossfade-container">
+        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
+        <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
+    </div>
 
-<!-- ACT 1: AMAN-INSPIRED 50/50 ASYMMETRICAL SPLIT LUXURY HERO -->
-<section class="hero-wrapper hero-split-5050" id="hero" aria-label="Rentora Luxury Villa Rentals Hero">
+    <!-- Ambient Dark Gradient Vignette -->
+    <div class="hero-overlay-editorial"></div>
 
-    <!-- Left Column: Deep Charcoal Obsidian Content Payload -->
-    <div class="hero-content">
-        <span class="hero-eyebrow">KERALA’S PRIVATE ESCAPES</span>
+    <!-- Ambient Golden Radial Flare Glow -->
+    <div class="hero-radial-flare"></div>
 
-        <h1 class="hero-h1">
-            BESPOKE PRIVATE<br>ESTATES
+    <!-- Floating Gold Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Editorial Hero Core Layout -->
+    <div class="hero-content-editorial">
+        
+        <!-- Large Transparent Rentora Brand Logo (Top Center - Permanent Dark) -->
+        <div class="hero-brand-logo-wrap">
+            <a href="{% url 'home' %}" aria-label="Rentora Luxury Hospitality">
+                <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-main-logo hero-permanent-dark-logo">
+            </a>
+        </div>
+
+        <!-- Headline (Playfair Display & Gold Shimmer) -->
+        <h1 class="hero-title-editorial">
+            Kerala’s Sanctuary of<br>
+            <span class="gold-shimmer-text">Bespoke Private Estates</span>
         </h1>
 
-        <p class="hero-subheadline">
-            Exceptional villas. Extraordinary Kerala.
+        <!-- Subtitle -->
+        <p class="hero-subtitle-editorial">
+            Kerala's premiere private hospitality platform. Experience 100% verified estates, in-villa culinary masters, private helipads, and 24/7 dedicated estate concierge.
         </p>
 
-        <div class="hero-buttons">
-            <a href="#discovery" class="btn-primary">
-                <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
+        <!-- Action Buttons -->
+        <div class="hero-cta-editorial-group">
+            <a href="#advantage" class="btn btn-gold btn-editorial-primary">
+                <span>Explore Advantage</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <a href="#facilities" class="btn-secondary">
-                <span>VIEW FACILITIES</span>
+            <a href="#facilities" class="btn btn-glass btn-editorial-secondary">
+                <span>In-Villa Facilities</span> <i class="fa-solid fa-gem"></i>
             </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-glass btn-editorial-secondary">
+                <span>My Dashboard</span> <i class="fa-solid fa-user"></i>
+            </a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-gold btn-editorial-primary">
+                <span>Sign In / Register</span> <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+            {% endif %}
+        </div>
+
+        <!-- Bottom Luxury Stats Bar -->
+        <div class="hero-stats-glass-bar">
+            <div class="stat-glass-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Verified Private Estates</span>
+            </div>
+            <div class="stat-glass-divider"></div>
+            <div class="stat-glass-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Personal Estate Host</span>
+            </div>
+            <div class="stat-glass-divider"></div>
+            <div class="stat-glass-item">
+                <span class="stat-number">5-Star</span>
+                <span class="stat-label">Private Culinary Chefs</span>
+            </div>
         </div>
     </div>
-
-    <!-- Right Column: Edge-to-Edge Bleed Villa Image Hook -->
-    <div class="hero-media">
-        <!-- Dual-Layer Continuous Cross-Fade & Ken Burns Zoom Background Engine -->
-        <div class="hero-media-crossfade" aria-hidden="true">
-            <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% if featured_properties.0.main_image %}{{ featured_properties.0.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}');"></div>
-            <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
-            <div class="hero-media-vignette" aria-hidden="true"></div>
-        </div>
-
-        <!-- Glassmorphism Stats Box Overlay -->
-        <div class="stats-overlay" id="heroStatStrip">
-            <div class="stat-item">
-                <span class="stat-num">40+</span>
-                <span class="stat-label">PRIVATE ESTATES</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-num">12</span>
-                <span class="stat-label">KERALA REGIONS</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-num">5★</span>
-                <span class="stat-label">VIP CONCIERGE</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bottom Scroll Indicator -->
-    <a href="#discovery" class="hero-scroll-indicator" aria-label="Scroll to discover featured estates">
-        <span class="scroll-label">SCROLL TO DISCOVER</span>
-        <div class="scroll-arrow-icon">
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    </a>
-
 </section>
 
-
-<!-- SECTION 2: CURATED ESTATES SHOWCASE (DISCOVER YOUR PRIVATE ESCAPE) -->
-<section class="section discovery-section" id="discovery">
-    <div class="section-container discovery-header-wrap">
-        <span class="sub-heading-gold reveal-on-scroll">CURATED ESTATES ACROSS KERALA</span>
-        <h2 class="serif-title discovery-title reveal-on-scroll">DISCOVER YOUR<br>PRIVATE ESCAPE</h2>
-        <p class="discovery-desc reveal-on-scroll">From mist-covered mountains to secluded backwaters and coastal retreats, discover exceptional private estates curated by Rentora.</p>
+<!-- SECTION 2: THE RENTORA ADVANTAGE (HORIZONTALLY SCROLLING FEATURE CAROUSEL) -->
+<section class="section advantage-section" id="advantage">
+    <div class="section-container advantage-header-wrap">
+        <span class="sub-heading-gold reveal-popup">THE RENTORA ADVANTAGE</span>
+        <h2 class="serif-title advantage-title reveal-popup">Bespoke Services for Luxury Travelers</h2>
+        <p class="advantage-desc reveal-popup">We manage and curate Kerala's most sought-after private estates, houseboats and cliffside residences.</p>
     </div>
 
-    <!-- Editorial Property Feature Showcase List -->
-    <div class="discovery-properties-list">
-        {% for prop in featured_properties|slice:":4" %}
-        <div class="editorial-property-item reveal-on-scroll {% if forloop.counter|divisibleby:2 %}item-reverse{% endif %}">
+    <!-- Infinite Auto-Scrolling Feature Carousel -->
+    <div class="carousel-outer-wrapper">
+        <div class="carousel-track" id="featureCarouselTrack">
             
-            <!-- Large Property Image Wrap -->
-            <div class="editorial-prop-media-wrap">
-                <a href="{% url 'property_detail' prop.slug %}">
-                    <img src="{% if prop.main_image %}{{ prop.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}" alt="{{ prop.title }}" class="editorial-prop-img" loading="lazy">
-                </a>
-                <div class="editorial-media-badge">
-                    <span>0{{ forloop.counter }}</span>
+            <!-- Facility Card 1 -->
+            <div class="advantage-card-glass reveal-popup">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-shield-halved text-gold-icon"></i>
                 </div>
+                <h3>100% Verified Estates</h3>
+                <p>Every estate undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
+                <div class="card-reflection"></div>
             </div>
 
-            <!-- Editorial Content Wrap -->
-            <div class="editorial-prop-content">
-                <span class="editorial-prop-location">
-                    <i class="fa-solid fa-location-dot text-gold"></i> {{ prop.location_display_name|upper }}
-                </span>
-                <h3 class="editorial-prop-title">
-                    <a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a>
-                </h3>
-                <p class="editorial-prop-desc">
-                    {{ prop.short_description|default:prop.description|truncatewords:28 }}
-                </p>
-                <div class="editorial-prop-meta">
-                    <div class="editorial-price-box">
-                        <span class="meta-label">RATES FROM</span>
-                        <span class="meta-price">₹{{ prop.price_per_night|floatformat:0 }} <small>/ NIGHT</small></span>
-                    </div>
-                    <div class="editorial-specs-row">
-                        <span><i class="fa-solid fa-bed text-gold"></i> {{ prop.bedrooms }} Bedrooms</span>
-                        <span><i class="fa-solid fa-users text-gold"></i> Up to {{ prop.max_guests }} Guests</span>
-                    </div>
+            <!-- Facility Card 2 -->
+            <div class="advantage-card-glass reveal-popup">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-utensils text-gold-icon"></i>
                 </div>
-                <a href="{% url 'property_detail' prop.slug %}" class="btn btn-editorial-property">
-                    <span>VIEW ESTATE</span> <i class="fa-solid fa-arrow-right-long"></i>
-                </a>
+                <h3>Private Culinary Masters</h3>
+                <p>Indulge in custom multi-course dining, sea-to-table seafood grills, and organic plantation gastronomy prepared by top private chefs.</p>
+                <div class="card-reflection"></div>
+            </div>
+
+            <!-- Facility Card 3 -->
+            <div class="advantage-card-glass reveal-popup">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-ship text-gold-icon"></i>
+                </div>
+                <h3>Private Backwater Charters</h3>
+                <p>Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
+                <div class="card-reflection"></div>
+            </div>
+
+            <!-- Facility Card 4 -->
+            <div class="advantage-card-glass reveal-popup">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-plane text-gold-icon"></i>
+                </div>
+                <h3>Helicopter & SUV Transfers</h3>
+                <p>Seamless airport transfers via luxury SUVs or direct helicopter arrivals at private estate helipads across Munnar and Wayanad.</p>
+                <div class="card-reflection"></div>
+            </div>
+
+            <!-- Facility Card 5 -->
+            <div class="advantage-card-glass reveal-popup">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-lock text-gold-icon"></i>
+                </div>
+                <h3>Confidential Private Stays</h3>
+                <p>Discreet high-security estates featuring private access gates, dedicated staff quarters, and total privacy for high-net-worth guests.</p>
+                <div class="card-reflection"></div>
+            </div>
+
+            <!-- Facility Card 6 -->
+            <div class="advantage-card-glass reveal-popup">
+                <div class="advantage-icon-wrapper">
+                    <i class="fa-solid fa-bell text-gold-icon"></i>
+                </div>
+                <h3>24/7 Dedicated Estate Manager</h3>
+                <p>Your personal host is available around the clock to coordinate private excursions, yacht rentals, bespoke concierge requests, and wellness appointments.</p>
+                <div class="card-reflection"></div>
             </div>
 
         </div>
-        {% endfor %}
-    </div>
-
-    <div class="discovery-catalog-cta reveal-on-scroll">
-        <a href="{% url 'properties' %}" class="btn btn-gold btn-lg">
-            <span>VIEW ALL 12 PRIVATE ESTATES</span> <i class="fa-solid fa-arrow-right"></i>
-        </a>
     </div>
 </section>
 
-
-<!-- SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE (UNPARALLELED AMENITIES) -->
+<!-- SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE -->
 <section class="section facilities-section" id="facilities">
     <div class="section-container advantage-header-wrap">
         <span class="sub-heading-gold reveal-popup">UNPARALLELED AMENITIES</span>
@@ -251,79 +266,7 @@
     </div>
 </section>
 
-
-<!-- SECTION 4: THE RENTORA ADVANTAGE (BESPOKE SERVICES FOR LUXURY TRAVELERS) -->
-<section class="section advantage-section" id="advantage">
-    <div class="section-container advantage-header-wrap">
-        <span class="sub-heading-gold reveal-popup">THE RENTORA ADVANTAGE</span>
-        <h2 class="serif-title advantage-title reveal-popup">Bespoke Services for Luxury Travelers</h2>
-        <p class="advantage-desc reveal-popup">We manage and curate Kerala's most sought-after private estates, houseboats and cliffside residences.</p>
-    </div>
-
-    <!-- Infinite Auto-Scrolling Feature Carousel -->
-    <div class="carousel-outer-wrapper">
-        <div class="carousel-track" id="featureCarouselTrack">
-            
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-shield-halved text-gold-icon"></i>
-                </div>
-                <h3>100% Verified Estates</h3>
-                <p>Every estate undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed fiber, and premium amenities.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-utensils text-gold-icon"></i>
-                </div>
-                <h3>Private Culinary Masters</h3>
-                <p>Indulge in custom multi-course dining, sea-to-table seafood grills, and organic plantation gastronomy prepared by top private chefs.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-ship text-gold-icon"></i>
-                </div>
-                <h3>Private Backwater Charters</h3>
-                <p>Step onto luxury cruising houseboats and high-speed motor tenders reserved exclusively for your family and guests.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-plane text-gold-icon"></i>
-                </div>
-                <h3>Helicopter & SUV Transfers</h3>
-                <p>Seamless airport transfers via luxury SUVs or direct helicopter arrivals at private estate helipads across Munnar and Wayanad.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-lock text-gold-icon"></i>
-                </div>
-                <h3>Confidential Private Stays</h3>
-                <p>Discreet high-security estates featuring private access gates, dedicated staff quarters, and total privacy for high-net-worth guests.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-            <div class="advantage-card-glass reveal-popup">
-                <div class="advantage-icon-wrapper">
-                    <i class="fa-solid fa-bell text-gold-icon"></i>
-                </div>
-                <h3>24/7 Dedicated Estate Manager</h3>
-                <p>Your personal host is available around the clock to coordinate private excursions, yacht rentals, bespoke concierge requests, and wellness appointments.</p>
-                <div class="card-reflection"></div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- SECTION 5: EXCLUSIVE MEMBERS ACCESS GATEWAY (FINAL CTA) -->
+<!-- SECTION 4: EXCLUSIVE MEMBERS ACCESS GATEWAY (FINAL CTA) -->
 <section class="section final-cta-section" id="access">
     <div class="section-container">
         <div class="final-cta-box reveal-popup">
@@ -356,6 +299,5 @@
         </div>
     </div>
 </section>
-
 </div>
 {% endblock %}
