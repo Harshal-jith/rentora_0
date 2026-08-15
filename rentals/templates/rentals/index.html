@@ -5,45 +5,24 @@
 
 {% block extra_css %}
 <link rel="preload" as="image" href="{% static 'images/properties/prop_01_wayanad.jpg' %}" fetchpriority="high">
-<link rel="preload" as="image" href="{% static 'images/properties/prop_02_munnar.jpg' %}">
 {% endblock %}
 
 {% block content %}
 <div class="landing-page-wrapper permanent-dark-page">
 
-<!-- JSON DATA EMBED FOR HERO SLIDESHOW -->
-<script id="heroFeaturedPropertiesJson" type="application/json">
-[
-    {% for prop in featured_properties|slice:":4" %}
-    {
-        "id": {{ prop.id }},
-        "title": "{{ prop.title|escapejs }}",
-        "location": "{{ prop.location_display_name|escapejs }}",
-        "price": "From ₹{{ prop.price_per_night|floatformat:0 }} / night",
-        "image": "{% if prop.main_image %}{{ prop.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}",
-        "url": "{% url 'property_detail' prop.slug %}"
-    }{% if not forloop.last %},{% endif %}
-    {% endfor %}
-]
-</script>
-
 <!-- ACT 1: ARRIVAL — IMMERSIVE CINEMATIC HERO (100VH) -->
 <section class="hero-section hero-cinematic-fullscreen" id="hero">
 
-    <!-- Dual-Layer Continuous Cross-Fade Background Engine -->
-    <div class="hero-crossfade-container">
-        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% if featured_properties.0.main_image %}{{ featured_properties.0.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}');"></div>
-        <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
-    </div>
+    <!-- Single High-Res Background Photography Layer -->
+    <div class="hero-single-bg-layer" style="background-image: url('{% static 'images/properties/prop_01_wayanad.jpg' %}');"></div>
 
     <!-- Multi-Stage Dark Editorial Gradient Vignette Overlay -->
     <div class="hero-overlay-cinematic"></div>
 
     <!-- Editorial Hero Layout -->
-    <div class="hero-cinematic-container">
+    <div class="hero-cinematic-container hero-cinematic-centered">
 
-        <!-- Left Column: Editorial Essential Typography -->
-        <div class="hero-editorial-left">
+        <div class="hero-editorial-center">
             <!-- Small Eyebrow -->
             <span class="hero-eyebrow-text">KERALA’S PRIVATE ESCAPES</span>
 
@@ -59,55 +38,16 @@
 
             <!-- Primary CTA Group -->
             <div class="hero-cta-cinematic-group">
-                <a href="#discovery" class="btn btn-cinematic-primary">
+                <a href="{% url 'properties' %}" class="btn btn-cinematic-primary">
                     <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
                 </a>
             </div>
         </div>
 
-        <!-- Right Column: Subtle Editorial Annotation Label -->
-        <div class="hero-editorial-right">
-            
-            <div class="hero-editorial-annotation-card" id="heroPropertyCard">
-                <div class="annotation-top-row">
-                    <span class="annotation-slide-num" id="heroSlideCounter"><span class="curr-num">01</span> / <span class="total-num">04</span></span>
-                    <div class="annotation-progress-line">
-                        <div class="annotation-progress-bar" id="heroProgressBar"></div>
-                    </div>
-                </div>
-
-                <div class="annotation-body">
-                    <h3 class="annotation-title" id="cardPropTitle">
-                        {{ featured_properties.0.title|upper|default:"WAYANAD MISTWOOD SANCTUARY ESTATE" }}
-                    </h3>
-                    <span class="annotation-location" id="cardPropLocation">
-                        {{ featured_properties.0.location_display_name|upper|default:"LAKKIDI RAINFOREST, WAYANAD" }}
-                    </span>
-                    <div class="annotation-price" id="cardPropPrice">
-                        FROM ₹{{ featured_properties.0.price_per_night|floatformat:0|default:"45,000" }} / NIGHT
-                    </div>
-                </div>
-
-                <a href="{% if featured_properties.0 %}{% url 'property_detail' featured_properties.0.slug %}{% else %}{% url 'properties' %}{% endif %}" class="annotation-link" id="cardPropLink">
-                    <span>VIEW ESTATE</span> <i class="fa-solid fa-arrow-right-long"></i>
-                </a>
-            </div>
-
-            <!-- Slide Navigation Pills -->
-            <div class="hero-slide-nav-pills" id="heroSlidePills">
-                {% for prop in featured_properties|slice:":4" %}
-                <button class="slide-pill-btn {% if forloop.first %}active{% endif %}" data-slide-index="{{ forloop.counter0 }}" aria-label="Go to slide {{ forloop.counter }}">
-                    <span class="pill-num">0{{ forloop.counter }}</span>
-                </button>
-                {% endfor %}
-            </div>
-
-        </div>
-
     </div>
 
     <!-- Bottom Scroll Indicator -->
-    <a href="#discovery" class="hero-scroll-indicator" aria-label="Scroll to discover">
+    <a href="#facilities" class="hero-scroll-indicator" aria-label="Scroll to discover">
         <span class="scroll-label">SCROLL TO DISCOVER</span>
         <div class="scroll-arrow-icon">
             <i class="fa-solid fa-chevron-down"></i>
@@ -117,80 +57,19 @@
 </section>
 
 
-<!-- ACT 2 & 3: DISCOVERY & EXPLORATION — CINEMATIC PROPERTY STORY -->
-<section class="section discovery-section" id="discovery">
-    <div class="section-container discovery-header-wrap">
-        <span class="sub-heading-gold reveal-on-scroll">CURATED ESTATES ACROSS KERALA</span>
-        <h2 class="serif-title discovery-title reveal-on-scroll">DISCOVER YOUR<br>PRIVATE ESCAPE</h2>
-        <p class="discovery-desc reveal-on-scroll">From mist-covered mountains to secluded backwaters and coastal retreats, discover exceptional private estates curated by Rentora.</p>
-    </div>
-
-    <!-- Editorial Property Feature Showcase List -->
-    <div class="discovery-properties-list">
-        {% for prop in featured_properties|slice:":4" %}
-        <div class="editorial-property-item reveal-on-scroll {% if forloop.counter|divisibleby:2 %}item-reverse{% endif %}">
-            
-            <!-- Large Property Image Wrap -->
-            <div class="editorial-prop-media-wrap">
-                <a href="{% url 'property_detail' prop.slug %}">
-                    <img src="{% if prop.main_image %}{{ prop.main_image }}{% else %}{% static 'images/properties/prop_01_wayanad.jpg' %}{% endif %}" alt="{{ prop.title }}" class="editorial-prop-img" loading="lazy">
-                </a>
-                <div class="editorial-media-badge">
-                    <span>0{{ forloop.counter }}</span>
-                </div>
-            </div>
-
-            <!-- Editorial Content Wrap -->
-            <div class="editorial-prop-content">
-                <span class="editorial-prop-location">
-                    <i class="fa-solid fa-location-dot text-gold"></i> {{ prop.location_display_name|upper }}
-                </span>
-                <h3 class="editorial-prop-title">
-                    <a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a>
-                </h3>
-                <p class="editorial-prop-desc">
-                    {{ prop.short_description|default:prop.description|truncatewords:28 }}
-                </p>
-                <div class="editorial-prop-meta">
-                    <div class="editorial-price-box">
-                        <span class="meta-label">RATES FROM</span>
-                        <span class="meta-price">₹{{ prop.price_per_night|floatformat:0 }} <small>/ NIGHT</small></span>
-                    </div>
-                    <div class="editorial-specs-row">
-                        <span><i class="fa-solid fa-bed text-gold"></i> {{ prop.bedrooms }} Bedrooms</span>
-                        <span><i class="fa-solid fa-users text-gold"></i> Up to {{ prop.max_guests }} Guests</span>
-                    </div>
-                </div>
-                <a href="{% url 'property_detail' prop.slug %}" class="btn btn-editorial-property">
-                    <span>VIEW ESTATE</span> <i class="fa-solid fa-arrow-right-long"></i>
-                </a>
-            </div>
-
-        </div>
-        {% endfor %}
-    </div>
-
-    <div class="discovery-catalog-cta reveal-on-scroll">
-        <a href="{% url 'properties' %}" class="btn btn-gold btn-lg">
-            <span>VIEW ALL 12 PRIVATE ESTATES</span> <i class="fa-solid fa-arrow-right"></i>
-        </a>
-    </div>
-</section>
-
-
-<!-- ACT 4: EXPERIENCE — WORLD-CLASS IN-VILLA FACILITIES -->
+<!-- SECTION 2: PREMIUM LUXURY FACILITIES SHOWCASE (UNPARALLELED AMENITIES) -->
 <section class="section facilities-section" id="facilities">
     <div class="section-container advantage-header-wrap">
-        <span class="sub-heading-gold reveal-on-scroll">UNPARALLELED AMENITIES</span>
-        <h2 class="serif-title advantage-title reveal-on-scroll">World-Class In-Villa Facilities</h2>
-        <p class="advantage-desc reveal-on-scroll">Designed to provide absolute privacy, comfort, and uncompromising luxury throughout your stay.</p>
+        <span class="sub-heading-gold reveal-popup">UNPARALLELED AMENITIES</span>
+        <h2 class="serif-title advantage-title reveal-popup">World-Class In-Villa Facilities</h2>
+        <p class="advantage-desc reveal-popup">Designed to provide absolute privacy, comfort, and uncompromising luxury throughout your stay.</p>
     </div>
 
     <div class="section-container">
         <div class="facilities-grid">
             
             <!-- Facility Item 1 -->
-            <div class="facility-card-glass reveal-on-scroll">
+            <div class="facility-card-glass reveal-popup">
                 <div class="facility-header">
                     <div class="facility-icon"><i class="fa-solid fa-spa text-gold-icon"></i></div>
                     <span class="facility-number">01</span>
@@ -204,7 +83,7 @@
             </div>
 
             <!-- Facility Item 2 -->
-            <div class="facility-card-glass reveal-on-scroll">
+            <div class="facility-card-glass reveal-popup">
                 <div class="facility-header">
                     <div class="facility-icon"><i class="fa-solid fa-anchor text-gold-icon"></i></div>
                     <span class="facility-number">02</span>
@@ -218,7 +97,7 @@
             </div>
 
             <!-- Facility Item 3 -->
-            <div class="facility-card-glass reveal-on-scroll">
+            <div class="facility-card-glass reveal-popup">
                 <div class="facility-header">
                     <div class="facility-icon"><i class="fa-solid fa-water-ladder text-gold-icon"></i></div>
                     <span class="facility-number">03</span>
@@ -232,7 +111,7 @@
             </div>
 
             <!-- Facility Item 4 -->
-            <div class="facility-card-glass reveal-on-scroll">
+            <div class="facility-card-glass reveal-popup">
                 <div class="facility-header">
                     <div class="facility-icon"><i class="fa-solid fa-wifi text-gold-icon"></i></div>
                     <span class="facility-number">04</span>
@@ -246,7 +125,7 @@
             </div>
 
             <!-- Facility Item 5 -->
-            <div class="facility-card-glass reveal-on-scroll">
+            <div class="facility-card-glass reveal-popup">
                 <div class="facility-header">
                     <div class="facility-icon"><i class="fa-solid fa-user-shield text-gold-icon"></i></div>
                     <span class="facility-number">05</span>
@@ -260,7 +139,7 @@
             </div>
 
             <!-- Facility Item 6 -->
-            <div class="facility-card-glass reveal-on-scroll">
+            <div class="facility-card-glass reveal-popup">
                 <div class="facility-header">
                     <div class="facility-icon"><i class="fa-solid fa-helicopter text-gold-icon"></i></div>
                     <span class="facility-number">06</span>
@@ -278,19 +157,19 @@
 </section>
 
 
-<!-- ACT 5: TRUST — THE RENTORA ADVANTAGE -->
+<!-- SECTION 3: THE RENTORA ADVANTAGE (BESPOKE SERVICES FOR LUXURY TRAVELERS) -->
 <section class="section advantage-section" id="advantage">
     <div class="section-container advantage-header-wrap">
-        <span class="sub-heading-gold reveal-on-scroll">THE RENTORA ADVANTAGE</span>
-        <h2 class="serif-title advantage-title reveal-on-scroll">Bespoke Services for Luxury Travelers</h2>
-        <p class="advantage-desc reveal-on-scroll">We manage and curate Kerala's most sought-after private estates, houseboats and cliffside residences.</p>
+        <span class="sub-heading-gold reveal-popup">THE RENTORA ADVANTAGE</span>
+        <h2 class="serif-title advantage-title reveal-popup">Bespoke Services for Luxury Travelers</h2>
+        <p class="advantage-desc reveal-popup">We manage and curate Kerala's most sought-after private estates, houseboats and cliffside residences.</p>
     </div>
 
     <!-- Infinite Auto-Scrolling Feature Carousel -->
     <div class="carousel-outer-wrapper">
         <div class="carousel-track" id="featureCarouselTrack">
             
-            <div class="advantage-card-glass">
+            <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-shield-halved text-gold-icon"></i>
                 </div>
@@ -299,7 +178,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <div class="advantage-card-glass">
+            <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-utensils text-gold-icon"></i>
                 </div>
@@ -308,7 +187,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <div class="advantage-card-glass">
+            <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-ship text-gold-icon"></i>
                 </div>
@@ -317,7 +196,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <div class="advantage-card-glass">
+            <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-plane text-gold-icon"></i>
                 </div>
@@ -326,7 +205,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <div class="advantage-card-glass">
+            <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-lock text-gold-icon"></i>
                 </div>
@@ -335,7 +214,7 @@
                 <div class="card-reflection"></div>
             </div>
 
-            <div class="advantage-card-glass">
+            <div class="advantage-card-glass reveal-popup">
                 <div class="advantage-icon-wrapper">
                     <i class="fa-solid fa-bell text-gold-icon"></i>
                 </div>
@@ -349,10 +228,10 @@
 </section>
 
 
-<!-- ACT 6: ACTION — EXCLUSIVE MEMBERS ACCESS GATEWAY -->
+<!-- SECTION 4: EXCLUSIVE MEMBERS ACCESS GATEWAY (FINAL CTA) -->
 <section class="section final-cta-section" id="access">
     <div class="section-container">
-        <div class="final-cta-box reveal-on-scroll">
+        <div class="final-cta-box reveal-popup">
             <span class="sub-heading-gold">EXCLUSIVE MEMBERS ACCESS</span>
             <h2 class="serif-title final-cta-title">Unlock Access to Rentora’s Private Collection</h2>
             <p class="final-cta-desc">
