@@ -1,5 +1,7 @@
+import uuid
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 LOCATION_CHOICES = [
     ('alleppey', 'Alleppey (Alappuzha) - Backwaters'),
@@ -91,3 +93,15 @@ class VisitorLog(models.Model):
 
     def __str__(self):
         return f"{self.ip_address} visited {self.page_url} at {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
+
+class EmailVerificationToken(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='email_verification_token')
+    token = models.CharField(max_length=64, unique=True, default=uuid.uuid4)
+    is_verified = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Email Verification Tokens"
+
+    def __str__(self):
+        return f"Token for {self.user.username} ({'Verified' if self.is_verified else 'Pending'})"

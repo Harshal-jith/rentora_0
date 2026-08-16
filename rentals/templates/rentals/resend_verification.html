@@ -1,0 +1,47 @@
+{% extends 'rentals/base.html' %}
+{% load static %}
+
+{% block title %}Resend VIP Email Verification | Rentora Luxury Hospitality{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="auth-split-layout auth-panel-left">
+    <div class="auth-panel-side">
+        <div class="auth-panel-content">
+            
+            <div class="auth-panel-top">
+                <a href="{% url 'login' %}" class="auth-back-link">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Sign In
+                </a>
+            </div>
+
+            <div class="auth-card-solid">
+                <div class="auth-card-header">
+                    <span class="sub-heading-gold">VIP EMAIL VERIFICATION</span>
+                    <h2 class="auth-card-title">Resend Verification Link</h2>
+                    <p class="auth-card-subtitle">Enter your registered username or email address to receive a new verification link.</p>
+                </div>
+
+                <form method="POST" action="{% url 'resend_verification' %}" class="auth-solid-form">
+                    {% csrf_token %}
+
+                    <div class="form-group-solid">
+                        <label for="email_or_username">Email Address or Username</label>
+                        <input type="text" name="email_or_username" id="email_or_username" class="form-control" placeholder="name@domain.com or username" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-gold btn-auth-submit">
+                        <span>Send Verification Email</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+                <div class="auth-card-footer">
+                    <p>Already verified your email? <a href="{% url 'login' %}" class="auth-link-highlight">Sign In Now</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,9 +1,82 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
-from .models import Property, Inquiry, VisitorLog, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
+from django.core.mail import send_mail
+from django.urls import reverse
+from .models import Property, Inquiry, VisitorLog, EmailVerificationToken, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
+from .forms import CustomUserRegistrationForm
+
+def send_verification_email(request, user, token_obj):
+    verify_url = request.build_absolute_uri(
+        reverse('verify_email', kwargs={'token': token_obj.token})
+    )
+    
+    subject = "Verify Your VIP Email — Rentora Luxury Hospitality"
+    
+    message = f"""Dear {user.username},
+
+Thank you for registering your VIP account with Rentora — Kerala's Sanctuary of Bespoke Private Estates.
+
+Please verify your email address by clicking the link below to activate your exclusive membership:
+{verify_url}
+
+If you did not create a Rentora account, please ignore this email.
+
+Warm regards,
+Rentora Private Concierge Team
+https://rentora-7gdf.onrender.com
+"""
+
+    html_message = f"""<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0C0C0C; color: #D7E2EA; margin: 0; padding: 40px 20px; }}
+        .email-card {{ max-width: 580px; margin: 0 auto; background: #141414; border: 1px solid #D4AF37; border-radius: 20px; padding: 40px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.8); }}
+        .brand-title {{ font-size: 28px; font-weight: 800; color: #E8CE92; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }}
+        .brand-sub {{ font-size: 13px; color: #D4AF37; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 30px; }}
+        .content-text {{ font-size: 16px; line-height: 1.6; color: #D8D0C5; margin-bottom: 30px; }}
+        .btn-verify {{ display: inline-block; background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #0C0C0C; text-decoration: none; padding: 14px 36px; border-radius: 50px; font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35); margin-bottom: 30px; }}
+        .url-text {{ font-size: 12px; color: #8898A5; word-break: break-all; margin-top: 20px; }}
+    </style>
+</head>
+<body>
+    <div class="email-card">
+        <div class="brand-title">RENTORA</div>
+        <div class="brand-sub">Sanctuary of Bespoke Private Estates</div>
+        
+        <p class="content-text">
+            Dear <strong>{user.username}</strong>,<br><br>
+            Thank you for creating your VIP membership account with Rentora. Please click the button below to verify your email address and unlock access to private estate collections, in-villa culinary dining, and 24/7 concierge services.
+        </p>
+
+        <a href="{verify_url}" class="btn-verify" target="_blank">VERIFY EMAIL ADDRESS</a>
+
+        <p class="content-text" style="font-size: 13px; color: #A0B0BC;">
+            Or copy and paste this verification URL into your browser:
+        </p>
+        <p class="url-text"><a href="{verify_url}" style="color: #D4AF37;">{verify_url}</a></p>
+    </div>
+</body>
+</html>
+"""
+
+    try:
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=None,
+            recipient_list=[user.email],
+            html_message=html_message,
+            fail_silently=False,
+        )
+    except Exception as e:
+        print(f"Email delivery exception: {e}")
+
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -40,15 +113,24 @@ def home_view(request):
         action = request.POST.get('action')
         
         if action == 'register':
-            form = UserCreationForm(request.POST)
+            form = CustomUserRegistrationForm(request.POST)
             if form.is_valid():
-                user = form.save()
-                login(request, user)
-                messages.success(request, f"Welcome to Rentora, {user.username}! Your VIP membership is active.")
-                return redirect('dashboard')
+                user = form.save(commit=False)
+                user.is_active = False
+                user.save()
+                
+                token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+                send_verification_email(request, user, token_obj)
+                
+                messages.success(
+                    request, 
+                    f"VIP Registration initiated! A verification link has been sent to {user.email}. Please verify your email to activate your account."
+                )
+                return redirect('login')
             else:
-                for error in form.errors.values():
-                    messages.error(request, error)
+                for errors in form.errors.values():
+                    for error in errors:
+                        messages.error(request, error)
                     
         elif action == 'login':
             form = AuthenticationForm(request, data=request.POST)
@@ -231,17 +313,26 @@ def register_view(request):
         return redirect('dashboard')
         
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, f"Registration successful! Welcome to Rentora, {user.username}.")
-            return redirect('dashboard')
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+
+            token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+            send_verification_email(request, user, token_obj)
+
+            messages.success(
+                request, 
+                f"Registration successful! A VIP verification link has been sent to {user.email}. Please check your inbox and click the link to activate your account."
+            )
+            return redirect('login')
         else:
-            for error in form.errors.values():
-                messages.error(request, error)
+            for errors in form.errors.values():
+                for error in errors:
+                    messages.error(request, error)
     else:
-        form = UserCreationForm()
+        form = CustomUserRegistrationForm()
 
     return render(request, 'rentals/register.html', {'form': form})
 
@@ -251,6 +342,22 @@ def login_view(request):
         return redirect('dashboard')
 
     if request.method == 'POST':
+        username_input = request.POST.get('username', '').strip()
+        password_input = request.POST.get('password', '').strip()
+
+        # Check if user exists but email is not verified yet
+        user_obj = User.objects.filter(Q(username__iexact=username_input) | Q(email__iexact=username_input)).first()
+        if user_obj and not user_obj.is_active and user_obj.check_password(password_input):
+            messages.warning(
+                request, 
+                f"Your account '{user_obj.username}' is pending email verification. Please check your inbox ({user_obj.email}) or click 'Resend Verification' below."
+            )
+            return render(request, 'rentals/login.html', {
+                'form': AuthenticationForm(), 
+                'show_resend': True, 
+                'unverified_email': user_obj.email
+            })
+
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
@@ -263,6 +370,49 @@ def login_view(request):
         form = AuthenticationForm()
 
     return render(request, 'rentals/login.html', {'form': form})
+
+def verify_email_view(request, token):
+    log_visitor(request)
+    token_obj = EmailVerificationToken.objects.filter(token=token).first()
+    
+    if not token_obj:
+        messages.error(request, "Invalid or expired email verification link.")
+        return redirect('login')
+
+    user = token_obj.user
+    if user.is_active or token_obj.is_verified:
+        messages.info(request, "Your email address is already verified. Please sign in.")
+        return redirect('login')
+
+    user.is_active = True
+    user.save()
+
+    token_obj.is_verified = True
+    token_obj.save()
+
+    login(request, user)
+    messages.success(request, f"Email verified successfully! Welcome to your Rentora VIP Dashboard, {user.username}.")
+    return redirect('dashboard')
+
+def resend_verification_view(request):
+    log_visitor(request)
+    if request.method == 'POST':
+        email_or_username = request.POST.get('email_or_username', '').strip()
+        user = User.objects.filter(Q(email__iexact=email_or_username) | Q(username__iexact=email_or_username)).first()
+
+        if user:
+            if user.is_active:
+                messages.info(request, "This account is already verified and active. Please sign in.")
+                return redirect('login')
+            
+            token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+            send_verification_email(request, user, token_obj)
+            messages.success(request, f"A new verification link has been sent to {user.email}.")
+            return redirect('login')
+        else:
+            messages.error(request, "No account found matching that email address or username.")
+
+    return render(request, 'rentals/resend_verification.html')
 
 def logout_view(request):
     logout(request)

@@ -28,6 +28,19 @@
                     <p class="auth-card-subtitle">Sign in to unlock access to your private estate reservations.</p>
                 </div>
 
+                {% if show_resend %}
+                <div class="unverified-email-banner" style="background: rgba(212, 175, 55, 0.12); border: 1px solid var(--border-gold); padding: 16px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                    <p style="color: var(--gold-bright); font-size: 0.9rem; margin-bottom: 10px;"><i class="fa-solid fa-envelope-open-text"></i> Pending Email Verification</p>
+                    <form method="POST" action="{% url 'resend_verification' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="email_or_username" value="{{ unverified_email }}">
+                        <button type="submit" class="btn btn-gold" style="font-size: 0.8rem; padding: 8px 18px; border-radius: 30px;">
+                            <i class="fa-solid fa-paper-plane"></i> Resend Verification Email
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
+
                 <form method="POST" action="{% url 'login' %}" class="auth-solid-form">
                     {% csrf_token %}
 
