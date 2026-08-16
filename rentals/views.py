@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.urls import reverse
+from django.conf import settings
 from .models import Property, Inquiry, VisitorLog, EmailVerificationToken, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 from .forms import CustomUserRegistrationForm
 
@@ -66,16 +67,18 @@ https://rentora-7gdf.onrender.com
 """
 
     try:
+        from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com')
         send_mail(
             subject=subject,
             message=message,
-            from_email=None,
+            from_email=from_email,
             recipient_list=[user.email],
             html_message=html_message,
-            fail_silently=False,
+            fail_silently=True,
         )
     except Exception as e:
-        print(f"Email delivery exception: {e}")
+        print(f"Email delivery exception caught safely: {e}")
+    return verify_url
 
 
 def get_client_ip(request):
