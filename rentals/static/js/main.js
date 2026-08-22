@@ -71,30 +71,57 @@ function initHeroSlideshow() {
     if (!layerA || !layerB) return;
 
     const bgImages = [
-        '/static/images/hero_mid_villa_1784964394119.jpg',
-        '/static/images/scene_night_exterior_1784963519950.jpg',
-        '/static/images/scene_kerala_estate_1784963501632.jpg',
-        '/static/images/hero_fg_pool_1784964408615.jpg'
+        '/static/images/properties/prop_03_varkala.jpg',
+        '/static/images/properties/prop_01_wayanad.jpg',
+        '/static/images/properties/prop_02_munnar.jpg',
+        '/static/images/properties/prop_05_alleppey.jpg'
     ];
+
+    const indicators = document.querySelectorAll('.carousel-slide-indicator');
 
     let currentIndex = 0;
     let activeLayer = layerA;
     let inactiveLayer = layerB;
+    let timer = null;
 
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % bgImages.length;
+    function goToSlide(index) {
+        if (index === currentIndex && activeLayer.style.backgroundImage) return;
+        currentIndex = index;
         const nextImage = bgImages[currentIndex];
 
-        // Prepare inactive layer with next image
         inactiveLayer.style.backgroundImage = `url('${nextImage}')`;
         inactiveLayer.classList.add('active');
         activeLayer.classList.remove('active');
 
-        // Swap active and inactive layer pointers
         const temp = activeLayer;
         activeLayer = inactiveLayer;
         inactiveLayer = temp;
-    }, 5500);
+
+        indicators.forEach((ind, i) => {
+            if (i === currentIndex) {
+                ind.classList.add('active');
+            } else {
+                ind.classList.remove('active');
+            }
+        });
+    }
+
+    function startTimer() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(() => {
+            let nextIdx = (currentIndex + 1) % bgImages.length;
+            goToSlide(nextIdx);
+        }, 6000);
+    }
+
+    indicators.forEach((ind, i) => {
+        ind.addEventListener('click', () => {
+            goToSlide(i);
+            startTimer();
+        });
+    });
+
+    startTimer();
 }
 
 /* --------------------------------------------------------------------------

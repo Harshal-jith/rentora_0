@@ -34,11 +34,17 @@
     <!-- Editorial Hero Core Layout -->
     <div class="hero-content-editorial">
         
-        <!-- Large Transparent Rentora Brand Logo (Top Center - Permanent Dark) -->
+        <!-- Large Transparent Rentora Brand Logo -->
         <div class="hero-brand-logo-wrap">
             <a href="{% url 'home' %}" aria-label="Rentora Luxury Hospitality">
                 <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-main-logo hero-permanent-dark-logo">
             </a>
+        </div>
+
+        <!-- Crown VIP Badge -->
+        <div class="hero-crown-badge">
+            <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
+            <span class="crown-text">KERALA’S SANCTUARY OF UNCOMPROMISED LUXURY</span>
         </div>
 
         <!-- Headline (Playfair Display & Gold Shimmer) -->
@@ -52,13 +58,56 @@
             Kerala's premiere private hospitality platform. Experience 100% verified estates, in-villa culinary masters, private helipads, and 24/7 dedicated estate concierge.
         </p>
 
-        <!-- Action Buttons -->
+        <!-- Glassmorphic Luxury Search Console -->
+        <div class="hero-search-glass-console">
+            <form method="GET" action="{% url 'properties' %}" class="hero-search-form">
+                <div class="search-field-group">
+                    <label><i class="fa-solid fa-location-dot gold-icon"></i> Destination</label>
+                    <select name="location" class="hero-search-select">
+                        <option value="">All Kerala Destinations</option>
+                        {% for code, name in locations %}
+                        <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="search-field-divider"></div>
+
+                <div class="search-field-group">
+                    <label><i class="fa-solid fa-building-user gold-icon"></i> Estate Type</label>
+                    <select name="property_type" class="hero-search-select">
+                        <option value="">All Luxury Types</option>
+                        {% for code, name in property_types %}
+                        <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="search-field-divider"></div>
+
+                <div class="search-field-group">
+                    <label><i class="fa-solid fa-user-group gold-icon"></i> VIP Guests</label>
+                    <select name="guests" class="hero-search-select">
+                        <option value="">Any Guests</option>
+                        <option value="2">2 Guests (Couples Retreat)</option>
+                        <option value="4">4 Guests (Family Suite)</option>
+                        <option value="8">8+ Guests (Estate Party)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-hero-search-submit">
+                    <span>DISCOVER ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Action Quick Links -->
         <div class="hero-cta-editorial-group">
             <a href="#advantage" class="btn btn-gold btn-editorial-primary">
                 <span>Explore Advantage</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <a href="#facilities" class="btn btn-glass btn-editorial-secondary">
-                <span>In-Villa Facilities</span> <i class="fa-solid fa-gem"></i>
+            <a href="{% url 'properties' %}" class="btn btn-glass btn-editorial-secondary">
+                <span>Browse Portfolio</span> <i class="fa-solid fa-gem"></i>
             </a>
             {% if user.is_authenticated %}
             <a href="{% url 'dashboard' %}" class="btn btn-glass btn-editorial-secondary">
@@ -66,27 +115,86 @@
             </a>
             {% else %}
             <a href="{% url 'login' %}" class="btn btn-gold btn-editorial-primary">
-                <span>Sign In / Register</span> <i class="fa-solid fa-right-to-bracket"></i>
+                <span>VIP Sign In</span> <i class="fa-solid fa-right-to-bracket"></i>
             </a>
             {% endif %}
         </div>
 
-        <!-- Bottom Luxury Stats Bar -->
+        <!-- Bottom Luxury Glass Medallion Stats -->
         <div class="hero-stats-glass-bar">
             <div class="stat-glass-item">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Verified Private Estates</span>
+                <i class="fa-solid fa-shield-halved stat-gold-icon"></i>
+                <div class="stat-meta">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Verified Private Estates</span>
+                </div>
             </div>
             <div class="stat-glass-divider"></div>
             <div class="stat-glass-item">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label">Personal Estate Host</span>
+                <i class="fa-solid fa-user-shield stat-gold-icon"></i>
+                <div class="stat-meta">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Personal Estate Host</span>
+                </div>
             </div>
             <div class="stat-glass-divider"></div>
             <div class="stat-glass-item">
-                <span class="stat-number">5-Star</span>
-                <span class="stat-label">Private Culinary Chefs</span>
+                <i class="fa-solid fa-utensils stat-gold-icon"></i>
+                <div class="stat-meta">
+                    <span class="stat-number">5-Star</span>
+                    <span class="stat-label">Private Master Chefs</span>
+                </div>
             </div>
+            <div class="stat-glass-divider"></div>
+            <div class="stat-glass-item">
+                <i class="fa-solid fa-wifi stat-gold-icon"></i>
+                <div class="stat-meta">
+                    <span class="stat-number">1 Gbps</span>
+                    <span class="stat-label">Starlink Wi-Fi Mesh</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Cinema Background Carousel Indicators -->
+    <div class="hero-carousel-controls">
+        <div class="carousel-slide-indicator active" data-slide="0">
+            <span class="slide-num">01</span>
+            <span class="slide-name">Varkala Azure</span>
+            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
+        </div>
+        <div class="carousel-slide-indicator" data-slide="1">
+            <span class="slide-num">02</span>
+            <span class="slide-name">Wayanad Sanctuary</span>
+            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
+        </div>
+        <div class="carousel-slide-indicator" data-slide="2">
+            <span class="slide-num">03</span>
+            <span class="slide-name">Munnar Tea Haven</span>
+            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
+        </div>
+        <div class="carousel-slide-indicator" data-slide="3">
+            <span class="slide-num">04</span>
+            <span class="slide-name">Alleppey Backwaters</span>
+            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 1.5: FEATURED IN LUXURY PRESS BAR -->
+<section class="press-bar-section">
+    <div class="press-bar-container">
+        <span class="press-label">FEATURED IN LUXURY PUBLICATIONS</span>
+        <div class="press-logos-wrap">
+            <span class="press-logo-text">ARCHITECTURAL DIGEST</span>
+            <span class="press-dot">•</span>
+            <span class="press-logo-text">CONDÉ NAST TRAVELER</span>
+            <span class="press-dot">•</span>
+            <span class="press-logo-text">ROBB REPORT</span>
+            <span class="press-dot">•</span>
+            <span class="press-logo-text">TRAVEL + LEISURE</span>
+            <span class="press-dot">•</span>
+            <span class="press-logo-text">FORBES LUXURY</span>
         </div>
     </div>
 </section>

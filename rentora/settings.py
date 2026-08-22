@@ -18,6 +18,7 @@ if not DEBUG and os.environ.get('RENDER'):
     DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com', 'https://rentora-7gdf.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [

@@ -503,6 +503,291 @@ body.hero-animate-active .hero-brand-logo-wrap {
     width: 100%;
 }
 
+/* HERO CROWN BADGE */
+.hero-crown-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.crown-icon {
+    color: var(--gold-bright);
+    font-size: 0.85rem;
+}
+
+.crown-text {
+    color: var(--gold-bright);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    font-family: var(--font-btn);
+}
+
+/* GLASSMORPHIC LUXURY SEARCH CONSOLE */
+.hero-search-glass-console {
+    width: 100%;
+    max-width: 980px;
+    margin: 24px auto 32px auto;
+    background: rgba(18, 18, 18, 0.76);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(212, 175, 55, 0.32);
+    border-radius: 60px;
+    padding: 10px 14px 10px 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(212, 175, 55, 0.12);
+    transition: all 0.4s ease;
+}
+
+.hero-search-glass-console:hover {
+    border-color: rgba(212, 175, 55, 0.55);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+.hero-search-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+}
+
+.search-field-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: 4px 8px;
+}
+
+.search-field-group label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gold-icon {
+    color: var(--gold-bright);
+    font-size: 0.8rem;
+}
+
+.hero-search-select {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-family: var(--font-main);
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+}
+
+.hero-search-select option {
+    background: #141414;
+    color: #FFFFFF;
+}
+
+.search-field-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(212, 175, 55, 0.2);
+}
+
+.btn-hero-search-submit {
+    background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+    color: #0C0C0C;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    padding: 16px 32px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    font-family: var(--font-btn);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.btn-hero-search-submit:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #F5D77F 0%, #D4AF37 100%);
+}
+
+@media (max-width: 900px) {
+    .hero-search-glass-console {
+        border-radius: 24px;
+        padding: 18px;
+    }
+    .hero-search-form {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .search-field-divider {
+        display: none;
+    }
+    .btn-hero-search-submit {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* CINEMA CAROUSEL CONTROLS */
+.hero-carousel-controls {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    gap: 16px;
+    z-index: 12;
+}
+
+.carousel-slide-indicator {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: all 0.4s ease;
+}
+
+.carousel-slide-indicator.active,
+.carousel-slide-indicator:hover {
+    opacity: 1.0;
+}
+
+.slide-num {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+}
+
+.slide-name {
+    font-size: 0.78rem;
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.slide-progress-bar {
+    width: 90px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.carousel-slide-indicator.active .progress-fill {
+    display: block;
+    height: 100%;
+    background: var(--gold-bright);
+    width: 0%;
+    animation: slideProgress 6s linear infinite;
+}
+
+@keyframes slideProgress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@media (max-width: 900px) {
+    .hero-carousel-controls {
+        display: none;
+    }
+}
+
+/* ENHANCED STATS MEDALLION BAR */
+.stat-gold-icon {
+    font-size: 1.2rem;
+    color: var(--gold-bright);
+    margin-bottom: 4px;
+}
+
+.stat-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* LUXURY PRESS TICKER SECTION */
+.press-bar-section {
+    background: #080808;
+    border-top: 1px solid rgba(212, 175, 55, 0.18);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+    padding: 22px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 6;
+}
+
+.press-bar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.press-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--gold-bright);
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    font-family: var(--font-btn);
+    white-space: nowrap;
+}
+
+.press-logos-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.press-logo-text {
+    font-family: var(--font-serif);
+    font-size: 0.92rem;
+    letter-spacing: 2.5px;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.press-logo-text:hover {
+    color: #FFFFFF;
+}
+
+.press-dot {
+    color: rgba(212, 175, 55, 0.4);
+    font-size: 0.8rem;
+}
+
 /* DUAL-ROW SCROLL-DRIVEN MARQUEE SLIDER SECTION (RIGHT BELOW HERO) */
 .marquee-scroll-section {
     background-color: #0C0C0C;

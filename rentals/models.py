@@ -94,9 +94,12 @@ class VisitorLog(models.Model):
     def __str__(self):
         return f"{self.ip_address} visited {self.page_url} at {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
 
+def generate_token_str():
+    return str(uuid.uuid4())
+
 class EmailVerificationToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='email_verification_token')
-    token = models.CharField(max_length=64, unique=True, default=uuid.uuid4)
+    token = models.CharField(max_length=64, unique=True, default=generate_token_str)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
