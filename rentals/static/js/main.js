@@ -521,6 +521,7 @@ function initMarqueeScrollSlide() {
 document.addEventListener("DOMContentLoaded", function() {
     initMarqueeScrollSlide();
     initStickyStackingCards();
+    initPortal3DDeck();
 });
 
 /* --------------------------------------------------------------------------
@@ -574,5 +575,70 @@ function initStickyStackingCards() {
     }, { passive: true });
 
     updateCardStacking();
+}
+
+/* --------------------------------------------------------------------------
+   10. Proposal 2 Portal 3D Perspective Card Deck Motion Engine
+   -------------------------------------------------------------------------- */
+function initPortal3DDeck() {
+    const deck = document.getElementById('portal3dDeck');
+    if (!deck) return;
+
+    const cards = deck.querySelectorAll('.deck-card');
+    const prevBtn = document.getElementById('deckPrevBtn');
+    const nextBtn = document.getElementById('deckNextBtn');
+    const dots = document.querySelectorAll('.deck-dot');
+
+    if (!cards.length) return;
+
+    let activeIndex = 0;
+    const totalCards = cards.length;
+
+    function updateDeckPositions() {
+        cards.forEach((card, index) => {
+            card.classList.remove('active-card', 'next-card-1', 'next-card-2');
+            
+            const relIndex = (index - activeIndex + totalCards) % totalCards;
+
+            if (relIndex === 0) {
+                card.classList.add('active-card');
+            } else if (relIndex === 1) {
+                card.classList.add('next-card-1');
+            } else {
+                card.classList.add('next-card-2');
+            }
+        });
+
+        dots.forEach((dot, index) => {
+            if (index === activeIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function nextCard() {
+        activeIndex = (activeIndex + 1) % totalCards;
+        updateDeckPositions();
+    }
+
+    function prevCard() {
+        activeIndex = (activeIndex - 1 + totalCards) % totalCards;
+        updateDeckPositions();
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', nextCard);
+    if (prevBtn) prevBtn.addEventListener('click', prevCard);
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            activeIndex = i;
+            updateDeckPositions();
+        });
+    });
+
+    // Auto rotate every 5 seconds
+    setInterval(nextCard, 5000);
 }
 

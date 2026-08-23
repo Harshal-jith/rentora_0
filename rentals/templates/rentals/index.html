@@ -13,170 +13,209 @@
 
 {% block content %}
 <div class="landing-page-wrapper permanent-dark-page">
-<!-- SECTION 1: ARCHITECTURAL EDITORIAL HERO -->
-<section class="hero-section hero-editorial-fullscreen" id="hero">
+<!-- SECTION 1: PROPOSAL 2 — HIGH-TECH LUXURY PORTAL HERO -->
+<section class="hero-section hero-portal-split" id="hero">
 
-    <!-- Dual-Layer Continuous Cross-Fade Background Engine -->
+    <!-- Dual-Layer Ambient Background Engine -->
     <div class="hero-crossfade-container">
-        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
+        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/properties/prop_03_varkala.jpg' %}');"></div>
         <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
     </div>
 
-    <!-- Ambient Dark Gradient Vignette -->
+    <!-- Ambient Dark Gradient Overlay -->
     <div class="hero-overlay-editorial"></div>
 
-    <!-- Ambient Golden Radial Flare Glow -->
+    <!-- Radial Gold Flare Glow -->
     <div class="hero-radial-flare"></div>
 
     <!-- Floating Gold Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Editorial Hero Core Layout -->
-    <div class="hero-content-editorial">
+    <!-- Split Hero 2-Column Container -->
+    <div class="portal-hero-container">
         
-        <!-- Large Transparent Rentora Brand Logo -->
-        <div class="hero-brand-logo-wrap">
-            <a href="{% url 'home' %}" aria-label="Rentora Luxury Hospitality">
-                <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="hero-main-logo hero-permanent-dark-logo">
-            </a>
+        <!-- LEFT COLUMN: EDITORIAL STATEMENT & SEARCH CONSOLE -->
+        <div class="portal-hero-left">
+            <!-- Brand Logo -->
+            <div class="portal-brand-wrap">
+                <a href="{% url 'home' %}" aria-label="Rentora Luxury Hospitality">
+                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora" class="portal-main-logo">
+                </a>
+            </div>
+
+            <!-- Crown Distinction Badge -->
+            <div class="hero-crown-badge">
+                <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
+                <span class="crown-text">KERALA’S PREMIERE LUXURY PORTAL</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="portal-hero-title">
+                Architectural Sanctuaries &<br>
+                <span class="gold-shimmer-text">Bespoke Private Estates</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="portal-hero-subtitle">
+                Discover 100% verified coastal cliffside villas, tea plantation manors, and backwater yacht retreats across Kerala with 24/7 dedicated concierge.
+            </p>
+
+            <!-- Integrated VIP Search Console -->
+            <div class="portal-search-card">
+                <form method="GET" action="{% url 'properties' %}" class="portal-search-form">
+                    <div class="portal-search-row">
+                        <div class="portal-field">
+                            <label><i class="fa-solid fa-location-dot gold-icon"></i> Destination</label>
+                            <select name="location" class="portal-select">
+                                <option value="">All Kerala Destinations</option>
+                                {% for code, name in locations %}
+                                <option value="{{ code }}">{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="portal-field">
+                            <label><i class="fa-solid fa-building-user gold-icon"></i> Estate Type</label>
+                            <select name="property_type" class="portal-select">
+                                <option value="">All Luxury Types</option>
+                                {% for code, name in property_types %}
+                                <option value="{{ code }}">{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="portal-search-row margin-top">
+                        <div class="portal-field">
+                            <label><i class="fa-solid fa-user-group gold-icon"></i> Guests</label>
+                            <select name="guests" class="portal-select">
+                                <option value="">Any Capacity</option>
+                                <option value="2">2 Guests (Couples)</option>
+                                <option value="4">4 Guests (Family)</option>
+                                <option value="8">8+ Guests (VIP Party)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-portal-search">
+                            <span>SEARCH ESTATES</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Live Verification Metrics -->
+            <div class="portal-trust-pills">
+                <div class="trust-pill"><i class="fa-solid fa-circle-check gold-icon"></i> <span>100% Verified Estates</span></div>
+                <div class="trust-pill"><i class="fa-solid fa-star gold-icon"></i> <span>★ 4.98 Guest Rating</span></div>
+                <div class="trust-pill"><i class="fa-solid fa-user-shield gold-icon"></i> <span>24/7 Personal Host</span></div>
+            </div>
         </div>
 
-        <!-- Crown VIP Badge -->
-        <div class="hero-crown-badge">
-            <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
-            <span class="crown-text">KERALA’S SANCTUARY OF UNCOMPROMISED LUXURY</span>
-        </div>
+        <!-- RIGHT COLUMN: INTERACTIVE 3D PERSPECTIVE CARD DECK SHOWCASE -->
+        <div class="portal-hero-right">
+            
+            <!-- Floating Top Glass Micro Badge -->
+            <div class="floating-micro-badge badge-top-right">
+                <i class="fa-solid fa-car-shield gold-icon"></i>
+                <span>ARMORED SUV TRANSFER READY</span>
+            </div>
 
-        <!-- Headline (Playfair Display & Gold Shimmer) -->
-        <h1 class="hero-title-editorial">
-            Kerala’s Sanctuary of<br>
-            <span class="gold-shimmer-text">Bespoke Private Estates</span>
-        </h1>
+            <!-- Floating Bottom Glass Micro Badge -->
+            <div class="floating-micro-badge badge-bottom-left">
+                <i class="fa-solid fa-utensils gold-icon"></i>
+                <span>5-STAR IN-VILLA MASTER CHEF</span>
+            </div>
 
-        <!-- Subtitle -->
-        <p class="hero-subtitle-editorial">
-            Kerala's premiere private hospitality platform. Experience 100% verified estates, in-villa culinary masters, private helipads, and 24/7 dedicated estate concierge.
-        </p>
-
-        <!-- Glassmorphic Luxury Search Console -->
-        <div class="hero-search-glass-console">
-            <form method="GET" action="{% url 'properties' %}" class="hero-search-form">
-                <div class="search-field-group">
-                    <label><i class="fa-solid fa-location-dot gold-icon"></i> Destination</label>
-                    <select name="location" class="hero-search-select">
-                        <option value="">All Kerala Destinations</option>
-                        {% for code, name in locations %}
-                        <option value="{{ code }}">{{ name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+            <!-- 3D Perspective Card Deck Container -->
+            <div class="portal-3d-deck" id="portal3dDeck">
                 
-                <div class="search-field-divider"></div>
-
-                <div class="search-field-group">
-                    <label><i class="fa-solid fa-building-user gold-icon"></i> Estate Type</label>
-                    <select name="property_type" class="hero-search-select">
-                        <option value="">All Luxury Types</option>
-                        {% for code, name in property_types %}
-                        <option value="{{ code }}">{{ name }}</option>
-                        {% endfor %}
-                    </select>
+                <!-- 3D Card 01 (Top Active Card) -->
+                <div class="deck-card active-card" data-card="0">
+                    <div class="deck-card-img-wrap">
+                        <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Azure Cliffside">
+                        <div class="deck-card-tag">FEATURED OCEANFRONT</div>
+                        <div class="deck-card-price">₹1,25,000 <span>/ night</span></div>
+                    </div>
+                    <div class="deck-card-content">
+                        <div class="deck-card-header">
+                            <h3 class="deck-card-title">Varkala Azure Cliffside Reserve</h3>
+                            <span class="deck-card-rating"><i class="fa-solid fa-star"></i> 4.98</span>
+                        </div>
+                        <p class="deck-card-location"><i class="fa-solid fa-location-dot"></i> North Cliff, Varkala Oceanfront</p>
+                        <div class="deck-card-features">
+                            <span><i class="fa-solid fa-water"></i> Ocean Pool</span>
+                            <span><i class="fa-solid fa-bed"></i> 4 Suites</span>
+                            <span><i class="fa-solid fa-wifi"></i> Starlink Mesh</span>
+                        </div>
+                        <a href="{% url 'property_detail' slug='varkala-azure-cliffside' %}" class="btn-deck-card-cta">
+                            <span>EXPLORE VILLA</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="search-field-divider"></div>
-
-                <div class="search-field-group">
-                    <label><i class="fa-solid fa-user-group gold-icon"></i> VIP Guests</label>
-                    <select name="guests" class="hero-search-select">
-                        <option value="">Any Guests</option>
-                        <option value="2">2 Guests (Couples Retreat)</option>
-                        <option value="4">4 Guests (Family Suite)</option>
-                        <option value="8">8+ Guests (Estate Party)</option>
-                    </select>
+                <!-- 3D Card 02 (Stacked Card 2) -->
+                <div class="deck-card next-card-1" data-card="1">
+                    <div class="deck-card-img-wrap">
+                        <img src="{% static 'images/properties/prop_01_wayanad.jpg' %}" alt="Wayanad Mistwood">
+                        <div class="deck-card-tag">RAINFOREST SANCTUARY</div>
+                        <div class="deck-card-price">₹95,000 <span>/ night</span></div>
+                    </div>
+                    <div class="deck-card-content">
+                        <div class="deck-card-header">
+                            <h3 class="deck-card-title">Wayanad Mistwood Sanctuary</h3>
+                            <span class="deck-card-rating"><i class="fa-solid fa-star"></i> 4.96</span>
+                        </div>
+                        <p class="deck-card-location"><i class="fa-solid fa-location-dot"></i> Lakkidi Rainforest, Wayanad</p>
+                        <div class="deck-card-features">
+                            <span><i class="fa-solid fa-mountain-sun"></i> Mountain View</span>
+                            <span><i class="fa-solid fa-bed"></i> 5 Suites</span>
+                            <span><i class="fa-solid fa-hot-tub-person"></i> Spa Suite</span>
+                        </div>
+                        <a href="{% url 'property_detail' slug='wayanad-mistwood-sanctuary' %}" class="btn-deck-card-cta">
+                            <span>EXPLORE ESTATE</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn-hero-search-submit">
-                    <span>DISCOVER ESTATES</span> <i class="fa-solid fa-arrow-right-long"></i>
+                <!-- 3D Card 03 (Stacked Card 3) -->
+                <div class="deck-card next-card-2" data-card="2">
+                    <div class="deck-card-img-wrap">
+                        <img src="{% static 'images/properties/prop_05_alleppey.jpg' %}" alt="Alleppey Backwater">
+                        <div class="deck-card-tag">PRESIDENTIAL YACHT</div>
+                        <div class="deck-card-price">₹1,40,000 <span>/ night</span></div>
+                    </div>
+                    <div class="deck-card-content">
+                        <div class="deck-card-header">
+                            <h3 class="deck-card-title">Alleppey Sovereign Backwater</h3>
+                            <span class="deck-card-rating"><i class="fa-solid fa-star"></i> 4.99</span>
+                        </div>
+                        <p class="deck-card-location"><i class="fa-solid fa-location-dot"></i> Punnamada Lagoon, Alleppey</p>
+                        <div class="deck-card-features">
+                            <span><i class="fa-solid fa-ship"></i> Private Yacht</span>
+                            <span><i class="fa-solid fa-bed"></i> 3 Cabins</span>
+                            <span><i class="fa-solid fa-champagne-glasses"></i> Private Host</span>
+                        </div>
+                        <a href="{% url 'property_detail' slug='alleppey-sovereign-backwater' %}" class="btn-deck-card-cta">
+                            <span>EXPLORE YACHT</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Deck Controls & Navigation Arrows -->
+            <div class="portal-deck-nav">
+                <button type="button" class="deck-arrow-btn" id="deckPrevBtn" aria-label="Previous Estate">
+                    <i class="fa-solid fa-arrow-left"></i>
                 </button>
-            </form>
-        </div>
+                <div class="deck-dots">
+                    <span class="deck-dot active" data-slide="0"></span>
+                    <span class="deck-dot" data-slide="1"></span>
+                    <span class="deck-dot" data-slide="2"></span>
+                </div>
+                <button type="button" class="deck-arrow-btn" id="deckNextBtn" aria-label="Next Estate">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
 
-        <!-- Action Quick Links -->
-        <div class="hero-cta-editorial-group">
-            <a href="#advantage" class="btn btn-gold btn-editorial-primary">
-                <span>Explore Advantage</span> <i class="fa-solid fa-arrow-right"></i>
-            </a>
-            <a href="{% url 'properties' %}" class="btn btn-glass btn-editorial-secondary">
-                <span>Browse Portfolio</span> <i class="fa-solid fa-gem"></i>
-            </a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'dashboard' %}" class="btn btn-glass btn-editorial-secondary">
-                <span>My Dashboard</span> <i class="fa-solid fa-user"></i>
-            </a>
-            {% else %}
-            <a href="{% url 'login' %}" class="btn btn-gold btn-editorial-primary">
-                <span>VIP Sign In</span> <i class="fa-solid fa-right-to-bracket"></i>
-            </a>
-            {% endif %}
-        </div>
-
-        <!-- Bottom Luxury Glass Medallion Stats -->
-        <div class="hero-stats-glass-bar">
-            <div class="stat-glass-item">
-                <i class="fa-solid fa-shield-halved stat-gold-icon"></i>
-                <div class="stat-meta">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Verified Private Estates</span>
-                </div>
-            </div>
-            <div class="stat-glass-divider"></div>
-            <div class="stat-glass-item">
-                <i class="fa-solid fa-user-shield stat-gold-icon"></i>
-                <div class="stat-meta">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Personal Estate Host</span>
-                </div>
-            </div>
-            <div class="stat-glass-divider"></div>
-            <div class="stat-glass-item">
-                <i class="fa-solid fa-utensils stat-gold-icon"></i>
-                <div class="stat-meta">
-                    <span class="stat-number">5-Star</span>
-                    <span class="stat-label">Private Master Chefs</span>
-                </div>
-            </div>
-            <div class="stat-glass-divider"></div>
-            <div class="stat-glass-item">
-                <i class="fa-solid fa-wifi stat-gold-icon"></i>
-                <div class="stat-meta">
-                    <span class="stat-number">1 Gbps</span>
-                    <span class="stat-label">Starlink Wi-Fi Mesh</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Interactive Cinema Background Carousel Indicators -->
-    <div class="hero-carousel-controls">
-        <div class="carousel-slide-indicator active" data-slide="0">
-            <span class="slide-num">01</span>
-            <span class="slide-name">Varkala Azure</span>
-            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
-        </div>
-        <div class="carousel-slide-indicator" data-slide="1">
-            <span class="slide-num">02</span>
-            <span class="slide-name">Wayanad Sanctuary</span>
-            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
-        </div>
-        <div class="carousel-slide-indicator" data-slide="2">
-            <span class="slide-num">03</span>
-            <span class="slide-name">Munnar Tea Haven</span>
-            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
-        </div>
-        <div class="carousel-slide-indicator" data-slide="3">
-            <span class="slide-num">04</span>
-            <span class="slide-name">Alleppey Backwaters</span>
-            <span class="slide-progress-bar"><span class="progress-fill"></span></span>
         </div>
     </div>
 </section>
