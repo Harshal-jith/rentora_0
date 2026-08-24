@@ -193,147 +193,76 @@
     </div>
 </section>
 
-<!-- SECTION 3: UNPARALLELED HOSPITALITY & BESPOKE SERVICES (SINGLE MASTER STICKY STACKING SECTION) -->
-<section class="section sticky-stacking-section" id="advantage">
+<!-- SECTION 3: INTERACTIVE HOSPITALITY & BESPOKE SERVICES (LUXURY BENTO MATRIX) -->
+<section class="section bento-experience-section" id="advantage">
     <div class="section-container advantage-header-wrap">
         <span class="sub-heading-gold reveal-popup">THE RENTORA EXPERIENCE</span>
         <h2 class="serif-title advantage-title reveal-popup">Bespoke Hospitality & World-Class Facilities</h2>
         <p class="advantage-desc reveal-popup">Curated private estates, in-villa master chefs, backwater charters, and 24/7 personal concierge service across Kerala.</p>
     </div>
 
-    <div class="stack-cards-wrapper">
-        <!-- Sticky Card 01 -->
-        <div class="sticky-stack-card">
-            <div class="stack-card-header">
-                <div class="stack-card-info">
-                    <span class="stack-card-number">01</span>
-                    <div class="stack-card-meta">
-                        <span class="stack-card-tag">ESTATE VERIFICATION</span>
-                        <h3 class="stack-card-title">100% Verified Private Estates</h3>
+    <div class="section-container">
+        <div class="bento-experience-grid">
+            
+            <!-- BENTO CARD 1: 100% VERIFIED PRIVATE ESTATES (LARGE HERO BLOCK) -->
+            <div class="bento-card bento-card-large bento-verified reveal-popup">
+                <div class="bento-card-bg">
+                    <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Verified Private Estates">
+                    <div class="bento-card-overlay"></div>
+                </div>
+                <div class="bento-card-content">
+                    <div class="bento-badge"><i class="fa-solid fa-shield-halved"></i> 100% VERIFIED SANCTUARIES</div>
+                    <h3 class="bento-title">Architecturally Audited Estates & Private Sanctuaries</h3>
+                    <p class="bento-text">Every property undergoes a 80-point inspection covering structural integrity, private perimeter security, Starlink Wi-Fi mesh, and infinity pool sanitation.</p>
+                    <div class="bento-features-row">
+                        <span class="bento-pill"><i class="fa-solid fa-circle-check gold-icon"></i> 80-Point Inspection</span>
+                        <span class="bento-pill"><i class="fa-solid fa-wifi gold-icon"></i> 1 Gbps Starlink Fiber</span>
+                        <span class="bento-pill"><i class="fa-solid fa-lock gold-icon"></i> Biometric Security</span>
                     </div>
                 </div>
-                <a href="{% url 'properties' %}" class="stack-card-btn">EXPLORE ESTATES</a>
             </div>
-            <div class="stack-card-single-body">
-                <div class="card-hero-img-wrap">
-                    <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Verified Estates" class="card-single-hero-img">
-                </div>
-                <p class="stack-card-desc-high-contrast">
-                    Every estate undergoes a rigorous 80-point verification covering architectural safety, private security, high-speed Starlink fiber, and premium luxury amenities.
-                </p>
-            </div>
-        </div>
 
-        <!-- Sticky Card 02 -->
-        <div class="sticky-stack-card">
-            <div class="stack-card-header">
-                <div class="stack-card-info">
-                    <span class="stack-card-number">02</span>
-                    <div class="stack-card-meta">
-                        <span class="stack-card-tag">CULINARY MASTERY</span>
-                        <h3 class="stack-card-title">In-Villa Master Chefs & Gastronomy</h3>
-                    </div>
+            <!-- BENTO CARD 2: CULINARY MASTERY (TALL VERTICAL BLOCK) -->
+            <div class="bento-card bento-card-tall bento-culinary reveal-popup">
+                <div class="bento-card-bg">
+                    <img src="{% static 'images/card_culinary_chef.jpg' %}" alt="In-Villa Master Chef Plating">
+                    <div class="bento-card-overlay"></div>
                 </div>
-                <a href="{% url 'properties' %}" class="stack-card-btn">VIEW GASTRONOMY</a>
-            </div>
-            <div class="stack-card-single-body">
-                <div class="card-hero-img-wrap">
-                    <img src="{% static 'images/card_culinary_chef.jpg' %}" alt="Private Master Chef Plating Gourmet Meal" class="card-single-hero-img">
+                <div class="bento-card-content">
+                    <div class="bento-badge"><i class="fa-solid fa-utensils"></i> GASTRONOMY</div>
+                    <h3 class="bento-title">In-Villa 5-Star Master Chefs</h3>
+                    <p class="bento-text">Indulge in bespoke multi-course sea-to-table seafood grills and traditional Ayurvedic culinary curations in total privacy.</p>
+                    <a href="{% url 'properties' %}" class="bento-link">VIEW MENU CURATIONS <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <p class="stack-card-desc-high-contrast">
-                    Indulge in custom multi-course dining, sea-to-table seafood grills, and organic highland plantation gastronomy prepared by top private 5-star master chefs.
-                </p>
             </div>
-        </div>
 
-        <!-- Sticky Card 03 -->
-        <div class="sticky-stack-card">
-            <div class="stack-card-header">
-                <div class="stack-card-info">
-                    <span class="stack-card-number">03</span>
-                    <div class="stack-card-meta">
-                        <span class="stack-card-tag">MARITIME CHARTERS</span>
-                        <h3 class="stack-card-title">Private Yacht & Backwater Houseboats</h3>
-                    </div>
+            <!-- BENTO CARD 3: MARITIME CHARTERS (STANDARD BLOCK) -->
+            <div class="bento-card bento-maritime reveal-popup">
+                <div class="bento-card-bg">
+                    <img src="{% static 'images/card_maritime_yacht.jpg' %}" alt="Private Yacht Charter">
+                    <div class="bento-card-overlay"></div>
                 </div>
-                <a href="{% url 'properties' %}" class="stack-card-btn">CRUISER DOCK</a>
-            </div>
-            <div class="stack-card-single-body">
-                <div class="card-hero-img-wrap">
-                    <img src="{% static 'images/card_maritime_yacht.jpg' %}" alt="Luxury Private Yacht Cruising Backwaters" class="card-single-hero-img">
+                <div class="bento-card-content">
+                    <div class="bento-badge"><i class="fa-solid fa-anchor"></i> PRIVATE CHARTERS</div>
+                    <h3 class="bento-title">Presidential Backwater Yachts</h3>
+                    <p class="bento-text">Private houseboats and luxury yachts for serene Vembanad lagoon cruises.</p>
                 </div>
-                <p class="stack-card-desc-high-contrast">
-                    Exclusive access to private luxury yachts, presidential houseboats, and speedboats for sunset cruises across serene Vembanad backwaters.
-                </p>
             </div>
-        </div>
 
-        <!-- Sticky Card 04 -->
-        <div class="sticky-stack-card">
-            <div class="stack-card-header">
-                <div class="stack-card-info">
-                    <span class="stack-card-number">04</span>
-                    <div class="stack-card-meta">
-                        <span class="stack-card-tag">AYURVEDIC WELLNESS</span>
-                        <h3 class="stack-card-title">In-Villa Spa & Holistic Therapy</h3>
-                    </div>
+            <!-- BENTO CARD 4: VIP TRANSFERS & WELLNESS (WIDE BLOCK) -->
+            <div class="bento-card bento-card-wide bento-transfers reveal-popup">
+                <div class="bento-card-bg">
+                    <img src="{% static 'images/card_transfer_helipad.jpg' %}" alt="Executive Helipad & Maybach Fleet">
+                    <div class="bento-card-overlay"></div>
                 </div>
-                <a href="{% url 'properties' %}" class="stack-card-btn">SPA SUITES</a>
-            </div>
-            <div class="stack-card-single-body">
-                <div class="card-hero-img-wrap">
-                    <img src="{% static 'images/card_spa_ayurveda.jpg' %}" alt="Private Ayurvedic Spa Suite" class="card-single-hero-img">
+                <div class="bento-card-content">
+                    <div class="bento-badge"><i class="fa-solid fa-helicopter"></i> VIP LOGISTICS & SPA</div>
+                    <h3 class="bento-title">Helipad Transfers & In-Villa Spa Suites</h3>
+                    <p class="bento-text">Direct helicopter landings at estate helipads, armored Maybach airport transfers, and private master Ayurvedic therapists at your command 24/7.</p>
                 </div>
-                <p class="stack-card-desc-high-contrast">
-                    Private treatment suites with certified Ayurvedic master practitioners offering personalized Panchakarma, herbal baths, and holistic massages in absolute privacy.
-                </p>
             </div>
-        </div>
 
-        <!-- Sticky Card 05 -->
-        <div class="sticky-stack-card">
-            <div class="stack-card-header">
-                <div class="stack-card-info">
-                    <span class="stack-card-number">05</span>
-                    <div class="stack-card-meta">
-                        <span class="stack-card-tag">VIP TRANSFERS</span>
-                        <h3 class="stack-card-title">Private Helipads & Chauffeur Fleet</h3>
-                    </div>
-                </div>
-                <a href="{% url 'properties' %}" class="stack-card-btn">VIP ACCESS</a>
-            </div>
-            <div class="stack-card-single-body">
-                <div class="card-hero-img-wrap">
-                    <img src="{% static 'images/card_transfer_helipad.jpg' %}" alt="Private Executive Helicopter Helipad" class="card-single-hero-img">
-                </div>
-                <p class="stack-card-desc-high-contrast">
-                    Direct helicopter landings at private estate helipads combined with a fleet of armored Maybach SUVs for seamless airport transfers across Kerala.
-                </p>
-            </div>
         </div>
-
-        <!-- Sticky Card 06 -->
-        <div class="sticky-stack-card">
-            <div class="stack-card-header">
-                <div class="stack-card-info">
-                    <span class="stack-card-number">06</span>
-                    <div class="stack-card-meta">
-                        <span class="stack-card-tag">PRIVACY & CONNECTIVITY</span>
-                        <h3 class="stack-card-title">24/7 VIP Security & Starlink Mesh</h3>
-                    </div>
-                </div>
-                <a href="{% url 'properties' %}" class="stack-card-btn">PRIVATE HOST</a>
-            </div>
-            <div class="stack-card-single-body">
-                <div class="card-hero-img-wrap">
-                    <img src="{% static 'images/card_tech_workspace.jpg' %}" alt="Executive High-Tech Glass Workspace" class="card-single-hero-img">
-                </div>
-                <p class="stack-card-desc-high-contrast">
-                    Round-the-clock biometric perimeter security, 1 Gbps Starlink satellite Wi-Fi mesh, and a dedicated 24/7 estate manager handling every personal request.
-                </p>
-            </div>
-        </div>
-
     </div>
 </section>
 
