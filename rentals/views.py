@@ -119,17 +119,18 @@ def home_view(request):
             form = CustomUserRegistrationForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
-                user.is_active = False
+                user.is_active = True
                 user.save()
                 
                 token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
                 send_verification_email(request, user, token_obj)
                 
+                login(request, user)
                 messages.success(
                     request, 
-                    f"VIP Registration initiated! A verification link has been sent to {user.email}. Please verify your email to activate your account."
+                    f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
                 )
-                return redirect('login')
+                return redirect('dashboard')
             else:
                 for errors in form.errors.values():
                     for error in errors:
@@ -319,17 +320,18 @@ def register_view(request):
         form = CustomUserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False
+            user.is_active = True
             user.save()
 
             token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
             send_verification_email(request, user, token_obj)
 
+            login(request, user)
             messages.success(
                 request, 
-                f"Registration successful! A VIP verification link has been sent to {user.email}. Please check your inbox and click the link to activate your account."
+                f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
             )
-            return redirect('login')
+            return redirect('dashboard')
         else:
             for errors in form.errors.values():
                 for error in errors:
@@ -348,18 +350,14 @@ def login_view(request):
         username_input = request.POST.get('username', '').strip()
         password_input = request.POST.get('password', '').strip()
 
-        # Check if user exists but email is not verified yet
+        # Auto-activate user account if user exists and password matches
         user_obj = User.objects.filter(Q(username__iexact=username_input) | Q(email__iexact=username_input)).first()
         if user_obj and not user_obj.is_active and user_obj.check_password(password_input):
-            messages.warning(
-                request, 
-                f"Your account '{user_obj.username}' is pending email verification. Please check your inbox ({user_obj.email}) or click 'Resend Verification' below."
-            )
-            return render(request, 'rentals/login.html', {
-                'form': AuthenticationForm(), 
-                'show_resend': True, 
-                'unverified_email': user_obj.email
-            })
+            user_obj.is_active = True
+            user_obj.save()
+            login(request, user_obj)
+            messages.success(request, f"Welcome to Rentora, {user_obj.username}! Your account has been activated.")
+            return redirect('dashboard')
 
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
