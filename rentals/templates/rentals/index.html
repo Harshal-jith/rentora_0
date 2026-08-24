@@ -13,112 +13,70 @@
 
 {% block content %}
 <div class="landing-page-wrapper permanent-dark-page">
-<!-- SECTION 1: UNCLUTTERED ULTRA-LUXURY HERO -->
-<section class="hero-section hero-portal-split" id="hero">
+<!-- SECTION 1: ULTRA-MINIMALIST PURE LUXURY HERO -->
+<section class="hero-section hero-pure-editorial" id="hero">
 
-    <!-- Dual-Layer Ambient Background Engine -->
+    <!-- Dual-Layer Continuous Ambient Background Engine -->
     <div class="hero-crossfade-container">
-        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
+        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/properties/prop_03_varkala.jpg' %}');"></div>
         <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
     </div>
 
-    <!-- Ambient Dark Gradient Overlay -->
+    <!-- Ambient Vignette Overlay -->
     <div class="hero-overlay-editorial"></div>
 
-    <!-- Radial Gold Flare Glow -->
+    <!-- Subtle Golden Flare Glow -->
     <div class="hero-radial-flare"></div>
 
     <!-- Floating Gold Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
-    <!-- Clean Split Hero Container -->
-    <div class="portal-hero-container">
+    <!-- Pure Editorial Center Fold Container -->
+    <div class="hero-pure-container">
         
-        <!-- LEFT COLUMN: GRAND EDITORIAL STATEMENT & ACTION CTAS -->
-        <div class="portal-hero-left">
-            
-            <!-- Crown Distinction Badge -->
-            <div class="hero-crown-badge">
-                <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
-                <span class="crown-text">KERALA’S SANCTUARY OF UNCOMPROMISED LUXURY</span>
-            </div>
-
-            <!-- Main Title -->
-            <h1 class="portal-hero-title">
-                Kerala’s Sanctuary of<br>
-                <span class="gold-shimmer-text">Bespoke Private Estates</span>
-            </h1>
-
-            <!-- Subtitle -->
-            <p class="portal-hero-subtitle">
-                Discover 100% verified coastal cliffside villas, tea plantation manors, and presidential backwater yacht charters with dedicated 24/7 personal estate concierge.
-            </p>
-
-            <!-- Clean Action CTA Group -->
-            <div class="hero-clean-cta-group">
-                <a href="{% url 'properties' %}" class="btn btn-gold btn-editorial-primary">
-                    <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="#advantage" class="btn btn-glass btn-editorial-secondary">
-                    <span>THE EXPERIENCE</span> <i class="fa-solid fa-gem"></i>
-                </a>
-            </div>
-
-            <!-- Minimal Key Metrics Indicator -->
-            <div class="hero-metrics-strip">
-                <div class="metric-item">
-                    <span class="metric-val">100%</span>
-                    <span class="metric-lbl">VERIFIED</span>
-                </div>
-                <div class="metric-sep"></div>
-                <div class="metric-item">
-                    <span class="metric-val">★ 4.98</span>
-                    <span class="metric-lbl">RATING</span>
-                </div>
-                <div class="metric-sep"></div>
-                <div class="metric-item">
-                    <span class="metric-val">24/7</span>
-                    <span class="metric-lbl">HOST</span>
-                </div>
-            </div>
+        <!-- Crown Distinction Badge -->
+        <div class="hero-crown-badge">
+            <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
+            <span class="crown-text">KERALA’S SANCTUARY OF UNCOMPROMISED LUXURY</span>
         </div>
 
-        <!-- RIGHT COLUMN: PRISTINE HERO PROPERTY FEATURED SHOWCASE CARD -->
-        <div class="portal-hero-right">
-            
-            <div class="pristine-hero-card" id="pristineHeroCard">
-                <div class="pristine-card-img-wrap">
-                    <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Azure Cliffside" id="pristineCardImg">
-                    <div class="pristine-card-tag" id="pristineCardTag">FEATURED OCEANFRONT</div>
-                    <div class="pristine-card-price" id="pristineCardPrice">₹1,25,000 <span>/ night</span></div>
-                </div>
-                <div class="pristine-card-body">
-                    <div class="pristine-card-header">
-                        <h3 class="pristine-card-title" id="pristineCardTitle">Varkala Azure Cliffside Reserve</h3>
-                        <span class="pristine-card-rating" id="pristineCardRating"><i class="fa-solid fa-star"></i> 4.98</span>
-                    </div>
-                    <p class="pristine-card-location" id="pristineCardLocation"><i class="fa-solid fa-location-dot gold-icon"></i> North Cliff, Varkala Oceanfront</p>
-                    <a href="{% url 'property_detail' slug='varkala-azure-cliffside' %}" class="btn-pristine-cta" id="pristineCardLink">
-                        <span>DISCOVER SANCTUARY</span> <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+        <!-- Grand Playfair Editorial Headline -->
+        <h1 class="hero-title-editorial">
+            Kerala’s Sanctuary of<br>
+            <span class="gold-shimmer-text">Bespoke Private Estates</span>
+        </h1>
 
-            <!-- Slide Indicators -->
-            <div class="pristine-deck-nav">
-                <button type="button" class="deck-arrow-btn" id="pristinePrevBtn" aria-label="Previous Estate">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-                <div class="deck-dots">
-                    <span class="pristine-dot active" data-slide="0"></span>
-                    <span class="pristine-dot" data-slide="1"></span>
-                    <span class="pristine-dot" data-slide="2"></span>
-                </div>
-                <button type="button" class="deck-arrow-btn" id="pristineNextBtn" aria-label="Next Estate">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
+        <!-- Subtle Subtitle Statement -->
+        <p class="hero-subtitle-editorial">
+            Discover 100% verified coastal cliffside villas, tea plantation manors, and presidential backwater yacht charters with 24/7 dedicated estate concierge.
+        </p>
 
+        <!-- Single Ultra-Clean Gold Action Pill Button -->
+        <div class="hero-pure-cta-wrap">
+            <a href="{% url 'properties' %}" class="btn btn-gold btn-editorial-primary">
+                <span>EXPLORE THE COLLECTION</span> <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Minimal Slide Controls (Bottom Right) -->
+    <div class="hero-minimal-carousel-nav">
+        <div class="carousel-slide-indicator active" data-slide="0">
+            <span class="slide-num">01</span>
+            <span class="slide-name">Varkala Azure</span>
+        </div>
+        <div class="carousel-slide-indicator" data-slide="1">
+            <span class="slide-num">02</span>
+            <span class="slide-name">Wayanad Sanctuary</span>
+        </div>
+        <div class="carousel-slide-indicator" data-slide="2">
+            <span class="slide-num">03</span>
+            <span class="slide-name">Munnar Haven</span>
+        </div>
+        <div class="carousel-slide-indicator" data-slide="3">
+            <span class="slide-num">04</span>
+            <span class="slide-name">Alleppey Backwaters</span>
         </div>
     </div>
 </section>

@@ -595,8 +595,72 @@ body.hero-animate-active .hero-brand-logo-wrap {
 }
 
 /* ==========================================================================
-   PROPOSAL 2: HIGH-TECH LUXURY PORTAL SPLIT HERO (ASYSMMETRIC 3D DECK)
+   PROPOSAL 2: ULTRA-MINIMALIST PURE LUXURY HERO
    ========================================================================== */
+.hero-pure-editorial {
+    position: relative;
+    min-height: 100vh;
+    padding: 140px 0 100px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #0C0C0C;
+    text-align: center;
+}
+
+.hero-pure-container {
+    position: relative;
+    z-index: 10;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-title-editorial {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 5.2vw, 4.8rem);
+    font-weight: 700;
+    line-height: 1.12;
+    color: #FFFFFF;
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+}
+
+.hero-subtitle-editorial {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 auto 38px auto;
+    max-width: 680px;
+    font-weight: 400;
+}
+
+.hero-pure-cta-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-minimal-carousel-nav {
+    position: absolute;
+    bottom: 35px;
+    right: 40px;
+    display: flex;
+    gap: 20px;
+    z-index: 15;
+}
+
+@media (max-width: 768px) {
+    .hero-minimal-carousel-nav {
+        display: none;
+    }
+}
 .hero-portal-split {
     position: relative;
     min-height: 100vh;
