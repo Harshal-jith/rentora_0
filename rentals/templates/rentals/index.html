@@ -13,7 +13,7 @@
 
 {% block content %}
 <div class="landing-page-wrapper permanent-dark-page">
-<!-- SECTION 1: CLEAN ULTRA-LUXURY HERO -->
+<!-- SECTION 1: UNCLUTTERED ULTRA-LUXURY HERO -->
 <section class="hero-section hero-portal-split" id="hero">
 
     <!-- Dual-Layer Ambient Background Engine -->
@@ -34,7 +34,7 @@
     <!-- Clean Split Hero Container -->
     <div class="portal-hero-container">
         
-        <!-- LEFT COLUMN: ELEGANT EDITORIAL STATEMENT & SEARCH BAR -->
+        <!-- LEFT COLUMN: GRAND EDITORIAL STATEMENT & ACTION CTAS -->
         <div class="portal-hero-left">
             
             <!-- Crown Distinction Badge -->
@@ -51,125 +51,70 @@
 
             <!-- Subtitle -->
             <p class="portal-hero-subtitle">
-                Experience 100% verified coastal cliffside villas, tea plantation manors, and presidential backwater yacht charters across Kerala with 24/7 dedicated estate concierge.
+                Discover 100% verified coastal cliffside villas, tea plantation manors, and presidential backwater yacht charters with dedicated 24/7 personal estate concierge.
             </p>
 
-            <!-- Sleek Glassmorphic Quick Search Console -->
-            <div class="hero-sleek-search-box">
-                <form method="GET" action="{% url 'properties' %}" class="hero-sleek-search-form">
-                    <div class="sleek-field">
-                        <i class="fa-solid fa-location-dot gold-icon"></i>
-                        <select name="location" class="sleek-select">
-                            <option value="">Destination (All Kerala)</option>
-                            {% for code, name in locations %}
-                            <option value="{{ code }}">{{ name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="sleek-divider"></div>
-
-                    <div class="sleek-field">
-                        <i class="fa-solid fa-building-user gold-icon"></i>
-                        <select name="property_type" class="sleek-select">
-                            <option value="">Estate Type (All Types)</option>
-                            {% for code, name in property_types %}
-                            <option value="{{ code }}">{{ name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn-sleek-search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span>EXPLORE</span>
-                    </button>
-                </form>
+            <!-- Clean Action CTA Group -->
+            <div class="hero-clean-cta-group">
+                <a href="{% url 'properties' %}" class="btn btn-gold btn-editorial-primary">
+                    <span>EXPLORE ESTATES</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#advantage" class="btn btn-glass btn-editorial-secondary">
+                    <span>THE EXPERIENCE</span> <i class="fa-solid fa-gem"></i>
+                </a>
             </div>
 
-            <!-- Trust Pills Bar -->
-            <div class="portal-trust-pills">
-                <div class="trust-pill"><i class="fa-solid fa-shield-halved gold-icon"></i> <span>100% Verified Estates</span></div>
-                <div class="trust-pill"><i class="fa-solid fa-star gold-icon"></i> <span>★ 4.98 Guest Rating</span></div>
-                <div class="trust-pill"><i class="fa-solid fa-user-shield gold-icon"></i> <span>24/7 Personal Host</span></div>
+            <!-- Minimal Key Metrics Indicator -->
+            <div class="hero-metrics-strip">
+                <div class="metric-item">
+                    <span class="metric-val">100%</span>
+                    <span class="metric-lbl">VERIFIED</span>
+                </div>
+                <div class="metric-sep"></div>
+                <div class="metric-item">
+                    <span class="metric-val">★ 4.98</span>
+                    <span class="metric-lbl">RATING</span>
+                </div>
+                <div class="metric-sep"></div>
+                <div class="metric-item">
+                    <span class="metric-val">24/7</span>
+                    <span class="metric-lbl">HOST</span>
+                </div>
             </div>
         </div>
 
-        <!-- RIGHT COLUMN: CLEAN INTERACTIVE HERO SHOWCASE SLIDER -->
+        <!-- RIGHT COLUMN: PRISTINE HERO PROPERTY FEATURED SHOWCASE CARD -->
         <div class="portal-hero-right">
             
-            <!-- 3D Perspective Card Deck Container -->
-            <div class="portal-3d-deck" id="portal3dDeck">
-                
-                <!-- Card 01 -->
-                <div class="deck-card active-card" data-card="0">
-                    <div class="deck-card-img-wrap">
-                        <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Azure Cliffside">
-                        <div class="deck-card-tag">FEATURED OCEANFRONT</div>
-                        <div class="deck-card-price">₹1,25,000 <span>/ night</span></div>
-                    </div>
-                    <div class="deck-card-content">
-                        <div class="deck-card-header">
-                            <h3 class="deck-card-title">Varkala Azure Cliffside Reserve</h3>
-                            <span class="deck-card-rating"><i class="fa-solid fa-star"></i> 4.98</span>
-                        </div>
-                        <p class="deck-card-location"><i class="fa-solid fa-location-dot"></i> North Cliff, Varkala</p>
-                        <a href="{% url 'property_detail' slug='varkala-azure-cliffside' %}" class="btn-deck-card-cta">
-                            <span>VIEW ESTATE</span> <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
+            <div class="pristine-hero-card" id="pristineHeroCard">
+                <div class="pristine-card-img-wrap">
+                    <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Azure Cliffside" id="pristineCardImg">
+                    <div class="pristine-card-tag" id="pristineCardTag">FEATURED OCEANFRONT</div>
+                    <div class="pristine-card-price" id="pristineCardPrice">₹1,25,000 <span>/ night</span></div>
                 </div>
-
-                <!-- Card 02 -->
-                <div class="deck-card next-card-1" data-card="1">
-                    <div class="deck-card-img-wrap">
-                        <img src="{% static 'images/properties/prop_01_wayanad.jpg' %}" alt="Wayanad Mistwood">
-                        <div class="deck-card-tag">RAINFOREST SANCTUARY</div>
-                        <div class="deck-card-price">₹95,000 <span>/ night</span></div>
+                <div class="pristine-card-body">
+                    <div class="pristine-card-header">
+                        <h3 class="pristine-card-title" id="pristineCardTitle">Varkala Azure Cliffside Reserve</h3>
+                        <span class="pristine-card-rating" id="pristineCardRating"><i class="fa-solid fa-star"></i> 4.98</span>
                     </div>
-                    <div class="deck-card-content">
-                        <div class="deck-card-header">
-                            <h3 class="deck-card-title">Wayanad Mistwood Sanctuary</h3>
-                            <span class="deck-card-rating"><i class="fa-solid fa-star"></i> 4.96</span>
-                        </div>
-                        <p class="deck-card-location"><i class="fa-solid fa-location-dot"></i> Lakkidi Rainforest, Wayanad</p>
-                        <a href="{% url 'property_detail' slug='wayanad-mistwood-sanctuary' %}" class="btn-deck-card-cta">
-                            <span>VIEW ESTATE</span> <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
+                    <p class="pristine-card-location" id="pristineCardLocation"><i class="fa-solid fa-location-dot gold-icon"></i> North Cliff, Varkala Oceanfront</p>
+                    <a href="{% url 'property_detail' slug='varkala-azure-cliffside' %}" class="btn-pristine-cta" id="pristineCardLink">
+                        <span>DISCOVER SANCTUARY</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
-
-                <!-- Card 03 -->
-                <div class="deck-card next-card-2" data-card="2">
-                    <div class="deck-card-img-wrap">
-                        <img src="{% static 'images/properties/prop_05_alleppey.jpg' %}" alt="Alleppey Sovereign">
-                        <div class="deck-card-tag">PRESIDENTIAL YACHT</div>
-                        <div class="deck-card-price">₹1,40,000 <span>/ night</span></div>
-                    </div>
-                    <div class="deck-card-content">
-                        <div class="deck-card-header">
-                            <h3 class="deck-card-title">Alleppey Sovereign Backwater</h3>
-                            <span class="deck-card-rating"><i class="fa-solid fa-star"></i> 4.99</span>
-                        </div>
-                        <p class="deck-card-location"><i class="fa-solid fa-location-dot"></i> Punnamada Lagoon, Alleppey</p>
-                        <a href="{% url 'property_detail' slug='alleppey-sovereign-backwater' %}" class="btn-deck-card-cta">
-                            <span>VIEW YACHT</span> <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- Deck Controls & Navigation Arrows -->
-            <div class="portal-deck-nav">
-                <button type="button" class="deck-arrow-btn" id="deckPrevBtn" aria-label="Previous Estate">
+            <!-- Slide Indicators -->
+            <div class="pristine-deck-nav">
+                <button type="button" class="deck-arrow-btn" id="pristinePrevBtn" aria-label="Previous Estate">
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
                 <div class="deck-dots">
-                    <span class="deck-dot active" data-slide="0"></span>
-                    <span class="deck-dot" data-slide="1"></span>
-                    <span class="deck-dot" data-slide="2"></span>
+                    <span class="pristine-dot active" data-slide="0"></span>
+                    <span class="pristine-dot" data-slide="1"></span>
+                    <span class="pristine-dot" data-slide="2"></span>
                 </div>
-                <button type="button" class="deck-arrow-btn" id="deckNextBtn" aria-label="Next Estate">
+                <button type="button" class="deck-arrow-btn" id="pristineNextBtn" aria-label="Next Estate">
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>

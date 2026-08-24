@@ -522,6 +522,7 @@ document.addEventListener("DOMContentLoaded", function() {
     initMarqueeScrollSlide();
     initStickyStackingCards();
     initPortal3DDeck();
+    initPristineHeroShowcase();
 });
 
 /* --------------------------------------------------------------------------
@@ -640,5 +641,114 @@ function initPortal3DDeck() {
 
     // Auto rotate every 5 seconds
     setInterval(nextCard, 5000);
+}
+
+/* --------------------------------------------------------------------------
+   11. Pristine Hero Property Showcase Switcher
+   -------------------------------------------------------------------------- */
+function initPristineHeroShowcase() {
+    const card = document.getElementById('pristineHeroCard');
+    if (!card) return;
+
+    const img = document.getElementById('pristineCardImg');
+    const tag = document.getElementById('pristineCardTag');
+    const price = document.getElementById('pristineCardPrice');
+    const title = document.getElementById('pristineCardTitle');
+    const rating = document.getElementById('pristineCardRating');
+    const location = document.getElementById('pristineCardLocation');
+    const link = document.getElementById('pristineCardLink');
+
+    const prevBtn = document.getElementById('pristinePrevBtn');
+    const nextBtn = document.getElementById('pristineNextBtn');
+    const dots = document.querySelectorAll('.pristine-dot');
+
+    const estates = [
+        {
+            img: '/static/images/properties/prop_03_varkala.jpg',
+            tag: 'FEATURED OCEANFRONT',
+            price: '₹1,25,000 <span>/ night</span>',
+            title: 'Varkala Azure Cliffside Reserve',
+            rating: '<i class="fa-solid fa-star"></i> 4.98',
+            location: '<i class="fa-solid fa-location-dot gold-icon"></i> North Cliff, Varkala Oceanfront',
+            link: '/property/varkala-azure-cliffside/'
+        },
+        {
+            img: '/static/images/properties/prop_01_wayanad.jpg',
+            tag: 'RAINFOREST SANCTUARY',
+            price: '₹95,000 <span>/ night</span>',
+            title: 'Wayanad Mistwood Sanctuary',
+            rating: '<i class="fa-solid fa-star"></i> 4.96',
+            location: '<i class="fa-solid fa-location-dot gold-icon"></i> Lakkidi Rainforest, Wayanad',
+            link: '/property/wayanad-mistwood-sanctuary/'
+        },
+        {
+            img: '/static/images/properties/prop_05_alleppey.jpg',
+            tag: 'PRESIDENTIAL YACHT',
+            price: '₹1,40,000 <span>/ night</span>',
+            title: 'Alleppey Sovereign Backwater',
+            rating: '<i class="fa-solid fa-star"></i> 4.99',
+            location: '<i class="fa-solid fa-location-dot gold-icon"></i> Punnamada Lagoon, Alleppey',
+            link: '/property/alleppey-sovereign-backwater/'
+        }
+    ];
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function renderSlide(index) {
+        currentIndex = index;
+        const estate = estates[currentIndex];
+
+        card.style.opacity = '0.5';
+        card.style.transform = 'scale(0.98)';
+
+        setTimeout(() => {
+            if (img) img.src = estate.img;
+            if (tag) tag.textContent = estate.tag;
+            if (price) price.innerHTML = estate.price;
+            if (title) title.textContent = estate.title;
+            if (rating) rating.innerHTML = estate.rating;
+            if (location) location.innerHTML = estate.location;
+            if (link) link.href = estate.link;
+
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+
+            dots.forEach((dot, i) => {
+                if (i === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }, 200);
+    }
+
+    function nextSlide() {
+        let nextIdx = (currentIndex + 1) % estates.length;
+        renderSlide(nextIdx);
+    }
+
+    function prevSlide() {
+        let prevIdx = (currentIndex - 1 + estates.length) % estates.length;
+        renderSlide(prevIdx);
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startTimer(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startTimer(); });
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            renderSlide(i);
+            startTimer();
+        });
+    });
+
+    function startTimer() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(nextSlide, 5000);
+    }
+
+    startTimer();
 }
 
