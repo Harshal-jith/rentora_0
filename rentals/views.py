@@ -10,10 +10,33 @@ from django.conf import settings
 from .models import Property, Inquiry, VisitorLog, EmailVerificationToken, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 from .forms import CustomUserRegistrationForm
 
+import threading
+
+def _async_send_mail_worker(subject, message, from_email, recipient_list, html_message):
+    try:
+        import socket
+        socket.setdefaulttimeout(4.0)
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=from_email,
+            recipient_list=recipient_list,
+            html_message=html_message,
+            fail_silently=True,
+        )
+    except Exception as e:
+        print(f"Background email delivery skipped/failed: {e}")
+
 def send_verification_email(request, user, token_obj):
-    verify_url = request.build_absolute_uri(
-        reverse('verify_email', kwargs={'token': token_obj.token})
-    )
+    if request:
+        try:
+            verify_url = request.build_absolute_uri(
+                reverse('verify_email', kwargs={'token': token_obj.token})
+            )
+        except Exception:
+            verify_url = f"https://rentora-7gdf.onrender.com/verify-email/{token_obj.token}/"
+    else:
+        verify_url = f"https://rentora-7gdf.onrender.com/verify-email/{token_obj.token}/"
     
     subject = "Verify Your VIP Email — Rentora Luxury Hospitality"
     
@@ -66,18 +89,19 @@ https://rentora-7gdf.onrender.com
 </html>
 """
 
-    try:
+    email_user = getattr(settings, 'EMAIL_HOST_USER', '')
+    email_pass = getattr(settings, 'EMAIL_HOST_PASSWORD', '')
+
+    # Dispatch email in detached daemon thread ONLY if SMTP credentials exist
+    if email_user and email_pass:
         from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com')
-        send_mail(
-            subject=subject,
-            message=message,
-            from_email=from_email,
-            recipient_list=[user.email],
-            html_message=html_message,
-            fail_silently=True,
+        t = threading.Thread(
+            target=_async_send_mail_worker,
+            args=(subject, message, from_email, [user.email], html_message),
+            daemon=True
         )
-    except Exception as e:
-        print(f"Email delivery exception caught safely: {e}")
+        t.start()
+
     return verify_url
 
 
