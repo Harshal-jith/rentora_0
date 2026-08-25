@@ -21,9 +21,9 @@ def send_email_via_resend(to_email, subject, html_message, text_message=""):
         print("Resend API delivery skipped: RESEND_API_KEY environment variable is missing.")
         return False, "RESEND_API_KEY not configured"
         
-    from_email = getattr(settings, 'RESEND_FROM_EMAIL', 'Rentora Luxury Concierge <onboarding@resend.dev>')
-    if 'onboarding@resend.dev' in from_email and '<' not in from_email:
-        from_email = 'Rentora <onboarding@resend.dev>'
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', 'onboarding@resend.dev')
+    if 'onboarding@resend.dev' in from_email:
+        from_email = 'onboarding@resend.dev'
 
     payload = {
         'from': from_email,
@@ -38,7 +38,8 @@ def send_email_via_resend(to_email, subject, html_message, text_message=""):
         data = json.dumps(payload).encode('utf-8')
         req = urllib.request.Request('https://api.resend.com/emails', data=data, headers={
             'Authorization': f'Bearer {resend_api_key}',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) RentoraApp/1.0'
         })
         res = urllib.request.urlopen(req, timeout=8)
         resp_text = res.read().decode('utf-8')
