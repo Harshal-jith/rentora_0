@@ -12,15 +12,19 @@ from .forms import CustomUserRegistrationForm
 
 import json
 import urllib.request
+import urllib.error
 import threading
 
 def send_email_via_resend(to_email, subject, html_message, text_message=""):
     resend_api_key = getattr(settings, 'RESEND_API_KEY', '') or os.environ.get('RESEND_API_KEY', '')
     if not resend_api_key:
+        print("Resend API delivery skipped: RESEND_API_KEY environment variable is missing.")
         return False, "RESEND_API_KEY not configured"
         
     from_email = getattr(settings, 'RESEND_FROM_EMAIL', 'Rentora Luxury Concierge <onboarding@resend.dev>')
-    
+    if 'onboarding@resend.dev' in from_email and '<' not in from_email:
+        from_email = 'Rentora <onboarding@resend.dev>'
+
     payload = {
         'from': from_email,
         'to': [to_email],
@@ -37,8 +41,13 @@ def send_email_via_resend(to_email, subject, html_message, text_message=""):
             'Content-Type': 'application/json'
         })
         res = urllib.request.urlopen(req, timeout=8)
-        print("Email successfully delivered via Resend REST API!")
+        resp_text = res.read().decode('utf-8')
+        print(f"Email successfully delivered via Resend REST API! Response: {resp_text}")
         return True, "Email sent via Resend API"
+    except urllib.error.HTTPError as http_err:
+        err_body = http_err.read().decode('utf-8') if http_err.fp else str(http_err)
+        print(f"Resend HTTP {http_err.code} Error: {err_body}")
+        return False, f"Resend HTTP {http_err.code}: {err_body}"
     except Exception as e:
         print(f"Resend API delivery error: {e}")
         return False, str(e)
@@ -66,6 +75,82 @@ def _async_send_mail_worker(to_email, subject, message, from_email, html_message
             )
         except Exception as e:
             print(f"SMTP delivery error: {e}")
+
+def send_welcome_email(request, user):
+    domain_url = "https://rentora-7gdf.onrender.com"
+    explore_url = f"{domain_url}/properties/"
+    
+    subject = "Welcome to Rentora — Your VIP Membership is Active ✦"
+    
+    message = f"""Dear {user.username},
+
+Welcome to Rentora — Kerala's Sanctuary of Bespoke Private Estates.
+
+Your VIP member account has been successfully created and activated. You now have exclusive access to our private estate collection, presidential backwater yacht charters, and 24/7 dedicated personal hosts across Kerala.
+
+Explore Private Collection:
+{explore_url}
+
+Warm regards,
+Rentora Private Concierge Team
+{domain_url}
+"""
+
+    html_message = f"""<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0C0C0C; color: #D7E2EA; margin: 0; padding: 40px 20px; }}
+        .email-card {{ max-width: 600px; margin: 0 auto; background: #141414; border: 1px solid #D4AF37; border-radius: 24px; padding: 44px 36px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.85); }}
+        .brand-title {{ font-size: 28px; font-weight: 800; color: #E8CE92; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-family: Georgia, serif; }}
+        .brand-sub {{ font-size: 11px; color: #D4AF37; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 32px; font-weight: 700; }}
+        .welcome-badge {{ display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #F5D77F; font-size: 12px; font-weight: 800; letter-spacing: 2px; padding: 6px 18px; border-radius: 30px; text-transform: uppercase; margin-bottom: 24px; }}
+        .content-text {{ font-size: 15px; line-height: 1.7; color: #D8D0C5; margin-bottom: 28px; text-align: left; }}
+        .privilege-box {{ background: #0C0C0C; border: 1px solid rgba(212,175,55,0.25); border-radius: 16px; padding: 20px; text-align: left; margin-bottom: 32px; }}
+        .privilege-item {{ font-size: 14px; color: #FFFFFF; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }}
+        .privilege-item:last-child {{ margin-bottom: 0; }}
+        .btn-gold-cta {{ display: inline-block; background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #0C0C0C; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); margin-bottom: 28px; }}
+        .footer-text {{ font-size: 12px; color: #788895; margin-top: 24px; line-height: 1.5; }}
+    </style>
+</head>
+<body>
+    <div class="email-card">
+        <div class="brand-title">RENTORA</div>
+        <div class="brand-sub">SANCTUARY OF BESPOKE PRIVATE ESTATES</div>
+        
+        <div class="welcome-badge">✦ VIP MEMBERSHIP CONFIRMED</div>
+
+        <p class="content-text">
+            Dear <strong>{user.username}</strong>,<br><br>
+            Welcome to Rentora. Your VIP member account is officially active. You now hold direct access to Kerala’s finest unlisted private cliffside estates, tea plantation manors, and presidential backwater yachts.
+        </p>
+
+        <div class="privilege-box">
+            <div class="privilege-item">👑 <strong>Unlisted Private Estates:</strong> 100% verified cliffside villas & tea manors.</div>
+            <div class="privilege-item">👨‍🍳 <strong>In-Villa Master Chefs:</strong> Bespoke sea-to-table & Ayurvedic gastronomy.</div>
+            <div class="privilege-item">🚁 <strong>VIP Logistics:</strong> Private helipads & 24/7 personal estate concierge.</div>
+        </div>
+
+        <a href="{explore_url}" class="btn-gold-cta" target="_blank">EXPLORE PRIVATE COLLECTION</a>
+
+        <div class="footer-text">
+            Rentora Luxury Hospitality Group • Kerala, India<br>
+            Need assistance? Reply directly to this email or contact your 24/7 personal host.
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'Rentora Luxury Concierge <onboarding@resend.dev>'))
+
+    t = threading.Thread(
+        target=_async_send_mail_worker,
+        args=(user.email, subject, message, from_email, html_message),
+        daemon=True
+    )
+    t.start()
 
 def send_verification_email(request, user, token_obj):
     if request:
@@ -188,6 +273,7 @@ def home_view(request):
                     
                     try:
                         token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+                        send_welcome_email(request, user)
                         send_verification_email(request, user, token_obj)
                     except Exception as email_err:
                         print(f"Non-fatal email/token notification error: {email_err}")
@@ -396,6 +482,7 @@ def register_view(request):
 
                 try:
                     token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+                    send_welcome_email(request, user)
                     send_verification_email(request, user, token_obj)
                 except Exception as email_err:
                     print(f"Non-fatal email/token notification error: {email_err}")
