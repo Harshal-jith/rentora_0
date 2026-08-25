@@ -10,6 +10,7 @@ from django.conf import settings
 from .models import Property, Inquiry, VisitorLog, EmailVerificationToken, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 from .forms import CustomUserRegistrationForm
 
+import os
 import json
 import urllib.request
 import urllib.error
