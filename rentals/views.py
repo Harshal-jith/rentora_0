@@ -53,18 +53,63 @@ def send_email_via_resend(to_email, subject, html_message, text_message=""):
         print(f"Resend API delivery error: {e}")
         return False, str(e)
 
+def send_email_via_brevo(to_email, subject, html_message, text_message=""):
+    brevo_api_key = getattr(settings, 'BREVO_API_KEY', '') or os.environ.get('BREVO_API_KEY', '') or getattr(settings, 'EMAIL_HOST_PASSWORD', '')
+    if not brevo_api_key:
+        return False, "BREVO_API_KEY not configured"
+        
+    sender_email = getattr(settings, 'EMAIL_HOST_USER', '') or os.environ.get('EMAIL_HOST_USER', '') or 'no-reply@rentora.com'
+    if '@' not in sender_email:
+        sender_email = 'no-reply@rentora.com'
+
+    payload = {
+        'sender': {'name': 'Rentora Luxury Concierge', 'email': sender_email},
+        'to': [{'email': to_email}],
+        'subject': subject,
+        'htmlContent': html_message,
+    }
+    if text_message:
+        payload['textContent'] = text_message
+        
+    try:
+        data = json.dumps(payload).encode('utf-8')
+        req = urllib.request.Request('https://api.brevo.com/v3/smtp/email', data=data, headers={
+            'api-key': brevo_api_key,
+            'Content-Type': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) RentoraApp/1.0'
+        })
+        res = urllib.request.urlopen(req, timeout=8)
+        resp_text = res.read().decode('utf-8')
+        print(f"Email successfully delivered via Brevo REST API! Response: {resp_text}")
+        return True, "Email sent via Brevo API"
+    except urllib.error.HTTPError as http_err:
+        err_body = http_err.read().decode('utf-8') if http_err.fp else str(http_err)
+        print(f"Brevo HTTP {http_err.code} Error: {err_body}")
+        return False, f"Brevo HTTP {http_err.code}: {err_body}"
+    except Exception as e:
+        print(f"Brevo API delivery error: {e}")
+        return False, str(e)
+
 def _async_send_mail_worker(to_email, subject, message, from_email, html_message):
+    # 1. Try Brevo REST API if Brevo Key is present
+    brevo_key = getattr(settings, 'BREVO_API_KEY', '') or os.environ.get('BREVO_API_KEY', '') or getattr(settings, 'EMAIL_HOST_PASSWORD', '')
+    if brevo_key and ('xkeysib-' in brevo_key or 'xsmtpsib-' in brevo_key):
+        success, msg = send_email_via_brevo(to_email, subject, html_message, message)
+        if success:
+            return
+
+    # 2. Try Resend REST API if Resend Key is present
     resend_key = getattr(settings, 'RESEND_API_KEY', '') or os.environ.get('RESEND_API_KEY', '')
     if resend_key:
         success, msg = send_email_via_resend(to_email, subject, html_message, message)
         if success:
             return
-        # Fallback for Resend free tier testing: send to authorized account owner if recipient domain is unverified
         if 'harshaljith1@gmail.com' not in to_email.lower():
             print(f"Retrying Resend delivery to authorized test recipient harshaljith1@gmail.com (Original target: {to_email})")
             send_email_via_resend('harshaljith1@gmail.com', f"[Fwd to {to_email}] {subject}", html_message, message)
             return
 
+    # 3. Fallback to standard SMTP
     email_user = getattr(settings, 'EMAIL_HOST_USER', '')
     email_pass = getattr(settings, 'EMAIL_HOST_PASSWORD', '')
     if email_user and email_pass:

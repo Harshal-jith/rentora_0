@@ -102,9 +102,11 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
-# Email & Resend API Configuration
+# Email, Resend & Brevo API Configuration
 RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
 RESEND_FROM_EMAIL = os.environ.get('RESEND_FROM_EMAIL', 'Rentora Luxury Concierge <onboarding@resend.dev>')
+
+BREVO_API_KEY = os.environ.get('BREVO_API_KEY', '')
 
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
