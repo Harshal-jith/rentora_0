@@ -116,25 +116,32 @@ def home_view(request):
         action = request.POST.get('action')
         
         if action == 'register':
-            form = CustomUserRegistrationForm(request.POST)
-            if form.is_valid():
-                user = form.save(commit=False)
-                user.is_active = True
-                user.save()
-                
-                token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
-                send_verification_email(request, user, token_obj)
-                
-                login(request, user)
-                messages.success(
-                    request, 
-                    f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
-                )
-                return redirect('dashboard')
-            else:
-                for errors in form.errors.values():
-                    for error in errors:
-                        messages.error(request, error)
+            try:
+                form = CustomUserRegistrationForm(request.POST)
+                if form.is_valid():
+                    user = form.save(commit=False)
+                    user.is_active = True
+                    user.save()
+                    
+                    try:
+                        token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+                        send_verification_email(request, user, token_obj)
+                    except Exception as email_err:
+                        print(f"Non-fatal email/token notification error: {email_err}")
+                    
+                    login(request, user)
+                    messages.success(
+                        request, 
+                        f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
+                    )
+                    return redirect('dashboard')
+                else:
+                    for errors in form.errors.values():
+                        for error in errors:
+                            messages.error(request, error)
+            except Exception as reg_err:
+                print(f"Registration error caught safely: {reg_err}")
+                messages.error(request, "An unexpected error occurred while creating your account. Please try again or contact concierge support.")
                     
         elif action == 'login':
             form = AuthenticationForm(request, data=request.POST)
@@ -317,25 +324,33 @@ def register_view(request):
         return redirect('dashboard')
         
     if request.method == 'POST':
-        form = CustomUserRegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = True
-            user.save()
+        try:
+            form = CustomUserRegistrationForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.is_active = True
+                user.save()
 
-            token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
-            send_verification_email(request, user, token_obj)
+                try:
+                    token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+                    send_verification_email(request, user, token_obj)
+                except Exception as email_err:
+                    print(f"Non-fatal email/token notification error: {email_err}")
 
-            login(request, user)
-            messages.success(
-                request, 
-                f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
-            )
-            return redirect('dashboard')
-        else:
-            for errors in form.errors.values():
-                for error in errors:
-                    messages.error(request, error)
+                login(request, user)
+                messages.success(
+                    request, 
+                    f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
+                )
+                return redirect('dashboard')
+            else:
+                for errors in form.errors.values():
+                    for error in errors:
+                        messages.error(request, error)
+        except Exception as reg_err:
+            print(f"Registration error in register_view: {reg_err}")
+            messages.error(request, "An unexpected error occurred while creating your account. Please try again or contact concierge support.")
+            form = CustomUserRegistrationForm(request.POST)
     else:
         form = CustomUserRegistrationForm()
 
