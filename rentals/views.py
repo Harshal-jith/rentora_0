@@ -10,22 +10,62 @@ from django.conf import settings
 from .models import Property, Inquiry, VisitorLog, EmailVerificationToken, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 from .forms import CustomUserRegistrationForm
 
+import json
+import urllib.request
 import threading
 
-def _async_send_mail_worker(subject, message, from_email, recipient_list, html_message):
+def send_email_via_resend(to_email, subject, html_message, text_message=""):
+    resend_api_key = getattr(settings, 'RESEND_API_KEY', '') or os.environ.get('RESEND_API_KEY', '')
+    if not resend_api_key:
+        return False, "RESEND_API_KEY not configured"
+        
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', 'Rentora Luxury Concierge <onboarding@resend.dev>')
+    
+    payload = {
+        'from': from_email,
+        'to': [to_email],
+        'subject': subject,
+        'html': html_message,
+    }
+    if text_message:
+        payload['text'] = text_message
+        
     try:
-        import socket
-        socket.setdefaulttimeout(4.0)
-        send_mail(
-            subject=subject,
-            message=message,
-            from_email=from_email,
-            recipient_list=recipient_list,
-            html_message=html_message,
-            fail_silently=True,
-        )
+        data = json.dumps(payload).encode('utf-8')
+        req = urllib.request.Request('https://api.resend.com/emails', data=data, headers={
+            'Authorization': f'Bearer {resend_api_key}',
+            'Content-Type': 'application/json'
+        })
+        res = urllib.request.urlopen(req, timeout=8)
+        print("Email successfully delivered via Resend REST API!")
+        return True, "Email sent via Resend API"
     except Exception as e:
-        print(f"Background email delivery skipped/failed: {e}")
+        print(f"Resend API delivery error: {e}")
+        return False, str(e)
+
+def _async_send_mail_worker(to_email, subject, message, from_email, html_message):
+    resend_key = getattr(settings, 'RESEND_API_KEY', '') or os.environ.get('RESEND_API_KEY', '')
+    if resend_key:
+        success, msg = send_email_via_resend(to_email, subject, html_message, message)
+        if success:
+            return
+
+    email_user = getattr(settings, 'EMAIL_HOST_USER', '')
+    email_pass = getattr(settings, 'EMAIL_HOST_PASSWORD', '')
+    if email_user and email_pass:
+        try:
+            import socket
+            socket.setdefaulttimeout(4.0)
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=from_email,
+                recipient_list=[to_email],
+                html_message=html_message,
+                fail_silently=True,
+            )
+        except Exception as e:
+            print(f"SMTP delivery error: {e}")
 
 def send_verification_email(request, user, token_obj):
     if request:
@@ -89,18 +129,17 @@ https://rentora-7gdf.onrender.com
 </html>
 """
 
-    email_user = getattr(settings, 'EMAIL_HOST_USER', '')
-    email_pass = getattr(settings, 'EMAIL_HOST_PASSWORD', '')
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com'))
 
-    # Dispatch email in detached daemon thread ONLY if SMTP credentials exist
-    if email_user and email_pass:
-        from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com')
-        t = threading.Thread(
-            target=_async_send_mail_worker,
-            args=(subject, message, from_email, [user.email], html_message),
-            daemon=True
-        )
-        t.start()
+    # Dispatch email in detached daemon thread
+    t = threading.Thread(
+        target=_async_send_mail_worker,
+        args=(user.email, subject, message, from_email, html_message),
+        daemon=True
+    )
+    t.start()
+
+    return verify_url
 
     return verify_url
 
