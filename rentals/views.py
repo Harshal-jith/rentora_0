@@ -59,6 +59,11 @@ def _async_send_mail_worker(to_email, subject, message, from_email, html_message
         success, msg = send_email_via_resend(to_email, subject, html_message, message)
         if success:
             return
+        # Fallback for Resend free tier testing: send to authorized account owner if recipient domain is unverified
+        if 'harshaljith1@gmail.com' not in to_email.lower():
+            print(f"Retrying Resend delivery to authorized test recipient harshaljith1@gmail.com (Original target: {to_email})")
+            send_email_via_resend('harshaljith1@gmail.com', f"[Fwd to {to_email}] {subject}", html_message, message)
+            return
 
     email_user = getattr(settings, 'EMAIL_HOST_USER', '')
     email_pass = getattr(settings, 'EMAIL_HOST_PASSWORD', '')
@@ -568,13 +573,10 @@ def resend_verification_view(request):
         user = User.objects.filter(Q(email__iexact=email_or_username) | Q(username__iexact=email_or_username)).first()
 
         if user:
-            if user.is_active:
-                messages.info(request, "This account is already verified and active. Please sign in.")
-                return redirect('login')
-            
             token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
+            send_welcome_email(request, user)
             send_verification_email(request, user, token_obj)
-            messages.success(request, f"A new verification link has been sent to {user.email}.")
+            messages.success(request, f"VIP Welcome and Verification emails have been dispatched to {user.email}.")
             return redirect('login')
         else:
             messages.error(request, "No account found matching that email address or username.")
