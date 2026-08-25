@@ -285,8 +285,19 @@ def send_booking_inquiry_email(request, inquiry):
     
     subject = f"Booking Inquiry Confirmed — {property_title} ✦"
     
-    check_in_str = inquiry.check_in.strftime('%B %d, %Y') if inquiry.check_in else "To be confirmed"
-    check_out_str = inquiry.check_out.strftime('%B %d, %Y') if inquiry.check_out else "To be confirmed"
+    if hasattr(inquiry.check_in, 'strftime'):
+        check_in_str = inquiry.check_in.strftime('%B %d, %Y')
+    elif inquiry.check_in:
+        check_in_str = str(inquiry.check_in)
+    else:
+        check_in_str = "To be confirmed"
+
+    if hasattr(inquiry.check_out, 'strftime'):
+        check_out_str = inquiry.check_out.strftime('%B %d, %Y')
+    elif inquiry.check_out:
+        check_out_str = str(inquiry.check_out)
+    else:
+        check_out_str = "To be confirmed"
     
     message = f"""Dear {inquiry.name},
 
