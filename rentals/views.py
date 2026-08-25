@@ -278,6 +278,122 @@ https://rentora-7gdf.onrender.com
     t.start()
     t.join(timeout=3.0)
 
+def send_booking_inquiry_email(request, inquiry):
+    domain_url = "https://rentora-7gdf.onrender.com"
+    property_title = inquiry.property.title if inquiry.property else "Bespoke Kerala Private Estate"
+    property_location = inquiry.property.location if inquiry.property else "Kerala"
+    
+    subject = f"Booking Inquiry Confirmed — {property_title} ✦"
+    
+    check_in_str = inquiry.check_in.strftime('%B %d, %Y') if inquiry.check_in else "To be confirmed"
+    check_out_str = inquiry.check_out.strftime('%B %d, %Y') if inquiry.check_out else "To be confirmed"
+    
+    message = f"""Dear {inquiry.name},
+
+Thank you for your reservation inquiry with Rentora — Kerala's Sanctuary of Bespoke Private Estates.
+
+We have received your booking inquiry for {property_title} in {property_location}.
+
+Booking Details:
+• Estate: {property_title} ({property_location})
+• Guest Name: {inquiry.name}
+• Contact Phone: {inquiry.phone}
+• Check-In: {check_in_str}
+• Check-Out: {check_out_str}
+• Guests: {inquiry.guests}
+• Special Requests: {inquiry.message if inquiry.message else 'None'}
+
+Your dedicated 24/7 personal host will contact you within 2 hours to confirm private estate availability, in-villa culinary preferences, and luxury transfer arrangements.
+
+Warm regards,
+Rentora Private Concierge Team
+{domain_url}
+"""
+
+    html_message = f"""<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0C0C0C; color: #D7E2EA; margin: 0; padding: 40px 20px; }}
+        .email-card {{ max-width: 600px; margin: 0 auto; background: #141414; border: 1px solid #D4AF37; border-radius: 24px; padding: 44px 36px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.85); }}
+        .brand-title {{ font-size: 28px; font-weight: 800; color: #E8CE92; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-family: Georgia, serif; }}
+        .brand-sub {{ font-size: 11px; color: #D4AF37; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 32px; font-weight: 700; }}
+        .status-badge {{ display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid #D4AF37; color: #F5D77F; font-size: 12px; font-weight: 800; letter-spacing: 2px; padding: 6px 18px; border-radius: 30px; text-transform: uppercase; margin-bottom: 24px; }}
+        .content-text {{ font-size: 15px; line-height: 1.7; color: #D8D0C5; margin-bottom: 24px; text-align: left; }}
+        .detail-box {{ background: #0C0C0C; border: 1px solid rgba(212,175,55,0.25); border-radius: 16px; padding: 24px; text-align: left; margin-bottom: 32px; }}
+        .detail-row {{ font-size: 14px; color: #E8E0D5; margin-bottom: 12px; display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(212,175,55,0.15); padding-bottom: 8px; }}
+        .detail-row:last-child {{ border-bottom: none; margin-bottom: 0; padding-bottom: 0; }}
+        .detail-label {{ color: #D4AF37; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }}
+        .detail-val {{ font-weight: 600; color: #FFFFFF; text-align: right; }}
+        .btn-gold-cta {{ display: inline-block; background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #0C0C0C; text-decoration: none; padding: 16px 40px; border-radius: 50px; font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); margin-bottom: 28px; }}
+        .footer-text {{ font-size: 12px; color: #788895; margin-top: 24px; line-height: 1.5; }}
+    </style>
+</head>
+<body>
+    <div class="email-card">
+        <div class="brand-title">RENTORA</div>
+        <div class="brand-sub">SANCTUARY OF BESPOKE PRIVATE ESTATES</div>
+        
+        <div class="status-badge">✦ BOOKING INQUIRY CONFIRMED</div>
+
+        <p class="content-text">
+            Dear <strong>{inquiry.name}</strong>,<br><br>
+            Thank you for choosing Rentora. Your booking inquiry for <strong>{property_title}</strong> has been received and prioritized by our concierge team.
+        </p>
+
+        <div class="detail-box">
+            <div class="detail-row">
+                <span class="detail-label">Estate</span>
+                <span class="detail-val">{property_title} ({property_location})</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Guest Name</span>
+                <span class="detail-val">{inquiry.name}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Check-In</span>
+                <span class="detail-val">{check_in_str}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Check-Out</span>
+                <span class="detail-val">{check_out_str}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Guests</span>
+                <span class="detail-val">{inquiry.guests} Guests</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status</span>
+                <span class="detail-val" style="color: #55FF88;">Pending Host Confirmation</span>
+            </div>
+        </div>
+
+        <p class="content-text">
+            Your dedicated 24/7 personal host will reach out to you at <strong>{inquiry.phone if inquiry.phone else inquiry.email}</strong> within 2 hours to confirm availability, chef dining preferences, and transport logistics.
+        </p>
+
+        <a href="{domain_url}/dashboard/" class="btn-gold-cta" target="_blank">VIEW MEMBER DASHBOARD</a>
+
+        <div class="footer-text">
+            Rentora Private Concierge • Kerala, India<br>
+            Questions? Contact your personal host or reply directly to this email.
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com'))
+
+    t = threading.Thread(
+        target=_async_send_mail_worker,
+        args=(inquiry.email, subject, message, from_email, html_message),
+        daemon=False
+    )
+    t.start()
+    t.join(timeout=3.0)
+
     return verify_url
 
 
@@ -499,7 +615,7 @@ def property_detail_view(request, slug):
         guests = request.POST.get('guests', 2)
         message = request.POST.get('message', '')
 
-        Inquiry.objects.create(
+        inquiry_obj = Inquiry.objects.create(
             property=property_obj,
             name=name,
             email=email,
@@ -510,7 +626,13 @@ def property_detail_view(request, slug):
             message=message,
             ip_address=get_client_ip(request)
         )
-        messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! Our concierge will get back to you shortly.")
+
+        try:
+            send_booking_inquiry_email(request, inquiry_obj)
+        except Exception as email_err:
+            print(f"Non-fatal booking inquiry email notification error: {email_err}")
+
+        messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! A confirmation email has been sent to {email}.")
         return redirect('property_detail', slug=property_obj.slug)
 
     context = {
