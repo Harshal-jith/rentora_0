@@ -91,6 +91,33 @@ def send_email_via_brevo(to_email, subject, html_message, text_message=""):
         print(f"Brevo API delivery error: {e}")
         return False, str(e)
 
+def sync_brevo_contact(user, is_verified=False):
+    brevo_api_key = getattr(settings, 'BREVO_API_KEY', '') or os.environ.get('BREVO_API_KEY', '') or getattr(settings, 'EMAIL_HOST_PASSWORD', '')
+    if not brevo_api_key or not getattr(user, 'email', None):
+        return False
+        
+    payload = {
+        'email': user.email,
+        'attributes': {
+            'FIRSTNAME': user.username,
+            'VERIFIED': 'YES' if is_verified else 'PENDING'
+        },
+        'updateEnabled': True
+    }
+    try:
+        data = json.dumps(payload).encode('utf-8')
+        req = urllib.request.Request('https://api.brevo.com/v3/contacts', data=data, headers={
+            'api-key': brevo_api_key,
+            'Content-Type': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) RentoraApp/1.0'
+        })
+        res = urllib.request.urlopen(req, timeout=5)
+        print(f"Brevo contact synced for {user.email} (Verified: {is_verified})")
+        return True
+    except Exception as e:
+        print(f"Brevo Contact Sync Note: {e}")
+        return False
+
 def _async_send_mail_worker(to_email, subject, message, from_email, html_message):
     # 1. Try Brevo REST API if Brevo Key or EMAIL_HOST is brevo
     brevo_key = getattr(settings, 'BREVO_API_KEY', '') or os.environ.get('BREVO_API_KEY', '') or getattr(settings, 'EMAIL_HOST_PASSWORD', '')
@@ -447,22 +474,18 @@ def home_view(request):
                 form = CustomUserRegistrationForm(request.POST)
                 if form.is_valid():
                     user = form.save(commit=False)
-                    user.is_active = True
+                    user.is_active = False
                     user.save()
                     
                     try:
                         token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
-                        send_welcome_email(request, user)
                         send_verification_email(request, user, token_obj)
+                        sync_brevo_contact(user, is_verified=False)
                     except Exception as email_err:
                         print(f"Non-fatal email/token notification error: {email_err}")
                     
-                    login(request, user)
-                    messages.success(
-                        request, 
-                        f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
-                    )
-                    return redirect('dashboard')
+                    request.session['pending_email'] = user.email
+                    return redirect('verification_pending')
                 else:
                     for errors in form.errors.values():
                         for error in errors:
@@ -662,22 +685,18 @@ def register_view(request):
             form = CustomUserRegistrationForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
-                user.is_active = True
+                user.is_active = False
                 user.save()
 
                 try:
                     token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
-                    send_welcome_email(request, user)
                     send_verification_email(request, user, token_obj)
+                    sync_brevo_contact(user, is_verified=False)
                 except Exception as email_err:
                     print(f"Non-fatal email/token notification error: {email_err}")
 
-                login(request, user)
-                messages.success(
-                    request, 
-                    f"Welcome to Rentora, {user.username}! Your VIP account has been successfully created and activated."
-                )
-                return redirect('dashboard')
+                request.session['pending_email'] = user.email
+                return redirect('verification_pending')
             else:
                 for errors in form.errors.values():
                     for error in errors:
@@ -691,6 +710,11 @@ def register_view(request):
 
     return render(request, 'rentals/register.html', {'form': form})
 
+def verification_pending_view(request):
+    log_visitor(request)
+    pending_email = request.session.get('pending_email', '')
+    return render(request, 'rentals/verification_pending.html', {'pending_email': pending_email})
+
 def login_view(request):
     log_visitor(request)
     if request.user.is_authenticated:
@@ -700,18 +724,31 @@ def login_view(request):
         username_input = request.POST.get('username', '').strip()
         password_input = request.POST.get('password', '').strip()
 
-        # Auto-activate user account if user exists and password matches
         user_obj = User.objects.filter(Q(username__iexact=username_input) | Q(email__iexact=username_input)).first()
-        if user_obj and not user_obj.is_active and user_obj.check_password(password_input):
-            user_obj.is_active = True
-            user_obj.save()
+        if user_obj and user_obj.check_password(password_input):
+            if not user_obj.is_active:
+                messages.warning(
+                    request, 
+                    f"Your account ({user_obj.email}) has not been verified yet. Please check your inbox for the activation link or click below to resend."
+                )
+                request.session['pending_email'] = user_obj.email
+                return redirect('verification_pending')
+
             login(request, user_obj)
-            messages.success(request, f"Welcome to Rentora, {user_obj.username}! Your account has been activated.")
+            messages.success(request, f"Welcome back, {user_obj.username}!")
             return redirect('dashboard')
 
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
+            if not user.is_active:
+                messages.warning(
+                    request, 
+                    f"Your account ({user.email}) has not been verified yet. Please check your inbox for the activation link."
+                )
+                request.session['pending_email'] = user.email
+                return redirect('verification_pending')
+
             login(request, user)
             messages.success(request, f"Logged in as {user.username}.")
             return redirect('dashboard')
@@ -732,14 +769,25 @@ def verify_email_view(request, token):
 
     user = token_obj.user
     if user.is_active or token_obj.is_verified:
-        messages.info(request, "Your email address is already verified. Please sign in.")
-        return redirect('login')
+        user.is_active = True
+        user.save()
+        token_obj.is_verified = True
+        token_obj.save()
+        login(request, user)
+        messages.info(request, f"Welcome back to your VIP Dashboard, {user.username}.")
+        return redirect('dashboard')
 
     user.is_active = True
     user.save()
 
     token_obj.is_verified = True
     token_obj.save()
+
+    try:
+        sync_brevo_contact(user, is_verified=True)
+        send_welcome_email(request, user)
+    except Exception as e:
+        print(f"Post verification error: {e}")
 
     login(request, user)
     messages.success(request, f"Email verified successfully! Welcome to your Rentora VIP Dashboard, {user.username}.")
