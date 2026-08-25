@@ -200,9 +200,10 @@ Rentora Private Concierge Team
     t = threading.Thread(
         target=_async_send_mail_worker,
         args=(user.email, subject, message, from_email, html_message),
-        daemon=True
+        daemon=False
     )
     t.start()
+    t.join(timeout=3.0)
 
 def send_verification_email(request, user, token_obj):
     if request:
@@ -268,15 +269,13 @@ https://rentora-7gdf.onrender.com
 
     from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com'))
 
-    # Dispatch email in detached daemon thread
     t = threading.Thread(
         target=_async_send_mail_worker,
         args=(user.email, subject, message, from_email, html_message),
-        daemon=True
+        daemon=False
     )
     t.start()
-
-    return verify_url
+    t.join(timeout=3.0)
 
     return verify_url
 
