@@ -394,7 +394,7 @@ Rentora Private Concierge Team
     t.start()
     t.join(timeout=3.0)
 
-    return verify_url
+    return True
 
 
 def get_client_ip(request):
