@@ -91,9 +91,10 @@ def send_email_via_brevo(to_email, subject, html_message, text_message=""):
         return False, str(e)
 
 def _async_send_mail_worker(to_email, subject, message, from_email, html_message):
-    # 1. Try Brevo REST API if Brevo Key is present
+    # 1. Try Brevo REST API if Brevo Key or EMAIL_HOST is brevo
     brevo_key = getattr(settings, 'BREVO_API_KEY', '') or os.environ.get('BREVO_API_KEY', '') or getattr(settings, 'EMAIL_HOST_PASSWORD', '')
-    if brevo_key and ('xkeysib-' in brevo_key or 'xsmtpsib-' in brevo_key):
+    email_host = getattr(settings, 'EMAIL_HOST', '') or os.environ.get('EMAIL_HOST', '')
+    if brevo_key and ('brevo' in email_host.lower() or 'xkeysib-' in brevo_key or 'xsmtpsib-' in brevo_key or len(brevo_key) > 30):
         success, msg = send_email_via_brevo(to_email, subject, html_message, message)
         if success:
             return
