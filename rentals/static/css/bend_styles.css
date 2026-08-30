@@ -212,10 +212,23 @@ body.night-mode .theme-card {
   transform-origin: top right;
 }
 
-/* 100% Seamless Botanical Multiply Blending */
+/* 100% Seamless Botanical Multiply & Matte Edge Elimination */
 .flower-container {
   pointer-events: none;
   mix-blend-mode: multiply;
+  isolation: isolate;
+}
+
+.flower-container video {
+  mix-blend-mode: multiply;
+  filter: contrast(1.18) brightness(0.93);
+  -webkit-filter: contrast(1.18) brightness(0.93);
+  object-fit: cover;
+}
+
+.top-left-canopy video {
+  filter: contrast(1.22) brightness(0.92);
+  -webkit-filter: contrast(1.22) brightness(0.92);
 }
 
 /* GPU Hardware Acceleration for Zero-Jitter Pinning & Scrubbing */
