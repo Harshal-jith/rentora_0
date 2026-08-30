@@ -557,9 +557,12 @@
           <!-- PANEL 1: THE CONCEPT (SLIDE 1: PERFECTLY CENTER-ALIGNED SHOWCASE) -->
           <div class="horizontal-panel w-screen h-full flex-shrink-0 flex flex-col items-center justify-center p-8 sm:p-16 lg:p-24 relative overflow-hidden">
             
-            <!-- Real Live Bougainvillea Canopy - Top-Left Screen Corner -->
+            <!-- Real Live Bougainvillea Video - Top-Left Screen Corner -->
             <div class="top-left-canopy absolute top-0 left-0 w-[360px] sm:w-[480px] md:w-[580px] flower-container botanical-sway-left z-10 pointer-events-none">
-              <img src="{% static 'images/flower03_clean.png' %}" alt="Kerala Bougainvillea Canopy" class="w-full h-auto object-cover select-none pointer-events-none" />
+              <video muted autoplay loop playsinline disablepictureinpicture class="w-full h-auto object-cover">
+                <source src="{% static 'videos/bougainvillea_era.webm' %}" type="video/webm"/>
+                <source src="{% static 'videos/bougainvillea_era.mov' %}" type="video/quicktime"/>
+              </video>
             </div>
 
             <!-- Perfectly Center-Aligned Content Showcase -->
@@ -615,9 +618,12 @@
           <!-- PANEL 3: EVENINGS & PRIVATE CONCIERGE (SLIDE 3: GRAND EDITORIAL SHOWCASE WITH ROOM FOR FLOWERS) -->
           <div class="horizontal-panel w-screen h-full flex-shrink-0 flex items-center p-8 sm:p-16 lg:p-24 relative overflow-hidden">
             
-            <!-- Real Live Bougainvillea Canopy - Top-Right Screen Corner (Slide 3 Signature) -->
+            <!-- User's SIDE3.MP4 Bougainvillea Video - Top-Right Screen Corner (Slide 3 Signature Video) -->
             <div class="top-right-canopy absolute top-0 right-0 w-[420px] sm:w-[560px] md:w-[700px] flower-container botanical-sway-right z-10 pointer-events-none">
-              <img src="{% static 'images/side3_clean.png' %}" alt="Kerala Bougainvillea Canopy" class="w-full h-auto object-cover select-none pointer-events-none" />
+              <video muted autoplay loop playsinline disablepictureinpicture webkit-playsinline class="w-full h-auto block object-cover">
+                <source src="{% static 'videos/side3_transparent.webm' %}" type="video/webm"/>
+                <source src="{% static 'videos/SIDE3.mp4' %}" type="video/mp4"/>
+              </video>
             </div>
 
             <!-- Grand Editorial Text Showcase (Left-Aligned, Allowing Flowers to Flow Organically on Right) -->
