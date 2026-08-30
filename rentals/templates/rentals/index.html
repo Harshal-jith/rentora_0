@@ -1,257 +1,1072 @@
-{% extends 'rentals/base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rentora Kerala | Premier Luxury Property Rentals & Heritage Sanctuaries</title>
+  <meta name="description" content="Rentora is Kerala's premier luxury property rental service. Discover handpicked private pool villas, tea estate mansions, and heritage waterfront sanctuaries across God's Own Country." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-{% block title %}Rentora — The Sanctuary of Uncompromised Luxury{% endblock %}
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-<!-- Clean Hero: No Header/Navbar on Landing Page -->
-{% block navbar %}{% endblock %}
+    <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{% static 'css/bend_styles.css' %}" />
 
-{% block extra_css %}
-<link rel="preload" as="image" href="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" fetchpriority="high">
-<link rel="preload" as="image" href="{% static 'images/scene_arrival_1784964424610.jpg' %}">
-{% endblock %}
-
-{% block content %}
-<div class="landing-page-wrapper permanent-dark-page">
-<!-- SECTION 1: ULTRA-MINIMALIST PURE LUXURY HERO -->
-<section class="hero-section hero-pure-editorial" id="hero">
-
-    <!-- Dual-Layer Continuous Ambient Background Engine -->
-    <div class="hero-crossfade-container">
-        <div class="hero-bg-layer hero-bg-layer-a active" id="bgLayerA" style="background-image: url('{% static 'images/properties/prop_03_varkala.jpg' %}');"></div>
-        <div class="hero-bg-layer hero-bg-layer-b" id="bgLayerB"></div>
+</head>
+<body class="font-body bg-[#f4f1ea] text-[#181614] antialiased selection:bg-[#181614] selection:text-white overflow-x-hidden">
+  {% if messages %}
+  <div class="fixed top-20 right-5 z-50 flex flex-col gap-2 max-w-md pointer-events-auto">
+    {% for message in messages %}
+    <div class="p-4 rounded-xl shadow-2xl backdrop-blur-md text-sm font-medium border border-white/20 {% if message.tags == 'error' %}bg-red-900/90 text-white{% elif message.tags == 'warning' %}bg-amber-900/90 text-amber-100{% else %}bg-emerald-900/90 text-emerald-100{% endif %} flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-circle-info text-amber-400"></i>
+        <span>{{ message }}</span>
+      </div>
+      <button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white">&times;</button>
     </div>
+    {% endfor %}
+  </div>
+  {% endif %}
 
-    <!-- Ambient Vignette Overlay -->
-    <div class="hero-overlay-editorial"></div>
 
-    <!-- Subtle Golden Flare Glow -->
-    <div class="hero-radial-flare"></div>
+  <!-- Ambient Grain Overlay -->
+  <div aria-hidden="true" class="has-grain pointer-events-none fixed inset-0 z-50"></div>
 
-    <!-- Floating Gold Particle Canvas -->
-    <canvas id="particleCanvas"></canvas>
+  <!-- Background Color Scrub Canvas Layer -->
+  <div id="scroll-bg" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 bg-[#f4f1ea]"></div>
 
-    <!-- Pure Editorial Center Fold Container -->
-    <div class="hero-pure-container">
-        
-        <!-- Crown Distinction Badge -->
-        <div class="hero-crown-badge">
-            <span class="crown-icon"><i class="fa-solid fa-crown"></i></span>
-            <span class="crown-text">KERALA’S SANCTUARY OF UNCOMPROMISED LUXURY</span>
+  <!-- ==================== INTRO HERO LOADER (RENTORA -> BLACK LINE -> PORTAL OPENS) ==================== -->
+  <div id="hero-loader" class="fixed inset-0 z-50 flex items-center justify-center bg-[#f4f1ea] text-[#181614] overflow-hidden pointer-events-auto">
+    <div class="loader-content flex items-center justify-center font-display font-medium uppercase tracking-widest" style="font-size: clamp(2.2rem, 8vw, 6.5em); height: 1.2em;">
+      
+      <!-- Word Left: RENT -->
+      <div class="hero-loader__word hero-loader__word--start flex justify-end overflow-hidden shrink-0">
+        <span class="whitespace-nowrap px-0.5">RENT</span>
+      </div>
+
+      <!-- Black Line Portal Slot (opens into Kerala luxury preview) -->
+      <div class="hero-loader__box relative flex items-center justify-center overflow-hidden mx-0 opacity-0 bg-[#181614]" style="width: 0px; height: 1.1em; border-radius: 2px;">
+        <div class="hero-loader__growing-image relative w-full h-full overflow-hidden rounded-md shadow-2xl opacity-0 ring-1 ring-[#181614]/40">
+          <div class="loader-img-slide absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80')"></div>
+          <div class="loader-img-slide absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80')"></div>
+          <div class="loader-img-slide absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80')"></div>
+          <!-- FINAL LOADER SLIDE: MATCHES HERO SLIDE 1 -->
+          <div class="loader-img-slide absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85')"></div>
         </div>
 
-        <!-- Grand Playfair Editorial Headline -->
-        <h1 class="hero-title-editorial">
-            Kerala’s Sanctuary of<br>
-            <span class="gold-shimmer-text">Bespoke Private Estates</span>
-        </h1>
+      </div>
 
-        <!-- Subtle Subtitle Statement -->
-        <p class="hero-subtitle-editorial">
-            Discover 100% verified coastal cliffside villas, tea plantation manors, and presidential backwater yacht charters with 24/7 dedicated estate concierge.
+      <!-- Word Right: ORA -->
+      <div class="hero-loader__word hero-loader__word--end flex justify-start overflow-hidden shrink-0">
+        <span class="whitespace-nowrap px-0.5">ORA</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#181614] text-white flex flex-col justify-between p-8 transition-transform duration-500 translate-x-full md:hidden">
+    <div class="flex justify-between items-center">
+      <div class="flex flex-col">
+        <span class="font-display font-medium text-lg tracking-widest uppercase">RENTORA</span>
+        <span class="text-[0.6rem] uppercase tracking-[0.25em] text-white/60">KERALA ESTATES</span>
+      </div>
+      <button id="close-menu" aria-label="Close menu" class="text-white text-2xl p-2">&times;</button>
+    </div>
+    <nav class="flex flex-col gap-6 text-2xl font-display uppercase tracking-widest my-auto">
+      <a href="#opportunity" class="mobile-nav-link hover:text-slate-300">The Kerala Concept</a>
+      <a href="#rentals" class="mobile-nav-link hover:text-slate-300">Kerala Estates</a>
+      <a href="#stay" class="mobile-nav-link hover:text-slate-300">Guest Experience</a>
+      <a href="#amenities" class="mobile-nav-link hover:text-slate-300">Ayurveda & Concierge</a>
+      <a href="#contact" class="mobile-nav-link hover:text-slate-300">Inquire</a>
+    </nav>
+    <div class="flex flex-col gap-2">
+      <button id="book-call-btn-mobile" class="w-full py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition">Reserve Kerala Estate</button>
+      <p class="text-xs uppercase tracking-widest text-white/50">Luxury Private Rentals • God's Own Country</p>
+    </div>
+  </div>
+
+  <!-- Reserve a Stay Modal Popup -->
+  <div id="call-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="relative w-full max-w-lg bg-[#181614] text-white p-8 rounded-2xl ring-1 ring-white/20 shadow-2xl">
+      <button id="close-modal" aria-label="Close modal" class="absolute top-4 right-4 text-white/70 hover:text-white text-2xl p-2">&times;</button>
+      <h3 class="font-display text-2xl sm:text-3xl font-medium mt-1">Reserve Your Kerala Sanctuary</h3>
+
+      <p class="text-xs sm:text-sm text-white/70 mt-2">Share your travel dates and preferred Kerala destination. Our private estate concierge will craft your bespoke villa and itinerary proposal.</p>
+      
+      <form class="mt-6 grid gap-4" method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="inquiry">
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Full Name</span>
+          <input required type="text" name="name" value="{% if user.is_authenticated %}{{ user.first_name|default:user.username }}{% endif %}" placeholder="e.g. Alexander Wright" class="w-full border-0 border-b border-white/30 bg-transparent py-1.5 text-sm text-white outline-none focus:border-white"/>
+        </label>
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Preferred Destination</span>
+          <select name="message" class="w-full border-0 border-b border-white/30 bg-[#181614] py-1.5 text-sm text-white outline-none focus:border-white">
+            <option value="Alleppey & Kumarakom (Backwaters & Lake)">Alleppey & Kumarakom (Backwaters & Lake)</option>
+            <option value="Munnar & Wayanad (High Ranges & Tea Hills)">Munnar & Wayanad (High Ranges & Tea Hills)</option>
+            <option value="Marari & Varkala (Private Beach & Clifftop)">Marari & Varkala (Private Beach & Clifftop)</option>
+            <option value="Fort Kochi (Heritage Spice Mansions)">Fort Kochi (Heritage Spice Mansions)</option>
+            <option value="Multiple Kerala Destinations">Multiple Kerala Destinations</option>
+          </select>
+        </label>
+        <div class="grid grid-cols-2 gap-4">
+          <label class="grid gap-1">
+            <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Phone / WhatsApp</span>
+            <input required type="tel" name="phone" placeholder="+91 98765 43210" class="w-full border-0 border-b border-white/30 bg-transparent py-1.5 text-sm text-white outline-none focus:border-white"/>
+          </label>
+          <label class="grid gap-1">
+            <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Guests</span>
+            <select name="guests" class="w-full border-0 border-b border-white/30 bg-[#181614] py-1.5 text-sm text-white outline-none focus:border-white">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="6">6+ Guests</option>
+            </select>
+          </label>
+        </div>
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Email Address</span>
+          <input required type="email" name="email" value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" placeholder="alexander@example.com" class="w-full border-0 border-b border-white/30 bg-transparent py-1.5 text-sm text-white outline-none focus:border-white"/>
+        </label>
+        <button type="submit" class="mt-4 w-full py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition">Request Kerala Proposal</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sign Up & Log In Modal Popup -->
+  <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-xl p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="relative w-full max-w-md bg-[#181614] text-white p-7 sm:p-9 rounded-2xl ring-1 ring-white/20 shadow-2xl overflow-hidden">
+      <!-- Close Button -->
+      <button id="close-auth-modal" aria-label="Close modal" class="absolute top-4 right-4 text-white/60 hover:text-white text-2xl p-2">&times;</button>
+      
+      <!-- Top Brand Tag -->
+      <div class="text-center mb-6">
+        <span class="font-display font-medium text-xl tracking-widest text-white uppercase">RENTORA</span>
+        <p class="text-[0.6rem] uppercase tracking-[0.28em] text-white/60 mt-0.5">Kerala Private Member Circle</p>
+      </div>
+
+      <!-- Auth Tab Switcher -->
+      <div class="grid grid-cols-2 p-1 bg-white/10 rounded-xl mb-6 border border-white/10">
+        <button id="tab-login" type="button" class="py-2 text-xs uppercase tracking-widest font-semibold rounded-lg transition-all bg-white text-[#181614] shadow-md">
+          Log In
+        </button>
+        <button id="tab-signup" type="button" class="py-2 text-xs uppercase tracking-widest font-semibold rounded-lg transition-all text-white/70 hover:text-white">
+          Sign Up
+        </button>
+      </div>
+
+      <!-- LOG IN FORM -->
+      <form id="login-form" class="grid gap-4" method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="login">
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Email Address or Username</span>
+          <input required type="text" name="username" placeholder="alexander@example.com" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-sm text-white outline-none focus:border-white transition"/>
+        </label>
+        
+        <label class="grid gap-1">
+          <div class="flex justify-between items-center">
+            <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Password</span>
+            <a href="{% url 'resend_verification' %}" class="text-[0.65rem] text-white/80 hover:underline hover:text-white">Resend Verification</a>
+          </div>
+          <input required type="password" name="password" placeholder="••••••••" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-sm text-white outline-none focus:border-white transition"/>
+        </label>
+
+        <button type="submit" class="mt-3 w-full py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-200 transition shadow-lg">
+          Log In to Member Portal
+        </button>
+
+        <p class="text-center text-xs text-white/50 mt-2">
+          New to Rentora? <button type="button" id="switch-to-signup" class="text-white hover:underline font-semibold">Create an account</button>
+        </p>
+      </form>
+
+      <!-- SIGN UP FORM (Initially Hidden) -->
+      <form id="signup-form" class="grid gap-4 hidden" method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="register">
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Username</span>
+          <input required type="text" name="username" placeholder="alexander_varkala" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-sm text-white outline-none focus:border-white transition"/>
+        </label>
+
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Email Address</span>
+          <input required type="email" name="email" placeholder="alexander@example.com" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-sm text-white outline-none focus:border-white transition"/>
+        </label>
+
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Create Password</span>
+          <input required type="password" name="password1" placeholder="••••••••" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-sm text-white outline-none focus:border-white transition"/>
+        </label>
+        
+        <label class="grid gap-1">
+          <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Confirm Password</span>
+          <input required type="password" name="password2" placeholder="••••••••" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-sm text-white outline-none focus:border-white transition"/>
+        </label>
+
+        <button type="submit" class="mt-3 w-full py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-200 transition shadow-lg">
+          Create VIP Account
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <main class="relative isolate">
+
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section aria-label="Hero" id="imagery" class="relative isolate flex min-h-screen flex-col overflow-hidden bg-[#181614] text-white">
+      
+      <!-- Background Image Slideshow Carousel (Day & Night Pairs) -->
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0">
+        <!-- DAY SLIDES (KERALA BACKWATERS, TEA HILLS, HERITAGE COAST) -->
+        <div class="hero-bg-slide day-slide absolute inset-0 bg-cover bg-center opacity-100"
+             style="background-image: linear-gradient(180deg, rgba(24, 22, 20, 0.4) 0%, rgba(24, 22, 20, 0.2) 35%, rgba(24, 22, 20, 0.65) 75%, rgba(24, 22, 20, 0.95) 100%), url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85')"></div>
+        <div class="hero-bg-slide day-slide absolute inset-0 bg-cover bg-center opacity-0"
+             style="background-image: linear-gradient(180deg, rgba(24, 22, 20, 0.4) 0%, rgba(24, 22, 20, 0.2) 35%, rgba(24, 22, 20, 0.65) 75%, rgba(24, 22, 20, 0.95) 100%), url('https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=2000&q=85')"></div>
+        <div class="hero-bg-slide day-slide absolute inset-0 bg-cover bg-center opacity-0"
+             style="background-image: linear-gradient(180deg, rgba(24, 22, 20, 0.4) 0%, rgba(24, 22, 20, 0.2) 35%, rgba(24, 22, 20, 0.65) 75%, rgba(24, 22, 20, 0.95) 100%), url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=2000&q=85')"></div>
+
+        <!-- NIGHT SLIDES (MOONLIT LAKES, CANDLELIT COURTYARDS, FIRESIDE RETREATS) -->
+        <div class="hero-bg-slide night-slide absolute inset-0 bg-cover bg-center opacity-0"
+             style="background-image: linear-gradient(180deg, rgba(15, 14, 13, 0.5) 0%, rgba(15, 14, 13, 0.3) 35%, rgba(15, 14, 13, 0.75) 75%, rgba(15, 14, 13, 0.98) 100%), url('https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=2000&q=85')"></div>
+        <div class="hero-bg-slide night-slide absolute inset-0 bg-cover bg-center opacity-0"
+             style="background-image: linear-gradient(180deg, rgba(15, 14, 13, 0.5) 0%, rgba(15, 14, 13, 0.3) 35%, rgba(15, 14, 13, 0.75) 75%, rgba(15, 14, 13, 0.98) 100%), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=85')"></div>
+        <div class="hero-bg-slide night-slide absolute inset-0 bg-cover bg-center opacity-0"
+             style="background-image: linear-gradient(180deg, rgba(15, 14, 13, 0.5) 0%, rgba(15, 14, 13, 0.3) 35%, rgba(15, 14, 13, 0.75) 75%, rgba(15, 14, 13, 0.98) 100%), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85')"></div>
+      </div>
+
+      <!-- Navigation Header -->
+      <div class="hero-fade-in relative z-20">
+        <header class="px-5 pt-6 pb-5 sm:px-8 lg:px-12 text-white">
+          <div class="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6">
+            
+            <!-- Logo -->
+            <a aria-label="Rentora Kerala home" class="flex items-center justify-self-start gap-2.5 group" href="#">
+              <div class="flex flex-col">
+                <span class="font-display font-medium text-lg sm:text-xl tracking-widest text-white uppercase">RENTORA</span>
+                <span class="text-[0.55rem] uppercase tracking-[0.3em] text-white/60">KERALA • GOD'S OWN COUNTRY</span>
+              </div>
+            </a>
+
+            <!-- Nav Links -->
+            <nav aria-label="Primary" class="hidden justify-self-center text-xs sm:text-sm md:block">
+              <ul class="flex items-center gap-x-4 sm:gap-x-6">
+                <li class="flex items-center gap-x-4 sm:gap-x-6">
+                  <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="#opportunity">Concept</a>
+                  <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                  </svg>
+                </li>
+                <li class="flex items-center gap-x-4 sm:gap-x-6">
+                  <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="#rentals">Kerala Estates</a>
+                  <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                  </svg>
+                </li>
+                <li class="flex items-center gap-x-4 sm:gap-x-6">
+                  <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="#stay">Guest Experience</a>
+                  <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                  </svg>
+                </li>
+                <li class="flex items-center gap-x-4 sm:gap-x-6">
+                  <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="#amenities">Ayurveda & Concierge</a>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- DAY / NIGHT TOGGLE PILL & RESERVE CTA -->
+            <div class="flex items-center justify-self-end gap-3 sm:gap-4">
+              
+              <!-- By Day / By Night Mode Switch Pill -->
+              <div class="flex items-center bg-white/10 backdrop-blur-md p-1 rounded-full border border-white/20">
+                <button id="day-btn" class="px-3 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-white text-[#181614] font-semibold shadow-sm">
+                  By Day
+                </button>
+                <button id="night-btn" class="px-3 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 text-white/70 hover:text-white">
+                  By Night
+                </button>
+              </div>
+
+              <!-- Reserve a Stay Button -->
+              <button id="book-call-btn" class="hidden sm:inline-flex px-4 py-2 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition shadow-lg">
+                Reserve Estate
+              </button>
+
+              <!-- Mobile Toggle Button -->
+              <button id="open-menu" aria-label="Open menu" class="flex flex-col justify-center gap-[5px] md:hidden p-2">
+                <span class="block h-px w-6 bg-white"></span>
+                <span class="block h-px w-6 bg-white"></span>
+                <span class="block h-px w-6 bg-white"></span>
+              </button>
+            </div>
+
+          </div>
+        </header>
+      </div>
+
+      <!-- Hero Main Content (Kerala Luxury Rental Storytelling) -->
+      <div class="relative z-20 flex flex-1 flex-col justify-end px-5 pb-10 pt-24 sm:px-8 sm:pb-14 sm:pt-28 lg:px-12 lg:pb-16">
+        <div class="mx-auto w-full max-w-7xl">
+          
+          <!-- Subtitle Badges -->
+          <div class="hero-fade-in flex flex-wrap items-center gap-3">
+            <span class="px-3 py-1 bg-white/15 backdrop-blur-md text-[0.65rem] uppercase tracking-[0.25em] text-white rounded-full border border-white/20">
+              Kerala's Premier Rental Collection • 24/7 Concierge
+            </span>
+            <p class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] text-white/70">
+              Alleppey • Munnar • Kumarakom • Marari • Fort Kochi
+            </p>
+          </div>
+
+          <div class="mt-5 sm:mt-6 lg:flex lg:items-end lg:gap-10">
+            <h1 class="hero-title font-display text-[clamp(2.5rem,7vw,6.5rem)] font-medium leading-[0.96] tracking-[-0.012em] text-white lg:flex-1">
+              <span class="hero-fade-word inline-block">Luxury</span> 
+              <span class="hero-fade-word inline-block">Estates</span> 
+              <span class="hero-fade-word inline-block">&amp;</span> 
+              <span class="hero-fade-word inline-block">Villas</span><br class="hidden sm:inline" />
+              <span class="hero-fade-word inline-block">—</span> 
+              <span class="hero-fade-word inline-block">Across</span> 
+              <span class="hero-fade-word inline-block">God's</span> 
+              <span class="hero-fade-word inline-block">Own</span> 
+              <span class="hero-fade-word inline-block">Country</span>
+            </h1>
+
+            <!-- Slideshow Controls -->
+            <div class="hero-fade-in mt-8 flex w-full justify-between gap-5 sm:mt-10 lg:mt-0 lg:w-auto lg:shrink-0 lg:justify-start">
+              <button type="button" id="prev-slide" aria-label="Previous slide" class="cursor-pointer text-white/50 transition-colors duration-300 hover:text-white p-2 border border-white/20 rounded-full hover:border-white">
+                <svg fill="none" height="24" viewBox="0 0 18 18" width="24">
+                  <path d="M11 4L6 9L11 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                </svg>
+              </button>
+              <button type="button" id="next-slide" aria-label="Next slide" class="cursor-pointer text-white/50 transition-colors duration-300 hover:text-white p-2 border border-white/20 rounded-full hover:border-white">
+                <svg fill="none" height="24" viewBox="0 0 18 18" width="24">
+                  <path d="M7 4L12 9L7 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-fade-in mt-6 border-t border-white/20 sm:mt-8"></div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== STATEMENT SECTION (KERALA MANIFESTO) ==================== -->
+    <section aria-label="Rentora Kerala statement" id="opportunity" class="relative px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-44">
+      <div class="mx-auto flex max-w-5xl flex-col items-start">
+        
+        <!-- Rotating Star Icon -->
+        <svg class="statement-star mb-8 h-6 sm:h-8 w-auto text-[var(--ink)] origin-center animate-[spin_18s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+        </svg>
+
+        <!-- Statement Text with Word-by-Word Scroll Scrub Highlight -->
+        <p class="statement-text text-left font-display text-[clamp(1.75rem,4vw,3.6rem)] font-medium leading-[1.12] tracking-[-0.01em] text-[var(--ink)]">
+          Pure seclusion. Private backwater pool villas, misty cloud retreats, and 24/7 master-chef hospitality across God’s Own Country.
         </p>
 
-        <!-- Single Ultra-Clean Gold Action Pill Button -->
-        <div class="hero-pure-cta-wrap">
-            <a href="{% url 'properties' %}" class="btn btn-gold btn-editorial-primary">
-                <span>EXPLORE THE COLLECTION</span> <i class="fa-solid fa-arrow-right-long"></i>
-            </a>
+      </div>
+    </section>
+
+
+    <!-- ==================== FEATURED KERALA LUXURY RENTALS SELECTOR ==================== -->
+    <section id="rentals" class="relative px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32 border-t theme-line">
+      <div class="mx-auto max-w-7xl">
+        
+        <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h2 class="font-display text-[clamp(2rem,4vw,3.5rem)] font-medium leading-[1.04] text-[var(--ink)]">
+              Featured Luxury Properties in Kerala
+            </h2>
+          </div>
+
+
+          <!-- Category Filter Tabs -->
+          <div class="flex flex-wrap gap-2 p-1.5 bg-black/5 rounded-xl backdrop-blur-md">
+            <button class="apartment-tab active px-4 py-2 text-xs uppercase tracking-widest rounded-lg font-semibold transition-all bg-[var(--ink)] text-white shadow-md" data-type="all">
+              All Estates
+            </button>
+            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg transition-all text-[var(--ink)]/70 hover:text-[var(--ink)]" data-type="backwater">
+              Backwater Villas
+            </button>
+            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg transition-all text-[var(--ink)]/70 hover:text-[var(--ink)]" data-type="hills">
+              Munnar Highlands
+            </button>
+            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg transition-all text-[var(--ink)]/70 hover:text-[var(--ink)]" data-type="coastal">
+              Coastal &amp; Heritage
+            </button>
+          </div>
         </div>
 
-    </div>
-
-    <!-- Minimal Slide Controls (Bottom Right) -->
-    <div class="hero-minimal-carousel-nav">
-        <div class="carousel-slide-indicator active" data-slide="0">
-            <span class="slide-num">01</span>
-            <span class="slide-name">Varkala Azure</span>
-        </div>
-        <div class="carousel-slide-indicator" data-slide="1">
-            <span class="slide-num">02</span>
-            <span class="slide-name">Wayanad Sanctuary</span>
-        </div>
-        <div class="carousel-slide-indicator" data-slide="2">
-            <span class="slide-num">03</span>
-            <span class="slide-name">Munnar Haven</span>
-        </div>
-        <div class="carousel-slide-indicator" data-slide="3">
-            <span class="slide-num">04</span>
-            <span class="slide-name">Alleppey Backwaters</span>
-        </div>
-    </div>
-</section>
-
-<!-- SECTION 1.5: FEATURED IN LUXURY PRESS BAR -->
-<section class="press-bar-section">
-    <div class="press-bar-container">
-        <span class="press-label">FEATURED IN LUXURY PUBLICATIONS</span>
-        <div class="press-logos-wrap">
-            <span class="press-logo-text">ARCHITECTURAL DIGEST</span>
-            <span class="press-dot">•</span>
-            <span class="press-logo-text">CONDÉ NAST TRAVELER</span>
-            <span class="press-dot">•</span>
-            <span class="press-logo-text">ROBB REPORT</span>
-            <span class="press-dot">•</span>
-            <span class="press-logo-text">TRAVEL + LEISURE</span>
-            <span class="press-dot">•</span>
-            <span class="press-logo-text">FORBES LUXURY</span>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- SECTION 2: DUAL-ROW SCROLL-DRIVEN MARQUEE SLIDER (RIGHT BELOW HERO) -->
-<section class="marquee-scroll-section" id="marquee">
-    <div class="marquee-header-wrap">
-        <span class="sub-heading-gold reveal-popup">CURATED PORTFOLIO</span>
-        <h2 class="serif-title advantage-title reveal-popup">Kerala’s Ultra-Luxury Private Estates</h2>
-    </div>
-
-    <div class="marquee-rows-container">
-        <!-- Row 1: Slides Right on Scroll -->
-        <div class="marquee-row marquee-row-1" id="marqueeRow1">
-            <div class="marquee-track">
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_01_wayanad.jpg' %}" alt="Wayanad Mistwood"><div class="tile-overlay"><span class="tile-location">Lakkidi Rainforest, Wayanad</span><span class="tile-title">Wayanad Mistwood Sanctuary</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_02_munnar.jpg' %}" alt="Munnar Tea Haven"><div class="tile-overlay"><span class="tile-location">Chithirapuram Hills, Munnar</span><span class="tile-title">Munnar Celestial Tea Haven</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Azure"><div class="tile-overlay"><span class="tile-location">North Cliff, Varkala</span><span class="tile-title">Varkala Azure Cliffside</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_04_kumarakom.jpg' %}" alt="Kumarakom Lotus"><div class="tile-overlay"><span class="tile-location">Vembanad Lake, Kumarakom</span><span class="tile-title">Kumarakom Lotus Pavilion</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_05_alleppey.jpg' %}" alt="Alleppey Sovereign"><div class="tile-overlay"><span class="tile-location">Punnamada Lagoon, Alleppey</span><span class="tile-title">Alleppey Sovereign Backwater</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_06_vagamon.jpg' %}" alt="Vagamon Pine"><div class="tile-overlay"><span class="tile-location">Pine Valley, Vagamon</span><span class="tile-title">Vagamon Pine Ridge Retreat</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_07_kovalam.jpg' %}" alt="Kovalam Horizon"><div class="tile-overlay"><span class="tile-location">Lighthouse Cove, Kovalam</span><span class="tile-title">Kovalam Horizon Reserve</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_08_kochi.jpg' %}" alt="Fort Kochi Maritime"><div class="tile-overlay"><span class="tile-location">Heritage Zone, Fort Kochi</span><span class="tile-title">Fort Kochi Maritime Manor</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_09_athirappilly.jpg' %}" alt="Athirappilly Canopy"><div class="tile-overlay"><span class="tile-location">Rainforest, Athirappilly</span><span class="tile-title">Athirappilly Waterfall Estate</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_10_thekkady.jpg' %}" alt="Thekkady Spice"><div class="tile-overlay"><span class="tile-location">Periyar Sanctuary, Thekkady</span><span class="tile-title">Thekkady Spice Plantation</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_11_idukki.jpg' %}" alt="Idukki Ridge"><div class="tile-overlay"><span class="tile-location">High Range, Idukki</span><span class="tile-title">Idukki Mountain Ridge Glass</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_12_kannur.jpg' %}" alt="Kannur Malabar"><div class="tile-overlay"><span class="tile-location">Payyambalam Cliff, Kannur</span><span class="tile-title">Kannur Malabar Heritage</span></div></div>
+        <!-- Rental Cards Grid (Strictly Top 3 Curated Kerala Signature Estates) -->
+        <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          
+          <!-- Estate 1: The Vembanad Water Palace (Kumarakom Backwaters) -->
+          <article class="apt-card reveal flex flex-col justify-between p-6 rounded-2xl theme-card border theme-line shadow-lg transition-all duration-500 hover:-translate-y-2" data-category="backwater">
+            <div>
+              <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center overflow-hidden mb-6 ring-1 ring-black/10" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=90')"></div>
+              <div class="flex justify-between items-center">
+                <span class="px-3 py-1 bg-white/20 text-[var(--ink)] text-[0.65rem] uppercase tracking-widest font-semibold rounded-full border theme-line">Kumarakom Backwaters</span>
+                <span class="font-display font-semibold text-sm text-[var(--ink)]">₹52,000 / night</span>
+              </div>
+              <h3 class="font-display text-2xl font-medium mt-3 text-[var(--ink)]">The Vembanad Water Palace &amp; Pool Manor</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Direct lagoon frontage on Lake Vembanad with a 15m private infinity pool, teakwood sundeck, private Kettuvallam houseboat jetty, and in-villa master chef preparing fresh Karimeen Pollichathu.</p>
+              
+              <div class="mt-6 pt-6 border-t theme-line grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-[0.6rem] uppercase tracking-widest text-[var(--ink)]/60">Capacity</p>
+                  <p class="font-display text-base font-semibold text-[var(--ink)]">4 Suites • 8 Guests</p>
+                </div>
+                <div>
+                  <p class="text-[0.6rem] uppercase tracking-widest text-[var(--ink)]/60">Signature</p>
+                  <p class="font-display text-base font-semibold text-[var(--ink)]">Private Jetty &amp; Pool</p>
+                </div>
+              </div>
             </div>
-        </div>
+            <button class="open-inquiry-btn mt-6 w-full py-3 bg-[var(--ink)] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition">Reserve Water Palace</button>
+          </article>
 
-        <!-- Row 2: Slides Left on Scroll -->
-        <div class="marquee-row marquee-row-2" id="marqueeRow2">
-            <div class="marquee-track">
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_12_kannur.jpg' %}" alt="Kannur Malabar"><div class="tile-overlay"><span class="tile-location">Payyambalam Cliff, Kannur</span><span class="tile-title">Kannur Malabar Heritage</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_11_idukki.jpg' %}" alt="Idukki Ridge"><div class="tile-overlay"><span class="tile-location">High Range, Idukki</span><span class="tile-title">Idukki Mountain Ridge Glass</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_10_thekkady.jpg' %}" alt="Thekkady Spice"><div class="tile-overlay"><span class="tile-location">Periyar Sanctuary, Thekkady</span><span class="tile-title">Thekkady Spice Plantation</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_09_athirappilly.jpg' %}" alt="Athirappilly Canopy"><div class="tile-overlay"><span class="tile-location">Rainforest, Athirappilly</span><span class="tile-title">Athirappilly Waterfall Estate</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_08_kochi.jpg' %}" alt="Fort Kochi Maritime"><div class="tile-overlay"><span class="tile-location">Heritage Zone, Fort Kochi</span><span class="tile-title">Fort Kochi Maritime Manor</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_07_kovalam.jpg' %}" alt="Kovalam Horizon"><div class="tile-overlay"><span class="tile-location">Lighthouse Cove, Kovalam</span><span class="tile-title">Kovalam Horizon Reserve</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_06_vagamon.jpg' %}" alt="Vagamon Pine"><div class="tile-overlay"><span class="tile-location">Pine Valley, Vagamon</span><span class="tile-title">Vagamon Pine Ridge Retreat</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_05_alleppey.jpg' %}" alt="Alleppey Sovereign"><div class="tile-overlay"><span class="tile-location">Punnamada Lagoon, Alleppey</span><span class="tile-title">Alleppey Sovereign Backwater</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_04_kumarakom.jpg' %}" alt="Kumarakom Lotus"><div class="tile-overlay"><span class="tile-location">Vembanad Lake, Kumarakom</span><span class="tile-title">Kumarakom Lotus Pavilion</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Varkala Azure"><div class="tile-overlay"><span class="tile-location">North Cliff, Varkala</span><span class="tile-title">Varkala Azure Cliffside</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_02_munnar.jpg' %}" alt="Munnar Tea Haven"><div class="tile-overlay"><span class="tile-location">Chithirapuram Hills, Munnar</span><span class="tile-title">Munnar Celestial Tea Haven</span></div></div>
-                <div class="marquee-tile"><img src="{% static 'images/properties/prop_01_wayanad.jpg' %}" alt="Wayanad Mistwood"><div class="tile-overlay"><span class="tile-location">Lakkidi Rainforest, Wayanad</span><span class="tile-title">Wayanad Mistwood Sanctuary</span></div></div>
+          <!-- Estate 2: Kanan Devan Heritage Planter's Manor (Munnar High Ranges) -->
+          <article class="apt-card reveal flex flex-col justify-between p-6 rounded-2xl theme-card border theme-line shadow-lg transition-all duration-500 hover:-translate-y-2" data-category="hills">
+            <div>
+              <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center overflow-hidden mb-6 ring-1 ring-black/10" style="background-image: url('https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1600&q=90')"></div>
+              <div class="flex justify-between items-center">
+                <span class="px-3 py-1 bg-white/20 text-[var(--ink)] text-[0.65rem] uppercase tracking-widest font-semibold rounded-full border theme-line">Munnar Tea Highlands</span>
+                <span class="font-display font-semibold text-sm text-[var(--ink)]">₹58,000 / night</span>
+              </div>
+              <h3 class="font-display text-2xl font-medium mt-3 text-[var(--ink)]">Kanan Devan Heritage Planter's Manor</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">A restored 1920s British colonial planter's manor set on 35 acres of private organic tea slopes. Features working stone fireplaces, heated cedar tub, personal butler, and guided tea trail hikes.</p>
+              
+              <div class="mt-6 pt-6 border-t theme-line grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-[0.6rem] uppercase tracking-widest text-[var(--ink)]/60">Capacity</p>
+                  <p class="font-display text-base font-semibold text-[var(--ink)]">5 Suites • 10 Guests</p>
+                </div>
+                <div>
+                  <p class="text-[0.6rem] uppercase tracking-widest text-[var(--ink)]/60">Signature</p>
+                  <p class="font-display text-base font-semibold text-[var(--ink)]">35-Acre Tea Reserve</p>
+                </div>
+              </div>
             </div>
+            <button class="open-inquiry-btn mt-6 w-full py-3 bg-[var(--ink)] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition">Reserve Planter's Manor</button>
+          </article>
+
+          <!-- Estate 3: Marari Palm Grove Beachfront Villa (Mararikulam Coast) -->
+          <article class="apt-card reveal flex flex-col justify-between p-6 rounded-2xl theme-card border theme-line shadow-lg transition-all duration-500 hover:-translate-y-2" data-category="coastal">
+            <div>
+              <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center overflow-hidden mb-6 ring-1 ring-black/10" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=90')"></div>
+              <div class="flex justify-between items-center">
+                <span class="px-3 py-1 bg-white/20 text-[var(--ink)] text-[0.65rem] uppercase tracking-widest font-semibold rounded-full border theme-line">Marari Private Beach</span>
+                <span class="font-display font-semibold text-sm text-[var(--ink)]">₹44,000 / night</span>
+              </div>
+              <h3 class="font-display text-2xl font-medium mt-3 text-[var(--ink)]">Marari Palm Grove Beachfront Villa</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Tucked in a private three-acre coconut grove with direct footprint-free Arabian Sea beach access, open-air garden rain showers, private plunge pool, and starlit seaside candlelit dining.</p>
+              
+              <div class="mt-6 pt-6 border-t theme-line grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-[0.6rem] uppercase tracking-widest text-[var(--ink)]/60">Capacity</p>
+                  <p class="font-display text-base font-semibold text-[var(--ink)]">3 Suites • 6 Guests</p>
+                </div>
+                <div>
+                  <p class="text-[0.6rem] uppercase tracking-widest text-[var(--ink)]/60">Signature</p>
+                  <p class="font-display text-base font-semibold text-[var(--ink)]">Direct Ocean Access</p>
+                </div>
+              </div>
+            </div>
+            <button class="open-inquiry-btn mt-6 w-full py-3 bg-[var(--ink)] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition">Reserve Beachfront Villa</button>
+          </article>
+
         </div>
-    </div>
-</section>
 
-<!-- SECTION 3: INTERACTIVE HOSPITALITY & BESPOKE SERVICES (LUXURY BENTO MATRIX) -->
-<section class="section bento-experience-section" id="advantage">
-    <div class="section-container advantage-header-wrap">
-        <span class="sub-heading-gold reveal-popup">THE RENTORA EXPERIENCE</span>
-        <h2 class="serif-title advantage-title reveal-popup">Bespoke Hospitality & World-Class Facilities</h2>
-        <p class="advantage-desc reveal-popup">Curated private estates, in-villa master chefs, backwater charters, and 24/7 personal concierge service across Kerala.</p>
-    </div>
 
-    <div class="section-container">
-        <div class="bento-experience-grid">
+
+      </div>
+    </section>
+
+
+    <!-- ==================== SIGNATURE HORIZONTAL SCROLL SECTION (KERALA LUXURY CONCEPT) ==================== -->
+    <section id="stay" class="horizontal-section relative overflow-hidden text-[#181614] border-t theme-line">
+
+
+
+      
+      <!-- Sticky Pin Wrapper -->
+      <div class="horizontal-pin h-screen w-full flex items-center overflow-hidden relative">
+        
+        <!-- ERA-Style Circular Rotating Stamp Badge (Top-Left) -->
+        <div class="absolute top-6 left-6 sm:top-8 sm:left-8 z-30 pointer-events-none hidden md:flex items-center justify-center">
+          <div class="relative w-20 h-20 flex items-center justify-center">
+            <svg class="w-full h-full animate-[spin_24s_linear_infinite]" viewBox="0 0 100 100">
+              <defs>
+                <path id="stampPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+              </defs>
+              <text class="text-[7.5px] uppercase tracking-[0.24em] fill-[#181614]/70 font-display">
+                <textPath xlink:href="#stampPath" startOffset="0%">
+                  • RENTORA KERALA • PRIVATE ESTATES
+                </textPath>
+              </text>
+            </svg>
+            <svg class="absolute w-4 h-4 text-[#181614]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- ERA-Style Vertical Scroll Indicator (Left Edge) -->
+        <div class="absolute left-6 sm:left-8 top-1/2 -translate-y-1/2 z-30 pointer-events-none hidden lg:flex flex-col items-center gap-3">
+          <div class="w-[1px] h-12 bg-[#181614]/20 relative overflow-hidden">
+            <div id="vertical-scroll-bar" class="absolute top-0 left-0 w-full h-full bg-[#181614] origin-top scale-y-0"></div>
+          </div>
+          <span class="text-[9px] uppercase tracking-[0.28em] text-[#181614]/60 font-display [writing-mode:vertical-lr] rotate-180">SCROLL</span>
+          <svg class="w-2.5 h-2.5 text-[#181614]/60 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7" />
+          </svg>
+        </div>
+
+        <!-- Horizontal Moving Track -->
+        <div class="horizontal-track flex h-full items-center relative">
+          
+          <!-- NATIVE HARDWARE-ACCELERATED TRANSPARENT FLOWER BUSH (0% CPU, 120FPS SILKY SMOOTH) -->
+          <div class="panel-ground-bush absolute bottom-0 left-[88vw] sm:left-[92vw] -translate-x-1/2 w-[450px] sm:w-[620px] md:w-[780px] z-10 pointer-events-none">
+            <video muted autoplay loop playsinline disablepictureinpicture webkit-playsinline class="w-full h-auto block object-bottom origin-bottom">
+              <source src="{% static 'videos/real_transparent.webm' %}" type="video/webm"/>
+              <source src="{% static 'videos/real.mp4' %}" type="video/mp4"/>
+            </video>
+          </div>
+
+          <!-- PANEL 1: THE CONCEPT (SLIDE 1: PERFECTLY CENTER-ALIGNED SHOWCASE) -->
+          <div class="horizontal-panel w-screen h-full flex-shrink-0 flex flex-col items-center justify-center p-8 sm:p-16 lg:p-24 relative overflow-hidden">
             
-            <!-- BENTO CARD 1: 100% VERIFIED PRIVATE ESTATES (LARGE HERO BLOCK) -->
-            <div class="bento-card bento-card-large bento-verified reveal-popup">
-                <div class="bento-card-bg">
-                    <img src="{% static 'images/properties/prop_03_varkala.jpg' %}" alt="Verified Private Estates">
-                    <div class="bento-card-overlay"></div>
-                </div>
-                <div class="bento-card-content">
-                    <div class="bento-badge"><i class="fa-solid fa-shield-halved"></i> 100% VERIFIED SANCTUARIES</div>
-                    <h3 class="bento-title">Architecturally Audited Estates & Private Sanctuaries</h3>
-                    <p class="bento-text">Every property undergoes a 80-point inspection covering structural integrity, private perimeter security, Starlink Wi-Fi mesh, and infinity pool sanitation.</p>
-                    <div class="bento-features-row">
-                        <span class="bento-pill"><i class="fa-solid fa-circle-check gold-icon"></i> 80-Point Inspection</span>
-                        <span class="bento-pill"><i class="fa-solid fa-wifi gold-icon"></i> 1 Gbps Starlink Fiber</span>
-                        <span class="bento-pill"><i class="fa-solid fa-lock gold-icon"></i> Biometric Security</span>
-                    </div>
-                </div>
+            <!-- Real Live Bougainvillea Video - Top-Left Screen Corner -->
+            <div class="top-left-canopy absolute top-0 left-0 w-[360px] sm:w-[480px] md:w-[580px] flower-container botanical-sway-left z-10 pointer-events-none">
+              <video muted autoplay loop playsinline disablepictureinpicture poster="https://cdn.prod.website-files.com/6a068da7ad91b057365bf967/6a4afbe9f3a19844a4b0caed_bougainvillea-flowers_01.avif" class="w-full h-auto object-cover">
+                <source src="{% static 'videos/flower03_transparent.webm' %}" type="video/webm"/>
+                <source src="{% static 'videos/flower03.webm' %}" type="video/mp4"/>
+              </video>
             </div>
 
-            <!-- BENTO CARD 2: CULINARY MASTERY (TALL VERTICAL BLOCK) -->
-            <div class="bento-card bento-card-tall bento-culinary reveal-popup">
-                <div class="bento-card-bg">
-                    <img src="{% static 'images/card_culinary_chef.jpg' %}" alt="In-Villa Master Chef Plating">
-                    <div class="bento-card-overlay"></div>
-                </div>
-                <div class="bento-card-content">
-                    <div class="bento-badge"><i class="fa-solid fa-utensils"></i> GASTRONOMY</div>
-                    <h3 class="bento-title">In-Villa 5-Star Master Chefs</h3>
-                    <p class="bento-text">Indulge in bespoke multi-course sea-to-table seafood grills and traditional Ayurvedic culinary curations in total privacy.</p>
-                    <a href="{% url 'properties' %}" class="bento-link">VIEW MENU CURATIONS <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+            <!-- Perfectly Center-Aligned Content Showcase -->
+            <div class="panel-1-content w-full max-w-xl lg:max-w-2xl text-center flex flex-col items-center gap-6 relative z-20 mx-auto">
+              <h2 class="font-display text-[clamp(1.75rem,3.4vw,3.1rem)] font-medium leading-[1.12] tracking-[-0.01em] text-[#181614]">
+                RENTORA IS A BOUTIQUE COLLECTION OF PRIVATE LUXURY ESTATES &amp; HERITAGE HOMES, DESIGNED AROUND SECLUDED TRANQUILITY, AYURVEDIC WELLBEING AND TIMELESS BACKWATER LIVING
+              </h2>
+              <p class="text-xs sm:text-sm md:text-base text-[#181614]/75 max-w-md leading-relaxed mt-1">
+                Inspired by Kerala's historic spice mansions, teak-pillared courtyards (Nālukettu), and tranquil palm-fringed lagoons, the project fuses traditional craftsmanship with contemporary private luxury.
+              </p>
+              
+              <!-- Rotating Star Symbol -->
+              <svg class="mt-2 h-7 w-7 text-[#181614] origin-center animate-[spin_18s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+              </svg>
             </div>
 
-            <!-- BENTO CARD 3: MARITIME CHARTERS (STANDARD BLOCK) -->
-            <div class="bento-card bento-maritime reveal-popup">
-                <div class="bento-card-bg">
-                    <img src="{% static 'images/card_maritime_yacht.jpg' %}" alt="Private Yacht Charter">
-                    <div class="bento-card-overlay"></div>
+          </div>
+
+          <!-- PANEL 2: GUEST EXPERIENCE (SLIDE 2: MORNINGS OVER EMERALD WATERS) -->
+          <div class="horizontal-panel w-screen h-full flex-shrink-0 flex items-center justify-center p-6 sm:p-12 lg:p-20 relative overflow-hidden">
+            <div class="mx-auto w-full max-w-7xl grid lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-20">
+              
+              <!-- Text Showcase (Left Side of Slide 2) -->
+              <div class="panel-2-text flex flex-col gap-6 order-2 lg:order-1">
+                <div>
+                  <h3 class="font-display text-[clamp(2rem,3.8vw,3.25rem)] font-medium leading-[1.05] text-[#181614]">
+                    Breakfast Prepared by Private Chef. Emerald Waters.
+                  </h3>
                 </div>
-                <div class="bento-card-content">
-                    <div class="bento-badge"><i class="fa-solid fa-anchor"></i> PRIVATE CHARTERS</div>
-                    <h3 class="bento-title">Presidential Backwater Yachts</h3>
-                    <p class="bento-text">Private houseboats and luxury yachts for serene Vembanad lagoon cruises.</p>
+                <p class="text-xs sm:text-sm text-[#181614]/75 leading-relaxed">
+                  Wake up to tropical birdsong, fresh tender coconut water, and artisanal Malabar breakfasts served right on your floating backwater deck, followed by private houseboat cruises or misty tea plantation treks.
+                </p>
+                <div class="flex items-center gap-4 pt-2">
+                  <button class="open-inquiry-btn px-5 py-2.5 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-lg font-semibold hover:bg-slate-700 transition">
+                    Reserve Backwater Stay
+                  </button>
                 </div>
+              </div>
+
+              <!-- Image Card (Right Side of Slide 2) -->
+              <div class="panel-2-image aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl relative order-1 lg:order-2 ring-1 ring-black/10">
+                <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80" alt="Kerala Backwaters Sunrise" class="w-full h-full object-cover transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 text-white">
+                  <span class="px-3 py-1 bg-white/20 backdrop-blur-md text-[0.65rem] uppercase tracking-widest rounded-full border border-white/30">Curated Backwaters</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PANEL 3: EVENINGS & PRIVATE CONCIERGE (SLIDE 3: GRAND EDITORIAL SHOWCASE WITH ROOM FOR FLOWERS) -->
+          <div class="horizontal-panel w-screen h-full flex-shrink-0 flex items-center p-8 sm:p-16 lg:p-24 relative overflow-hidden">
+            
+            <!-- User's SIDE3.MP4 Bougainvillea Video - Top-Right Screen Corner (Slide 3 Signature Video) -->
+            <div class="top-right-canopy absolute top-0 right-0 w-[420px] sm:w-[560px] md:w-[700px] flower-container botanical-sway-right z-10 pointer-events-none">
+              <video muted autoplay loop playsinline disablepictureinpicture webkit-playsinline class="w-full h-auto block object-cover">
+                <source src="{% static 'videos/side3_transparent.webm' %}" type="video/webm"/>
+                <source src="{% static 'videos/SIDE3.mp4' %}" type="video/mp4"/>
+              </video>
             </div>
 
-            <!-- BENTO CARD 4: VIP TRANSFERS & WELLNESS (WIDE BLOCK) -->
-            <div class="bento-card bento-card-wide bento-transfers reveal-popup">
-                <div class="bento-card-bg">
-                    <img src="{% static 'images/card_transfer_helipad.jpg' %}" alt="Executive Helipad & Maybach Fleet">
-                    <div class="bento-card-overlay"></div>
+            <!-- Grand Editorial Text Showcase (Left-Aligned, Allowing Flowers to Flow Organically on Right) -->
+            <div class="panel-3-text w-full max-w-3xl flex flex-col gap-6 relative z-20 mx-0 lg:ml-8">
+              <div>
+                <h3 class="font-display text-[clamp(2.2rem,4.5vw,4rem)] font-medium leading-[1.04] text-[#181614] max-w-2xl">
+                  Sunset Houseboat Dining &amp; Fireside Spice Garden Lounges.
+                </h3>
+              </div>
+
+              
+              <p class="text-sm sm:text-base text-[#181614]/80 max-w-xl leading-relaxed">
+                As dusk settles over Lake Vembanad and the coconut groves, enjoy private sommelier-curated spice pairings, candlelit Kathakali performances, and 24/7 on-call personal concierge hospitality across your private estate grounds.
+              </p>
+
+              <!-- Concierge Experience Highlights -->
+              <div class="panel-3-features grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t theme-line max-w-2xl">
+                <div>
+                  <span class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60">Experience 01</span>
+                  <p class="font-display text-base font-semibold text-[#181614] mt-0.5">Private Teak Houseboat Cruises</p>
                 </div>
-                <div class="bento-card-content">
-                    <div class="bento-badge"><i class="fa-solid fa-helicopter"></i> VIP LOGISTICS & SPA</div>
-                    <h3 class="bento-title">Helipad Transfers & In-Villa Spa Suites</h3>
-                    <p class="bento-text">Direct helicopter landings at estate helipads, armored Maybach airport transfers, and private master Ayurvedic therapists at your command 24/7.</p>
+                <div>
+                  <span class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60">Experience 02</span>
+                  <p class="font-display text-base font-semibold text-[#181614] mt-0.5">In-Villa Classical Ragas &amp; Feasts</p>
                 </div>
+                <div>
+                  <span class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60">Experience 03</span>
+                  <p class="font-display text-base font-semibold text-[#181614] mt-0.5">24/7 Dedicated Estate Butler</p>
+                </div>
+              </div>
+
+              <!-- Action CTAs -->
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <button class="open-inquiry-btn px-6 py-3 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-lg font-semibold hover:bg-slate-700 transition shadow-lg">
+                  Reserve Kerala Experience
+                </button>
+                <a href="#amenities" class="px-5 py-3 border border-[#181614]/30 text-[#181614] text-xs uppercase tracking-widest rounded-lg font-semibold hover:border-[#181614] transition">
+                  View Concierge Menu
+                </a>
+              </div>
             </div>
+
+          </div>
+
 
         </div>
-    </div>
-</section>
 
-<!-- SECTION 4: EXCLUSIVE MEMBERS ACCESS GATEWAY (FINAL CTA) -->
-<section class="section final-cta-section" id="access">
-    <div class="section-container">
-        <div class="final-cta-box reveal-popup">
-            <span class="sub-heading-gold">EXCLUSIVE MEMBERS ACCESS</span>
-            <h2 class="serif-title final-cta-title">Unlock Access to Rentora’s Private Collection</h2>
-            <p class="final-cta-desc">
-                Sign in or create a member account to explore unlisted private estates, presidential houseboats, and reserve bespoke travel experiences.
+        <!-- ERA-Style Scroll Bar & Slide Indicator at Bottom -->
+        <div class="absolute bottom-6 left-8 right-8 flex items-center justify-between pointer-events-none z-20">
+          <div class="flex items-center gap-3">
+            <span class="font-display text-xs uppercase tracking-widest text-[#181614]/60">SCROLL</span>
+            <div class="w-16 h-[2px] bg-[#181614]/20 relative overflow-hidden rounded-full">
+              <div id="horizontal-progress-fill" class="absolute inset-0 bg-[#181614] origin-left" style="transform: scaleX(0.33);"></div>
+            </div>
+          </div>
+          <div id="horizontal-slide-num" class="font-display text-xs uppercase tracking-widest text-[#181614]">
+            01 / 03
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== PILLARS SECTION (WHY RENT WITH RENTORA KERALA) ==================== -->
+    <section id="place" class="relative px-5 pb-28 pt-20 sm:px-8 sm:pb-36 sm:pt-28 lg:px-12 lg:pb-48 lg:pt-32">
+      <div class="mx-auto max-w-7xl">
+        
+        <div class="reveal mb-12 sm:mb-16">
+          <h2 class="font-display text-[clamp(2rem,4vw,3.75rem)] font-medium leading-[1.04] tracking-[-0.012em] text-[var(--ink)]">
+            Why Rent with Rentora Kerala.
+          </h2>
+        </div>
+
+        <div class="pillars-grid grid gap-10 sm:gap-12 lg:grid-cols-3 lg:gap-8 items-start">
+          
+          <!-- Pillar 1: Backwaters & Waterfront -->
+          <article class="bend-pillar flex flex-col gap-5 will-change-transform">
+            <div class="pillar-img-box aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-xl relative ring-1 ring-black/10">
+              <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1000&q=80" alt="Kerala Backwater Pool Sanctuary" class="pillar-img w-full h-[120%] -mt-[10%] object-cover transform-gpu scale-110" />
+            </div>
+            <div class="flex flex-col gap-2 border-t theme-line pt-4">
+              <p class="font-display text-xs uppercase tracking-[0.22em] text-[var(--ink)]/70">100% Private Waterfront Sanctuaries</p>
+              <h3 class="font-display text-[clamp(1.35rem,2.2vw,1.9rem)] font-medium leading-[1.1] text-[var(--ink)]">Secluded Backwater &amp; Clifftop Estates With Zero Shared Spaces.</h3>
+              <p class="text-xs sm:text-sm text-[var(--ink)]/75 leading-relaxed mt-1">Enjoy uninterrupted privacy along the emerald lagoons of Alleppey and Kumarakom, with private infinity pools and dedicated jetty access.</p>
+            </div>
+          </article>
+
+          <!-- Pillar 2: Master Chefs & Dining -->
+          <article class="bend-pillar flex flex-col gap-5 will-change-transform">
+            <div class="pillar-img-box aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-xl relative ring-1 ring-black/10">
+              <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1000&q=80" alt="Munnar Highland Tea Estate" class="pillar-img w-full h-[120%] -mt-[10%] object-cover transform-gpu scale-110" />
+            </div>
+            <div class="flex flex-col gap-2 border-t theme-line pt-4">
+              <p class="font-display text-xs uppercase tracking-[0.22em] text-[var(--ink)]/70">Master Chefs &amp; Coastal Feasts</p>
+              <h3 class="font-display text-[clamp(1.35rem,2.2vw,1.9rem)] font-medium leading-[1.1] text-[var(--ink)]">Custom Malabar Menus, Organic Farm Produce &amp; In-Villa Dining.</h3>
+              <p class="text-xs sm:text-sm text-[var(--ink)]/75 leading-relaxed mt-1">From banana-leaf traditional sadhyas to fresh Arabian Sea pearl spot (Karimeen) and candlelit spice garden dinners prepared by your private chef.</p>
+            </div>
+          </article>
+
+          <!-- Pillar 3: Ayurveda & Private Houseboats -->
+          <article class="bend-pillar flex flex-col gap-5 will-change-transform">
+            <div class="pillar-img-box aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-xl relative ring-1 ring-black/10">
+              <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=80" alt="Kerala Coastal Estate & Houseboat" class="pillar-img w-full h-[120%] -mt-[10%] object-cover transform-gpu scale-110" />
+            </div>
+            <div class="flex flex-col gap-2 border-t theme-line pt-4">
+              <p class="font-display text-xs uppercase tracking-[0.22em] text-[var(--ink)]/70">Private Houseboat &amp; Ayurveda</p>
+              <h3 class="font-display text-[clamp(1.35rem,2.2vw,1.9rem)] font-medium leading-[1.1] text-[var(--ink)]">Exclusive Houseboat Charters, Doctor-Led Ayurveda &amp; Airport Chauffeur.</h3>
+              <p class="text-xs sm:text-sm text-[var(--ink)]/75 leading-relaxed mt-1">Doctor-prescribed in-villa Ayurvedic therapies, sunset teak wood houseboat cruises, and seamless VIP pick-up from Cochin (COK) or Trivandrum (TRV).</p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== CONCIERGE & RENTAL AMENITIES GRID ==================== -->
+    <section id="amenities" class="relative px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-36 border-t theme-line">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal">
+          <h2 class="font-display text-[clamp(2rem,4vw,3.5rem)] font-medium leading-[1.04] text-[var(--ink)]">
+            Full-Service Kerala Hospitality &amp; Amenities
+          </h2>
+        </div>
+
+        <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          
+          <!-- Amenity 1 -->
+          <div class="reveal p-6 rounded-2xl theme-card border theme-line flex flex-col justify-between h-full hover:shadow-xl transition-all">
+            <div>
+              <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center mb-4" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80')"></div>
+              <h3 class="font-display text-xl font-medium text-[var(--ink)]">Private Infinity Pools</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Waterfront infinity lap pools and heated stone jacuzzis overlooking Lake Vembanad and the Arabian Sea.</p>
+            </div>
+          </div>
+
+          <!-- Amenity 2 -->
+          <div class="reveal p-6 rounded-2xl theme-card border theme-line flex flex-col justify-between h-full hover:shadow-xl transition-all">
+            <div>
+              <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center mb-4" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80')"></div>
+              <h3 class="font-display text-xl font-medium text-[var(--ink)]">Master Malabar Chefs</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Dedicated culinary team serving clay-pot Karimeen, banana-leaf sadhyas, fresh sourdough, and international menus.</p>
+            </div>
+          </div>
+
+          <!-- Amenity 3 -->
+          <div class="reveal p-6 rounded-2xl theme-card border theme-line flex flex-col justify-between h-full hover:shadow-xl transition-all">
+            <div>
+              <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center mb-4" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80')"></div>
+              <h3 class="font-display text-xl font-medium text-[var(--ink)]">Ayurvedic Rejuvenation</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Doctor-led traditional Abhyanga oil therapies, Shirodhara, herbal steam baths, and sunrise lakefront yoga.</p>
+            </div>
+          </div>
+
+          <!-- Amenity 4 -->
+          <div class="reveal p-6 rounded-2xl theme-card border theme-line flex flex-col justify-between h-full hover:shadow-xl transition-all">
+            <div>
+              <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center mb-4" style="background-image: url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80')"></div>
+              <h3 class="font-display text-xl font-medium text-[var(--ink)]">Houseboats &amp; VIP Transfers</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Seamless VIP chauffeur pick-up from Cochin (COK) or Trivandrum (TRV) with private teakwood houseboat charters.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== KERALA RENTAL FAQ SECTION ==================== -->
+    <section id="answers" class="relative px-5 pb-20 pt-4 sm:px-8 sm:pb-28 lg:px-12 lg:pb-36">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal">
+          <h2 class="font-display text-[clamp(1.75rem,3.6vw,3.25rem)] font-medium leading-[1.04] text-[var(--ink)]">
+            Everything you need to know about booking with Rentora Kerala.
+          </h2>
+        </div>
+
+
+
+        <div class="mt-10 border-t theme-line sm:mt-12">
+          
+          <div class="reveal border-b theme-line py-7 sm:py-9">
+            <article class="grid gap-4 sm:grid-cols-[0.7fr_1fr] sm:gap-10">
+              <h3 class="font-display text-[clamp(1.15rem,1.8vw,1.45rem)] font-medium leading-[1.14] text-[var(--ink)]">How does renting a luxury estate in Kerala with Rentora work?</h3>
+              <p class="max-w-2xl text-[0.95rem] leading-[1.7] text-[var(--ink)]/80">Browse our handpicked portfolio of luxury backwater mansions, cloud villas in Munnar, and coastal estates. Select your dates, and your private Kerala concierge will orchestrate your booking, airport chauffeur transfers from Cochin (COK) or Trivandrum (TRV), and private houseboat charters.</p>
+            </article>
+          </div>
+
+          <div class="reveal border-b theme-line py-7 sm:py-9">
+            <article class="grid gap-4 sm:grid-cols-[0.7fr_1fr] sm:gap-10">
+              <h3 class="font-display text-[clamp(1.15rem,1.8vw,1.45rem)] font-medium leading-[1.14] text-[var(--ink)]">Are private chefs and authentic Ayurvedic treatments included?</h3>
+              <p class="max-w-2xl text-[0.95rem] leading-[1.7] text-[var(--ink)]/80">Yes. Every Rentora Kerala property comes with dedicated staff and optional private master chefs specializing in fresh coastal Malabar cuisine. In-villa Ayurvedic doctors and certified therapists can also be arranged directly on your villa terrace.</p>
+            </article>
+          </div>
+
+          <div class="reveal border-b theme-line py-7 sm:py-9">
+            <article class="grid gap-4 sm:grid-cols-[0.7fr_1fr] sm:gap-10">
+              <h3 class="font-display text-[clamp(1.15rem,1.8vw,1.45rem)] font-medium leading-[1.14] text-[var(--ink)]">Can I list my premium Kerala estate or villa with Rentora?</h3>
+              <p class="max-w-2xl text-[0.95rem] leading-[1.7] text-[var(--ink)]/80">Yes. We partner with owners of exceptional heritage homes, tea plantation mansions, and waterfront villas across Kerala, providing full luxury property management, high-profile guest curation, and 5-star hospitality standards.</p>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SIGN UP & LOG IN MEMBER PORTAL SECTION ==================== -->
+    <section id="contact" class="relative overflow-hidden bg-[#121110] text-white py-20 sm:py-28 lg:py-32 border-t theme-line">
+      <!-- Ambient Dark Twilight Kerala Vignette -->
+      <div class="absolute inset-0 bg-cover bg-center opacity-15" style="background-image: url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85')"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#121110] via-black/40 to-[#121110]"></div>
+      
+      <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+          
+          <!-- Left Column: Member Club Privileges & Editorial Narrative -->
+          <div class="lg:col-span-6 flex flex-col gap-6">
+            <div>
+              <div class="flex items-center gap-2.5">
+                <span class="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span>
+                <p class="text-[0.68rem] uppercase tracking-[0.3em] text-white/60 font-semibold">Rentora Private Circle</p>
+              </div>
+              <h2 class="mt-3 font-display text-[clamp(2.2rem,4vw,3.6rem)] font-medium leading-[1.06] text-white">
+                Member Portal &amp; Property Owner Access.
+              </h2>
+            </div>
+            
+            <p class="text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">
+              Access the bespoke Rentora sanctuary experience. Manage your private villa reservations, connect directly with your dedicated estate butler, or list your Kerala heritage property.
             </p>
 
-            <div class="final-cta-buttons">
-                {% if user.is_authenticated %}
-                <a href="{% url 'properties' %}" class="btn btn-gold btn-cta-large">
-                    <i class="fa-solid fa-crown"></i> Explore Private Collection
-                </a>
-                {% else %}
-                <a href="{% url 'register' %}" class="btn btn-gold btn-cta-large">
-                    <i class="fa-solid fa-user-plus"></i> Create Member Account
-                </a>
-                <a href="{% url 'login' %}" class="btn btn-glass btn-cta-large">
-                    <i class="fa-solid fa-right-to-bracket"></i> Sign In
-                </a>
-                {% endif %}
+            <!-- Privileges Checklist -->
+            <div class="grid gap-5 pt-3 border-t border-white/10">
+              <div class="flex items-start gap-4">
+                <span class="font-display text-sm tracking-widest text-white/40 mt-0.5">01</span>
+                <div>
+                  <p class="text-sm font-semibold text-white">Private Off-Market Sanctuaries</p>
+                  <p class="text-xs text-white/60 mt-0.5 leading-relaxed">Unlock unlisted backwater estates and high-altitude tea plantation villas reserved exclusively for members.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <span class="font-display text-sm tracking-widest text-white/40 mt-0.5">02</span>
+                <div>
+                  <p class="text-sm font-semibold text-white">24/7 Dedicated Estate Concierge</p>
+                  <p class="text-xs text-white/60 mt-0.5 leading-relaxed">Direct WhatsApp &amp; phone line to your private chef, chauffeur, and Ayurvedic therapist.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <span class="font-display text-sm tracking-widest text-white/40 mt-0.5">03</span>
+                <div>
+                  <p class="text-sm font-semibold text-white">Kerala Property Owner Portal</p>
+                  <p class="text-xs text-white/60 mt-0.5 leading-relaxed">Real-time revenue metrics, guest vetting management, and luxury hospitality care.</p>
+                </div>
+              </div>
             </div>
 
-            <div class="cta-trust-badges">
-                <span><i class="fa-solid fa-shield-halved"></i> 100% Verified Private Estates</span>
-                <span><i class="fa-solid fa-lock"></i> VIP Security & Privacy Guarantee</span>
-                <span><i class="fa-solid fa-headset"></i> 24/7 Personal Host Assistance</span>
+            <!-- Concierge Desk Note -->
+            <div class="pt-2 flex items-center gap-3 text-xs text-white/50">
+              <svg class="h-4 w-4 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Private Estate Desk • Replies within 2 hours</span>
             </div>
+          </div>
+
+          <!-- Right Column: Interactive Sign Up / Log In Glass Card -->
+          <div class="lg:col-span-6">
+            <div class="bg-[#181614]/95 backdrop-blur-2xl p-7 sm:p-10 rounded-2xl ring-1 ring-white/15 shadow-2xl">
+              
+              <!-- Tab Switcher (Log In / Sign Up) -->
+              <div class="grid grid-cols-2 p-1 bg-white/10 rounded-xl mb-7 border border-white/10">
+                <button id="inline-tab-login" type="button" class="py-2.5 text-xs uppercase tracking-widest font-semibold rounded-lg transition-all bg-white text-[#181614] shadow-md">
+                  Log In
+                </button>
+                <button id="inline-tab-signup" type="button" class="py-2.5 text-xs uppercase tracking-widest font-semibold rounded-lg transition-all text-white/70 hover:text-white">
+                  Sign Up
+                </button>
+              </div>
+
+              <!-- INLINE LOG IN FORM -->
+              <form id="inline-login-form" class="grid gap-5" onsubmit="event.preventDefault(); alert('Welcome back to Rentora Kerala! You are now logged in.');">
+                <label class="grid gap-1.5">
+                  <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Email Address</span>
+                  <input required type="email" placeholder="alexander@example.com" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-base text-white outline-none focus:border-white transition"/>
+                </label>
+
+                <label class="grid gap-1.5">
+                  <div class="flex justify-between items-center">
+                    <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Password</span>
+                    <a href="#" onclick="alert('Password reset link sent to your registered email.');" class="text-[0.65rem] text-white/80 hover:underline hover:text-white">Forgot password?</a>
+                  </div>
+                  <input required type="password" placeholder="••••••••" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-base text-white outline-none focus:border-white transition"/>
+                </label>
+
+                <div class="flex items-center gap-2 pt-1">
+                  <input type="checkbox" id="inline-remember" class="rounded bg-white/10 border-white/30 text-white focus:ring-0"/>
+                  <label for="inline-remember" class="text-xs text-white/70">Remember this device</label>
+                </div>
+
+                <button type="submit" class="mt-2 w-full py-3.5 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-200 transition shadow-xl">
+                  Log In to Member Portal
+                </button>
+
+                <p class="text-center text-xs text-white/50 mt-1">
+                  New to Rentora? <button type="button" id="inline-switch-to-signup" class="text-white hover:underline font-semibold">Create a private account</button>
+                </p>
+              </form>
+
+              <!-- INLINE SIGN UP FORM (Initially Hidden) -->
+              <form id="inline-signup-form" class="grid gap-4 hidden" onsubmit="event.preventDefault(); alert('Account created successfully! Welcome to the Rentora Kerala Private Circle.');">
+                <label class="grid gap-1.5">
+                  <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Full Name</span>
+                  <input required type="text" placeholder="Alexander Wright" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-base text-white outline-none focus:border-white transition"/>
+                </label>
+
+                <label class="grid gap-1.5">
+                  <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Email Address</span>
+                  <input required type="email" placeholder="alexander@example.com" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-base text-white outline-none focus:border-white transition"/>
+                </label>
+
+                <label class="grid gap-1.5">
+                  <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Membership Type</span>
+                  <select class="w-full border-0 border-b border-white/30 bg-[#181614] py-2 text-sm text-white outline-none focus:border-white transition">
+                    <option value="guest">Private Guest (Luxury Villa Rentals)</option>
+                    <option value="owner">Kerala Property Owner (List an Estate)</option>
+                    <option value="vip">VIP Concierge / Travel Partner</option>
+                  </select>
+                </label>
+
+                <label class="grid gap-1.5">
+                  <span class="text-[0.65rem] uppercase tracking-widest text-white/60">Create Password</span>
+                  <input required type="password" placeholder="••••••••" class="w-full border-0 border-b border-white/30 bg-transparent py-2 text-base text-white outline-none focus:border-white transition"/>
+                </label>
+
+                <button type="submit" class="mt-2 w-full py-3.5 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-200 transition shadow-xl">
+                  Create Private Account
+                </button>
+
+                <p class="text-center text-xs text-white/50 mt-1">
+                  Already have an account? <button type="button" id="inline-switch-to-login" class="text-white hover:underline font-semibold">Log in</button>
+                </p>
+              </form>
+
+            </div>
+          </div>
+
         </div>
-    </div>
-</section>
-</div>
-{% endblock %}
+
+      </div>
+    </section>
+
+    <!-- ==================== GRAND LUXURY FOOTER ==================== -->
+    <footer class="bg-[#0e0d0c] text-white pt-16 pb-12 border-t border-white/10">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        
+        <!-- Multi-Column Grid -->
+        <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 pb-16 border-b border-white/10">
+          
+          <!-- Col 1: Brand & Philosophy (5 Cols) -->
+          <div class="lg:col-span-5 flex flex-col gap-4">
+            <a href="#" class="inline-block">
+              <span class="font-display font-medium text-2xl tracking-widest text-white uppercase">RENTORA</span>
+              <p class="text-[0.55rem] uppercase tracking-[0.3em] text-white/50 mt-0.5">KERALA • GOD'S OWN COUNTRY</p>
+            </a>
+            <p class="text-xs sm:text-sm text-white/60 leading-relaxed max-w-sm">
+              Curators of exceptional private architectural estates, secluded backwater sanctuaries, and heritage tea plantations across Kerala. Every stay is defined by privacy, bespoke gastronomy, and 24/7 personal estate management.
+            </p>
+            <div class="pt-2">
+              <p class="text-[0.65rem] uppercase tracking-widest text-white/40">Accreditation</p>
+              <p class="text-xs text-white/70 mt-0.5">Kerala Tourism Department Approved • Luxury Class A</p>
+            </div>
+          </div>
+
+          <!-- Col 2: Kerala Sanctuaries (2 Cols) -->
+          <div class="lg:col-span-2 flex flex-col gap-3">
+            <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Destinations</p>
+            <ul class="flex flex-col gap-2 text-xs text-white/60">
+              <li><a href="#rentals" class="hover:text-white transition">Alleppey Backwaters</a></li>
+              <li><a href="#rentals" class="hover:text-white transition">Kumarakom Lakefront</a></li>
+              <li><a href="#rentals" class="hover:text-white transition">Munnar High Ranges</a></li>
+              <li><a href="#rentals" class="hover:text-white transition">Marari Coastal Haven</a></li>
+              <li><a href="#rentals" class="hover:text-white transition">Fort Kochi Heritage</a></li>
+              <li><a href="#rentals" class="hover:text-white transition">Varkala Clifftop</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Concierge & Privileges (2 Cols) -->
+          <div class="lg:col-span-2 flex flex-col gap-3">
+            <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Experiences</p>
+            <ul class="flex flex-col gap-2 text-xs text-white/60">
+              <li><a href="#amenities" class="hover:text-white transition">In-Villa Master Chefs</a></li>
+              <li><a href="#amenities" class="hover:text-white transition">Ayurvedic Rejuvenation</a></li>
+              <li><a href="#stay" class="hover:text-white transition">Teak Houseboat Cruises</a></li>
+              <li><a href="#amenities" class="hover:text-white transition">Airport VIP Transfers</a></li>
+              <li><a href="#contact" class="hover:text-white transition">List an Estate (Owners)</a></li>
+              <li><a href="#contact" class="hover:text-white transition">Member Portal Access</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: VIP Newsletter & Concierge (3 Cols) -->
+          <div class="lg:col-span-3 flex flex-col gap-3">
+            <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Private Dispatch</p>
+            <p class="text-xs text-white/60 leading-relaxed">
+              Receive confidential off-market estate listings and seasonal backwater retreat announcements.
+            </p>
+            
+            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to the Rentora Private Dispatch.');" class="mt-1 flex items-center border-b border-white/25 pb-2">
+              <input required type="email" placeholder="Your email address" class="w-full bg-transparent text-xs text-white outline-none placeholder:text-white/40 focus:placeholder:text-white/60"/>
+              <button type="submit" aria-label="Subscribe" class="text-white hover:translate-x-1 transition-transform">
+                →
+              </button>
+            </form>
+
+            <div class="pt-2 text-xs text-white/50 flex flex-col gap-1">
+              <p><span class="text-white/30">Concierge Desk:</span> concierge@rentorakerala.com</p>
+              <p><span class="text-white/30">Headquarters:</span> Fort Kochi, Kerala, India</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Legal Row -->
+        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 uppercase tracking-[0.2em]">
+          <p>© 2026 Rentora Kerala • All Rights Reserved</p>
+          <div class="flex items-center gap-5 text-[0.65rem]">
+            <a href="#" onclick="event.preventDefault(); alert('Rentora Private Estate Privacy Policy: We uphold the strictest global guest confidentiality and data security.');" class="hover:text-white transition">Privacy Policy</a>
+            <span class="text-white/20">•</span>
+            <a href="#" onclick="event.preventDefault(); alert('Terms of Residence: All bookings include full estate staffing and 24/7 dedicated concierge care.');" class="hover:text-white transition">Terms of Residence</a>
+            <span class="text-white/20">•</span>
+            <a href="#" class="hover:text-white transition">Back to Top ↑</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+
+
+  </main>
+
+  <script src="{% static 'js/bend_app.js' %}"></script>
+</body>
+</html>

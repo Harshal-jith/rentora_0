@@ -1,0 +1,240 @@
+/* Rentora Custom Styles System - Signature Mediterranean Warm Charcoal & Cream Canvas */
+
+:root {
+  --ink: #181614;
+  --ink-muted: rgba(24, 22, 20, 0.7);
+  --paper: #f4f1ea;
+  --stay-bg: #f4f1ea;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(24, 22, 20, 0.12);
+  --btn-bg: #181614;
+  --btn-text: #ffffff;
+  --tab-active-bg: #181614;
+  --tab-active-text: #ffffff;
+  --gold-accent: #b38b4d;
+}
+
+/* Luxurious Deep Emerald / Twilight Ocean Night Mode (Active ONLY when 'By Night' is pressed) */
+body.night-mode {
+  --ink: #e8f3ee;
+  --ink-muted: #8faea6;
+  --paper: #081718;
+  --stay-bg: #DFECE3;
+  --card-bg: rgba(14, 34, 36, 0.82);
+  --card-border: rgba(52, 133, 124, 0.28);
+  --btn-bg: #164043;
+  --btn-text: #e8f3ee;
+  --tab-active-bg: #1a494d;
+  --tab-active-text: #e8f3ee;
+  --gold-accent: #e2c082;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#scroll-bg {
+  background-color: var(--paper);
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.night-mode #scroll-bg {
+  background-color: #081718;
+}
+
+/* Typography Font Families */
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Ambient Grain Texture */
+.has-grain::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Theme Utility Classes */
+.theme-card {
+  background-color: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: var(--card-border);
+  transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+body.night-mode .theme-card {
+  box-shadow: 0 16px 40px -8px rgba(3, 15, 16, 0.7);
+}
+
+.theme-line {
+  border-color: var(--card-border);
+  transition: border-color 0.5s ease;
+}
+
+/* Dynamic Text Colors */
+.theme-ink {
+  color: var(--ink);
+  transition: color 0.5s ease;
+}
+
+.theme-muted {
+  color: var(--ink-muted);
+  transition: color 0.5s ease;
+}
+
+/* =========================================================================
+   HORIZONTAL SCROLL SECTION (#stay) DYNAMIC DAY & NIGHT LIGHT THEMES
+   - Day Mode: Signature Mediterranean Cream Sand (#f4f1ea)
+   - Night Mode: Soft Sage Mist (#DFECE3) that elevates the flowers
+   ========================================================================= */
+#stay {
+  background-color: var(--stay-bg) !important;
+  color: #181614 !important;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+#stay .horizontal-pin {
+  background-color: transparent !important;
+  color: #181614 !important;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+#stay .horizontal-track {
+  background-color: transparent !important;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+#stay .horizontal-panel {
+  background-color: transparent !important;
+  color: #181614 !important;
+}
+
+
+
+
+
+
+#stay h2,
+#stay h3,
+#stay p,
+#stay span,
+#stay svg,
+#stay text {
+  color: #181614 !important;
+}
+
+#stay .text-\[\#181614\]\/60 {
+  color: rgba(24, 22, 20, 0.6) !important;
+}
+
+#stay .text-\[\#181614\]\/75,
+#stay .text-\[\#181614\]\/80 {
+  color: rgba(24, 22, 20, 0.75) !important;
+}
+
+#stay .bg-\[\#181614\] {
+  background-color: #181614 !important;
+  color: #ffffff !important;
+}
+
+#stay .border-\[\#181614\]\/20,
+#stay .border-\[\#181614\]\/30 {
+  border-color: rgba(24, 22, 20, 0.2) !important;
+}
+
+#stay .theme-line {
+  border-color: rgba(24, 22, 20, 0.12) !important;
+}
+
+/* Custom Scroll Scrub Highlights */
+.statement-word {
+  transition: opacity 0.2s ease, color 0.2s ease;
+  will-change: opacity, transform;
+}
+
+/* Reveal Animation Observer Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dynamic Floating Flowers & Leaves Animations */
+@keyframes wind-sway-left {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px) scale(1);
+  }
+  50% {
+    transform: rotate(2.5deg) translateY(-8px) scale(1.03);
+  }
+}
+
+@keyframes wind-sway-right {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px) scale(1);
+  }
+  50% {
+    transform: rotate(-3deg) translateY(10px) scale(0.97);
+  }
+}
+
+.botanical-sway-left {
+  animation: wind-sway-left 7.5s ease-in-out infinite;
+  transform-origin: top left;
+}
+
+.botanical-sway-right {
+  animation: wind-sway-right 9.5s ease-in-out infinite;
+  transform-origin: top right;
+}
+
+/* 100% Seamless Botanical Multiply Blending */
+.flower-container {
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* GPU Hardware Acceleration for Zero-Jitter Pinning & Scrubbing */
+.horizontal-section,
+.horizontal-pin,
+.horizontal-track,
+.horizontal-panel,
+.panel-ground-bush,
+.panel-1-content,
+.top-left-canopy,
+.top-right-canopy,
+.panel-2-text,
+.panel-2-image,
+.panel-3-text,
+.bend-pillar {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
