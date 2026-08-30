@@ -212,23 +212,17 @@ body.night-mode .theme-card {
   transform-origin: top right;
 }
 
-/* 100% Seamless Botanical Multiply & Matte Edge Elimination */
+/* 100% Seamless Botanical Styling (Zero Edge Distortion) */
 .flower-container {
   pointer-events: none;
-  mix-blend-mode: multiply;
   isolation: isolate;
 }
 
-.flower-container video {
-  mix-blend-mode: multiply;
-  filter: contrast(1.18) brightness(0.93);
-  -webkit-filter: contrast(1.18) brightness(0.93);
-  object-fit: cover;
-}
-
-.top-left-canopy video {
-  filter: contrast(1.22) brightness(0.92);
-  -webkit-filter: contrast(1.22) brightness(0.92);
+.top-left-canopy img,
+.top-right-canopy img {
+  filter: drop-shadow(0 15px 35px rgba(0,0,0,0.12));
+  -webkit-filter: drop-shadow(0 15px 35px rgba(0,0,0,0.12));
+  mix-blend-mode: normal !important;
 }
 
 /* GPU Hardware Acceleration for Zero-Jitter Pinning & Scrubbing */
