@@ -304,37 +304,21 @@
               </ul>
             </nav>
 
-            <!-- DAY / NIGHT TOGGLE PILL, VIP AUTH & RESERVE CTA -->
-            <div class="flex items-center justify-self-end gap-2.5 sm:gap-3">
+            <!-- DAY / NIGHT TOGGLE PILL & RESERVE CTA -->
+            <div class="flex items-center justify-self-end gap-3 sm:gap-4">
               
               <!-- By Day / By Night Mode Switch Pill -->
               <div class="flex items-center bg-white/10 backdrop-blur-md p-1 rounded-full border border-white/20">
-                <button id="day-btn" class="px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-white text-[#181614] font-semibold shadow-sm">
+                <button id="day-btn" class="px-3 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-white text-[#181614] font-semibold shadow-sm">
                   By Day
                 </button>
-                <button id="night-btn" class="px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 text-white/70 hover:text-white">
+                <button id="night-btn" class="px-3 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 text-white/70 hover:text-white">
                   By Night
                 </button>
               </div>
 
-              {% if user.is_authenticated %}
-              <a href="{% url 'dashboard' %}" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-amber-500/30 transition">
-                <i class="fa-solid fa-user-check text-xs"></i> {{ user.first_name|default:user.username }}
-              </a>
-              <a href="{% url 'logout' %}" class="hidden sm:inline-flex px-2.5 py-1.5 text-white/80 hover:text-white font-display text-xs uppercase tracking-widest transition">
-                Logout
-              </a>
-              {% else %}
-              <button type="button" class="open-login-btn hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-display text-xs uppercase tracking-widest rounded-md font-semibold transition">
-                <i class="fa-solid fa-lock text-xs text-amber-300"></i> VIP Login
-              </button>
-              <button type="button" class="open-signup-btn hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-display text-xs uppercase tracking-widest rounded-md font-bold hover:brightness-110 transition shadow-lg">
-                Join Circle
-              </button>
-              {% endif %}
-
               <!-- Reserve a Stay Button -->
-              <button id="book-call-btn" class="hidden sm:inline-flex px-3.5 py-1.5 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition shadow-lg">
+              <button id="book-call-btn" class="hidden sm:inline-flex px-4 py-2 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition shadow-lg">
                 Reserve Estate
               </button>
 
@@ -1041,16 +1025,21 @@
             </ul>
           </div>
 
-          <!-- Col 3: Concierge & Privileges (2 Cols) -->
+          <!-- Col 3: Concierge & Experiences (2 Cols) -->
           <div class="lg:col-span-2 flex flex-col gap-3">
-            <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Experiences</p>
+            <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Experiences & VIP</p>
             <ul class="flex flex-col gap-2 text-xs text-white/60">
               <li><a href="#amenities" class="hover:text-white transition">In-Villa Master Chefs</a></li>
               <li><a href="#amenities" class="hover:text-white transition">Ayurvedic Rejuvenation</a></li>
               <li><a href="#stay" class="hover:text-white transition">Teak Houseboat Cruises</a></li>
               <li><a href="#amenities" class="hover:text-white transition">Airport VIP Transfers</a></li>
-              <li><a href="#contact" class="hover:text-white transition">List an Estate (Owners)</a></li>
-              <li><a href="#contact" class="hover:text-white transition">Member Portal Access</a></li>
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'dashboard' %}" class="text-amber-400 font-semibold hover:text-amber-300 transition flex items-center gap-1.5"><i class="fa-solid fa-user-check text-[0.65rem]"></i> Dashboard ({{ user.username }})</a></li>
+              <li><a href="{% url 'logout' %}" class="text-red-400 hover:text-red-300 transition">Logout</a></li>
+              {% else %}
+              <li><button type="button" class="open-login-btn text-amber-400 font-semibold hover:text-amber-300 transition text-left flex items-center gap-1.5"><i class="fa-solid fa-lock text-[0.65rem]"></i> VIP Member Login</button></li>
+              <li><button type="button" class="open-signup-btn text-white font-semibold hover:text-amber-300 transition text-left flex items-center gap-1.5"><i class="fa-solid fa-user-plus text-[0.65rem]"></i> Join Member Circle</button></li>
+              {% endif %}
             </ul>
           </div>
 
@@ -1076,10 +1065,20 @@
 
         </div>
 
-        <!-- Bottom Legal Row -->
+        <!-- Bottom Legal & VIP Row -->
         <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 uppercase tracking-[0.2em]">
           <p>© 2026 Rentora Kerala • All Rights Reserved</p>
-          <div class="flex items-center gap-5 text-[0.65rem]">
+          <div class="flex flex-wrap items-center justify-center gap-5 text-[0.65rem]">
+            {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="text-amber-400 font-semibold hover:text-amber-300 transition"><i class="fa-solid fa-user-check me-1"></i> Dashboard</a>
+            <span class="text-white/20">•</span>
+            <a href="{% url 'logout' %}" class="text-red-400 hover:text-red-300 transition">Logout</a>
+            {% else %}
+            <button type="button" class="open-login-btn text-amber-400 font-semibold hover:text-amber-300 transition"><i class="fa-solid fa-lock me-1"></i> Sign In</button>
+            <span class="text-white/20">•</span>
+            <button type="button" class="open-signup-btn text-white font-semibold hover:text-amber-300 transition"><i class="fa-solid fa-user-plus me-1"></i> Register</button>
+            {% endif %}
+            <span class="text-white/20">•</span>
             <a href="#" onclick="event.preventDefault(); alert('Rentora Private Estate Privacy Policy: We uphold the strictest global guest confidentiality and data security.');" class="hover:text-white transition">Privacy Policy</a>
             <span class="text-white/20">•</span>
             <a href="#" onclick="event.preventDefault(); alert('Terms of Residence: All bookings include full estate staffing and 24/7 dedicated concierge care.');" class="hover:text-white transition">Terms of Residence</a>
