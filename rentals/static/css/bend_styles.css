@@ -231,6 +231,17 @@ body.night-mode .theme-card {
   -webkit-filter: contrast(1.22) brightness(0.92);
 }
 
+/* Perfect Vertical & Horizontal Center Alignment for Panel 1 Content */
+.panel-1-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  transform: translateY(28px);
+}
+
 /* GPU Hardware Acceleration for Zero-Jitter Pinning & Scrubbing */
 .horizontal-section,
 .horizontal-pin,
