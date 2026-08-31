@@ -26,38 +26,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Day & Night Mode Lighting Switcher
-
-
   const dayBtn = document.getElementById('day-btn');
   const nightBtn = document.getElementById('night-btn');
   const daySlides = document.querySelectorAll('.day-slide');
   const nightSlides = document.querySelectorAll('.night-slide');
-  let isNightMode = false;
+  let isNightMode = localStorage.getItem('rentora_theme') === 'night';
 
   function setLightingMode(night) {
     isNightMode = night;
+    localStorage.setItem('rentora_theme', night ? 'night' : 'day');
     
     if (night) {
       document.body.classList.add('night-mode');
       document.body.classList.remove('light-mode');
-      nightBtn.classList.add('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-      nightBtn.classList.remove('text-white/70');
-      dayBtn.classList.remove('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-      dayBtn.classList.add('text-white/70');
+      if (nightBtn) {
+        nightBtn.classList.add('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
+        nightBtn.classList.remove('text-white/70');
+      }
+      if (dayBtn) {
+        dayBtn.classList.remove('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
+        dayBtn.classList.add('text-white/70');
+      }
 
       daySlides.forEach(slide => slide.style.opacity = '0');
       if (nightSlides[0]) nightSlides[0].style.opacity = '1';
     } else {
       document.body.classList.remove('night-mode');
       document.body.classList.add('light-mode');
-      dayBtn.classList.add('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-      dayBtn.classList.remove('text-white/70');
-      nightBtn.classList.remove('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-      nightBtn.classList.add('text-white/70');
+      if (dayBtn) {
+        dayBtn.classList.add('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
+        dayBtn.classList.remove('text-white/70');
+      }
+      if (nightBtn) {
+        nightBtn.classList.remove('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
+        nightBtn.classList.add('text-white/70');
+      }
 
       nightSlides.forEach(slide => slide.style.opacity = '0');
       if (daySlides[0]) daySlides[0].style.opacity = '1';
     }
+  }
+
+  // Initialize saved theme preference
+  if (isNightMode) {
+    setLightingMode(true);
   }
 
   if (dayBtn && nightBtn) {

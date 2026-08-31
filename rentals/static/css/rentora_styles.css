@@ -19,14 +19,16 @@ body.night-mode {
   --ink: #e8f3ee;
   --ink-muted: #8faea6;
   --paper: #081718;
-  --stay-bg: #DFECE3;
-  --card-bg: rgba(14, 34, 36, 0.82);
+  --stay-bg: #081718;
+  --card-bg: rgba(14, 34, 36, 0.85);
   --card-border: rgba(52, 133, 124, 0.28);
   --btn-bg: #164043;
   --btn-text: #e8f3ee;
   --tab-active-bg: #1a494d;
   --tab-active-text: #e8f3ee;
   --gold-accent: #e2c082;
+  background-color: #081718 !important;
+  color: #e8f3ee !important;
 }
 
 body {
@@ -41,7 +43,61 @@ body {
 }
 
 body.night-mode #scroll-bg {
-  background-color: #081718;
+  background-color: #081718 !important;
+}
+
+/* Night Mode Global Element Overrides */
+body.night-mode .bg-white\/80,
+body.night-mode .bg-white\/70,
+body.night-mode .bg-white\/60,
+body.night-mode .bg-white\/50,
+body.night-mode .bg-white {
+  background-color: rgba(14, 34, 36, 0.85) !important;
+  color: #e8f3ee !important;
+  border-color: rgba(52, 133, 124, 0.3) !important;
+}
+
+body.night-mode .text-\[\#181614\],
+body.night-mode .font-display.text-\[\#181614\] {
+  color: #e8f3ee !important;
+}
+
+body.night-mode .text-\[\#181614\]\/80,
+body.night-mode .text-\[\#181614\]\/75,
+body.night-mode .text-\[\#181614\]\/70,
+body.night-mode .text-\[\#181614\]\/60 {
+  color: #8faea6 !important;
+}
+
+body.night-mode .border-\[\#181614\]\/15,
+body.night-mode .border-\[\#181614\]\/10,
+body.night-mode .border-\[\#181614\]\/20 {
+  border-color: rgba(52, 133, 124, 0.28) !important;
+}
+
+body.night-mode .divide-\[\#181614\]\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(52, 133, 124, 0.2) !important;
+}
+
+body.night-mode input:not([type="submit"]),
+body.night-mode select,
+body.night-mode textarea {
+  background-color: rgba(8, 23, 24, 0.9) !important;
+  color: #e8f3ee !important;
+  border-color: rgba(52, 133, 124, 0.4) !important;
+}
+
+body.night-mode table tbody tr {
+  background-color: rgba(14, 34, 36, 0.7) !important;
+}
+
+body.night-mode table tbody tr:hover {
+  background-color: rgba(22, 64, 67, 0.8) !important;
+}
+
+body.night-mode .bg-slate-200 {
+  background-color: rgba(22, 64, 67, 0.8) !important;
+  color: #e8f3ee !important;
 }
 
 /* Typography Font Families */

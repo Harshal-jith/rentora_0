@@ -23,8 +23,14 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Custom Rentora Hero Styles -->
+  <!-- Custom Rentora Styles -->
   <link rel="stylesheet" href="{% static 'css/rentora_styles.css' %}" />
+  <script>
+    if (localStorage.getItem('rentora_theme') === 'night') {
+      document.documentElement.classList.add('night-mode');
+      document.addEventListener('DOMContentLoaded', () => document.body.classList.add('night-mode'));
+    }
+  </script>
   {% block extra_css %}{% endblock %}
 </head>
 <body class="font-body bg-[#f4f1ea] text-[#181614] antialiased selection:bg-[#181614] selection:text-white overflow-x-hidden min-h-screen flex flex-col justify-between">
@@ -89,8 +95,19 @@
         </ul>
       </nav>
 
-      <!-- Right Side Actions & User Badge -->
-      <div class="flex items-center gap-4">
+      <!-- Right Side Actions, Day/Night Switcher & User Badge -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        
+        <!-- By Day / By Night Mode Switch Pill -->
+        <div class="flex items-center bg-white/10 backdrop-blur-md p-1 rounded-full border border-white/20">
+          <button id="day-btn" class="px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-white text-[#181614] font-semibold shadow-sm">
+            By Day
+          </button>
+          <button id="night-btn" class="px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 text-white/70 hover:text-white">
+            By Night
+          </button>
+        </div>
+
         {% if user.is_authenticated %}
         <a href="{% url 'dashboard' %}" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-amber-500/30 transition">
           <i class="fa-solid fa-user-check text-xs"></i> {{ user.first_name|default:user.username }}
@@ -295,6 +312,7 @@
       }
     });
   </script>
+  <script src="{% static 'js/rentora_app.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>
