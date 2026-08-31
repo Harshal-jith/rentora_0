@@ -245,7 +245,7 @@ body.night-mode .theme-card {
 .panel-2-text,
 .panel-2-image,
 .panel-3-text,
-.bend-pillar {
+.rentora-pillar {
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;

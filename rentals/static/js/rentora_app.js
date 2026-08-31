@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 9. THE 3 CARDS JOINING & PARALLAX ANIMATION (#place)
   // ----------------------------------------------------
   const pillarsSection = document.getElementById('place');
-  const pillars = Array.from(document.querySelectorAll('.bend-pillar'));
+  const pillars = Array.from(document.querySelectorAll('.rentora-pillar'));
   const pillarImgs = Array.from(document.querySelectorAll('.pillar-img'));
   
   if (pillarsSection && pillars.length > 0) {
