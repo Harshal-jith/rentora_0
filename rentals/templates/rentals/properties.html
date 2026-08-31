@@ -1,18 +1,18 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Explore Kerala Estates & Private Sanctuaries | RENTORA Kerala{% endblock %}
+{% block title %}Explore Kerala Estates &amp; Private Sanctuaries | RENTORA Kerala{% endblock %}
 
 {% block content %}
 <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-12">
   
   <!-- Page Hero Header -->
   <div class="text-center max-w-3xl mx-auto mb-12">
-    <span class="text-xs uppercase tracking-[0.3em] text-[#181614]/60 font-semibold">CURATED LUXURY CATALOGUE</span>
-    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-medium text-[#181614] mt-2">
+    <span class="text-xs uppercase tracking-[0.3em] theme-muted font-semibold">CURATED LUXURY CATALOGUE</span>
+    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-medium theme-ink mt-2">
       Kerala Private Estates &amp; Sanctuaries
     </h1>
-    <p class="text-sm sm:text-base text-[#181614]/75 mt-3 leading-relaxed">
+    <p class="text-sm sm:text-base theme-muted mt-3 leading-relaxed">
       Handpicked teak-pillared mansions, private infinity pool villas, presidential houseboats, and misty tea plantation reserves across God's Own Country.
     </p>
   </div>
@@ -20,27 +20,27 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
     
     <!-- Filter Sidebar (4 Cols) -->
-    <aside class="lg:col-span-4 bg-[#181614] text-white p-6 sm:p-8 rounded-2xl shadow-xl ring-1 ring-white/10 sticky top-28">
-      <div class="flex items-center justify-between pb-4 border-b border-white/15 mb-6">
-        <h2 class="font-display text-xl font-medium tracking-wide flex items-center gap-2">
-          <i class="fa-solid fa-sliders text-amber-400 text-sm"></i> Filter Estates
+    <aside class="lg:col-span-4 theme-card bg-white/80 backdrop-blur-md text-[#181614] p-6 sm:p-8 rounded-3xl shadow-xl border border-[#181614]/15 sticky top-28">
+      <div class="flex items-center justify-between pb-4 border-b border-[#181614]/15 mb-6 theme-line">
+        <h2 class="font-display text-xl font-medium tracking-wide flex items-center gap-2 theme-ink">
+          <i class="fa-solid fa-sliders text-amber-500 text-sm"></i> Filter Estates
         </h2>
-        <a href="{% url 'properties' %}" class="text-xs text-amber-300/80 hover:text-amber-300 uppercase tracking-wider transition">Reset All</a>
+        <a href="{% url 'properties' %}" class="text-xs text-amber-600 hover:text-amber-700 font-semibold uppercase tracking-wider transition">Reset All</a>
       </div>
 
       <form method="GET" action="{% url 'properties' %}" class="space-y-5">
         
         <div>
-          <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1.5 font-semibold">Search Keyword</label>
+          <label class="block text-[0.65rem] uppercase tracking-widest theme-muted mb-1.5 font-semibold">Search Keyword</label>
           <div class="relative">
-            <input type="text" name="q" value="{{ query }}" placeholder="Villa, pool, sunset, teak..." class="w-full bg-white/5 border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-amber-400 transition" />
-            <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3.5 text-white/40 text-xs"></i>
+            <input type="text" name="q" value="{{ query }}" placeholder="Villa, pool, sunset, teak..." class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-3.5 py-2.5 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition" />
+            <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3.5 theme-muted text-xs"></i>
           </div>
         </div>
 
         <div>
-          <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1.5 font-semibold">Destination Region</label>
-          <select name="location" class="w-full bg-[#181614] border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 transition">
+          <label class="block text-[0.65rem] uppercase tracking-widest theme-muted mb-1.5 font-semibold">Destination Region</label>
+          <select name="location" class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-3.5 py-2.5 text-sm theme-ink focus:outline-none focus:border-amber-500 transition">
             <option value="">All Regions &amp; Coasts</option>
             {% for code, name in locations %}
             <option value="{{ code }}" {% if selected_location == code %}selected{% endif %}>{{ name }}</option>
@@ -49,8 +49,8 @@
         </div>
 
         <div>
-          <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1.5 font-semibold">Estate Type</label>
-          <select name="property_type" class="w-full bg-[#181614] border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 transition">
+          <label class="block text-[0.65rem] uppercase tracking-widest theme-muted mb-1.5 font-semibold">Estate Type</label>
+          <select name="property_type" class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-3.5 py-2.5 text-sm theme-ink focus:outline-none focus:border-amber-500 transition">
             <option value="">All Architecture Styles</option>
             {% for code, name in property_types %}
             <option value="{{ code }}" {% if selected_type == code %}selected{% endif %}>{{ name }}</option>
@@ -60,12 +60,12 @@
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1.5 font-semibold">Max Price / Night</label>
-            <input type="number" name="max_price" value="{{ max_price }}" placeholder="₹50,000" class="w-full bg-white/5 border border-white/20 rounded-xl px-3 py-2 text-xs text-white placeholder-white/40 focus:outline-none focus:border-amber-400 transition" />
+            <label class="block text-[0.65rem] uppercase tracking-widest theme-muted mb-1.5 font-semibold">Max Price / Night</label>
+            <input type="number" name="max_price" value="{{ max_price }}" placeholder="₹50,000" class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-3 py-2 text-xs theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition" />
           </div>
           <div>
-            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1.5 font-semibold">Min Guests</label>
-            <input type="number" name="guests" value="{{ guests }}" placeholder="e.g. 4" class="w-full bg-white/5 border border-white/20 rounded-xl px-3 py-2 text-xs text-white placeholder-white/40 focus:outline-none focus:border-amber-400 transition" />
+            <label class="block text-[0.65rem] uppercase tracking-widest theme-muted mb-1.5 font-semibold">Min Guests</label>
+            <input type="number" name="guests" value="{{ guests }}" placeholder="e.g. 4" class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-3 py-2 text-xs theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition" />
           </div>
         </div>
 
@@ -78,20 +78,20 @@
     <!-- Main Results Grid (8 Cols) -->
     <main class="lg:col-span-8">
       
-      <div class="flex items-center justify-between pb-4 border-b border-[#181614]/15 mb-8">
-        <span class="text-xs uppercase tracking-widest text-[#181614]/75">
-          Showing <strong class="text-[#181614] font-semibold">{{ properties|length }}</strong> Luxury Estate Stays
+      <div class="flex items-center justify-between pb-4 border-b border-[#181614]/15 mb-8 theme-line">
+        <span class="text-xs uppercase tracking-widest theme-muted">
+          Showing <strong class="theme-ink font-semibold">{{ properties|length }}</strong> Luxury Estate Stays
         </span>
-        <span class="text-[0.65rem] uppercase tracking-widest text-[#181614]/50 hidden sm:inline-block">Full Concierge Included</span>
+        <span class="text-[0.65rem] uppercase tracking-widest theme-muted hidden sm:inline-block">Full Concierge Included</span>
       </div>
 
       {% if properties %}
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {% for prop in properties %}
-        <article class="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-[#181614]/15 shadow-xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between group">
+        <article class="theme-card bg-white/80 backdrop-blur-md rounded-3xl p-5 border border-[#181614]/15 shadow-xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between group">
           <div>
             <!-- Image Wrap -->
-            <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center overflow-hidden mb-5 relative shadow-md">
+            <div class="aspect-[4/3] w-full rounded-2xl bg-cover bg-center overflow-hidden mb-5 relative shadow-md">
               <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div class="absolute top-3 left-3 px-3 py-1 bg-[#181614]/80 backdrop-blur-md text-white text-[0.6rem] uppercase tracking-widest font-semibold rounded-full border border-white/20">
                 {{ prop.get_property_type_display }}
@@ -102,28 +102,28 @@
             </div>
 
             <!-- Meta & Title -->
-            <div class="flex items-center gap-1.5 text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">
+            <div class="flex items-center gap-1.5 text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1">
               <i class="fa-solid fa-location-dot text-amber-600"></i> {{ prop.location_display_name }}
             </div>
             
-            <h3 class="font-display text-2xl font-medium text-[#181614] leading-snug group-hover:text-amber-700 transition-colors">
+            <h3 class="font-display text-2xl font-medium theme-ink leading-snug group-hover:text-amber-600 transition-colors">
               <a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a>
             </h3>
 
-            <p class="text-xs text-[#181614]/75 mt-2 leading-relaxed line-clamp-2">
+            <p class="text-xs theme-muted mt-2 leading-relaxed line-clamp-2">
               {{ prop.short_description }}
             </p>
 
             <!-- Specs Grid -->
-            <div class="grid grid-cols-3 gap-2 py-3 mt-4 border-y border-[#181614]/10 text-center text-[0.65rem] uppercase tracking-wider text-[#181614]/70">
+            <div class="grid grid-cols-3 gap-2 py-3 mt-4 border-y border-[#181614]/10 text-center text-[0.65rem] uppercase tracking-wider theme-muted theme-line">
               <div>
-                <i class="fa-solid fa-bed block text-xs text-[#181614] mb-0.5"></i> {{ prop.bedrooms }} Beds
+                <i class="fa-solid fa-bed block text-xs theme-ink mb-0.5"></i> {{ prop.bedrooms }} Beds
               </div>
               <div>
-                <i class="fa-solid fa-bath block text-xs text-[#181614] mb-0.5"></i> {{ prop.bathrooms }} Baths
+                <i class="fa-solid fa-bath block text-xs theme-ink mb-0.5"></i> {{ prop.bathrooms }} Baths
               </div>
               <div>
-                <i class="fa-solid fa-users block text-xs text-[#181614] mb-0.5"></i> {{ prop.max_guests }} Guests
+                <i class="fa-solid fa-users block text-xs theme-ink mb-0.5"></i> {{ prop.max_guests }} Guests
               </div>
             </div>
           </div>
@@ -131,10 +131,10 @@
           <!-- Price & Action CTA -->
           <div class="flex items-center justify-between pt-4 mt-2">
             <div>
-              <span class="font-display font-bold text-xl text-[#181614]">₹{{ prop.price_per_night|floatformat:0 }}</span>
-              <span class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60">/ night</span>
+              <span class="font-display font-bold text-xl theme-ink">₹{{ prop.price_per_night|floatformat:0 }}</span>
+              <span class="text-[0.65rem] uppercase tracking-widest theme-muted">/ night</span>
             </div>
-            <a href="{% url 'property_detail' prop.slug %}" class="px-4 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-lg font-semibold hover:bg-slate-700 transition flex items-center gap-1.5 shadow-md">
+            <a href="{% url 'property_detail' prop.slug %}" class="px-4 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-amber-600 transition flex items-center gap-1.5 shadow-md">
               Explore <i class="fa-solid fa-chevron-right text-[0.6rem]"></i>
             </a>
           </div>
@@ -142,17 +142,18 @@
         {% endfor %}
       </div>
       {% else %}
-      <div class="bg-white/70 backdrop-blur-md p-12 rounded-2xl border border-[#181614]/15 text-center shadow-lg my-6">
-        <i class="fa-solid fa-house-circle-xmark text-4xl text-[#181614]/40 mb-3"></i>
-        <h3 class="font-display text-2xl font-medium text-[#181614]">No Estates Match Your Criteria</h3>
-        <p class="text-xs text-[#181614]/70 mt-1 max-w-md mx-auto">Try broadening your destination region or property type filters to explore available luxury sanctuaries.</p>
-        <a href="{% url 'properties' %}" class="mt-6 inline-flex px-6 py-2.5 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition shadow-lg">View All Estates</a>
+      <div class="text-center py-16 theme-card bg-white/80 rounded-3xl p-8 border border-[#181614]/15">
+        <i class="fa-solid fa-compass text-amber-500 text-4xl mb-4 block"></i>
+        <h3 class="font-display text-2xl font-medium theme-ink">No Estates Found</h3>
+        <p class="text-sm theme-muted mt-2">Try adjusting your filter search criteria or destination region.</p>
+        <a href="{% url 'properties' %}" class="inline-block mt-4 px-6 py-2.5 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-amber-600 transition">
+          Reset Filter Search
+        </a>
       </div>
       {% endif %}
 
     </main>
 
   </div>
-
 </div>
 {% endblock %}

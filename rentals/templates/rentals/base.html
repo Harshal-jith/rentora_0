@@ -70,27 +70,18 @@
 
       <!-- Desktop Nav Links -->
       <nav aria-label="Primary" class="hidden text-xs sm:text-sm md:block">
-        <ul class="flex items-center gap-x-6">
-          <li class="flex items-center gap-x-6">
-            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300 {% if request.resolver_match.url_name == 'home' %}text-amber-400 font-bold{% endif %}" href="{% url 'home' %}">Concept</a>
-            <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-            </svg>
-          </li>
-          <li class="flex items-center gap-x-6">
-            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300 {% if request.resolver_match.url_name == 'properties' or request.resolver_match.url_name == 'property_detail' %}text-amber-400 font-bold{% endif %}" href="{% url 'properties' %}">Kerala Estates</a>
-            <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-            </svg>
-          </li>
-          <li class="flex items-center gap-x-6">
-            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="{% url 'home' %}#stay">Guest Experience</a>
-            <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-            </svg>
+        <ul class="flex items-center gap-x-8">
+          <li>
+            <a class="font-display text-xs uppercase tracking-[0.25em] transition hover:text-amber-400 {% if request.resolver_match.url_name == 'home' %}text-amber-400 font-semibold{% else %}text-white/80{% endif %}" href="{% url 'home' %}">Concept</a>
           </li>
           <li>
-            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="{% url 'home' %}#amenities">Ayurveda & Concierge</a>
+            <a class="font-display text-xs uppercase tracking-[0.25em] transition hover:text-amber-400 {% if request.resolver_match.url_name == 'properties' or request.resolver_match.url_name == 'property_detail' %}text-amber-400 font-semibold{% else %}text-white/80{% endif %}" href="{% url 'properties' %}">Kerala Estates</a>
+          </li>
+          <li>
+            <a class="font-display text-xs uppercase tracking-[0.25em] transition hover:text-amber-400 text-white/80" href="{% url 'home' %}#stay">Guest Experience</a>
+          </li>
+          <li>
+            <a class="font-display text-xs uppercase tracking-[0.25em] transition hover:text-amber-400 text-white/80" href="{% url 'home' %}#amenities">Ayurveda &amp; Concierge</a>
           </li>
         </ul>
       </nav>
