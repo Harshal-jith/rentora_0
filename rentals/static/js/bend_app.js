@@ -2,13 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Register GSAP Plugins
   gsap.registerPlugin(ScrollTrigger);
 
-  // ----------------------------------------------------
-  // 0. LENIS ULTRA-SMOOTH GLOBAL SCROLL ENGINE (MATCHES HORIZONTAL INERTIA 100%)
-  // ----------------------------------------------------
+  // Global Lenis Smooth Scroll Initialization
   if (typeof Lenis !== 'undefined') {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth exponential inertia curve
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
@@ -27,9 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.lenis = lenis;
   }
 
-  // ----------------------------------------------------
-  // 1. DAY / NIGHT LIGHTING MODE TOGGLE (SIGNATURE MEDITERRANEAN CREAM CANVAS DEFAULT)
-  // ----------------------------------------------------
+  // Day & Night Mode Lighting Switcher
 
 
   const dayBtn = document.getElementById('day-btn');

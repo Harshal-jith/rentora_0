@@ -1,4 +1,4 @@
-/* Rentora Custom Styles System - Signature Mediterranean Warm Charcoal & Cream Canvas */
+/* Rentora Custom Styles System */
 
 :root {
   --ink: #181614;
@@ -14,7 +14,7 @@
   --gold-accent: #b38b4d;
 }
 
-/* Luxurious Deep Emerald / Twilight Ocean Night Mode (Active ONLY when 'By Night' is pressed) */
+/* Night Mode Theme Overrides */
 body.night-mode {
   --ink: #e8f3ee;
   --ink-muted: #8faea6;
@@ -95,11 +95,7 @@ body.night-mode .theme-card {
   transition: color 0.5s ease;
 }
 
-/* =========================================================================
-   HORIZONTAL SCROLL SECTION (#stay) DYNAMIC DAY & NIGHT LIGHT THEMES
-   - Day Mode: Signature Mediterranean Cream Sand (#f4f1ea)
-   - Night Mode: Soft Sage Mist (#DFECE3) that elevates the flowers
-   ========================================================================= */
+/* Horizontal Scroll Section Styles (#stay) */
 #stay {
   background-color: var(--stay-bg) !important;
   color: #181614 !important;
@@ -126,11 +122,6 @@ body.night-mode .theme-card {
   background-color: transparent !important;
   color: #181614 !important;
 }
-
-
-
-
-
 
 #stay h2,
 #stay h3,
@@ -164,7 +155,7 @@ body.night-mode .theme-card {
   border-color: rgba(24, 22, 20, 0.12) !important;
 }
 
-/* Custom Scroll Scrub Highlights */
+/* Scroll Scrub Highlights */
 .statement-word {
   transition: opacity 0.2s ease, color 0.2s ease;
   will-change: opacity, transform;
@@ -183,7 +174,7 @@ body.night-mode .theme-card {
   transform: translateY(0);
 }
 
-/* Dynamic Floating Flowers & Leaves Animations */
+/* Botanical Sway Animations */
 @keyframes wind-sway-left {
   0%, 100% {
     transform: rotate(0deg) translateY(0px) scale(1);
@@ -212,7 +203,7 @@ body.night-mode .theme-card {
   transform-origin: top right;
 }
 
-/* 100% Seamless Botanical Multiply & Matte Edge Elimination */
+/* Botanical Canopy Blend Modes */
 .flower-container {
   pointer-events: none;
   mix-blend-mode: multiply;
@@ -231,7 +222,7 @@ body.night-mode .theme-card {
   -webkit-filter: contrast(1.22) brightness(0.92);
 }
 
-/* Perfect Vertical & Horizontal Center Alignment for Panel 1 Content */
+/* Panel 1 Content Alignment */
 .panel-1-content {
   display: flex;
   flex-direction: column;
@@ -242,7 +233,7 @@ body.night-mode .theme-card {
   transform: translateY(28px);
 }
 
-/* GPU Hardware Acceleration for Zero-Jitter Pinning & Scrubbing */
+/* GPU Hardware Acceleration */
 .horizontal-section,
 .horizontal-pin,
 .horizontal-track,
@@ -261,7 +252,7 @@ body.night-mode .theme-card {
   -webkit-backface-visibility: hidden;
 }
 
-/* Lenis Ultra-Smooth Global Scroll Engine */
+/* Lenis Smooth Scroll System Rules */
 html.lenis, html.lenis body {
   height: auto;
 }
