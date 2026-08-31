@@ -1,146 +1,43 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Sign In | Rentora Luxury Hospitality{% endblock %}
-
-<!-- Hide Master Navbar on Auth Pages -->
-{% block navbar %}{% endblock %}
+{% block title %}VIP Member Login | RENTORA Kerala{% endblock %}
 
 {% block content %}
-<div class="auth-split-layout auth-panel-left">
-
-    <!-- LEFT SIDE: SOLID LUXURY AUTHENTICATION PANEL (45%) -->
-    <div class="auth-panel-side">
-        <div class="auth-panel-content">
-            
-            <!-- Top Back Link -->
-            <div class="auth-panel-top">
-                <a href="{% url 'home' %}" class="auth-back-link">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Rentora
-                </a>
-            </div>
-
-            <!-- Solid Luxury Card Surface -->
-            <div class="auth-card-solid">
-                <div class="auth-card-header">
-                    <span class="sub-heading-gold">VIP MEMBER ACCESS</span>
-                    <h2 class="auth-card-title">Welcome Back</h2>
-                    <p class="auth-card-subtitle">Sign in to unlock access to your private estate reservations.</p>
-                </div>
-
-                {% if show_resend %}
-                <div class="unverified-email-banner" style="background: rgba(212, 175, 55, 0.12); border: 1px solid var(--border-gold); padding: 16px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
-                    <p style="color: var(--gold-bright); font-size: 0.9rem; margin-bottom: 10px;"><i class="fa-solid fa-envelope-open-text"></i> Pending Email Verification</p>
-                    <form method="POST" action="{% url 'resend_verification' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="email_or_username" value="{{ unverified_email }}">
-                        <button type="submit" class="btn btn-gold" style="font-size: 0.8rem; padding: 8px 18px; border-radius: 30px;">
-                            <i class="fa-solid fa-paper-plane"></i> Resend Verification Email
-                        </button>
-                    </form>
-                </div>
-                {% endif %}
-
-                <form method="POST" action="{% url 'login' %}" class="auth-solid-form">
-                    {% csrf_token %}
-
-                    {% if form.non_field_errors %}
-                    <div class="form-error-box">
-                        {% for err in form.non_field_errors %}
-                        <p><i class="fa-solid fa-circle-exclamation"></i> {{ err }}</p>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-
-                    {% for field in form %}
-                    <div class="form-group-solid">
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                        {{ field }}
-                        {% for err in field.errors %}
-                        <small class="field-error"><i class="fa-solid fa-circle-exclamation"></i> {{ err }}</small>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-
-                    <div class="form-options-row">
-                        <label class="checkbox-container">
-                            <input type="checkbox" name="remember_me" checked>
-                            <span class="checkmark"></span>
-                            <span class="checkbox-label">Remember Me</span>
-                        </label>
-                        <a href="{% url 'home' %}" class="forgot-password-link">Forgot Password?</a>
-                    </div>
-
-                    <button type="submit" class="btn btn-gold btn-auth-submit">
-                        <span>Sign In to Rentora</span> <i class="fa-solid fa-right-to-bracket"></i>
-                    </button>
-                </form>
-
-                <div class="auth-card-footer">
-                    <p>Don't have a member account yet? <a href="{% url 'register' %}" class="auth-link-highlight">Create VIP Account</a></p>
-                </div>
-            </div>
-
-        </div>
+<div class="mx-auto max-w-md px-5 py-16">
+  <div class="bg-[#181614] text-white p-8 sm:p-10 rounded-3xl shadow-2xl border border-white/10 text-center space-y-6">
+    
+    <div>
+      <div class="w-14 h-14 bg-amber-500/20 text-amber-400 rounded-2xl mx-auto flex items-center justify-center text-xl mb-4 border border-amber-500/30">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h1 class="font-display text-3xl font-medium text-white">VIP Member Portal</h1>
+      <p class="text-xs uppercase tracking-widest text-amber-400 mt-1 font-semibold">Confidential Residence Access</p>
     </div>
 
-    <!-- RIGHT SIDE: IMMERSIVE VISUAL STORYTELLING & VIDEO ENGINE (55%) -->
-    <div class="auth-visual-side">
-        
-        <!-- Video Background Layer -->
-        <div class="auth-video-wrapper">
-            <video id="authBgVideo" autoplay muted playsinline webkit-playsinline poster="{% static 'images/hero_mid_villa_1784964394119.jpg' %}" class="auth-video-element">
-                <source src="https://cdn.coverr.co/videos/coverr-drone-shot-of-a-luxury-resort-5462/1080p.mp4" type="video/mp4">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-resort-with-a-pool-and-palm-trees-42981-large.mp4" type="video/mp4">
-            </video>
-            <div class="auth-image-fallback" style="background-image: url('{% static 'images/hero_mid_villa_1784964394119.jpg' %}');"></div>
-        </div>
+    <form method="POST" action="{% url 'login' %}" class="space-y-4 text-left">
+      {% csrf_token %}
+      
+      <div>
+        <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Username or Email</label>
+        <input required type="text" name="username" placeholder="alexander@example.com" class="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-amber-400 transition" />
+      </div>
 
-        <!-- Atmospheric Dark Vignette Overlay -->
-        <div class="auth-visual-overlay"></div>
+      <div>
+        <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Password</label>
+        <input required type="password" name="password" placeholder="••••••••" class="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-amber-400 transition" />
+      </div>
 
-        <!-- Right Visual Content Container -->
-        <div class="auth-visual-content">
-            <!-- Brand Logo at Top Right -->
-            <div class="auth-brand-header">
-                <a href="{% url 'home' %}" aria-label="Rentora Home">
-                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-dark">
-                    <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="auth-brand-logo logo-light">
-                </a>
-            </div>
+      <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-display text-xs uppercase tracking-widest rounded-xl font-bold hover:brightness-110 transition shadow-lg mt-2">
+        <i class="fa-solid fa-right-to-bracket me-1"></i> Sign In to Member Portal
+      </button>
+    </form>
 
-            <!-- Brand Storytelling -->
-            <div class="auth-story-body">
-                <span class="sub-heading-gold">RENTORA PRIVATE COLLECTION</span>
-                <h1 class="auth-story-headline">
-                    The Sanctuary of<br>
-                    <span class="gold-shimmer-text">Uncompromised Luxury</span>
-                </h1>
-                <p class="auth-story-subcopy">
-                    Enter Kerala’s premiere hospitality platform. Access 100% verified private estates, in-villa culinary master chefs, and 24/7 personal concierge hosts.
-                </p>
-
-                <div class="auth-trust-pillars">
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-shield-halved text-gold"></i>
-                        <span>100% Verified Private Estates</span>
-                    </div>
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-crown text-gold"></i>
-                        <span>24/7 Dedicated Estate Host</span>
-                    </div>
-                    <div class="pillar-item">
-                        <i class="fa-solid fa-utensils text-gold"></i>
-                        <span>In-Villa Culinary Masters</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="auth-visual-footer">
-                <p>© 2026 Rentora Luxury Hospitality. All rights reserved.</p>
-            </div>
-        </div>
+    <div class="pt-4 border-t border-white/10 text-xs text-white/60 flex flex-col gap-2">
+      <p>Not a member yet? <a href="{% url 'register' %}" class="text-amber-400 font-semibold hover:underline">Apply for Member Circle</a></p>
+      <p><a href="{% url 'resend_verification' %}" class="text-white/40 hover:text-white transition">Resend Verification Email</a></p>
     </div>
 
+  </div>
 </div>
 {% endblock %}

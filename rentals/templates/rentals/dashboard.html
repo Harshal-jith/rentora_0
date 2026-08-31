@@ -1,261 +1,267 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}Welcome, {{ user.username }} — Rentora Member Dashboard{% endblock %}
+{% block title %}VIP Member Dashboard | RENTORA Kerala{% endblock %}
 
 {% block content %}
-<div class="dashboard-page-wrapper">
-
-    <!-- Top Dashboard Luxury Welcome Banner -->
-    <div class="dashboard-banner">
-        <div class="section-container dashboard-banner-content">
-            <div class="user-welcome-info">
-                <div class="welcome-badge-row">
-                    <span class="user-vip-pill"><i class="fa-solid fa-crown text-gold"></i> VIP MEMBER ACCESS</span>
-                    <span class="verified-status-pill"><i class="fa-solid fa-circle-check"></i> Account Active</span>
-                </div>
-                
-                <h1 class="page-title dashboard-headline">
-                    Welcome to Rentora, <span class="gold-shimmer-text">{{ user.username }}</span>
-                </h1>
-                
-                <p class="page-subtitle dashboard-subcopy">
-                    Your portal to Kerala’s finest private sanctuaries. Handpicked backwater villas, tea estate manors, and oceanfront retreats with dedicated 24/7 concierge service.
-                </p>
-
-                <!-- Quick Member Action Buttons -->
-                <div class="welcome-actions-row">
-                    <a href="{% url 'properties' %}" class="btn btn-gold btn-sm">
-                        <i class="fa-solid fa-compass"></i> Explore Private Estates
-                    </a>
-                    <a href="#my-bookings" class="btn btn-glass btn-sm">
-                        <i class="fa-solid fa-calendar-check"></i> My Reservations
-                    </a>
-                </div>
-            </div>
-            
-            <div class="dashboard-quick-stats">
-                <div class="dash-stat-card">
-                    <div class="dash-stat-icon"><i class="fa-solid fa-calendar-days text-gold"></i></div>
-                    <div>
-                        <span class="dash-stat-value">{{ user_inquiries.count }}</span>
-                        <span class="dash-stat-label">Active Reservations</span>
-                    </div>
-                </div>
-                <div class="dash-stat-card">
-                    <div class="dash-stat-icon"><i class="fa-solid fa-user-shield text-gold"></i></div>
-                    <div>
-                        <span class="dash-stat-value">24/7</span>
-                        <span class="dash-stat-label">Dedicated Host Coverage</span>
-                    </div>
-                </div>
-            </div>
+<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-10 space-y-12">
+  
+  <!-- Top Luxury VIP Welcome Banner -->
+  <div class="bg-[#181614] text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/10 relative overflow-hidden">
+    <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+      
+      <div class="space-y-4 max-w-2xl">
+        <div class="flex items-center gap-3">
+          <span class="px-3.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[0.65rem] uppercase tracking-widest font-semibold rounded-full flex items-center gap-1.5">
+            <i class="fa-solid fa-crown text-xs"></i> VIP MEMBER ACCESS
+          </span>
+          <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[0.65rem] uppercase tracking-widest font-semibold rounded-full flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-check text-xs"></i> Account Active
+          </span>
         </div>
+
+        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-white leading-tight">
+          Welcome to Rentora, <span class="text-amber-400 font-semibold">{{ user.first_name|default:user.username }}</span>
+        </h1>
+
+        <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
+          Your confidential portal to Kerala’s finest private architectural sanctuaries. Manage your active estate reservations and 24/7 personal butler dispatches.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="{% url 'properties' %}" class="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-display text-xs uppercase tracking-widest rounded-xl font-bold hover:brightness-110 transition shadow-lg flex items-center gap-2">
+            <i class="fa-solid fa-compass"></i> Explore Estates
+          </a>
+          <a href="#my-bookings" class="px-5 py-2.5 bg-white/10 text-white font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-white/20 transition flex items-center gap-2 border border-white/20">
+            <i class="fa-solid fa-calendar-check"></i> My Reservations
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Stats Card -->
+      <div class="grid grid-cols-2 gap-4 w-full lg:w-auto shrink-0">
+        <div class="bg-white/5 border border-white/10 p-5 rounded-2xl text-center">
+          <i class="fa-solid fa-calendar-days text-amber-400 text-xl mb-1"></i>
+          <p class="font-display font-bold text-3xl text-white mt-1">{{ user_inquiries.count }}</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-white/60">Active Reservations</span>
+        </div>
+        <div class="bg-white/5 border border-white/10 p-5 rounded-2xl text-center">
+          <i class="fa-solid fa-user-shield text-amber-400 text-xl mb-1"></i>
+          <p class="font-display font-bold text-3xl text-white mt-1">24/7</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-white/60">Butler Coverage</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Onboarding Steps (If 0 Bookings) -->
+  {% if user_inquiries.count == 0 %}
+  <div class="bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-[#181614]/15 shadow-xl">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-medium text-[#181614] flex items-center gap-2">
+        <i class="fa-solid fa-wand-magic-sparkles text-amber-600 text-lg"></i> Getting Started with Rentora VIP
+      </h2>
+      <p class="text-xs text-[#181614]/70 mt-1">Make the most of your membership in three seamless steps:</p>
     </div>
 
-    <!-- Main Dashboard Container -->
-    <div class="section-container dashboard-main-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="p-5 bg-white rounded-xl border border-[#181614]/10 shadow-sm space-y-2">
+        <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Step 01</span>
+        <h3 class="font-display text-lg font-semibold text-[#181614]">Discover Sanctuaries</h3>
+        <p class="text-xs text-[#181614]/75 leading-relaxed">Filter private pool villas, high-range tea manors, and backwater houseboats by location.</p>
+      </div>
 
-        <!-- SECTION 0: NEW USER ONBOARDING STEPS (If no bookings yet) -->
-        {% if user_inquiries.count == 0 %}
-        <div class="dashboard-section-box welcome-onboarding-box">
-            <div class="dash-section-header">
-                <h2><i class="fa-solid fa-sparkles text-gold"></i> Getting Started with Rentora</h2>
-                <p>Welcome to our exclusive hospitality platform! Here is how to make the most of your membership:</p>
-            </div>
+      <div class="p-5 bg-white rounded-xl border border-[#181614]/10 shadow-sm space-y-2">
+        <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Step 02</span>
+        <h3 class="font-display text-lg font-semibold text-[#181614]">Personal Concierge</h3>
+        <p class="text-xs text-[#181614]/75 leading-relaxed">Request bespoke in-villa dining by master chefs, private lagoon charters, and airport pickup.</p>
+      </div>
 
-            <div class="onboarding-steps-grid">
-                <div class="onboarding-step-card">
-                    <div class="step-badge">01</div>
-                    <div class="step-icon-wrap"><i class="fa-solid fa-magnifying-glass-location"></i></div>
-                    <h3>Discover Verified Estates</h3>
-                    <p>Filter Kerala’s private retreats by location (Alleppey, Munnar, Kovalam) and property type.</p>
-                </div>
+      <div class="p-5 bg-white rounded-xl border border-[#181614]/10 shadow-sm space-y-2">
+        <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Step 03</span>
+        <h3 class="font-display text-lg font-semibold text-[#181614]">Instant Confirmation</h3>
+        <p class="text-xs text-[#181614]/75 leading-relaxed">Submit date inquiries effortlessly and track reservation status right here in real-time.</p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
 
-                <div class="onboarding-step-card">
-                    <div class="step-badge">02</div>
-                    <div class="step-icon-wrap"><i class="fa-solid fa-bell-concierge"></i></div>
-                    <h3>Personal Concierge</h3>
-                    <p>Request bespoke in-villa dining by master chefs, private lagoon charters, and helipad transfers.</p>
-                </div>
+  <!-- Catalog Search & Filter Bar -->
+  <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-[#181614]/15 shadow-xl">
+    <div class="mb-6">
+      <h2 class="font-display text-2xl font-medium text-[#181614] flex items-center gap-2">
+        <i class="fa-solid fa-magnifying-glass text-amber-600 text-lg"></i> Search &amp; Filter Estates Catalog
+      </h2>
+      <p class="text-xs text-[#181614]/70 mt-0.5">Explore available retreats by location, architecture type, or guest capacity.</p>
+    </div>
 
-                <div class="onboarding-step-card">
-                    <div class="step-badge">03</div>
-                    <div class="step-icon-wrap"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h3>Instant Reservations</h3>
-                    <p>Book your preferred dates seamlessly. Track your reservation confirmation right here in real time.</p>
-                </div>
-            </div>
-        </div>
+    <form method="GET" action="{% url 'dashboard' %}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div>
+        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Keyword</label>
+        <input type="text" name="q" value="{{ query }}" placeholder="Villa, pool, tea..." class="w-full bg-white border border-[#181614]/20 rounded-xl px-3.5 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition" />
+      </div>
+
+      <div>
+        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Destination</label>
+        <select name="location" class="w-full bg-white border border-[#181614]/20 rounded-xl px-3.5 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition">
+          <option value="">All Regions</option>
+          {% for loc_code, loc_name in locations %}
+          <option value="{{ loc_code }}" {% if selected_location == loc_code %}selected{% endif %}>{{ loc_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Style</label>
+        <select name="property_type" class="w-full bg-white border border-[#181614]/20 rounded-xl px-3.5 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition">
+          <option value="">All Types</option>
+          {% for type_code, type_name in property_types %}
+          <option value="{{ type_code }}" {% if selected_type == type_code %}selected{% endif %}>{{ type_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Min Guests</label>
+        <input type="number" name="guests" value="{{ guests }}" placeholder="e.g. 2" class="w-full bg-white border border-[#181614]/20 rounded-xl px-3 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition" />
+      </div>
+
+      <div class="flex items-end gap-2">
+        <button type="submit" class="flex-1 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition shadow-md">
+          Filter
+        </button>
+        {% if query or selected_location or selected_type or guests %}
+        <a href="{% url 'dashboard' %}" class="px-3 py-2 bg-slate-200 text-[#181614] text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-300 transition">Clear</a>
         {% endif %}
+      </div>
+    </form>
+  </div>
 
-        <!-- SECTION A: PROPERTY SEARCH & FILTER BAR -->
-        <div class="dashboard-section-box">
-            <div class="dash-section-header">
-                <h2><i class="fa-solid fa-magnifying-glass text-gold"></i> Search Verified Estates & Private Stays</h2>
-                <p>Filter by location, property type, budget, or guest count across Kerala’s private collection.</p>
-            </div>
-
-            <form method="GET" action="{% url 'dashboard' %}" class="dash-search-form">
-                <div class="dash-search-inputs">
-                    <div class="dash-input-group">
-                        <label><i class="fa-solid fa-search"></i> Keyword</label>
-                        <input type="text" name="q" value="{{ query }}" placeholder="Villa, Munnar, Beach, Houseboat...">
-                    </div>
-
-                    <div class="dash-input-group">
-                        <label><i class="fa-solid fa-location-dot"></i> Location</label>
-                        <select name="location">
-                            <option value="">All Destinations</option>
-                            {% for loc_code, loc_name in locations %}
-                            <option value="{{ loc_code }}" {% if selected_location == loc_code %}selected{% endif %}>{{ loc_name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="dash-input-group">
-                        <label><i class="fa-solid fa-house text-gold"></i> Stay Type</label>
-                        <select name="property_type">
-                            <option value="">All Stay Types</option>
-                            {% for type_code, type_name in property_types %}
-                            <option value="{{ type_code }}" {% if selected_type == type_code %}selected{% endif %}>{{ type_name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="dash-input-group">
-                        <label><i class="fa-solid fa-user-group"></i> Guests</label>
-                        <input type="number" name="guests" min="1" max="30" value="{{ guests }}" placeholder="Guests">
-                    </div>
-                </div>
-
-                <div class="dash-search-actions">
-                    <button type="submit" class="btn btn-gold btn-dash-search">
-                        <i class="fa-solid fa-sliders"></i> Filter Catalog
-                    </button>
-                    {% if query or selected_location or selected_type or guests %}
-                    <a href="{% url 'dashboard' %}" class="btn btn-glass btn-dash-clear">Clear Filters</a>
-                    {% endif %}
-                </div>
-            </form>
-        </div>
-
-        <!-- SECTION B: USER BOOKINGS & INQUIRIES -->
-        <div class="dashboard-section-box" id="my-bookings">
-            <div class="dash-section-header">
-                <h2><i class="fa-solid fa-calendar-check text-gold"></i> My Reservations & Concierge Inquiries</h2>
-                <p>Track your active reservation requests and personal host responses.</p>
-            </div>
-
-            {% if user_inquiries %}
-            <div class="dash-bookings-table-wrapper">
-                <table class="dash-bookings-table">
-                    <thead>
-                        <tr>
-                            <th>Property</th>
-                            <th>Dates / Guests</th>
-                            <th>Status</th>
-                            <th>Date Requested</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for inq in user_inquiries %}
-                        <tr>
-                            <td class="booking-prop-cell">
-                                {% if inq.property %}
-                                <div class="prop-thumb-row">
-                                    <img src="{{ inq.property.main_image }}" alt="{{ inq.property.title }}" class="prop-mini-thumb">
-                                    <div>
-                                        <strong class="prop-title-text">{{ inq.property.title }}</strong>
-                                        <span class="prop-loc-sub">{{ inq.property.location_display_name }}</span>
-                                    </div>
-                                </div>
-                                {% else %}
-                                <strong>Bespoke Concierge Request</strong>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if inq.check_in and inq.check_out %}
-                                <span>{{ inq.check_in|date:"M d" }} — {{ inq.check_out|date:"M d, Y" }}</span>
-                                {% else %}
-                                <span>Dates Flexible</span>
-                                {% endif %}
-                                <div class="small-text-muted">{{ inq.guests }} Guest{% if inq.guests > 1 %}s{% endif %}</div>
-                            </td>
-                            <td>
-                                <span class="status-badge status-{{ inq.status|lower }}">
-                                    <i class="fa-solid {% if inq.status == 'Confirmed' %}fa-circle-check{% else %}fa-clock{% endif %}"></i> {{ inq.status }}
-                                </span>
-                            </td>
-                            <td>{{ inq.created_at|date:"M d, Y" }}</td>
-                            <td>
-                                {% if inq.property %}
-                                <a href="{% url 'property_detail' slug=inq.property.slug %}" class="btn btn-glass btn-sm">View Estate</a>
-                                {% else %}
-                                <span class="badge-tag">Concierge Processing</span>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-            <div class="dash-empty-box">
-                <i class="fa-solid fa-calendar-plus empty-icon text-gold"></i>
-                <h3>No active reservations yet</h3>
-                <p>Explore our featured private properties below and reserve your next stay.</p>
-            </div>
-            {% endif %}
-        </div>
-
-        <!-- SECTION C: FEATURED PROPERTIES (COMPACT CARDS) -->
-        <div class="dashboard-section-box">
-            <div class="dash-section-header">
-                <h2><i class="fa-solid fa-gem text-gold"></i> Featured Properties</h2>
-                <p>Handpicked luxury retreats and verified estates.</p>
-            </div>
-
-            {% if featured_properties %}
-            <div class="catalog-grid compact-grid">
-                {% for prop in featured_properties %}
-                <div class="property-card-compact">
-                    <div class="compact-card-img-wrap">
-                        <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
-                        <div class="compact-card-type">{{ prop.get_property_type_display }}</div>
-                    </div>
-                    <div class="compact-card-content">
-                        <div class="compact-card-top">
-                            <span class="compact-location"><i class="fa-solid fa-location-dot"></i> {{ prop.location_display_name }}</span>
-                            <span class="compact-rating"><i class="fa-solid fa-check"></i> {{ prop.rating }}</span>
-                        </div>
-                        <h3 class="compact-title"><a href="{% url 'property_detail' slug=prop.slug %}">{{ prop.title }}</a></h3>
-                        <div class="compact-specs">
-                            <span><i class="fa-solid fa-bed"></i> {{ prop.bedrooms }} Beds</span>
-                            <span><i class="fa-solid fa-users"></i> {{ prop.max_guests }} Guests</span>
-                        </div>
-                        <div class="compact-card-footer">
-                            <div class="compact-price">
-                                <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
-                                <span class="price-sub">/night</span>
-                            </div>
-                            <a href="{% url 'property_detail' slug=prop.slug %}" class="btn btn-gold btn-xs">View Stay</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="dash-empty-box">
-                <i class="fa-solid fa-house-circle-xmark empty-icon"></i>
-                <h3>No properties available</h3>
-                <p>Try adjusting your search criteria or destination to view available luxury estates.</p>
-                <a href="{% url 'dashboard' %}" class="btn btn-gold mt-3">Reset Filters</a>
-            </div>
-            {% endif %}
-        </div>
-
+  <!-- User Reservations & Concierge Inquiries Table -->
+  <div id="my-bookings" class="bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-[#181614]/15 shadow-xl space-y-6">
+    <div>
+      <h2 class="font-display text-2xl font-medium text-[#181614] flex items-center gap-2">
+        <i class="fa-solid fa-calendar-check text-amber-600 text-lg"></i> My Reservations &amp; Inquiries
+      </h2>
+      <p class="text-xs text-[#181614]/70 mt-0.5">Track your active estate bookings and concierge responses.</p>
     </div>
+
+    {% if user_inquiries %}
+    <div class="overflow-x-auto rounded-xl border border-[#181614]/10 shadow-sm">
+      <table class="w-full text-left border-collapse text-xs">
+        <thead class="bg-[#181614] text-white uppercase tracking-widest text-[0.6rem]">
+          <tr>
+            <th class="p-4">Property Stay</th>
+            <th class="p-4">Requested Dates</th>
+            <th class="p-4">Guests</th>
+            <th class="p-4">Status</th>
+            <th class="p-4">Request Date</th>
+            <th class="p-4 text-right">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#181614]/10 bg-white">
+          {% for inq in user_inquiries %}
+          <tr class="hover:bg-amber-500/5 transition">
+            <td class="p-4 font-medium text-[#181614]">
+              {% if inq.property %}
+              <div class="flex items-center gap-3">
+                <img src="{{ inq.property.main_image }}" alt="{{ inq.property.title }}" class="w-12 h-12 rounded-lg object-cover shadow-sm shrink-0" />
+                <div>
+                  <a href="{% url 'property_detail' inq.property.slug %}" class="font-display text-sm font-semibold text-[#181614] hover:text-amber-700 transition block">
+                    {{ inq.property.title }}
+                  </a>
+                  <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">{{ inq.property.location_display_name }}</span>
+                </div>
+              </div>
+              {% else %}
+              <div class="font-semibold text-amber-800">Bespoke Concierge Request</div>
+              {% endif %}
+            </td>
+
+            <td class="p-4 text-[#181614]/80 font-medium">
+              {% if inq.check_in and inq.check_out %}
+              {{ inq.check_in|date:"M d" }} — {{ inq.check_out|date:"M d, Y" }}
+              {% else %}
+              <span class="text-[#181614]/60 italic">Dates Flexible</span>
+              {% endif %}
+            </td>
+
+            <td class="p-4 text-[#181614]/80 font-medium">
+              {{ inq.guests }} Guest{% if inq.guests > 1 %}s{% endif %}
+            </td>
+
+            <td class="p-4">
+              {% if inq.status == 'Confirmed' %}
+              <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1">
+                <i class="fa-solid fa-circle-check"></i> Confirmed
+              </span>
+              {% else %}
+              <span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1">
+                <i class="fa-solid fa-clock"></i> {{ inq.status }}
+              </span>
+              {% endif %}
+            </td>
+
+            <td class="p-4 text-[#181614]/60">
+              {{ inq.created_at|date:"M d, Y" }}
+            </td>
+
+            <td class="p-4 text-right">
+              {% if inq.property %}
+              <a href="{% url 'property_detail' inq.property.slug %}" class="px-3 py-1.5 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest rounded-md font-semibold hover:bg-slate-700 transition shadow-sm">
+                View Estate
+              </a>
+              {% else %}
+              <span class="text-[0.6rem] uppercase tracking-widest text-amber-700 font-semibold">Concierge Review</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="text-center py-12 bg-white/50 rounded-xl border border-dashed border-[#181614]/20 space-y-3">
+      <i class="fa-solid fa-calendar-plus text-4xl text-[#181614]/30"></i>
+      <h3 class="font-display text-xl font-medium text-[#181614]">No Active Reservations Yet</h3>
+      <p class="text-xs text-[#181614]/70 max-w-sm mx-auto">Explore our featured Kerala properties below and request your dates.</p>
+      <a href="{% url 'properties' %}" class="inline-flex px-5 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-lg font-semibold shadow-md">Explore Estates</a>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Featured Estates Showcase -->
+  {% if featured_properties %}
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <h2 class="font-display text-2xl font-medium text-[#181614]">Featured Kerala Estates</h2>
+      <a href="{% url 'properties' %}" class="text-xs uppercase tracking-widest font-semibold text-amber-800 hover:text-amber-900 transition">View Full Catalog →</a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {% for prop in featured_properties %}
+      <article class="bg-white/80 backdrop-blur-md rounded-2xl p-4 border border-[#181614]/15 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-3 relative">
+            <img src="{{ prop.main_image }}" alt="{{ prop.title }}" class="w-full h-full object-cover" />
+            <div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-[#181614]/80 text-white text-[0.55rem] uppercase tracking-widest rounded-full">
+              {{ prop.get_property_type_display }}
+            </div>
+          </div>
+          <h3 class="font-display text-lg font-medium text-[#181614] leading-snug"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
+          <p class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60 mt-1"><i class="fa-solid fa-location-dot text-amber-600"></i> {{ prop.location_display_name }}</p>
+        </div>
+
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-[#181614]/10">
+          <span class="font-bold text-sm text-[#181614]">₹{{ prop.price_per_night|floatformat:0 }} / night</span>
+          <a href="{% url 'property_detail' prop.slug %}" class="px-3 py-1.5 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest rounded-md font-semibold">View Stay</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
 </div>
 {% endblock %}

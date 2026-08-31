@@ -4,218 +4,245 @@
 {% block title %}{{ property.title }} | RENTORA Kerala{% endblock %}
 
 {% block content %}
-<!-- Property Header -->
-<div class="property-header-section">
-    <div class="section-container">
-        <a href="{% url 'properties' %}" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Properties</a>
-        <div class="header-content">
-            <div>
-                <span class="badge-gold">{{ property.get_property_type_display }}</span>
-                <h1 class="property-main-title">{{ property.title }}</h1>
-                <p class="property-location-str"><i class="fa-solid fa-location-dot"></i> {{ property.location_display_name }}</p>
-            </div>
-            <div class="header-rating-box">
-                <div class="rating-score"><i class="fa-solid fa-check text-gold"></i> {{ property.rating }}</div>
-                <div class="rating-count">{{ property.reviews_count }} Verified Guest Reviews</div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-10">
+  
+  <!-- Back Link -->
+  <a href="{% url 'properties' %}" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#181614]/75 hover:text-[#181614] font-semibold transition mb-6">
+    <i class="fa-solid fa-arrow-left text-xs"></i> Back to Kerala Estates
+  </a>
 
-<!-- Image Gallery Section -->
-<section class="gallery-section">
-    <div class="section-container">
-        <div class="gallery-container">
-            <div class="gallery-main">
-                <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage">
-            </div>
-            <div class="gallery-thumbs">
-                <div class="thumb-item active" onclick="changeMainImage('{{ property.main_image }}', this)">
-                    <img src="{{ property.main_image }}" alt="Property Main View">
-                </div>
-                {% for img in property.gallery_json %}
-                <div class="thumb-item" onclick="changeMainImage('{{ img }}', this)">
-                    <img src="{{ img }}" alt="Property View {{ forloop.counter }}">
-                </div>
-                {% endfor %}
-            </div>
-        </div>
+  <!-- Header Section -->
+  <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-[#181614]/15 mb-8">
+    <div>
+      <div class="flex items-center gap-3 mb-2">
+        <span class="px-3 py-1 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest font-semibold rounded-full shadow-sm">
+          {{ property.get_property_type_display }}
+        </span>
+        <span class="text-xs uppercase tracking-widest text-[#181614]/60 font-semibold flex items-center gap-1">
+          <i class="fa-solid fa-location-dot text-amber-600"></i> {{ property.location_display_name }}
+        </span>
+      </div>
+      <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-[#181614] leading-tight">
+        {{ property.title }}
+      </h1>
     </div>
-</section>
 
-<!-- Detail Body Layout -->
-<section class="section detail-body-section">
-    <div class="section-container detail-layout">
+    <!-- Rating Badge -->
+    <div class="flex items-center gap-3 bg-white/80 backdrop-blur-md p-3.5 rounded-2xl border border-[#181614]/15 shadow-md shrink-0">
+      <div class="w-10 h-10 bg-amber-500/20 text-amber-700 rounded-xl flex items-center justify-center font-bold text-base">
+        <i class="fa-solid fa-star"></i>
+      </div>
+      <div>
+        <div class="font-display font-semibold text-base text-[#181614]">{{ property.rating }} / 5.0</div>
+        <div class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold">{{ property.reviews_count }} Verified Guest Reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Gallery -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+    <!-- Main Gallery Feature -->
+    <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border border-[#181614]/15">
+      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" class="w-full h-full object-cover transition-opacity duration-500" />
+    </div>
+
+    <!-- Thumbnails Grid -->
+    <div class="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-4">
+      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 border-amber-600 ring-2 ring-amber-600/30 thumb-item" onclick="changeMainImage('{{ property.main_image }}', this)">
+        <img src="{{ property.main_image }}" alt="Main View" class="w-full h-full object-cover hover:scale-105 transition-transform" />
+      </div>
+      {% for img in property.gallery_json %}
+      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 border-transparent hover:border-amber-600 transition-all thumb-item" onclick="changeMainImage('{{ img }}', this)">
+        <img src="{{ img }}" alt="Gallery View {{ forloop.counter }}" class="w-full h-full object-cover hover:scale-105 transition-transform" />
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Detail Content & Sticky Reservation Sidebar Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+    
+    <!-- Left Main Information (8 Cols) -->
+    <div class="lg:col-span-8 space-y-10">
+      
+      <!-- Quick Specs Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-[#181614]/15 shadow-lg text-center">
+        <div>
+          <i class="fa-solid fa-bed text-lg text-amber-700 mb-1"></i>
+          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">{{ property.bedrooms }} Bedrooms</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Luxury En-suite</span>
+        </div>
+        <div>
+          <i class="fa-solid fa-bath text-lg text-amber-700 mb-1"></i>
+          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">{{ property.bathrooms }} Bathrooms</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Rain Showers</span>
+        </div>
+        <div>
+          <i class="fa-solid fa-users text-lg text-amber-700 mb-1"></i>
+          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">Up to {{ property.max_guests }} Guests</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Full Privacy</span>
+        </div>
+        <div>
+          <i class="fa-solid fa-user-shield text-lg text-amber-700 mb-1"></i>
+          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">Estate Butler</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">24/7 Service</span>
+        </div>
+      </div>
+
+      <!-- Description Block -->
+      <div class="space-y-4 pt-2">
+        <h2 class="font-display text-2xl font-medium text-[#181614]">About This Sanctuary</h2>
+        <p class="text-sm sm:text-base text-[#181614]/80 leading-relaxed font-light">
+          {{ property.description }}
+        </p>
+      </div>
+
+      <!-- Bespoke Amenities Grid -->
+      <div class="space-y-4 pt-4 border-t border-[#181614]/15">
+        <h2 class="font-display text-2xl font-medium text-[#181614]">Bespoke Estate Amenities</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {% for amenity in property.amenities_json %}
+          <div class="flex items-center gap-3 p-3 bg-white/60 rounded-xl border border-[#181614]/10 text-xs font-semibold uppercase tracking-wider text-[#181614]">
+            <i class="fa-solid fa-circle-check text-amber-600 text-sm"></i>
+            <span>{{ amenity }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Concierge Host Card -->
+      <div class="p-6 bg-[#181614] text-white rounded-2xl shadow-xl flex items-center gap-5 border border-white/10">
+        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-amber-400 text-2xl shrink-0">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <div>
+          <h3 class="font-display text-xl font-medium text-white">Managed by Rentora Private Concierge</h3>
+          <p class="text-xs text-white/70 mt-1 leading-relaxed">
+            Verified luxury host. Every booking includes dedicated estate staffing, daily maid service, and personalized itinerary curation.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Sticky Reservation Sidebar (4 Cols) -->
+    <aside class="lg:col-span-4 sticky top-28">
+      <div class="bg-[#181614] text-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-white/10">
         
-        <!-- Left Main Content -->
-        <div class="detail-main-content">
-            
-            <!-- Quick Specs Row -->
-            <div class="specs-bar">
-                <div class="spec-bar-item">
-                    <i class="fa-solid fa-bed"></i>
-                    <div>
-                        <span class="spec-val">{{ property.bedrooms }} Bedrooms</span>
-                        <span class="spec-lbl">Luxury En-suite</span>
-                    </div>
-                </div>
-                <div class="spec-bar-item">
-                    <i class="fa-solid fa-bath"></i>
-                    <div>
-                        <span class="spec-val">{{ property.bathrooms }} Bathrooms</span>
-                        <span class="spec-lbl">Rain Showers</span>
-                    </div>
-                </div>
-                <div class="spec-bar-item">
-                    <i class="fa-solid fa-users"></i>
-                    <div>
-                        <span class="spec-val">Up to {{ property.max_guests }} Guests</span>
-                        <span class="spec-lbl">Full Privacy</span>
-                    </div>
-                </div>
-                <div class="spec-bar-item">
-                    <i class="fa-solid fa-hand-sparkles"></i>
-                    <div>
-                        <span class="spec-val">Dedicated Host</span>
-                        <span class="spec-lbl">24/7 Service</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Description Box -->
-            <div class="content-block">
-                <h2>About This Luxury Estate</h2>
-                <p class="description-text">{{ property.description }}</p>
-            </div>
-
-            <!-- Amenities Grid -->
-            <div class="content-block">
-                <h2>Bespoke Amenities</h2>
-                <div class="amenities-grid">
-                    {% for amenity in property.amenities_json %}
-                    <div class="amenity-chip">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>{{ amenity }}</span>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- Host & Security Card -->
-            <div class="host-card">
-                <div class="host-avatar"><i class="fa-solid fa-user-shield"></i></div>
-                <div class="host-details">
-                    <h3>Managed by Rentora Concierge Service</h3>
-                    <p>Verified luxury host with 100% response rate within 15 minutes. Sanitized, private security, and private chef on demand.</p>
-                </div>
-            </div>
+        <div class="flex items-center justify-between pb-6 border-b border-white/15 mb-6">
+          <div>
+            <span class="font-display text-3xl font-bold text-white">₹{{ property.price_per_night|floatformat:0 }}</span>
+            <span class="text-xs uppercase tracking-widest text-white/60">/ night</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold">
+            <i class="fa-solid fa-star text-amber-400 text-xs"></i> {{ property.rating }}
+          </div>
         </div>
 
-        <!-- Right Booking Inquiry Sticky Card -->
-        <aside class="booking-sidebar">
-            <div class="booking-card">
-                <div class="booking-price-header">
-                    <div>
-                        <span class="b-price">₹{{ property.price_per_night|floatformat:0 }}</span>
-                        <span class="b-unit">/ night</span>
-                    </div>
-                    <div class="b-rating"><i class="fa-solid fa-check text-gold"></i> {{ property.rating }}</div>
-                </div>
+        <form method="POST" action="{% url 'property_detail' property.slug %}" class="space-y-4">
+          {% csrf_token %}
+          <h3 class="font-display text-xl font-medium text-white mb-2">Reserve or Inquire</h3>
 
-                <form method="POST" action="{% url 'property_detail' property.slug %}" class="booking-form">
-                    {% csrf_token %}
-                    <h4 class="form-title">Reserve or Inquire</h4>
+          <div>
+            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Your Full Name</label>
+            <input required type="text" name="name" value="{% if user.is_authenticated %}{{ user.first_name|default:user.username }}{% endif %}" placeholder="e.g. Alexander Wright" class="w-full bg-white/5 border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-amber-400 transition" />
+          </div>
 
-                    <div class="form-group">
-                        <label>Your Full Name</label>
-                        <input type="text" name="name" class="form-control" value="{% if user.is_authenticated %}{{ user.first_name|default:user.username }}{% endif %}" placeholder="e.g. Alexander Wright" required>
-                    </div>
+          <div>
+            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Email Address</label>
+            <input required type="email" name="email" value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" placeholder="alexander@example.com" class="w-full bg-white/5 border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-amber-400 transition" />
+          </div>
 
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" class="form-control" value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" placeholder="name@example.com" required>
-                    </div>
+          <div>
+            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Phone / WhatsApp</label>
+            <input required type="tel" name="phone" placeholder="+91 98765 43210" class="w-full bg-white/5 border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-amber-400 transition" />
+          </div>
 
-                    <div class="form-group">
-                        <label>Phone / WhatsApp Number</label>
-                        <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Check-In Date</label>
-                            <input type="date" name="check_in" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Check-Out Date</label>
-                            <input type="date" name="check_out" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Number of Guests</label>
-                        <select name="guests" class="form-control">
-                            {% for i in "12345678910"|make_list %}
-                            <option value="{{ i }}" {% if i == "2" %}selected{% endif %}>{{ i }} Guests</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Special Requirements / Requests</label>
-                        <textarea name="message" class="form-control" rows="2" placeholder="Private chef preferences, airport pickup, dietary needs..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-gold btn-full">
-                        <i class="fa-solid fa-calendar-check"></i> Submit Booking Inquiry
-                    </button>
-                    <p class="form-note"><i class="fa-solid fa-lock"></i> No payment required now. Our concierge will confirm dates instantly.</p>
-                </form>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Check-In</label>
+              <input required type="date" name="check_in" class="w-full bg-white/5 border border-white/20 rounded-xl px-2.5 py-2 text-xs text-white outline-none focus:border-amber-400 transition" />
             </div>
-        </aside>
+            <div>
+              <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Check-Out</label>
+              <input required type="date" name="check_out" class="w-full bg-white/5 border border-white/20 rounded-xl px-2.5 py-2 text-xs text-white outline-none focus:border-amber-400 transition" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Guests</label>
+            <select name="guests" class="w-full bg-[#181614] border border-white/20 rounded-xl px-3 py-2.5 text-xs text-white focus:border-amber-400 transition">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="6">6+ Guests</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Special Requests</label>
+            <textarea name="message" rows="2" placeholder="Private chef preferences, dietary needs..." class="w-full bg-white/5 border border-white/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-amber-400 transition"></textarea>
+          </div>
+
+          <button type="submit" class="mt-4 w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-display text-xs uppercase tracking-widest rounded-xl font-bold hover:brightness-110 transition shadow-lg flex items-center justify-center gap-2">
+            <i class="fa-solid fa-calendar-check text-xs"></i> Submit Booking Inquiry
+          </button>
+          
+          <p class="text-[0.65rem] uppercase tracking-wider text-white/50 text-center mt-2">
+            <i class="fa-solid fa-lock text-amber-400"></i> Instant Concierge Confirmation
+          </p>
+        </form>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Similar Estates -->
+  {% if similar_properties %}
+  <div class="mt-20 pt-10 border-t border-[#181614]/15">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="font-display text-2xl sm:text-3xl font-medium text-[#181614]">Similar Stays in {{ property.get_location_display }}</h2>
+      <a href="{% url 'properties' %}" class="text-xs uppercase tracking-widest font-semibold text-amber-800 hover:text-amber-900 transition">View All →</a>
     </div>
-</section>
 
-<!-- Similar Properties -->
-{% if similar_properties %}
-<section class="section similar-section">
-    <div class="section-container">
-        <div class="section-header">
-            <h2>Similar Luxury Stays in {{ property.get_location_display }}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {% for prop in similar_properties %}
+      <article class="bg-white/80 backdrop-blur-md rounded-2xl p-4 border border-[#181614]/15 shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-3">
+          <img src="{{ prop.main_image }}" alt="{{ prop.title }}" class="w-full h-full object-cover" />
         </div>
-        <div class="property-grid">
-            {% for prop in similar_properties %}
-            <div class="property-card">
-                <div class="card-image-wrap">
-                    <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy">
-                    <div class="card-badge">{{ prop.get_property_type_display }}</div>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
-                    <div class="card-footer">
-                        <div class="card-price">
-                            <span class="price-val">₹{{ prop.price_per_night|floatformat:0 }}</span>
-                            <span class="price-unit">/ night</span>
-                        </div>
-                        <a href="{% url 'property_detail' prop.slug %}" class="btn btn-gold btn-sm">Explore</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+        <h3 class="font-display text-lg font-medium text-[#181614] leading-snug"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
+        <div class="flex items-center justify-between mt-3">
+          <span class="font-bold text-sm text-[#181614]">₹{{ prop.price_per_night|floatformat:0 }} / night</span>
+          <a href="{% url 'property_detail' prop.slug %}" class="px-3 py-1.5 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest rounded-md font-semibold">Explore</a>
         </div>
+      </article>
+      {% endfor %}
     </div>
-</section>
-{% endif %}
-{% endblock %}
+  </div>
+  {% endif %}
+
+</div>
 
 {% block extra_js %}
 <script>
-function changeMainImage(url, el) {
+  function changeMainImage(src, element) {
     const mainImg = document.getElementById('mainGalleryImage');
-    if (mainImg) mainImg.src = url;
-    
-    document.querySelectorAll('.thumb-item').forEach(item => item.classList.remove('active'));
-    if (el) el.classList.add('active');
-}
+    if (mainImg) {
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = src;
+        mainImg.style.opacity = '1';
+      }, 200);
+    }
+    document.querySelectorAll('.thumb-item').forEach(el => {
+      el.classList.remove('border-amber-600', 'ring-2', 'ring-amber-600/30');
+      el.classList.add('border-transparent');
+    });
+    element.classList.remove('border-transparent');
+    element.classList.add('border-amber-600', 'ring-2', 'ring-amber-600/30');
+  }
 </script>
+{% endblock %}
 {% endblock %}

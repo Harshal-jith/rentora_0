@@ -1,219 +1,300 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Rentora — Stay Beyond Extraordinary | Luxury Property Rentals{% endblock %}</title>
-    <meta name="description" content="Discover handpicked villas, penthouses, estates and luxury retreats designed for unforgettable experiences. Rentora — Stay Beyond Extraordinary.">
-    <meta name="keywords" content="Rentora, luxury rentals, private villas, penthouses, luxury retreats, Kerala luxury homes, Architectural Digest luxury stays">
-    
-    <!-- Google Fonts: Playfair Display (Luxury Serif) & Plus Jakarta Sans (Modern UI) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=13.0">
-    {% block extra_css %}{% endblock %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Rentora Kerala | Premier Luxury Property Rentals & Heritage Sanctuaries{% endblock %}</title>
+  <meta name="description" content="Rentora is Kerala's premier luxury property rental service. Discover handpicked private pool villas, tea estate mansions, and heritage waterfront sanctuaries." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond (Luxury Serif) & Plus Jakarta Sans (Modern UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP, ScrollTrigger & Lenis Smooth Scroll Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Bend-Club-Hero Styles -->
+  <link rel="stylesheet" href="{% static 'css/bend_styles.css' %}" />
+  {% block extra_css %}{% endblock %}
 </head>
-<body class="dark-theme {% if request.resolver_match.url_name == 'home' %}is-landing-page{% endif %}">
-
-    <!-- RENTORA CINEMATIC BRAND LOGO REVEAL PRELOADER (HERO LANDING PAGE ONLY) -->
-    {% if request.resolver_match.url_name == 'home' %}
-    <div id="rentoraPreloader" class="rentora-preloader-overlay">
-        <div class="preloader-content">
-            <!-- Brand Logo Reveal (Pure Transparent Logo) -->
-            <div class="preloader-logo-reveal-box">
-                <img src="{% static 'images/logo_dark.png' %}" alt="Rentora Luxury Hospitality" class="preloader-revealed-logo">
-            </div>
-
-            <!-- Expanding Gold Line -->
-            <div class="preloader-gold-hairline"></div>
-
-            <!-- Official Tagline -->
-            <p class="preloader-official-tagline">Stay Beyond Extraordinary</p>
-        </div>
+<body class="font-body bg-[#f4f1ea] text-[#181614] antialiased selection:bg-[#181614] selection:text-white overflow-x-hidden min-h-screen flex flex-col justify-between">
+  
+  <!-- Django Flash Messages Toasts -->
+  {% if messages %}
+  <div class="fixed top-20 right-5 z-50 flex flex-col gap-2 max-w-md pointer-events-auto">
+    {% for message in messages %}
+    <div class="p-4 rounded-xl shadow-2xl backdrop-blur-md text-sm font-medium border border-white/20 {% if message.tags == 'error' %}bg-red-900/90 text-white{% elif message.tags == 'warning' %}bg-amber-900/90 text-amber-100{% else %}bg-emerald-900/90 text-emerald-100{% endif %} flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-circle-info text-amber-400"></i>
+        <span>{{ message }}</span>
+      </div>
+      <button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white">&times;</button>
     </div>
-    {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
 
-    <!-- Django Flash Messages -->
-    {% if messages %}
-    <div class="toast-container" id="toastContainer">
-        {% for message in messages %}
-        <div class="toast toast-{{ message.tags }}">
-            <i class="fa-solid {% if message.tags == 'success' %}fa-circle-check{% elif message.tags == 'error' %}fa-circle-exclamation{% else %}fa-circle-info{% endif %}"></i>
-            <span>{{ message }}</span>
-            <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
+  <!-- Ambient Grain Overlay -->
+  <div aria-hidden="true" class="has-grain pointer-events-none fixed inset-0 z-50"></div>
+
+  <!-- Background Color Scrub Canvas Layer -->
+  <div id="scroll-bg" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 bg-[#f4f1ea]"></div>
+
+  <!-- Header Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-[#181614] text-white shadow-xl px-5 py-4 sm:px-8 lg:px-12 border-b border-white/10">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-6">
+      
+      <!-- Brand Logo -->
+      <a aria-label="Rentora Kerala home" class="flex items-center gap-2.5 group" href="{% url 'home' %}">
+        <div class="flex flex-col">
+          <span class="font-display font-medium text-lg sm:text-xl tracking-widest text-white uppercase">RENTORA</span>
+          <span class="text-[0.55rem] uppercase tracking-[0.3em] text-white/60">KERALA • GOD'S OWN COUNTRY</span>
         </div>
-        {% endfor %}
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav aria-label="Primary" class="hidden text-xs sm:text-sm md:block">
+        <ul class="flex items-center gap-x-6">
+          <li class="flex items-center gap-x-6">
+            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300 {% if request.resolver_match.url_name == 'home' %}text-amber-400 font-bold{% endif %}" href="{% url 'home' %}">Concept</a>
+            <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+            </svg>
+          </li>
+          <li class="flex items-center gap-x-6">
+            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300 {% if request.resolver_match.url_name == 'properties' or request.resolver_match.url_name == 'property_detail' %}text-amber-400 font-bold{% endif %}" href="{% url 'properties' %}">Kerala Estates</a>
+            <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+            </svg>
+          </li>
+          <li class="flex items-center gap-x-6">
+            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="{% url 'home' %}#stay">Guest Experience</a>
+            <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+            </svg>
+          </li>
+          <li>
+            <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="{% url 'home' %}#amenities">Ayurveda & Concierge</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Side Actions & User Badge -->
+      <div class="flex items-center gap-4">
+        {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-amber-500/30 transition">
+          <i class="fa-solid fa-user-check text-xs"></i> {{ user.first_name|default:user.username }}
+        </a>
+        <a href="{% url 'logout' %}" class="hidden sm:inline-flex px-2.5 py-1.5 text-white/80 hover:text-white font-display text-xs uppercase tracking-widest transition">
+          Logout
+        </a>
+        {% endif %}
+
+        <a href="{% url 'properties' %}" class="hidden sm:inline-flex px-4 py-2 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition shadow-lg">
+          Reserve Estate
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="open-menu" aria-label="Open menu" class="flex flex-col justify-center gap-[5px] md:hidden p-2">
+          <span class="block h-px w-6 bg-white"></span>
+          <span class="block h-px w-6 bg-white"></span>
+          <span class="block h-px w-6 bg-white"></span>
+        </button>
+      </div>
+
     </div>
-    {% endif %}
+  </header>
 
-    <!-- Floating Glass Navigation Bar (CENTERED LOGO LUXURY HEADER) -->
-    {% block navbar %}
-    <header class="navbar navbar-glass" id="navbar">
-        <div class="nav-container nav-container-centered">
-            
-            <!-- Left: Navigation Links -->
-            <nav class="nav-links">
-                <a href="{% url 'properties' %}" class="nav-link {% if request.resolver_match.url_name == 'properties' %}active{% endif %}">Estates</a>
-                <a href="{% url 'home' %}#facilities" class="nav-link">Facilities</a>
-            </nav>
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-[#181614] text-white flex flex-col justify-between p-8 transition-transform duration-500 translate-x-full md:hidden">
+    <div class="flex justify-between items-center">
+      <div class="flex flex-col">
+        <span class="font-display font-medium text-lg tracking-widest uppercase">RENTORA</span>
+        <span class="text-[0.6rem] uppercase tracking-[0.25em] text-white/60">KERALA ESTATES</span>
+      </div>
+      <button id="close-menu" aria-label="Close menu" class="text-white text-2xl p-2">&times;</button>
+    </div>
+    <nav class="flex flex-col gap-5 text-xl font-display uppercase tracking-widest my-auto">
+      <a href="{% url 'home' %}" class="mobile-nav-link hover:text-slate-300">The Kerala Concept</a>
+      <a href="{% url 'properties' %}" class="mobile-nav-link hover:text-slate-300">Kerala Estates</a>
+      <a href="{% url 'home' %}#stay" class="mobile-nav-link hover:text-slate-300">Guest Experience</a>
+      <a href="{% url 'home' %}#amenities" class="mobile-nav-link hover:text-slate-300">Ayurveda & Concierge</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'dashboard' %}" class="mobile-nav-link text-amber-300 font-bold flex items-center gap-2">
+        <i class="fa-solid fa-user-check text-base"></i> Dashboard ({{ user.username }})
+      </a>
+      <a href="{% url 'logout' %}" class="mobile-nav-link text-red-400">Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="mobile-nav-link text-amber-300 font-bold flex items-center gap-2">
+        <i class="fa-solid fa-lock text-base"></i> VIP Member Login
+      </a>
+      <a href="{% url 'register' %}" class="mobile-nav-link text-white font-bold flex items-center gap-2">
+        <i class="fa-solid fa-user-plus text-base"></i> Join Member Circle
+      </a>
+      {% endif %}
+    </nav>
+    <div class="flex flex-col gap-2">
+      <a href="{% url 'properties' %}" class="w-full text-center py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition">Reserve Kerala Estate</a>
+      <p class="text-xs uppercase tracking-widest text-white/50 text-center">Luxury Private Rentals • God's Own Country</p>
+    </div>
+  </div>
 
-            <!-- Center: Rentora Brand Logo (CENTERED) -->
-            <a href="{% url 'home' %}" class="brand-logo brand-logo-center" aria-label="Rentora Home">
-                <div class="logo-wrapper">
-                    <img src="{% static 'images/logo_dark.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="logo-img logo-dark">
-                    <img src="{% static 'images/logo_light.png' %}" alt="Rentora — Stay Beyond Extraordinary" class="logo-img logo-light">
-                </div>
-            </a>
+  <!-- Main Content Viewport -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
 
-            <!-- Right: Actions & Auth Glass Buttons -->
-            <div class="nav-actions">
-                <!-- Dark / Light Theme Switcher -->
-                <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
-                    <i class="fa-solid fa-moon" id="themeIcon"></i>
-                </button>
-
-                <div class="nav-auth">
-                    {% if user.is_authenticated %}
-                    <a href="{% url 'dashboard' %}" class="btn btn-glass btn-sm" title="View My Bookings">
-                        <i class="fa-solid fa-calendar-check text-gold"></i> My Bookings
-                    </a>
-                    <a href="{% url 'dashboard' %}" class="user-badge-link" title="User Profile">
-                        <div class="user-badge">
-                            <i class="fa-solid fa-user"></i>
-                            <span>{{ user.username }}</span>
-                        </div>
-                    </a>
-                    <a href="{% url 'logout' %}" class="btn btn-gold btn-sm">Logout</a>
-                    {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-glass btn-sm">Sign In</a>
-                    <a href="{% url 'register' %}" class="btn btn-gold btn-sm">Sign Up</a>
-                    {% endif %}
-                </div>
-
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-
-        </div>
-    </header>
-    {% endblock %}
-
-    <!-- Main Content Body -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-col brand-col">
-                <a href="{% url 'home' %}" aria-label="Rentora Home">
-                    <div class="logo-wrapper footer-logo-wrapper">
-                        <img src="{% static 'images/logo_dark.png' %}" alt="Rentora" class="logo-img footer-logo-img logo-dark">
-                        <img src="{% static 'images/logo_light.png' %}" alt="Rentora" class="logo-img footer-logo-img logo-light">
-                    </div>
-                </a>
-                <p class="footer-desc">
-                    Discover handpicked villas, penthouses, estates and luxury retreats designed for unforgettable experiences.
-                </p>
-                <div class="social-links">
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-heading">Luxury Destinations</h4>
-                <ul class="footer-links">
-                    <li><a href="{% url 'properties' %}?location=alleppey">Alleppey Waterfront</a></li>
-                    <li><a href="{% url 'properties' %}?location=munnar">Munnar Tea Estates</a></li>
-                    <li><a href="{% url 'properties' %}?location=varkala">Varkala Ocean Cliffs</a></li>
-                    <li><a href="{% url 'properties' %}?location=fort_kochi">Fort Kochi Colonial Zone</a></li>
-                    <li><a href="{% url 'properties' %}?location=wayanad">Wayanad Rainforest</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-heading">Property Collection</h4>
-                <ul class="footer-links">
-                    <li><a href="{% url 'properties' %}?property_type=villa">Private Infinity Pool Villas</a></li>
-                    <li><a href="{% url 'properties' %}?property_type=houseboat">Presidential Houseboats</a></li>
-                    <li><a href="{% url 'properties' %}?property_type=estate">Plantation Estate Manors</a></li>
-                    <li><a href="{% url 'properties' %}?property_type=bungalow">Colonial Heritage Mansions</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-heading">24/7 Private Concierge</h4>
-                <p class="contact-item"><i class="fa-solid fa-envelope"></i> project.propertyrentals@gmail.com</p>
-                <p class="contact-item"><i class="fa-solid fa-location-dot"></i> Rentora, G-05, PO, near Kazhchaparambu, Kannadi-I, Kannadi-II, Kerala 678701</p>
-            </div>
+  <!-- Grand Luxury Footer -->
+  <footer class="bg-[#0e0d0c] text-white pt-16 pb-12 border-t border-white/10 mt-16">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      
+      <!-- Multi-Column Grid -->
+      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 pb-16 border-b border-white/10">
+        
+        <!-- Col 1: Brand & Philosophy (5 Cols) -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          <a href="{% url 'home' %}" class="inline-block">
+            <span class="font-display font-medium text-2xl tracking-widest text-white uppercase">RENTORA</span>
+            <p class="text-[0.55rem] uppercase tracking-[0.3em] text-white/50 mt-0.5">KERALA • GOD'S OWN COUNTRY</p>
+          </a>
+          <p class="text-xs sm:text-sm text-white/60 leading-relaxed max-w-sm">
+            Curators of exceptional private architectural estates, secluded backwater sanctuaries, and heritage tea plantations across Kerala. Every stay is defined by privacy, bespoke gastronomy, and 24/7 personal estate management.
+          </p>
+          <div class="pt-2">
+            <p class="text-[0.65rem] uppercase tracking-widest text-white/40">Accreditation</p>
+            <p class="text-xs text-white/70 mt-0.5">Kerala Tourism Department Approved • Luxury Class A</p>
+          </div>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; 2026 Rentora Luxury Rentals. Stay Beyond Extraordinary. All rights reserved.</p>
+        <!-- Col 2: Kerala Sanctuaries (2 Cols) -->
+        <div class="lg:col-span-2 flex flex-col gap-3">
+          <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Destinations</p>
+          <ul class="flex flex-col gap-2 text-xs text-white/60">
+            <li><a href="{% url 'properties' %}?location=alleppey" class="hover:text-white transition">Alleppey Backwaters</a></li>
+            <li><a href="{% url 'properties' %}?location=kumarakom" class="hover:text-white transition">Kumarakom Lakefront</a></li>
+            <li><a href="{% url 'properties' %}?location=munnar" class="hover:text-white transition">Munnar High Ranges</a></li>
+            <li><a href="{% url 'properties' %}?location=marari" class="hover:text-white transition">Marari Coastal Haven</a></li>
+            <li><a href="{% url 'properties' %}?location=fort_kochi" class="hover:text-white transition">Fort Kochi Heritage</a></li>
+            <li><a href="{% url 'properties' %}?location=varkala" class="hover:text-white transition">Varkala Clifftop</a></li>
+          </ul>
         </div>
-    </footer>
 
-    <!-- Custom JavaScript -->
-    <script src="{% static 'js/main.js' %}"></script>
-    {% if request.resolver_match.url_name == 'home' %}
-    <script>
-        // RENTORA CINEMATIC BRAND LOGO REVEAL ENGINE (HERO LANDING PAGE ONLY)
-        (function() {
-            const preloader = document.getElementById("rentoraPreloader");
-            if (!preloader) return;
+        <!-- Col 3: Concierge & Experiences (2 Cols) -->
+        <div class="lg:col-span-2 flex flex-col gap-3">
+          <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Experiences & VIP</p>
+          <ul class="flex flex-col gap-2 text-xs text-white/60">
+            <li><a href="{% url 'home' %}#amenities" class="hover:text-white transition">In-Villa Master Chefs</a></li>
+            <li><a href="{% url 'home' %}#amenities" class="hover:text-white transition">Ayurvedic Rejuvenation</a></li>
+            <li><a href="{% url 'home' %}#stay" class="hover:text-white transition">Teak Houseboat Cruises</a></li>
+            <li><a href="{% url 'home' %}#amenities" class="hover:text-white transition">Airport VIP Transfers</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'dashboard' %}" class="text-amber-400 font-semibold hover:text-amber-300 transition flex items-center gap-1.5"><i class="fa-solid fa-user-check text-[0.65rem]"></i> Dashboard ({{ user.username }})</a></li>
+            <li><a href="{% url 'logout' %}" class="text-red-400 hover:text-red-300 transition">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" class="text-amber-400 font-semibold hover:text-amber-300 transition flex items-center gap-1.5"><i class="fa-solid fa-lock text-[0.65rem]"></i> VIP Member Login</a></li>
+            <li><a href="{% url 'register' %}" class="text-white font-semibold hover:text-amber-300 transition flex items-center gap-1.5"><i class="fa-solid fa-user-plus text-[0.65rem]"></i> Join Member Circle</a></li>
+            {% endif %}
+          </ul>
+        </div>
 
-            // Trigger logo reveal animation after brief DOM paint
-            setTimeout(function() {
-                preloader.classList.add("start-reveal");
-            }, 80);
+        <!-- Col 4: VIP Newsletter & Concierge (3 Cols) -->
+        <div class="lg:col-span-3 flex flex-col gap-3">
+          <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Private Dispatch</p>
+          <p class="text-xs text-white/60 leading-relaxed">
+            Receive confidential off-market estate listings and seasonal backwater retreat announcements.
+          </p>
+          
+          <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to the Rentora Private Dispatch.');" class="mt-1 flex items-center border-b border-white/25 pb-2">
+            <input required type="email" placeholder="Your email address" class="w-full bg-transparent text-xs text-white outline-none placeholder:text-white/40 focus:placeholder:text-white/60"/>
+            <button type="submit" aria-label="Subscribe" class="text-white hover:translate-x-1 transition-transform">
+              →
+            </button>
+          </form>
 
-            // Pre-cache hero background image in memory for instant 0ms rendering
-            const heroImg = new Image();
-            heroImg.src = "{% static 'images/hero_mid_villa_1784964394119.jpg' %}";
+          <div class="pt-2 text-xs text-white/50 flex flex-col gap-1">
+            <p><span class="text-white/30">Concierge Desk:</span> concierge@rentorakerala.com</p>
+            <p><span class="text-white/30">Headquarters:</span> Fort Kochi, Kerala, India</p>
+          </div>
+        </div>
 
-            // Smooth luxury dismiss transition
-            let isDismissed = false;
-            const dismiss = function() {
-                if (isDismissed) return;
-                isDismissed = true;
-                preloader.classList.add("preloader-hide");
+      </div>
 
-                // TRIGGER HERO ANIMATIONS EXACTLY AS PRELOADER FINISHES
-                document.body.classList.add("hero-animate-active");
+      <!-- Bottom Legal & VIP Row -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 uppercase tracking-[0.2em]">
+        <p>© 2026 Rentora Kerala • All Rights Reserved</p>
+        <div class="flex flex-wrap items-center justify-center gap-5 text-[0.65rem]">
+          {% if user.is_authenticated %}
+          <a href="{% url 'dashboard' %}" class="text-amber-400 font-semibold hover:text-amber-300 transition"><i class="fa-solid fa-user-check me-1"></i> Dashboard</a>
+          <span class="text-white/20">•</span>
+          <a href="{% url 'logout' %}" class="text-red-400 hover:text-red-300 transition">Logout</a>
+          {% else %}
+          <a href="{% url 'login' %}" class="text-amber-400 font-semibold hover:text-amber-300 transition"><i class="fa-solid fa-lock me-1"></i> Sign In</a>
+          <span class="text-white/20">•</span>
+          <a href="{% url 'register' %}" class="text-white font-semibold hover:text-amber-300 transition"><i class="fa-solid fa-user-plus me-1"></i> Register</a>
+          {% endif %}
+          <span class="text-white/20">•</span>
+          <a href="#" onclick="event.preventDefault(); alert('Rentora Private Estate Privacy Policy: We uphold the strictest global guest confidentiality and data security.');" class="hover:text-white transition">Privacy Policy</a>
+          <span class="text-white/20">•</span>
+          <a href="#" onclick="event.preventDefault(); alert('Terms of Residence: All bookings include full estate staffing and 24/7 dedicated concierge care.');" class="hover:text-white transition">Terms of Residence</a>
+          <span class="text-white/20">•</span>
+          <a href="#" class="hover:text-white transition">Back to Top ↑</a>
+        </div>
+      </div>
 
-                setTimeout(function() {
-                    preloader.style.display = "none";
-                }, 650);
-            };
+    </div>
+  </footer>
 
-            if (heroImg.complete) {
-                setTimeout(dismiss, 1100);
-            } else {
-                heroImg.onload = function() {
-                    setTimeout(dismiss, 1100);
-                };
-                window.addEventListener("load", function() {
-                    setTimeout(dismiss, 1200);
-                });
-            }
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Drawer Toggle
+      const openMenuBtn = document.getElementById('open-menu');
+      const closeMenuBtn = document.getElementById('close-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-            // Fallback safety timeout (1.6s max)
-            setTimeout(dismiss, 1600);
-        })();
-    </script>
-    {% endif %}
-    {% block extra_js %}{% endblock %}
+      if (openMenuBtn && closeMenuBtn && mobileMenu) {
+        openMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.remove('translate-x-full');
+        });
+        closeMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+        });
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+          });
+        });
+      }
+
+      // Initialize Lenis Ultra-Smooth Global Scroll Engine
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 1.0,
+          touchMultiplier: 1.5,
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+    });
+  </script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>
