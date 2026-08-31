@@ -3,6 +3,31 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
 
   // ----------------------------------------------------
+  // 0. LENIS ULTRA-SMOOTH GLOBAL SCROLL ENGINE (MATCHES HORIZONTAL INERTIA 100%)
+  // ----------------------------------------------------
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth exponential inertia curve
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+    window.lenis = lenis;
+  }
+
+  // ----------------------------------------------------
   // 1. DAY / NIGHT LIGHTING MODE TOGGLE (SIGNATURE MEDITERRANEAN CREAM CANVAS DEFAULT)
   // ----------------------------------------------------
 
