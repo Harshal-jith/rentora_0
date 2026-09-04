@@ -161,19 +161,19 @@ def send_welcome_email(request, user):
     explore_url = f"{domain_url}/properties/"
     user_name = user.first_name if user.first_name else user.username
     
-    subject = "Welcome to Rentora — VIP Member Circle Confirmed"
+    subject = "Welcome to Rentora"
     
     message = f"""Dear {user_name},
 
-Welcome to Rentora — Kerala's Sanctuary of Bespoke Private Estates.
+Thank you for creating an account with Rentora.
 
-Your VIP member account is active. You now hold confidential access to our portfolio of handpicked private backwater mansions, cloud villas in Munnar, and coastal architectural sanctuaries across Kerala.
+Your account is active. You can now explore our curated collection of private luxury estates across Kerala and manage your reservation requests.
 
-Explore Private Collection:
+Explore Properties:
 {explore_url}
 
-Warm regards,
-Rentora Private Concierge Desk
+Best regards,
+Rentora Team
 Fort Kochi, Kerala, India
 {domain_url}
 """
@@ -183,63 +183,63 @@ Fort Kochi, Kerala, India
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {{ font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f1ea; color: #181614; margin: 0; padding: 40px 16px; -webkit-font-smoothing: antialiased; }}
-        .email-wrapper {{ max-width: 580px; margin: 0 auto; background: #ffffff; border: 1px solid rgba(24, 22, 20, 0.12); border-radius: 16px; padding: 40px 36px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }}
-        .brand-logo {{ text-align: center; margin-bottom: 28px; }}
-        .brand-title {{ font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 500; color: #181614; letter-spacing: 4px; text-transform: uppercase; margin: 0; }}
-        .brand-sub {{ font-size: 9px; color: rgba(24, 22, 20, 0.5); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; font-weight: 600; }}
-        .status-badge {{ display: inline-block; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); color: #047857; font-size: 10px; font-weight: 600; letter-spacing: 2px; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 24px; }}
-        .content-heading {{ font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 500; color: #181614; margin-top: 0; margin-bottom: 12px; }}
-        .content-text {{ font-size: 14px; line-height: 1.65; color: rgba(24, 22, 20, 0.8); margin-bottom: 24px; font-weight: 400; }}
-        .spec-grid {{ background: #f8f6f0; border: 1px solid rgba(24, 22, 20, 0.08); border-radius: 12px; padding: 20px; margin-bottom: 28px; }}
-        .spec-item {{ font-size: 13px; color: #181614; margin-bottom: 10px; line-height: 1.5; }}
-        .spec-item:last-child {{ margin-bottom: 0; }}
-        .spec-num {{ font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 12px; color: rgba(24, 22, 20, 0.4); margin-right: 8px; letter-spacing: 1px; }}
-        .btn-primary {{ display: block; width: 100%; box-sizing: border-box; background-color: #181614; color: #ffffff !important; text-decoration: none; padding: 14px 24px; border-radius: 10px; font-weight: 600; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; text-align: center; margin-bottom: 28px; }}
-        .footer-box {{ border-top: 1px solid rgba(24, 22, 20, 0.1); padding-top: 20px; text-align: center; }}
-        .footer-text {{ font-size: 11px; color: rgba(24, 22, 20, 0.5); line-height: 1.6; margin: 0; }}
-    </style>
 </head>
-<body>
-    <div class="email-wrapper">
-        <div class="brand-logo">
-            <h1 class="brand-title">RENTORA</h1>
-            <div class="brand-sub">KERALA • GOD'S OWN COUNTRY</div>
-        </div>
-        
-        <div style="text-align: center;">
-            <div class="status-badge">Membership Active</div>
-        </div>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #334155; margin: 0; padding: 40px 16px; -webkit-font-smoothing: antialiased;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td align="center">
+                <div style="max-width: 540px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 40px 36px; text-align: left;">
+                    
+                    <!-- Header Logo -->
+                    <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 24px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #0f172a; letter-spacing: 2.5px; text-transform: uppercase;">RENTORA</div>
+                        <div style="font-size: 11px; color: #64748b; letter-spacing: 1px; margin-top: 2px; text-transform: uppercase;">Luxury Estates • Kerala</div>
+                    </div>
 
-        <h2 class="content-heading" style="text-align: center;">Welcome to the Private Circle</h2>
+                    <!-- Main Heading -->
+                    <h1 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 16px 0; line-height: 1.3;">Welcome to Rentora</h1>
 
-        <p class="content-text">
-            Dear <strong>{user_name}</strong>,<br><br>
-            Your VIP membership with Rentora is active. You now hold confidential access to our portfolio of handpicked private backwater mansions, cloud villas in Munnar, and coastal architectural sanctuaries across Kerala.
-        </p>
+                    <p style="font-size: 14px; line-height: 1.6; color: #334155; margin: 0 0 20px 0;">
+                        Dear <strong>{user_name}</strong>,<br><br>
+                        Thank you for registering with Rentora. Your account is now active, giving you direct access to explore our portfolio of private backwater estates and luxury hillside retreats.
+                    </p>
 
-        <div class="spec-grid">
-            <div class="spec-item"><span class="spec-num">01</span><strong>Off-Market Sanctuaries:</strong> 100% verified cliffside villas and tea estate manors.</div>
-            <div class="spec-item"><span class="spec-num">02</span><strong>In-Villa Chefs:</strong> Bespoke coastal Malabar cuisine and Ayurvedic dining.</div>
-            <div class="spec-item"><span class="spec-num">03</span><strong>24/7 Butler Desk:</strong> Direct line for private houseboat charters and airport transfers.</div>
-        </div>
+                    <!-- Features Box -->
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 18px 20px; margin-bottom: 24px;">
+                        <div style="font-size: 13px; font-weight: 600; color: #0f172a; margin-bottom: 10px;">What you can do with your account:</div>
+                        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #475569; line-height: 1.6;">
+                            <li style="margin-bottom: 6px;">Browse verified luxury villas & private island estates</li>
+                            <li style="margin-bottom: 6px;">Submit booking inquiries with custom stay requests</li>
+                            <li style="margin-bottom: 0;">Track inquiry status & manage your profile from your dashboard</li>
+                        </ul>
+                    </div>
 
-        <a href="{explore_url}" class="btn-primary" target="_blank">EXPLORE PRIVATE COLLECTION</a>
+                    <!-- Action Button -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 28px;">
+                        <tr>
+                            <td align="center">
+                                <a href="{explore_url}" target="_blank" style="display: inline-block; background-color: #0f172a; color: #ffffff !important; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;">Explore Properties</a>
+                            </td>
+                        </tr>
+                    </table>
 
-        <div class="footer-box">
-            <p class="footer-text">
-                <strong>Rentora Luxury Hospitality Group</strong><br>
-                Fort Kochi, Kerala, India • Concierge: concierge@rentorakerala.com<br>
-                Need assistance? Reply directly to this email to connect with your estate butler.
-            </p>
-        </div>
-    </div>
+                    <!-- Footer -->
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
+                        <p style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0;">
+                            Rentora Luxury Rentals • Fort Kochi, Kerala, India<br>
+                            Need help? Contact <a href="mailto:support@rentorakerala.com" style="color: #475569; text-decoration: underline;">support@rentorakerala.com</a>
+                        </p>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 """
 
-    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'Rentora Luxury Concierge <onboarding@resend.dev>'))
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'Rentora <onboarding@resend.dev>'))
 
     t = threading.Thread(
         target=_async_send_mail_worker,
@@ -261,20 +261,19 @@ def send_verification_email(request, user, token_obj):
         verify_url = f"https://rentora-7gdf.onrender.com/verify-email/{token_obj.token}/"
     
     user_name = user.first_name if user.first_name else user.username
-    subject = "Verify Your Email Address — Rentora Kerala"
+    subject = "Verify Your Email Address — Rentora"
     
     message = f"""Dear {user_name},
 
-Thank you for registering your VIP account with Rentora — Kerala's Sanctuary of Bespoke Private Estates.
+Thank you for registering with Rentora.
 
-Please verify your email address by clicking the link below to activate your account:
+Please verify your email address by clicking the link below:
 {verify_url}
 
-If you did not initiate this request, please ignore this email.
+If you did not create an account with Rentora, please ignore this email.
 
-Warm regards,
-Rentora Private Concierge Desk
-Fort Kochi, Kerala, India
+Best regards,
+Rentora Team
 https://rentora-7gdf.onrender.com
 """
 
@@ -283,56 +282,54 @@ https://rentora-7gdf.onrender.com
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {{ font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f1ea; color: #181614; margin: 0; padding: 40px 16px; -webkit-font-smoothing: antialiased; }}
-        .email-wrapper {{ max-width: 580px; margin: 0 auto; background: #ffffff; border: 1px solid rgba(24, 22, 20, 0.12); border-radius: 16px; padding: 40px 36px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }}
-        .brand-logo {{ text-align: center; margin-bottom: 28px; }}
-        .brand-title {{ font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 500; color: #181614; letter-spacing: 4px; text-transform: uppercase; margin: 0; }}
-        .brand-sub {{ font-size: 9px; color: rgba(24, 22, 20, 0.5); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; font-weight: 600; }}
-        .status-badge {{ display: inline-block; background: rgba(24, 22, 20, 0.04); border: 1px solid rgba(24, 22, 20, 0.12); color: #181614; font-size: 10px; font-weight: 600; letter-spacing: 2px; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 24px; }}
-        .content-heading {{ font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 500; color: #181614; margin-top: 0; margin-bottom: 12px; }}
-        .content-text {{ font-size: 14px; line-height: 1.65; color: rgba(24, 22, 20, 0.8); margin-bottom: 24px; font-weight: 400; }}
-        .btn-primary {{ display: block; width: 100%; box-sizing: border-box; background-color: #181614; color: #ffffff !important; text-decoration: none; padding: 14px 24px; border-radius: 10px; font-weight: 600; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; text-align: center; margin-bottom: 28px; }}
-        .url-box {{ background: #f8f6f0; border: 1px solid rgba(24, 22, 20, 0.08); border-radius: 8px; padding: 12px 16px; margin-bottom: 28px; word-break: break-all; }}
-        .url-text {{ font-size: 11px; color: rgba(24, 22, 20, 0.6); margin: 0; line-height: 1.4; }}
-        .url-link {{ color: #181614; text-decoration: underline; font-weight: 500; }}
-        .footer-box {{ border-top: 1px solid rgba(24, 22, 20, 0.1); padding-top: 20px; text-align: center; }}
-        .footer-text {{ font-size: 11px; color: rgba(24, 22, 20, 0.5); line-height: 1.6; margin: 0; }}
-    </style>
 </head>
-<body>
-    <div class="email-wrapper">
-        <div class="brand-logo">
-            <h1 class="brand-title">RENTORA</h1>
-            <div class="brand-sub">KERALA • GOD'S OWN COUNTRY</div>
-        </div>
-        
-        <div style="text-align: center;">
-            <div class="status-badge">Membership Verification</div>
-        </div>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #334155; margin: 0; padding: 40px 16px; -webkit-font-smoothing: antialiased;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td align="center">
+                <div style="max-width: 540px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 40px 36px; text-align: left;">
+                    
+                    <!-- Header Logo -->
+                    <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 24px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #0f172a; letter-spacing: 2.5px; text-transform: uppercase;">RENTORA</div>
+                        <div style="font-size: 11px; color: #64748b; letter-spacing: 1px; margin-top: 2px; text-transform: uppercase;">Account Security</div>
+                    </div>
 
-        <h2 class="content-heading" style="text-align: center;">Verify Your Account Access</h2>
+                    <!-- Main Heading -->
+                    <h1 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 16px 0; line-height: 1.3;">Verify Your Email Address</h1>
 
-        <p class="content-text">
-            Dear <strong>{user_name}</strong>,<br><br>
-            Thank you for requesting VIP member credentials with Rentora Kerala. Please activate your account to access our handpicked collection of private waterfront estates, tea plantation manors, and 24/7 personal concierge services.
-        </p>
+                    <p style="font-size: 14px; line-height: 1.6; color: #334155; margin: 0 0 24px 0;">
+                        Dear <strong>{user_name}</strong>,<br><br>
+                        Please click the button below to verify your email address and activate your Rentora account:
+                    </p>
 
-        <a href="{verify_url}" class="btn-primary" target="_blank">VERIFY EMAIL ADDRESS</a>
+                    <!-- Action Button -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 24px;">
+                        <tr>
+                            <td align="center">
+                                <a href="{verify_url}" target="_blank" style="display: inline-block; background-color: #0f172a; color: #ffffff !important; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;">Verify Email Address</a>
+                            </td>
+                        </tr>
+                    </table>
 
-        <div class="url-box">
-            <p class="url-text">If the button above does not open, copy and paste this verification URL into your browser:<br>
-            <a href="{verify_url}" class="url-link" target="_blank">{verify_url}</a></p>
-        </div>
+                    <!-- Direct Link Box -->
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px 16px; margin-bottom: 24px; word-break: break-all;">
+                        <p style="font-size: 12px; color: #64748b; margin: 0 0 6px 0; line-height: 1.4;">If the button doesn't work, copy and paste this link into your browser:</p>
+                        <a href="{verify_url}" target="_blank" style="font-size: 12px; color: #0284c7; text-decoration: underline;">{verify_url}</a>
+                    </div>
 
-        <div class="footer-box">
-            <p class="footer-text">
-                <strong>Rentora Private Concierge Desk</strong><br>
-                Fort Kochi, Kerala, India • Class A Approved<br>
-                If you did not initiate this account request, please disregard this dispatch.
-            </p>
-        </div>
-    </div>
+                    <!-- Footer -->
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
+                        <p style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0;">
+                            If you did not request this email, no further action is required.<br>
+                            Rentora Luxury Rentals • Fort Kochi, Kerala, India
+                        </p>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 """
@@ -349,10 +346,10 @@ https://rentora-7gdf.onrender.com
 
 def send_booking_inquiry_email(request, inquiry):
     domain_url = "https://rentora-7gdf.onrender.com"
-    property_title = inquiry.property.title if inquiry.property else "Bespoke Kerala Private Estate"
+    property_title = inquiry.property.title if inquiry.property else "Kerala Private Estate"
     property_location = inquiry.property.location_display_name if inquiry.property else "Kerala"
     
-    subject = f"Booking Inquiry Confirmed — {property_title}"
+    subject = f"Booking Inquiry Received — {property_title}"
     
     if hasattr(inquiry.check_in, 'strftime'):
         check_in_str = inquiry.check_in.strftime('%B %d, %Y')
@@ -370,12 +367,12 @@ def send_booking_inquiry_email(request, inquiry):
     
     message = f"""Dear {inquiry.name},
 
-Thank you for your reservation inquiry with Rentora — Kerala's Sanctuary of Bespoke Private Estates.
+Thank you for your booking inquiry with Rentora.
 
-We have received your booking inquiry for {property_title} ({property_location}).
+We have received your inquiry for {property_title} ({property_location}).
 
-Booking Details:
-• Estate: {property_title} ({property_location})
+Inquiry Details:
+• Property: {property_title} ({property_location})
 • Guest Name: {inquiry.name}
 • Contact Phone: {inquiry.phone}
 • Check-In: {check_in_str}
@@ -383,10 +380,10 @@ Booking Details:
 • Guests: {inquiry.guests}
 • Special Requests: {inquiry.message if inquiry.message else 'None'}
 
-Your dedicated 24/7 personal host will contact you within 2 hours to confirm availability, chef dining preferences, and transport logistics.
+Our reservations team will review property availability and contact you shortly to confirm your booking.
 
-Warm regards,
-Rentora Private Concierge Desk
+Best regards,
+Rentora Reservations Desk
 Fort Kochi, Kerala, India
 {domain_url}
 """
@@ -396,83 +393,80 @@ Fort Kochi, Kerala, India
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {{ font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f1ea; color: #181614; margin: 0; padding: 40px 16px; -webkit-font-smoothing: antialiased; }}
-        .email-wrapper {{ max-width: 580px; margin: 0 auto; background: #ffffff; border: 1px solid rgba(24, 22, 20, 0.12); border-radius: 16px; padding: 40px 36px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }}
-        .brand-logo {{ text-align: center; margin-bottom: 28px; }}
-        .brand-title {{ font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 500; color: #181614; letter-spacing: 4px; text-transform: uppercase; margin: 0; }}
-        .brand-sub {{ font-size: 9px; color: rgba(24, 22, 20, 0.5); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; font-weight: 600; }}
-        .status-badge {{ display: inline-block; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); color: #b45309; font-size: 10px; font-weight: 600; letter-spacing: 2px; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; margin-bottom: 24px; }}
-        .content-heading {{ font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 500; color: #181614; margin-top: 0; margin-bottom: 12px; }}
-        .content-text {{ font-size: 14px; line-height: 1.65; color: rgba(24, 22, 20, 0.8); margin-bottom: 24px; font-weight: 400; }}
-        .summary-card {{ background: #f8f6f0; border: 1px solid rgba(24, 22, 20, 0.08); border-radius: 12px; padding: 20px 24px; margin-bottom: 28px; }}
-        .row-item {{ display: table; width: 100%; padding: 8px 0; border-bottom: 1px solid rgba(24, 22, 20, 0.06); font-size: 13px; }}
-        .row-item:last-child {{ border-bottom: none; }}
-        .label-text {{ display: table-cell; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(24, 22, 20, 0.5); font-weight: 600; }}
-        .val-text {{ display: table-cell; font-weight: 600; color: #181614; text-align: right; }}
-        .btn-primary {{ display: block; width: 100%; box-sizing: border-box; background-color: #181614; color: #ffffff !important; text-decoration: none; padding: 14px 24px; border-radius: 10px; font-weight: 600; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; text-align: center; margin-bottom: 28px; }}
-        .footer-box {{ border-top: 1px solid rgba(24, 22, 20, 0.1); padding-top: 20px; text-align: center; }}
-        .footer-text {{ font-size: 11px; color: rgba(24, 22, 20, 0.5); line-height: 1.6; margin: 0; }}
-    </style>
 </head>
-<body>
-    <div class="email-wrapper">
-        <div class="brand-logo">
-            <h1 class="brand-title">RENTORA</h1>
-            <div class="brand-sub">KERALA • GOD'S OWN COUNTRY</div>
-        </div>
-        
-        <div style="text-align: center;">
-            <div class="status-badge">Inquiry Received</div>
-        </div>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #334155; margin: 0; padding: 40px 16px; -webkit-font-smoothing: antialiased;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td align="center">
+                <div style="max-width: 540px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 40px 36px; text-align: left;">
+                    
+                    <!-- Header Logo -->
+                    <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 24px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #0f172a; letter-spacing: 2.5px; text-transform: uppercase;">RENTORA</div>
+                        <div style="font-size: 11px; color: #64748b; letter-spacing: 1px; margin-top: 2px; text-transform: uppercase;">Reservations Desk</div>
+                    </div>
 
-        <h2 class="content-heading" style="text-align: center;">Reservation Request Confirmed</h2>
+                    <!-- Main Heading -->
+                    <h1 style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0 0 16px 0; line-height: 1.3;">Booking Inquiry Received</h1>
 
-        <p class="content-text">
-            Dear <strong>{inquiry.name}</strong>,<br><br>
-            Thank you for contacting Rentora. Your booking inquiry for <strong>{property_title}</strong> has been prioritized by our private estate desk.
-        </p>
+                    <p style="font-size: 14px; line-height: 1.6; color: #334155; margin: 0 0 24px 0;">
+                        Dear <strong>{inquiry.name}</strong>,<br><br>
+                        Thank you for contacting Rentora. We have received your booking inquiry for <strong>{property_title}</strong>. Our reservations desk is currently reviewing property availability for your requested dates.
+                    </p>
 
-        <div class="summary-card">
-            <div class="row-item">
-                <span class="label-text">Property Stay</span>
-                <span class="val-text">{property_title}</span>
-            </div>
-            <div class="row-item">
-                <span class="label-text">Region</span>
-                <span class="val-text">{property_location}</span>
-            </div>
-            <div class="row-item">
-                <span class="label-text">Check-In</span>
-                <span class="val-text">{check_in_str}</span>
-            </div>
-            <div class="row-item">
-                <span class="label-text">Check-Out</span>
-                <span class="val-text">{check_out_str}</span>
-            </div>
-            <div class="row-item">
-                <span class="label-text">Guest Party</span>
-                <span class="val-text">{inquiry.guests} Guest(s)</span>
-            </div>
-            <div class="row-item">
-                <span class="label-text">Status</span>
-                <span class="val-text" style="color: #059669;">Host Desk Reviewing</span>
-            </div>
-        </div>
+                    <!-- Clean Specification Table -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 24px;">
+                        <tr>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 600; color: #64748b; width: 35%;">Property</td>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #0f172a; text-align: right;">{property_title}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 600; color: #64748b;">Location</td>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 13px; color: #0f172a; text-align: right;">{property_location}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 600; color: #64748b;">Check-In</td>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 13px; color: #0f172a; text-align: right;">{check_in_str}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 600; color: #64748b;">Check-Out</td>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 13px; color: #0f172a; text-align: right;">{check_out_str}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 600; color: #64748b;">Guests</td>
+                            <td style="padding: 12px 16px; border-bottom: 1px solid #e2e8f0; font-size: 13px; color: #0f172a; text-align: right;">{inquiry.guests} Guest(s)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 16px; font-size: 12px; font-weight: 600; color: #64748b;">Status</td>
+                            <td style="padding: 12px 16px; font-size: 13px; font-weight: 600; color: #0284c7; text-align: right;">Under Review</td>
+                        </tr>
+                    </table>
 
-        <p class="content-text">
-            Your dedicated 24/7 personal host will reach out to you within 2 hours to confirm villa availability, master chef dining preferences, and VIP chauffeur logistics.
-        </p>
+                    <p style="font-size: 14px; line-height: 1.6; color: #334155; margin: 0 0 24px 0;">
+                        Our host team will contact you shortly to confirm stay details and answer any questions you may have.
+                    </p>
 
-        <a href="{domain_url}/dashboard/" class="btn-primary" target="_blank">VIEW MEMBER DASHBOARD</a>
+                    <!-- Action Button -->
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 28px;">
+                        <tr>
+                            <td align="center">
+                                <a href="{domain_url}/dashboard/" target="_blank" style="display: inline-block; background-color: #0f172a; color: #ffffff !important; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;">View Dashboard</a>
+                            </td>
+                        </tr>
+                    </table>
 
-        <div class="footer-box">
-            <p class="footer-text">
-                <strong>Rentora Private Concierge Desk</strong><br>
-                Fort Kochi, Kerala, India • Reply directly to this email for immediate host support.
-            </p>
-        </div>
-    </div>
+                    <!-- Footer -->
+                    <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
+                        <p style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0;">
+                            Rentora Luxury Rentals • Fort Kochi, Kerala, India<br>
+                            If you have immediate questions, reply directly to this email.
+                        </p>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 """
