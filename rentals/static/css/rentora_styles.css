@@ -47,14 +47,19 @@ body.night-mode #scroll-bg {
 }
 
 /* Night Mode Global Element Overrides */
+body.night-mode .theme-card,
+body.night-mode .bg-white,
+body.night-mode .bg-white\/95,
+body.night-mode .bg-white\/90,
+body.night-mode .bg-white\/85,
 body.night-mode .bg-white\/80,
+body.night-mode .bg-white\/75,
 body.night-mode .bg-white\/70,
 body.night-mode .bg-white\/60,
-body.night-mode .bg-white\/50,
-body.night-mode .bg-white {
-  background-color: rgba(26, 24, 22, 0.85) !important;
+body.night-mode .bg-white\/50 {
+  background-color: rgba(26, 24, 22, 0.92) !important;
   color: #f4f1ea !important;
-  border-color: rgba(244, 241, 234, 0.12) !important;
+  border-color: rgba(244, 241, 234, 0.15) !important;
 }
 
 body.night-mode #contact .bg-white {
@@ -78,10 +83,28 @@ body.night-mode .text-\[\#181614\]\/60 {
   color: #a8a29e !important;
 }
 
+body.night-mode .bg-\[\#181614\]\/5,
+body.night-mode .bg-\[\#181614\]\/10 {
+  background-color: rgba(244, 241, 234, 0.08) !important;
+  color: #f4f1ea !important;
+}
+
+body.night-mode a.bg-\[\#181614\],
+body.night-mode button.bg-\[\#181614\] {
+  background-color: #f4f1ea !important;
+  color: #121110 !important;
+}
+
+body.night-mode a.bg-\[\#181614\]:hover,
+body.night-mode button.bg-\[\#181614\]:hover {
+  background-color: #e2ddd3 !important;
+  color: #121110 !important;
+}
+
 body.night-mode .border-\[\#181614\]\/15,
 body.night-mode .border-\[\#181614\]\/10,
 body.night-mode .border-\[\#181614\]\/20 {
-  border-color: rgba(244, 241, 234, 0.12) !important;
+  border-color: rgba(244, 241, 234, 0.15) !important;
 }
 
 body.night-mode .divide-\[\#181614\]\/10 > :not([hidden]) ~ :not([hidden]) {
