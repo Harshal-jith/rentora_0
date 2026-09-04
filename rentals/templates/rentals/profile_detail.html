@@ -20,7 +20,7 @@
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-8 border-b theme-line">
       <div class="flex items-center gap-4 sm:gap-6">
         <!-- Avatar Badge -->
-        <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-[#181614] text-white flex items-center justify-center font-display text-2xl sm:text-3xl font-bold uppercase shadow-lg ring-2 ring-amber-500/30 shrink-0">
+        <div class="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-[#181614] text-white flex items-center justify-center font-display text-2xl sm:text-3xl font-bold uppercase shadow-lg ring-2 ring-[#181614]/20 dark:ring-white/20 shrink-0">
           {{ user.first_name|default:user.username|slice:":1" }}
         </div>
         <div>
@@ -54,7 +54,7 @@
       <!-- Account Details Box -->
       <div class="bg-[#181614]/5 border theme-line rounded-2xl p-6 space-y-4">
         <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold theme-ink">
-          <i class="fa-solid fa-user text-amber-600"></i> Account Identity
+          <i class="fa-solid fa-user theme-ink"></i> Account Identity
         </div>
         <div class="space-y-3 text-xs">
           <div>
@@ -80,7 +80,7 @@
       <!-- Stay Preferences Box -->
       <div class="bg-[#181614]/5 border theme-line rounded-2xl p-6 space-y-4">
         <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold theme-ink">
-          <i class="fa-solid fa-compass text-amber-600"></i> Guest Preferences
+          <i class="fa-solid fa-compass theme-ink"></i> Guest Preferences
         </div>
         <div class="space-y-3 text-xs">
           <div>

@@ -20,7 +20,7 @@
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-8 border-b theme-line">
       <div class="flex items-center gap-4">
         <!-- Avatar Badge -->
-        <div class="h-16 w-16 rounded-full bg-[#181614] text-white flex items-center justify-center font-display text-2xl font-bold uppercase shadow-lg ring-2 ring-amber-500/30">
+        <div class="h-16 w-16 rounded-full bg-[#181614] text-white flex items-center justify-center font-display text-2xl font-bold uppercase shadow-lg ring-2 ring-[#181614]/20 dark:ring-white/20">
           {{ user.first_name|default:user.username|slice:":1" }}
         </div>
         <div>
@@ -56,7 +56,7 @@
         <div>
           <label for="first_name" class="block text-xs uppercase tracking-widest font-semibold theme-ink mb-2">First Name</label>
           <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}"
-                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition"
+                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-current transition"
                  placeholder="e.g. Alexander" />
         </div>
 
@@ -64,7 +64,7 @@
         <div>
           <label for="last_name" class="block text-xs uppercase tracking-widest font-semibold theme-ink mb-2">Last Name</label>
           <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}"
-                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition"
+                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-current transition"
                  placeholder="e.g. Wright" />
         </div>
 
@@ -76,14 +76,14 @@
         <div>
           <label for="username" class="block text-xs uppercase tracking-widest font-semibold theme-ink mb-2">Username *</label>
           <input type="text" id="username" name="username" value="{{ user.username }}" required
-                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition" />
+                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-current transition" />
         </div>
 
         <!-- Email Address -->
         <div>
           <label for="email" class="block text-xs uppercase tracking-widest font-semibold theme-ink mb-2">Email Address *</label>
           <input type="email" id="email" name="email" value="{{ user.email }}" required
-                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition" />
+                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-current transition" />
         </div>
 
       </div>
@@ -100,7 +100,7 @@
         <div>
           <label for="phone" class="block text-xs uppercase tracking-widest font-semibold theme-ink mb-2">Contact Phone Number</label>
           <input type="tel" id="phone" name="phone" value="{{ profile.phone }}"
-                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition"
+                 class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-current transition"
                  placeholder="+91 98765 43210" />
         </div>
 
@@ -108,7 +108,7 @@
         <div>
           <label for="preferred_location" class="block text-xs uppercase tracking-widest font-semibold theme-ink mb-2">Preferred Kerala Region</label>
           <select id="preferred_location" name="preferred_location"
-                  class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink focus:outline-none focus:border-amber-500 transition">
+                  class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink focus:outline-none focus:border-current transition">
             {% for code, label in locations %}
               <option value="{{ code }}" {% if profile.preferred_location == code %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
@@ -121,7 +121,7 @@
       <div>
         <label for="bio" class="block text-xs uppercase tracking-widest font-semibold theme-ink mb-2">Concierge & Dining Preferences</label>
         <textarea id="bio" name="bio" rows="3"
-                  class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-amber-500 transition"
+                  class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-3 text-sm theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-current transition"
                   placeholder="e.g. Prefer Ayurvedic dining options, private jetty access, or specific check-in arrangements...">{{ profile.bio }}</textarea>
       </div>
 

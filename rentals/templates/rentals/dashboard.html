@@ -15,7 +15,7 @@
       <!-- Left Narrative Header -->
       <div class="max-w-2xl space-y-4">
         <div class="flex items-center gap-3">
-          <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
           <span class="text-[0.65rem] uppercase tracking-[0.3em] theme-muted font-semibold">Rentora Private Circle</span>
           <span class="theme-muted opacity-40">•</span>
           <span class="text-[0.65rem] uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-700/10 dark:bg-emerald-400/10 border border-emerald-700/20 dark:border-emerald-400/20">
@@ -24,7 +24,7 @@
         </div>
 
         <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium theme-ink leading-[1.08]">
-          Welcome to Rentora, <span class="font-serif italic font-normal text-amber-600 dark:text-amber-400">{{ user.first_name|default:user.username }}</span>.
+          Welcome to Rentora, <span class="font-serif italic font-normal theme-ink">{{ user.first_name|default:user.username }}</span>.
         </h1>
 
         <p class="text-xs sm:text-sm theme-muted leading-relaxed font-light max-w-xl">
@@ -127,8 +127,8 @@
                   <span class="h-1.5 w-1.5 rounded-full bg-emerald-600"></span> Confirmed
                 </span>
                 {% else %}
-                <span class="px-3 py-1 bg-amber-950/10 text-amber-900 border border-amber-500/30 rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1.5">
-                  <span class="h-1.5 w-1.5 rounded-full bg-amber-600"></span> {{ inq.status }}
+                <span class="px-3 py-1 bg-[#181614]/5 text-[#181614] dark:bg-white/10 dark:text-white border theme-line rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1.5">
+                  <span class="h-1.5 w-1.5 rounded-full bg-slate-500"></span> {{ inq.status }}
                 </span>
                 {% endif %}
               </td>
