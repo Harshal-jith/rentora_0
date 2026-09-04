@@ -828,59 +828,6 @@
             </article>
           </div>
 
-    <!-- ==================== CURATED ESTATES SHOWCASE GRID ==================== -->
-    <section id="estates-showcase" class="relative px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-36 border-t theme-line">
-      <div class="mx-auto max-w-7xl">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <span class="text-xs uppercase tracking-[0.3em] theme-muted font-semibold">EXCLUSIVE COLLECTION</span>
-            <h2 class="font-display text-[clamp(2rem,4vw,3.5rem)] font-medium leading-[1.04] theme-ink mt-1">
-              Curated Private Estates
-            </h2>
-          </div>
-          <a href="{% url 'properties' %}" class="inline-flex items-center gap-2 px-6 py-3 bg-[#181614] text-white font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-amber-600 transition shadow-lg shrink-0">
-            View All {{ total_properties }} Sanctuaries <i class="fa-solid fa-arrow-right text-[0.65rem]"></i>
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {% for prop in featured_properties %}
-          <article class="theme-card bg-white/80 backdrop-blur-md rounded-3xl p-5 border border-[#181614]/15 shadow-xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between group">
-            <div>
-              <div class="aspect-[4/3] w-full rounded-2xl bg-cover bg-center overflow-hidden mb-5 relative shadow-md">
-                <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div class="absolute top-3 left-3 px-3 py-1 bg-[#181614]/80 backdrop-blur-md text-white text-[0.6rem] uppercase tracking-widest font-semibold rounded-full border border-white/20">
-                  {{ prop.get_property_type_display }}
-                </div>
-                <div class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md text-[#181614] text-xs font-semibold rounded-full shadow-md flex items-center gap-1">
-                  <i class="fa-solid fa-star text-amber-500 text-[0.65rem]"></i> {{ prop.rating }}
-                </div>
-              </div>
-
-              <div class="flex items-center gap-1.5 text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1">
-                <i class="fa-solid fa-location-dot text-amber-600"></i> {{ prop.location_display_name }}
-              </div>
-              
-              <h3 class="font-display text-2xl font-medium theme-ink leading-snug group-hover:text-amber-600 transition-colors">
-                <a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a>
-              </h3>
-
-              <p class="text-xs theme-muted mt-2 leading-relaxed line-clamp-2">
-                {{ prop.short_description }}
-              </p>
-            </div>
-
-            <div class="flex items-center justify-between pt-4 mt-4 border-t theme-line">
-              <div>
-                <span class="font-display font-bold text-xl theme-ink">₹{{ prop.price_per_night|floatformat:0 }}</span>
-                <span class="text-[0.65rem] uppercase tracking-widest theme-muted">/ night</span>
-              </div>
-              <a href="{% url 'property_detail' prop.slug %}" class="px-4 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-amber-600 transition flex items-center gap-1.5 shadow-md">
-                Explore <i class="fa-solid fa-chevron-right text-[0.6rem]"></i>
-              </a>
-            </div>
-          </article>
-          {% endfor %}
         </div>
       </div>
     </section>
@@ -965,6 +912,18 @@
               <form id="inline-login-form" class="grid gap-5" method="POST" action="{% url 'home' %}">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="login">
+
+                {% if messages %}
+                <div class="p-3.5 rounded-xl bg-red-950/80 border border-red-500/30 text-red-200 text-xs flex flex-col gap-1.5 font-light">
+                  {% for message in messages %}
+                    <div class="flex items-center gap-2">
+                      <i class="fa-solid fa-circle-exclamation text-red-400 shrink-0"></i>
+                      <span>{{ message }}</span>
+                    </div>
+                  {% endfor %}
+                </div>
+                {% endif %}
+
                 <div>
                   <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1.5 font-semibold">Username or Email</label>
                   <input required type="text" name="username" placeholder="alexander@example.com" class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition"/>
@@ -996,6 +955,18 @@
               <form id="inline-signup-form" class="grid gap-4 hidden" method="POST" action="{% url 'home' %}">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="register">
+
+                {% if messages %}
+                <div class="p-3.5 rounded-xl bg-red-950/80 border border-red-500/30 text-red-200 text-xs flex flex-col gap-1.5 font-light">
+                  {% for message in messages %}
+                    <div class="flex items-center gap-2">
+                      <i class="fa-solid fa-circle-exclamation text-red-400 shrink-0"></i>
+                      <span>{{ message }}</span>
+                    </div>
+                  {% endfor %}
+                </div>
+                {% endif %}
+
                 <div>
                   <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1.5 font-semibold">Username</label>
                   <input required type="text" name="username" placeholder="alexander_villas" class="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition"/>
@@ -1032,6 +1003,23 @@
 
       </div>
     </section>
+
+    {% if request.POST.action == 'register' or request.POST.action == 'login' or messages %}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        {% if request.POST.action == 'register' %}
+        const signupBtn = document.getElementById('inline-tab-signup');
+        if (signupBtn) signupBtn.click();
+        {% endif %}
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          setTimeout(() => {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+          }, 250);
+        }
+      });
+    </script>
+    {% endif %}
 
     <!-- ==================== GRAND LUXURY FOOTER ==================== -->
     <footer class="bg-[#0e0d0c] text-white pt-16 pb-12 border-t border-white/10">
