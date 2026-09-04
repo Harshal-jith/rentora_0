@@ -30,9 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const nightBtn = document.getElementById('night-btn');
   const daySlides = document.querySelectorAll('.day-slide');
   const nightSlides = document.querySelectorAll('.night-slide');
+  const isHeroPage = document.getElementById('hero-slides') !== null;
   let isNightMode = localStorage.getItem('rentora_theme') === 'night';
 
   function setLightingMode(night) {
+    if (isHeroPage) return; // Completely isolate hero page from theme switching
     isNightMode = night;
     localStorage.setItem('rentora_theme', night ? 'night' : 'day');
     
@@ -63,12 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Initialize saved theme preference
-  setLightingMode(isNightMode);
+  // If on hero page, completely strip night-mode/light-mode body classes
+  if (isHeroPage) {
+    document.body.classList.remove('night-mode', 'light-mode');
+  } else {
+    // Initialize saved theme preference for interior & post-login pages
+    setLightingMode(isNightMode);
 
-  if (dayBtn && nightBtn) {
-    dayBtn.addEventListener('click', () => setLightingMode(false));
-    nightBtn.addEventListener('click', () => setLightingMode(true));
+    if (dayBtn && nightBtn) {
+      dayBtn.addEventListener('click', () => setLightingMode(false));
+      nightBtn.addEventListener('click', () => setLightingMode(true));
+    }
   }
 
   // ----------------------------------------------------
