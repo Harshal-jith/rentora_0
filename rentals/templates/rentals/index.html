@@ -91,7 +91,7 @@
       <a href="{% url 'logout' %}" class="mobile-nav-link text-red-400">Logout</a>
       {% else %}
       <button type="button" class="open-login-btn text-left mobile-nav-link text-amber-300 font-bold flex items-center gap-2">
-        <i class="fa-solid fa-lock text-base"></i> VIP Member Login
+        <i class="fa-solid fa-lock text-base"></i> Member Sign In
       </button>
       <button type="button" class="open-signup-btn text-left mobile-nav-link text-white font-bold flex items-center gap-2">
         <i class="fa-solid fa-user-plus text-base"></i> Join Member Circle
@@ -226,7 +226,7 @@
         </label>
 
         <button type="submit" class="mt-3 w-full py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-200 transition shadow-lg">
-          Create VIP Account
+          Create Account
         </button>
       </form>
     </div>
@@ -286,7 +286,7 @@
                 </li>
                 {% else %}
                 <li>
-                  <button type="button" class="open-login-btn font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-white/70 text-left">VIP Access</button>
+                  <button type="button" class="open-login-btn font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-white/70 text-left">Member Access</button>
                 </li>
                 {% endif %}
               </ul>
@@ -725,7 +725,7 @@
             <div class="flex flex-col gap-2 border-t theme-line pt-4">
               <p class="font-display text-xs uppercase tracking-[0.22em] text-[var(--ink)]/70">Private Houseboat &amp; Ayurveda</p>
               <h3 class="font-display text-[clamp(1.35rem,2.2vw,1.9rem)] font-medium leading-[1.1] text-[var(--ink)]">Exclusive Houseboat Charters, Doctor-Led Ayurveda &amp; Airport Chauffeur.</h3>
-              <p class="text-xs sm:text-sm text-[var(--ink)]/75 leading-relaxed mt-1">Doctor-prescribed in-villa Ayurvedic therapies, sunset teak wood houseboat cruises, and seamless VIP pick-up from Cochin (COK) or Trivandrum (TRV).</p>
+              <p class="text-xs sm:text-sm text-[var(--ink)]/75 leading-relaxed mt-1">Doctor-prescribed in-villa Ayurvedic therapies, sunset teak wood houseboat cruises, and seamless private pick-up from Cochin (COK) or Trivandrum (TRV).</p>
             </div>
           </article>
 
@@ -777,8 +777,8 @@
           <div class="reveal p-6 rounded-2xl theme-card border theme-line flex flex-col justify-between h-full hover:shadow-xl transition-all">
             <div>
               <div class="aspect-[4/3] w-full rounded-xl bg-cover bg-center mb-4" style="background-image: url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80')"></div>
-              <h3 class="font-display text-xl font-medium text-[var(--ink)]">Houseboats &amp; VIP Transfers</h3>
-              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Seamless VIP chauffeur pick-up from Cochin (COK) or Trivandrum (TRV) with private teakwood houseboat charters.</p>
+              <h3 class="font-display text-xl font-medium text-[var(--ink)]">Houseboats &amp; Private Transfers</h3>
+              <p class="text-xs text-[var(--ink)]/70 mt-2 leading-relaxed">Seamless chauffeur pick-up from Cochin (COK) or Trivandrum (TRV) with private teakwood houseboat charters.</p>
             </div>
           </div>
 
@@ -1043,7 +1043,7 @@
 
           <!-- Col 3: Concierge & Experiences (2 Cols) -->
           <div class="lg:col-span-2 flex flex-col gap-3">
-            <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Experiences & VIP</p>
+            <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Experiences & Services</p>
             <ul class="flex flex-col gap-2 text-xs text-white/60">
               <li><a href="{% url 'properties' %}?property_type=villa" class="hover:text-white transition">Private Pool Villas</a></li>
               <li><a href="{% url 'properties' %}?property_type=estate" class="hover:text-white transition">Tea Plantation Manors</a></li>
@@ -1053,13 +1053,13 @@
               <li><a href="{% url 'dashboard' %}" class="text-white font-semibold hover:text-amber-300 transition flex items-center gap-1.5"><i class="fa-solid fa-user-check text-[0.65rem]"></i> Dashboard ({{ user.username }})</a></li>
               <li><a href="{% url 'logout' %}" class="text-red-400 hover:text-red-300 transition">Logout</a></li>
               {% else %}
-              <li><button type="button" class="open-login-btn text-white font-semibold hover:text-amber-300 transition text-left flex items-center gap-1.5"><i class="fa-solid fa-lock text-[0.65rem]"></i> VIP Member Login</button></li>
+              <li><button type="button" class="open-login-btn text-white font-semibold hover:text-amber-300 transition text-left flex items-center gap-1.5"><i class="fa-solid fa-lock text-[0.65rem]"></i> Member Sign In</button></li>
               <li><button type="button" class="open-signup-btn text-white font-semibold hover:text-amber-300 transition text-left flex items-center gap-1.5"><i class="fa-solid fa-user-plus text-[0.65rem]"></i> Join Member Circle</button></li>
               {% endif %}
             </ul>
           </div>
 
-          <!-- Col 4: VIP Newsletter & Concierge (3 Cols) -->
+          <!-- Col 4: Newsletter & Concierge (3 Cols) -->
           <div class="lg:col-span-3 flex flex-col gap-3">
             <p class="text-xs uppercase tracking-[0.25em] text-white font-semibold">Private Dispatch</p>
             <p class="text-xs text-white/60 leading-relaxed">
@@ -1081,7 +1081,7 @@
 
         </div>
 
-        <!-- Bottom Legal & VIP Row -->
+        <!-- Bottom Legal Row -->
         <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 uppercase tracking-[0.2em]">
           <p>© 2026 Rentora Kerala • All Rights Reserved</p>
           <div class="flex flex-wrap items-center justify-center gap-5 text-[0.65rem]">

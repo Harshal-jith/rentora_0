@@ -9,7 +9,7 @@ class CustomUserRegistrationForm(UserCreationForm):
             'placeholder': 'name@domain.com',
             'class': 'form-control'
         }),
-        help_text="Required. A VIP verification link will be sent to this email address."
+        help_text="Required. A verification link will be sent to this email address."
     )
 
     class Meta:

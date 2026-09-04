@@ -83,7 +83,7 @@
           </li>
           {% else %}
           <li>
-            <a class="font-display text-xs uppercase tracking-[0.12em] transition theme-nav-link {% if request.resolver_match.url_name == 'login' %}active-link font-semibold{% endif %}" href="{% url 'login' %}">VIP Access</a>
+            <a class="font-display text-xs uppercase tracking-[0.12em] transition theme-nav-link {% if request.resolver_match.url_name == 'login' %}active-link font-semibold{% endif %}" href="{% url 'login' %}">Member Access</a>
           </li>
           {% endif %}
         </ul>
@@ -150,7 +150,7 @@
       <a href="{% url 'logout' %}" class="mobile-nav-link text-red-400">Logout</a>
       {% else %}
       <a href="{% url 'login' %}" class="mobile-nav-link text-amber-300 font-bold flex items-center gap-2">
-        <i class="fa-solid fa-lock text-base"></i> VIP Member Login
+        <i class="fa-solid fa-lock text-base"></i> Member Sign In
       </a>
       <a href="{% url 'register' %}" class="mobile-nav-link text-white font-bold flex items-center gap-2">
         <i class="fa-solid fa-user-plus text-base"></i> Join Member Circle
@@ -205,7 +205,7 @@
 
         <!-- Col 3: Concierge & Experiences (2 Cols) -->
         <div class="lg:col-span-2 flex flex-col gap-3">
-          <p class="text-xs uppercase tracking-[0.25em] theme-footer-heading font-semibold">Experiences & VIP</p>
+          <p class="text-xs uppercase tracking-[0.25em] theme-footer-heading font-semibold">Experiences & Services</p>
           <ul class="flex flex-col gap-2 text-xs theme-footer-muted">
             <li><a href="{% url 'properties' %}?property_type=villa" class="theme-footer-link transition">Private Pool Villas</a></li>
             <li><a href="{% url 'properties' %}?property_type=estate" class="theme-footer-link transition">Tea Plantation Manors</a></li>
@@ -215,13 +215,13 @@
             <li><a href="{% url 'dashboard' %}" class="theme-footer-heading font-semibold hover:text-amber-500 transition flex items-center gap-1.5"><i class="fa-solid fa-user-check text-[0.65rem]"></i> Dashboard ({{ user.username }})</a></li>
             <li><a href="{% url 'logout' %}" class="text-red-500 hover:text-red-400 transition">Logout</a></li>
             {% else %}
-            <li><a href="{% url 'login' %}" class="theme-footer-heading font-semibold hover:text-amber-500 transition flex items-center gap-1.5"><i class="fa-solid fa-lock text-[0.65rem]"></i> VIP Member Login</a></li>
+            <li><a href="{% url 'login' %}" class="theme-footer-heading font-semibold hover:text-amber-500 transition flex items-center gap-1.5"><i class="fa-solid fa-lock text-[0.65rem]"></i> Member Sign In</a></li>
             <li><a href="{% url 'register' %}" class="theme-footer-heading font-semibold hover:text-amber-500 transition flex items-center gap-1.5"><i class="fa-solid fa-user-plus text-[0.65rem]"></i> Join Member Circle</a></li>
             {% endif %}
           </ul>
         </div>
 
-        <!-- Col 4: VIP Newsletter & Concierge (3 Cols) -->
+        <!-- Col 4: Newsletter & Concierge (3 Cols) -->
         <div class="lg:col-span-3 flex flex-col gap-3">
           <p class="text-xs uppercase tracking-[0.25em] theme-footer-heading font-semibold">Private Dispatch</p>
           <p class="text-xs theme-footer-muted leading-relaxed">
@@ -243,7 +243,7 @@
 
       </div>
 
-      <!-- Bottom Legal & VIP Row -->
+      <!-- Bottom Legal Row -->
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs theme-footer-muted uppercase tracking-[0.2em]">
         <p>© 2026 Rentora Kerala • All Rights Reserved</p>
         <div class="flex flex-wrap items-center justify-center gap-5 text-[0.65rem]">

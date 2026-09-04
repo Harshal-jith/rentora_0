@@ -834,7 +834,7 @@ def verify_email_view(request, token):
         token_obj.is_verified = True
         token_obj.save()
         login(request, user)
-        messages.info(request, f"Welcome back to your VIP Dashboard, {user.username}.")
+        messages.info(request, f"Welcome back to your Dashboard, {user.username}.")
         return redirect('dashboard')
 
     user.is_active = True
@@ -850,7 +850,7 @@ def verify_email_view(request, token):
         print(f"Post verification error: {e}")
 
     login(request, user)
-    messages.success(request, f"Email verified successfully! Welcome to your Rentora VIP Dashboard, {user.username}.")
+    messages.success(request, f"Email verified successfully! Welcome to your Rentora Dashboard, {user.username}.")
     return redirect('dashboard')
 
 def resend_verification_view(request):
@@ -863,7 +863,7 @@ def resend_verification_view(request):
             token_obj, _ = EmailVerificationToken.objects.get_or_create(user=user)
             send_welcome_email(request, user)
             send_verification_email(request, user, token_obj)
-            messages.success(request, f"VIP Welcome and Verification emails have been dispatched to {user.email}.")
+            messages.success(request, f"Welcome and Verification emails have been dispatched to {user.email}.")
             return redirect('login')
         else:
             messages.error(request, "No account found matching that email address or username.")
