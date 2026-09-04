@@ -76,13 +76,13 @@
   <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#181614] text-white flex flex-col justify-between p-8 transition-transform duration-500 translate-x-full md:hidden">
     <div class="flex justify-between items-center">
       <div class="flex flex-col">
-        <span class="font-display font-medium text-lg tracking-widest uppercase">RENTORA</span>
-        <span class="text-[0.6rem] uppercase tracking-[0.25em] text-white/60">KERALA ESTATES</span>
+        <span class="font-display font-medium text-lg tracking-[0.16em] uppercase">RENTORA</span>
+        <span class="text-[0.6rem] uppercase tracking-[0.24em] text-white/60">KERALA ESTATES</span>
       </div>
       <button id="close-menu" aria-label="Close menu" class="text-white text-2xl p-2">&times;</button>
     </div>
     <nav class="flex flex-col gap-5 text-xl font-display uppercase tracking-widest my-auto">
-      <a href="{% url 'properties' %}" class="mobile-nav-link hover:text-slate-300">Kerala Sanctuaries</a>
+      <a href="{% url 'properties' %}" class="mobile-nav-link hover:text-slate-300">Estates</a>
       <a href="{% url 'properties' %}?location=alleppey" class="mobile-nav-link hover:text-slate-300">Destinations</a>
       {% if user.is_authenticated %}
       <a href="{% url 'dashboard' %}" class="mobile-nav-link text-emerald-400 font-bold flex items-center gap-2">
@@ -99,8 +99,8 @@
       {% endif %}
     </nav>
     <div class="flex flex-col gap-2">
-      <button id="book-call-btn-mobile" class="w-full py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition">Reserve Kerala Estate</button>
-      <p class="text-xs uppercase tracking-widest text-white/50">Luxury Private Rentals • God's Own Country</p>
+      <button id="book-call-btn-mobile" class="w-full py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-full font-semibold hover:bg-slate-200 transition">Reserve Kerala Estate</button>
+      <p class="text-xs uppercase tracking-widest text-white/50 text-center">Luxury Private Rentals • God's Own Country</p>
     </div>
   </div>
 
@@ -266,44 +266,29 @@
             <!-- Logo -->
             <a aria-label="Rentora Kerala home" class="flex items-center justify-self-start gap-2.5 group" href="#">
               <div class="flex flex-col">
-                <span class="font-display font-medium text-lg sm:text-xl tracking-widest text-white uppercase">RENTORA</span>
-                <span class="text-[0.55rem] uppercase tracking-[0.3em] text-white/60">KERALA • GOD'S OWN COUNTRY</span>
+                <span class="font-display font-medium text-lg sm:text-xl tracking-[0.16em] text-white uppercase">RENTORA</span>
+                <span class="text-[0.55rem] uppercase tracking-[0.24em] text-white/60 font-medium">KERALA • GOD'S OWN COUNTRY</span>
               </div>
             </a>
 
             <!-- Nav Links -->
             <nav aria-label="Primary" class="hidden justify-self-center text-xs sm:text-sm md:block">
-              <ul class="flex items-center gap-x-4 sm:gap-x-6">
-                <li class="flex items-center gap-x-4 sm:gap-x-6">
-                  <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="{% url 'properties' %}">Sanctuaries</a>
-                  <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-                  </svg>
+              <ul class="flex items-center gap-x-8 lg:gap-x-10">
+                <li>
+                  <a class="font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-white/70" href="{% url 'properties' %}">Estates</a>
                 </li>
-                <li class="flex items-center gap-x-4 sm:gap-x-6">
-                  <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300" href="{% url 'properties' %}?location=alleppey">Destinations</a>
-                  <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-                  </svg>
+                <li>
+                  <a class="font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-white/70" href="{% url 'properties' %}?location=alleppey">Destinations</a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="flex items-center gap-x-4 sm:gap-x-6">
-                  <a class="font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300 text-emerald-400 font-semibold" href="{% url 'dashboard' %}">Member Portal</a>
-                  <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-                  </svg>
+                <li>
+                  <a class="font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-emerald-400 font-semibold" href="{% url 'dashboard' %}">Member Portal</a>
                 </li>
                 {% else %}
-                <li class="flex items-center gap-x-4 sm:gap-x-6">
-                  <button type="button" class="open-login-btn font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300 text-left">VIP Access</button>
-                  <svg class="h-2.5 w-2.5 opacity-70 origin-center animate-[spin_12s_linear_infinite]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
-                  </svg>
+                <li>
+                  <button type="button" class="open-login-btn font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-white/70 text-left">VIP Access</button>
                 </li>
                 {% endif %}
-                <li class="flex items-center gap-x-4 sm:gap-x-6">
-                  <button type="button" class="open-inquiry-btn font-display text-xs sm:text-sm uppercase tracking-[0.22em] transition hover:text-slate-300 text-left">Reserve Stay</button>
-                </li>
               </ul>
             </nav>
 
@@ -321,8 +306,11 @@
               </div>
 
               <!-- Reserve a Stay Button -->
-              <button id="book-call-btn" class="hidden sm:inline-flex px-4 py-2 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-md font-semibold hover:bg-slate-200 transition shadow-lg">
-                Reserve Estate
+              <button id="book-call-btn" class="open-inquiry-btn hidden sm:inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 sm:px-6 bg-white text-[#181614] font-display text-xs uppercase tracking-[0.08em] font-semibold rounded-full hover:bg-slate-100 transition-all duration-300 shadow-md group">
+                <span>RESERVE ESTATE</span>
+                <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
               </button>
 
               <!-- Mobile Toggle Button -->
