@@ -297,53 +297,199 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. ULTRA-SMOOTH CINEMATIC INTRO HERO LOADER
   // ----------------------------------------------------
   const loaderEl = document.getElementById('hero-loader');
+  const loaderPlayed = sessionStorage.getItem('rentora_loader_played');
+  const hasMessagesOrForm = document.querySelector('.bg-red-950\\/80') || window.location.hash || window.location.search;
 
   function playHeroEntrance() {
-    if (typeof gsap !== 'undefined') {
-      gsap.to('.hero-fade-word', {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.03,
-        ease: 'power3.out'
-      });
+    gsap.to('.hero-fade-word', {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      stagger: 0.03,
+      ease: 'power3.out'
+    });
 
-      gsap.to('.hero-fade-in', {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        ease: 'power2.out',
-        delay: 0.05
-      });
-    } else {
-      document.querySelectorAll('.hero-fade-word, .hero-fade-in').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      });
-    }
+    gsap.to('.hero-fade-in', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: 'power2.out',
+      delay: 0.05
+    });
   }
 
-  if (loaderEl) {
-    let loaderDismissed = false;
-    function dismissLoader() {
-      if (loaderDismissed) return;
-      loaderDismissed = true;
-      loaderEl.style.pointerEvents = 'none';
-      loaderEl.style.opacity = '0';
-      setTimeout(() => {
-        loaderEl.style.display = 'none';
-        playHeroEntrance();
-        if (typeof ScrollTrigger !== 'undefined') {
-          ScrollTrigger.refresh();
-        }
-      }, 400);
-    }
-
-    // Display loader animation for 1.2s minimum so user experiences the portal expansion, then dismiss smoothly
-    setTimeout(dismissLoader, 1200);
-  } else {
+  if (loaderEl && (loaderPlayed || hasMessagesOrForm)) {
+    loaderEl.style.display = 'none';
+    loaderEl.style.pointerEvents = 'none';
     playHeroEntrance();
+    setTimeout(() => {
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    }, 100);
+  } else if (loaderEl) {
+    sessionStorage.setItem('rentora_loader_played', 'true');
+
+    const loaderBox = document.querySelector('.hero-loader__box');
+    const growingImgBox = document.querySelector('.hero-loader__growing-image');
+    const loaderStartWord = document.querySelector('.hero-loader__word--start');
+    const loaderEndWord = document.querySelector('.hero-loader__word--end');
+    const loaderSlides = Array.from(document.querySelectorAll('.loader-img-slide'));
+    
+    // Preload loader images immediately for 0ms lag-free GPU rendering
+    const preloadUrls = [
+      'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85'
+    ];
+    preloadUrls.forEach(url => {
+      const img = new Image();
+      img.src = url;
+    });
+
+    const isMobile = window.innerWidth < 640;
+    const targetWidth = isMobile ? '76px' : '150px';
+
+    // Initial setup: Slide 0 visible with gentle scale, other slides ready with 0 opacity
+    loaderSlides.forEach((slide, i) => {
+      gsap.set(slide, {
+        opacity: i === 0 ? 1 : 0,
+        scale: 1.14,
+        force3D: true
+      });
+    });
+
+    // Master GSAP Intro Loader Timeline with buttery 120 FPS transitions
+    const introTl = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      onComplete: () => {
+        if (loaderEl) {
+          loaderEl.style.pointerEvents = 'none';
+          gsap.to(loaderEl, {
+            opacity: 0,
+            duration: 0.35,
+            ease: 'power2.inOut',
+            onComplete: () => {
+              loaderEl.style.display = 'none';
+              playHeroEntrance();
+              setTimeout(() => {
+                if (typeof ScrollTrigger !== 'undefined') {
+                  ScrollTrigger.refresh();
+                }
+              }, 100);
+            }
+          });
+        } else {
+          playHeroEntrance();
+          setTimeout(() => {
+            if (typeof ScrollTrigger !== 'undefined') {
+              ScrollTrigger.refresh();
+            }
+          }, 100);
+        }
+      }
+    });
+
+  // Step 1: Hold intact RENTORA logo briefly (0.35s)
+  introTl.to({}, { duration: 0.35 });
+
+  // Step 2: Line appears gracefully between RENT and ORA (0.3s)
+  introTl.to(loaderBox, {
+    width: '3px',
+    opacity: 1,
+    margin: '0 0.2rem',
+    duration: 0.3,
+    ease: 'power2.out'
+  });
+
+  // Step 3: Line opens smoothly into the image portal slot (0.5s)
+  introTl.to(loaderBox, {
+    width: targetWidth,
+    margin: '0 0.45rem',
+    borderRadius: '8px',
+    duration: 0.5,
+    ease: 'power3.inOut'
+  });
+
+  introTl.to(growingImgBox, {
+    opacity: 1,
+    duration: 0.35,
+    ease: 'power2.inOut'
+  }, '<+=0.1');
+
+  // Step 4: Silky Ken-Burns image crossfades inside the opened slot
+  // Slide 0 Ken-Burns drift
+  introTl.to(loaderSlides[0], {
+    scale: 1.0,
+    duration: 0.75,
+    ease: 'power1.out'
+  }, '<');
+
+  // Smooth Crossfade to Slide 1 (Munnar Highlands)
+  if (loaderSlides[1]) {
+    introTl.to(loaderSlides[0], {
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut'
+    }, '+=0.05')
+    .to(loaderSlides[1], {
+      opacity: 1,
+      scale: 1.0,
+      duration: 0.75,
+      ease: 'power1.out'
+    }, '<');
+  }
+
+  // Smooth Crossfade to Slide 2 (Kerala Coast)
+  if (loaderSlides[2]) {
+    introTl.to(loaderSlides[1], {
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut'
+    }, '+=0.05')
+    .to(loaderSlides[2], {
+      opacity: 1,
+      scale: 1.0,
+      duration: 0.75,
+      ease: 'power1.out'
+    }, '<');
+  }
+
+  // Smooth Crossfade to Final Slide 3 (Matches Hero Slide 1)
+  if (loaderSlides[3]) {
+    introTl.to(loaderSlides[2], {
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut'
+    }, '+=0.05')
+    .to(loaderSlides[3], {
+      opacity: 1,
+      scale: 1.0,
+      duration: 0.75,
+      ease: 'power1.out'
+    }, '<');
+  }
+
+  // Step 5: Smooth Cinematic Zoom to Full Viewport
+  introTl.to([loaderStartWord, loaderEndWord], {
+    width: 0,
+    opacity: 0,
+    margin: 0,
+    padding: 0,
+    duration: 0.65,
+    ease: 'power4.inOut'
+  }, '+=0.1');
+
+  introTl.to(loaderBox, {
+    width: '100vw',
+    height: '100vh',
+    borderRadius: '0px',
+    margin: 0,
+    duration: 0.7,
+    ease: 'power4.inOut'
+  }, '<');
   }
 
 
