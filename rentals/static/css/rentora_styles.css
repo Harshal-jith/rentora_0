@@ -131,6 +131,171 @@ body.night-mode .bg-slate-200 {
   pointer-events: none;
 }
 
+/* ==================== THEME HEADER & FOOTER OVERRIDES (FOR BASE LAYOUT / LOGGED IN PAGES) ==================== */
+
+/* Default / Light Mode Header */
+.theme-header {
+  background-color: rgba(244, 241, 234, 0.95) !important;
+  border-bottom: 1px solid rgba(24, 22, 20, 0.12) !important;
+  color: #181614 !important;
+}
+
+.theme-logo-title {
+  color: #181614 !important;
+}
+
+.theme-logo-sub {
+  color: rgba(24, 22, 20, 0.6) !important;
+}
+
+.theme-nav-link {
+  color: rgba(24, 22, 20, 0.75) !important;
+}
+
+.theme-nav-link:hover,
+.theme-nav-link.active-link {
+  color: #181614 !important;
+}
+
+.theme-switch-pill {
+  background-color: rgba(24, 22, 20, 0.06) !important;
+  border: 1px solid rgba(24, 22, 20, 0.15) !important;
+}
+
+.theme-switch-btn-inactive {
+  color: rgba(24, 22, 20, 0.7) !important;
+}
+
+.theme-switch-btn-inactive:hover {
+  color: #181614 !important;
+}
+
+.theme-cta-btn {
+  background-color: #181614 !important;
+  color: #ffffff !important;
+}
+
+.theme-cta-btn:hover {
+  background-color: #2e2a27 !important;
+}
+
+/* Default / Light Mode Footer */
+.theme-footer {
+  background-color: #eae5db !important;
+  border-top: 1px solid rgba(24, 22, 20, 0.12) !important;
+  color: #181614 !important;
+}
+
+.theme-footer-divider {
+  border-color: rgba(24, 22, 20, 0.12) !important;
+}
+
+.theme-footer-heading {
+  color: #181614 !important;
+}
+
+.theme-footer-muted {
+  color: rgba(24, 22, 20, 0.65) !important;
+}
+
+.theme-footer-link {
+  color: rgba(24, 22, 20, 0.65) !important;
+}
+
+.theme-footer-link:hover {
+  color: #181614 !important;
+}
+
+.theme-footer-input {
+  color: #181614 !important;
+}
+
+.theme-footer-input::placeholder {
+  color: rgba(24, 22, 20, 0.45) !important;
+}
+
+
+/* ==================== NIGHT MODE HEADER & FOOTER OVERRIDES ==================== */
+
+body.night-mode .theme-header {
+  background-color: rgba(24, 22, 20, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-logo-title {
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-logo-sub {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+body.night-mode .theme-nav-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+body.night-mode .theme-nav-link:hover,
+body.night-mode .theme-nav-link.active-link {
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-switch-pill {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+body.night-mode .theme-switch-btn-inactive {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+body.night-mode .theme-switch-btn-inactive:hover {
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-cta-btn {
+  background-color: #ffffff !important;
+  color: #181614 !important;
+}
+
+body.night-mode .theme-cta-btn:hover {
+  background-color: #f1f5f9 !important;
+}
+
+body.night-mode .theme-footer {
+  background-color: #0e0d0c !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-footer-divider {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.night-mode .theme-footer-heading {
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-footer-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+body.night-mode .theme-footer-link {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+body.night-mode .theme-footer-link:hover {
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-footer-input {
+  color: #ffffff !important;
+}
+
+body.night-mode .theme-footer-input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
 /* Theme Utility Classes */
 .theme-card {
   background-color: var(--card-bg);

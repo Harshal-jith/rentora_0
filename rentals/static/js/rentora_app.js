@@ -40,12 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('night-mode');
       document.body.classList.remove('light-mode');
       if (nightBtn) {
-        nightBtn.classList.add('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-        nightBtn.classList.remove('text-white/70');
+        nightBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-white text-[#181614] font-semibold shadow-sm";
       }
       if (dayBtn) {
-        dayBtn.classList.remove('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-        dayBtn.classList.add('text-white/70');
+        dayBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 theme-switch-btn-inactive";
       }
 
       daySlides.forEach(slide => slide.style.opacity = '0');
@@ -54,12 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('night-mode');
       document.body.classList.add('light-mode');
       if (dayBtn) {
-        dayBtn.classList.add('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-        dayBtn.classList.remove('text-white/70');
+        dayBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-[#181614] text-white font-semibold shadow-sm";
       }
       if (nightBtn) {
-        nightBtn.classList.remove('bg-white', 'text-[#17231f]', 'font-semibold', 'shadow-sm');
-        nightBtn.classList.add('text-white/70');
+        nightBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 theme-switch-btn-inactive";
       }
 
       nightSlides.forEach(slide => slide.style.opacity = '0');
