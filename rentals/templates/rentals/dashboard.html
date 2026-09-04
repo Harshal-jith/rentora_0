@@ -1,110 +1,233 @@
 {% extends 'rentals/base.html' %}
 {% load static %}
 
-{% block title %}VIP Member Dashboard | RENTORA Kerala{% endblock %}
+{% block title %}VIP Member Portal | RENTORA Kerala{% endblock %}
 
 {% block content %}
-<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-10 space-y-12">
-  
-  <!-- Top Luxury VIP Welcome Banner -->
-  <div class="bg-[#181614] text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/10 relative overflow-hidden">
-    <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+<!-- Full-Bleed Architectural Dark Hero Header for Member Portal -->
+<section class="relative bg-[#181614] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
+  <!-- Subtle Kerala Heritage Image Overlay -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-[0.06] pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85')"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-[#181614] via-transparent to-[#181614]"></div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+    <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
       
-      <div class="space-y-4 max-w-2xl">
+      <!-- Left Narrative Header -->
+      <div class="max-w-2xl space-y-4">
         <div class="flex items-center gap-3">
-          <span class="px-3.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[0.65rem] uppercase tracking-widest font-semibold rounded-full flex items-center gap-1.5">
-            <i class="fa-solid fa-crown text-xs"></i> VIP MEMBER ACCESS
-          </span>
-          <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[0.65rem] uppercase tracking-widest font-semibold rounded-full flex items-center gap-1.5">
-            <i class="fa-solid fa-circle-check text-xs"></i> Account Active
+          <span class="h-1.5 w-1.5 rounded-full bg-white/60"></span>
+          <span class="text-[0.65rem] uppercase tracking-[0.3em] text-white/60 font-semibold">Rentora Private Circle</span>
+          <span class="text-white/30">•</span>
+          <span class="text-[0.65rem] uppercase tracking-[0.2em] text-emerald-400 font-semibold flex items-center gap-1.5">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Active Member
           </span>
         </div>
 
-        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-white leading-tight">
-          Welcome to Rentora, <span class="text-amber-400 font-semibold">{{ user.first_name|default:user.username }}</span>
+        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-white leading-[1.08]">
+          Welcome to Rentora, <span class="font-serif italic font-normal text-white/90">{{ user.first_name|default:user.username }}</span>.
         </h1>
 
-        <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light">
-          Your confidential portal to Kerala’s finest private architectural sanctuaries. Manage your active estate reservations and 24/7 personal butler dispatches.
+        <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light max-w-xl">
+          Your confidential portal to Kerala’s finest private architectural sanctuaries. Review your active estate reservations, manage date inquiries, and access your 24/7 personal butler dispatch.
         </p>
 
-        <div class="flex flex-wrap items-center gap-3 pt-2">
-          <a href="{% url 'properties' %}" class="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-display text-xs uppercase tracking-widest rounded-xl font-bold hover:brightness-110 transition shadow-lg flex items-center gap-2">
-            <i class="fa-solid fa-compass"></i> Explore Estates
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="{% url 'properties' %}" class="px-6 py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold hover:bg-slate-200 transition shadow-lg inline-flex items-center gap-2">
+            Explore Sanctuaries <i class="fa-solid fa-arrow-right text-[0.65rem]"></i>
           </a>
-          <a href="#my-bookings" class="px-5 py-2.5 bg-white/10 text-white font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-white/20 transition flex items-center gap-2 border border-white/20">
-            <i class="fa-solid fa-calendar-check"></i> My Reservations
+          <a href="#my-bookings" class="px-6 py-3 bg-white/10 text-white hover:bg-white/20 border border-white/20 font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold transition inline-flex items-center gap-2">
+            My Reservations
           </a>
         </div>
       </div>
 
-      <!-- Quick Stats Card -->
-      <div class="grid grid-cols-2 gap-4 w-full lg:w-auto shrink-0">
-        <div class="bg-white/5 border border-white/10 p-5 rounded-2xl text-center">
-          <i class="fa-solid fa-calendar-days text-amber-400 text-xl mb-1"></i>
-          <p class="font-display font-bold text-3xl text-white mt-1">{{ user_inquiries.count }}</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-white/60">Active Reservations</span>
+      <!-- Right Key Metrics (Clean Architectural Spec Counters) -->
+      <div class="grid grid-cols-2 gap-4 w-full lg:w-auto shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/10">
+        <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-left min-w-[140px] sm:min-w-[170px]">
+          <span class="font-display text-xs tracking-widest text-white/40 block mb-1">01</span>
+          <p class="font-display font-medium text-3xl sm:text-4xl text-white">{{ user_inquiries.count }}</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-white/60 block mt-1 font-semibold">Active Stays</span>
         </div>
-        <div class="bg-white/5 border border-white/10 p-5 rounded-2xl text-center">
-          <i class="fa-solid fa-user-shield text-amber-400 text-xl mb-1"></i>
-          <p class="font-display font-bold text-3xl text-white mt-1">24/7</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-white/60">Butler Coverage</span>
+
+        <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-left min-w-[140px] sm:min-w-[170px]">
+          <span class="font-display text-xs tracking-widest text-white/40 block mb-1">02</span>
+          <p class="font-display font-medium text-3xl sm:text-4xl text-white">24/7</p>
+          <span class="text-[0.6rem] uppercase tracking-widest text-white/60 block mt-1 font-semibold">Butler Coverage</span>
         </div>
       </div>
 
     </div>
   </div>
+</section>
 
-  <!-- Onboarding Steps (If 0 Bookings) -->
+<!-- Main Portal Body Content -->
+<div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-16 space-y-16">
+
+  <!-- 1. Reservations & Inquiries Table -->
+  <section id="my-bookings" class="space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b theme-line">
+      <div>
+        <span class="text-xs uppercase tracking-[0.25em] theme-muted font-semibold">MEMBER PORTAL</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-medium theme-ink mt-1">
+          My Reservations &amp; Concierge Inquiries
+        </h2>
+      </div>
+      <span class="text-xs theme-muted">Private Concierge Response Time: &lt; 2 Hours</span>
+    </div>
+
+    {% if user_inquiries %}
+    <div class="theme-card bg-white/90 backdrop-blur-md rounded-3xl p-2 sm:p-4 border theme-line shadow-2xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead class="border-b theme-line uppercase tracking-widest text-[0.6rem] theme-muted">
+            <tr>
+              <th class="p-4 font-semibold">Property Sanctuary</th>
+              <th class="p-4 font-semibold">Travel Schedule</th>
+              <th class="p-4 font-semibold">Guests</th>
+              <th class="p-4 font-semibold">Status</th>
+              <th class="p-4 font-semibold">Inquiry Date</th>
+              <th class="p-4 text-right font-semibold">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y theme-line">
+            {% for inq in user_inquiries %}
+            <tr class="hover:bg-[#181614]/5 transition-colors">
+              <td class="p-4 font-medium theme-ink">
+                {% if inq.property %}
+                <div class="flex items-center gap-3.5">
+                  <img src="{{ inq.property.main_image }}" alt="{{ inq.property.title }}" class="w-14 h-14 rounded-xl object-cover shadow-sm shrink-0 border theme-line" />
+                  <div>
+                    <a href="{% url 'property_detail' inq.property.slug %}" class="font-display text-base font-medium theme-ink hover:underline block leading-snug">
+                      {{ inq.property.title }}
+                    </a>
+                    <span class="text-[0.65rem] uppercase tracking-widest theme-muted font-semibold">{{ inq.property.location_display_name }}</span>
+                  </div>
+                </div>
+                {% else %}
+                <div class="font-display text-sm font-semibold theme-ink">Bespoke Kerala Sanctuary Request</div>
+                <p class="text-[0.65rem] theme-muted">Custom Concierge Itinerary</p>
+                {% endif %}
+              </td>
+
+              <td class="p-4 theme-ink font-medium">
+                {% if inq.check_in and inq.check_out %}
+                <span class="font-display text-sm">{{ inq.check_in|date:"M d" }} — {{ inq.check_out|date:"M d, Y" }}</span>
+                {% else %}
+                <span class="theme-muted italic text-xs">Dates Flexible</span>
+                {% endif %}
+              </td>
+
+              <td class="p-4 theme-ink font-medium">
+                {{ inq.guests }} Guest{% if inq.guests > 1 %}s{% endif %}
+              </td>
+
+              <td class="p-4">
+                {% if inq.status == 'Confirmed' %}
+                <span class="px-3 py-1 bg-emerald-950/10 text-emerald-800 border border-emerald-500/30 rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1.5">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-600"></span> Confirmed
+                </span>
+                {% else %}
+                <span class="px-3 py-1 bg-amber-950/10 text-amber-900 border border-amber-500/30 rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1.5">
+                  <span class="h-1.5 w-1.5 rounded-full bg-amber-600"></span> {{ inq.status }}
+                </span>
+                {% endif %}
+              </td>
+
+              <td class="p-4 theme-muted">
+                {{ inq.created_at|date:"M d, Y" }}
+              </td>
+
+              <td class="p-4 text-right">
+                {% if inq.property %}
+                <a href="{% url 'property_detail' inq.property.slug %}" class="px-4 py-2 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition shadow-sm inline-block">
+                  View Estate
+                </a>
+                {% else %}
+                <span class="text-[0.65rem] uppercase tracking-widest theme-muted font-semibold">Concierge Desk</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% else %}
+    <div class="theme-card bg-white/90 backdrop-blur-md rounded-3xl p-12 text-center border theme-line shadow-xl space-y-4">
+      <div class="w-12 h-12 rounded-2xl bg-[#181614]/5 border theme-line flex items-center justify-center mx-auto text-[#181614]">
+        <svg class="w-6 h-6 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <h3 class="font-display text-2xl font-medium theme-ink">No Active Reservations Yet</h3>
+      <p class="text-xs sm:text-sm theme-muted max-w-md mx-auto leading-relaxed">
+        Browse our curated collection of waterfront backwater mansions, cloud villas, and coastal estates to request your preferred dates.
+      </p>
+      <a href="{% url 'properties' %}" class="inline-flex px-6 py-3 bg-[#181614] text-white font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold hover:bg-slate-700 transition shadow-md mt-2">
+        Explore Kerala Sanctuaries
+      </a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- 2. Minimalist Editorial Getting Started Guide (If 0 Bookings) -->
   {% if user_inquiries.count == 0 %}
-  <div class="bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-[#181614]/15 shadow-xl">
-    <div class="mb-6">
-      <h2 class="font-display text-2xl font-medium text-[#181614] flex items-center gap-2">
-        <i class="fa-solid fa-wand-magic-sparkles text-amber-600 text-lg"></i> Getting Started with Rentora VIP
+  <section class="space-y-6">
+    <div>
+      <span class="text-xs uppercase tracking-[0.25em] theme-muted font-semibold">PRIVILEGE GUIDE</span>
+      <h2 class="font-display text-2xl sm:text-3xl font-medium theme-ink mt-1">
+        Getting Started with Rentora VIP
       </h2>
-      <p class="text-xs text-[#181614]/70 mt-1">Make the most of your membership in three seamless steps:</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-      <div class="p-5 bg-white rounded-xl border border-[#181614]/10 shadow-sm space-y-2">
-        <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Step 01</span>
-        <h3 class="font-display text-lg font-semibold text-[#181614]">Discover Sanctuaries</h3>
-        <p class="text-xs text-[#181614]/75 leading-relaxed">Filter private pool villas, high-range tea manors, and backwater houseboats by location.</p>
+      <div class="theme-card bg-white/90 backdrop-blur-md p-7 rounded-3xl border theme-line shadow-xl space-y-3">
+        <span class="font-display text-xs tracking-widest theme-muted font-semibold">01</span>
+        <h3 class="font-display text-xl font-medium theme-ink">Discover Sanctuaries</h3>
+        <p class="text-xs theme-muted leading-relaxed font-light">
+          Filter private pool villas, high-range tea manors, and backwater houseboats by destination and capacity.
+        </p>
       </div>
 
-      <div class="p-5 bg-white rounded-xl border border-[#181614]/10 shadow-sm space-y-2">
-        <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Step 02</span>
-        <h3 class="font-display text-lg font-semibold text-[#181614]">Personal Concierge</h3>
-        <p class="text-xs text-[#181614]/75 leading-relaxed">Request bespoke in-villa dining by master chefs, private lagoon charters, and airport pickup.</p>
+      <div class="theme-card bg-white/90 backdrop-blur-md p-7 rounded-3xl border theme-line shadow-xl space-y-3">
+        <span class="font-display text-xs tracking-widest theme-muted font-semibold">02</span>
+        <h3 class="font-display text-xl font-medium theme-ink">Personal Concierge</h3>
+        <p class="text-xs theme-muted leading-relaxed font-light">
+          Request bespoke in-villa dining by master chefs, private lagoon charters, and VIP airport transfers.
+        </p>
       </div>
 
-      <div class="p-5 bg-white rounded-xl border border-[#181614]/10 shadow-sm space-y-2">
-        <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Step 03</span>
-        <h3 class="font-display text-lg font-semibold text-[#181614]">Instant Confirmation</h3>
-        <p class="text-xs text-[#181614]/75 leading-relaxed">Submit date inquiries effortlessly and track reservation status right here in real-time.</p>
+      <div class="theme-card bg-white/90 backdrop-blur-md p-7 rounded-3xl border theme-line shadow-xl space-y-3">
+        <span class="font-display text-xs tracking-widest theme-muted font-semibold">03</span>
+        <h3 class="font-display text-xl font-medium theme-ink">Instant Confirmation</h3>
+        <p class="text-xs theme-muted leading-relaxed font-light">
+          Submit date inquiries effortlessly and track your reservation status right here in real-time.
+        </p>
       </div>
     </div>
-  </div>
+  </section>
   {% endif %}
 
-  <!-- Catalog Search & Filter Bar -->
-  <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-[#181614]/15 shadow-xl">
-    <div class="mb-6">
-      <h2 class="font-display text-2xl font-medium text-[#181614] flex items-center gap-2">
-        <i class="fa-solid fa-magnifying-glass text-amber-600 text-lg"></i> Search &amp; Filter Estates Catalog
+  <!-- 3. Catalog Search & Filter Bar -->
+  <section class="theme-card bg-white/90 backdrop-blur-md rounded-3xl p-7 sm:p-10 border theme-line shadow-2xl space-y-6">
+    <div>
+      <span class="text-xs uppercase tracking-[0.25em] theme-muted font-semibold">ESTATE SEARCH</span>
+      <h2 class="font-display text-2xl font-medium theme-ink mt-1">
+        Search &amp; Filter Estates Catalog
       </h2>
-      <p class="text-xs text-[#181614]/70 mt-0.5">Explore available retreats by location, architecture type, or guest capacity.</p>
+      <p class="text-xs theme-muted mt-0.5">Explore available retreats by location, architecture style, or guest capacity.</p>
     </div>
 
     <form method="GET" action="{% url 'dashboard' %}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
       <div>
-        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Keyword</label>
-        <input type="text" name="q" value="{{ query }}" placeholder="Villa, pool, tea..." class="w-full bg-white border border-[#181614]/20 rounded-xl px-3.5 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition" />
+        <label class="block text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1.5">Keyword</label>
+        <input type="text" name="q" value="{{ query }}" placeholder="Villa, pool, tea..." class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-2.5 text-xs theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-[#181614] transition" />
       </div>
 
       <div>
-        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Destination</label>
-        <select name="location" class="w-full bg-white border border-[#181614]/20 rounded-xl px-3.5 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition">
+        <label class="block text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1.5">Destination</label>
+        <select name="location" class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-2.5 text-xs theme-ink focus:outline-none focus:border-[#181614] transition">
           <option value="">All Regions</option>
           {% for loc_code, loc_name in locations %}
           <option value="{{ loc_code }}" {% if selected_location == loc_code %}selected{% endif %}>{{ loc_name }}</option>
@@ -113,8 +236,8 @@
       </div>
 
       <div>
-        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Style</label>
-        <select name="property_type" class="w-full bg-white border border-[#181614]/20 rounded-xl px-3.5 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition">
+        <label class="block text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1.5">Architecture Style</label>
+        <select name="property_type" class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-2.5 text-xs theme-ink focus:outline-none focus:border-[#181614] transition">
           <option value="">All Types</option>
           {% for type_code, type_name in property_types %}
           <option value="{{ type_code }}" {% if selected_type == type_code %}selected{% endif %}>{{ type_name }}</option>
@@ -123,144 +246,72 @@
       </div>
 
       <div>
-        <label class="block text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold mb-1">Min Guests</label>
-        <input type="number" name="guests" value="{{ guests }}" placeholder="e.g. 2" class="w-full bg-white border border-[#181614]/20 rounded-xl px-3 py-2 text-xs text-[#181614] outline-none focus:border-amber-600 transition" />
+        <label class="block text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1.5">Min Guests</label>
+        <input type="number" name="guests" value="{{ guests }}" placeholder="e.g. 2" class="w-full bg-[#181614]/5 border border-[#181614]/20 rounded-xl px-4 py-2.5 text-xs theme-ink placeholder-[#181614]/40 focus:outline-none focus:border-[#181614] transition" />
       </div>
 
       <div class="flex items-end gap-2">
-        <button type="submit" class="flex-1 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition shadow-md">
+        <button type="submit" class="flex-1 py-2.5 bg-[#181614] text-white font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold hover:bg-slate-700 transition shadow-md">
           Filter
         </button>
         {% if query or selected_location or selected_type or guests %}
-        <a href="{% url 'dashboard' %}" class="px-3 py-2 bg-slate-200 text-[#181614] text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-300 transition">Clear</a>
+        <a href="{% url 'dashboard' %}" class="px-4 py-2.5 bg-slate-200 text-[#181614] font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-300 transition">Clear</a>
         {% endif %}
       </div>
     </form>
-  </div>
+  </section>
 
-  <!-- User Reservations & Concierge Inquiries Table -->
-  <div id="my-bookings" class="bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-[#181614]/15 shadow-xl space-y-6">
-    <div>
-      <h2 class="font-display text-2xl font-medium text-[#181614] flex items-center gap-2">
-        <i class="fa-solid fa-calendar-check text-amber-600 text-lg"></i> My Reservations &amp; Inquiries
-      </h2>
-      <p class="text-xs text-[#181614]/70 mt-0.5">Track your active estate bookings and concierge responses.</p>
-    </div>
-
-    {% if user_inquiries %}
-    <div class="overflow-x-auto rounded-xl border border-[#181614]/10 shadow-sm">
-      <table class="w-full text-left border-collapse text-xs">
-        <thead class="bg-[#181614] text-white uppercase tracking-widest text-[0.6rem]">
-          <tr>
-            <th class="p-4">Property Stay</th>
-            <th class="p-4">Requested Dates</th>
-            <th class="p-4">Guests</th>
-            <th class="p-4">Status</th>
-            <th class="p-4">Request Date</th>
-            <th class="p-4 text-right">Action</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-[#181614]/10 bg-white">
-          {% for inq in user_inquiries %}
-          <tr class="hover:bg-amber-500/5 transition">
-            <td class="p-4 font-medium text-[#181614]">
-              {% if inq.property %}
-              <div class="flex items-center gap-3">
-                <img src="{{ inq.property.main_image }}" alt="{{ inq.property.title }}" class="w-12 h-12 rounded-lg object-cover shadow-sm shrink-0" />
-                <div>
-                  <a href="{% url 'property_detail' inq.property.slug %}" class="font-display text-sm font-semibold text-[#181614] hover:text-amber-700 transition block">
-                    {{ inq.property.title }}
-                  </a>
-                  <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">{{ inq.property.location_display_name }}</span>
-                </div>
-              </div>
-              {% else %}
-              <div class="font-semibold text-amber-800">Bespoke Concierge Request</div>
-              {% endif %}
-            </td>
-
-            <td class="p-4 text-[#181614]/80 font-medium">
-              {% if inq.check_in and inq.check_out %}
-              {{ inq.check_in|date:"M d" }} — {{ inq.check_out|date:"M d, Y" }}
-              {% else %}
-              <span class="text-[#181614]/60 italic">Dates Flexible</span>
-              {% endif %}
-            </td>
-
-            <td class="p-4 text-[#181614]/80 font-medium">
-              {{ inq.guests }} Guest{% if inq.guests > 1 %}s{% endif %}
-            </td>
-
-            <td class="p-4">
-              {% if inq.status == 'Confirmed' %}
-              <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1">
-                <i class="fa-solid fa-circle-check"></i> Confirmed
-              </span>
-              {% else %}
-              <span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full font-semibold text-[0.6rem] uppercase tracking-widest inline-flex items-center gap-1">
-                <i class="fa-solid fa-clock"></i> {{ inq.status }}
-              </span>
-              {% endif %}
-            </td>
-
-            <td class="p-4 text-[#181614]/60">
-              {{ inq.created_at|date:"M d, Y" }}
-            </td>
-
-            <td class="p-4 text-right">
-              {% if inq.property %}
-              <a href="{% url 'property_detail' inq.property.slug %}" class="px-3 py-1.5 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest rounded-md font-semibold hover:bg-slate-700 transition shadow-sm">
-                View Estate
-              </a>
-              {% else %}
-              <span class="text-[0.6rem] uppercase tracking-widest text-amber-700 font-semibold">Concierge Review</span>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    {% else %}
-    <div class="text-center py-12 bg-white/50 rounded-xl border border-dashed border-[#181614]/20 space-y-3">
-      <i class="fa-solid fa-calendar-plus text-4xl text-[#181614]/30"></i>
-      <h3 class="font-display text-xl font-medium text-[#181614]">No Active Reservations Yet</h3>
-      <p class="text-xs text-[#181614]/70 max-w-sm mx-auto">Explore our featured Kerala properties below and request your dates.</p>
-      <a href="{% url 'properties' %}" class="inline-flex px-5 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-lg font-semibold shadow-md">Explore Estates</a>
-    </div>
-    {% endif %}
-  </div>
-
-  <!-- Featured Estates Showcase -->
+  <!-- 4. Featured Estates Showcase Grid -->
   {% if featured_properties %}
-  <div class="space-y-6">
-    <div class="flex items-center justify-between">
-      <h2 class="font-display text-2xl font-medium text-[#181614]">Featured Kerala Estates</h2>
-      <a href="{% url 'properties' %}" class="text-xs uppercase tracking-widest font-semibold text-amber-800 hover:text-amber-900 transition">View Full Catalog →</a>
+  <section class="space-y-6">
+    <div class="flex items-end justify-between border-b theme-line pb-4">
+      <div>
+        <span class="text-xs uppercase tracking-[0.25em] theme-muted font-semibold">HANDPICKED COLLECTION</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-medium theme-ink mt-1">Featured Kerala Sanctuaries</h2>
+      </div>
+      <a href="{% url 'properties' %}" class="font-display text-xs uppercase tracking-widest font-semibold theme-ink hover:underline transition">View Full Catalog →</a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {% for prop in featured_properties %}
-      <article class="bg-white/80 backdrop-blur-md rounded-2xl p-4 border border-[#181614]/15 shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+      <article class="theme-card bg-white/80 backdrop-blur-md rounded-3xl p-5 border border-[#181614]/15 shadow-xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between group">
         <div>
-          <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-3 relative">
-            <img src="{{ prop.main_image }}" alt="{{ prop.title }}" class="w-full h-full object-cover" />
-            <div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-[#181614]/80 text-white text-[0.55rem] uppercase tracking-widest rounded-full">
+          <div class="aspect-[4/3] w-full rounded-2xl bg-cover bg-center overflow-hidden mb-5 relative shadow-md">
+            <img src="{{ prop.main_image }}" alt="{{ prop.title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute top-3 left-3 px-3 py-1 bg-[#181614]/80 backdrop-blur-md text-white text-[0.6rem] uppercase tracking-widest font-semibold rounded-full border border-white/20">
               {{ prop.get_property_type_display }}
             </div>
+            <div class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md text-[#181614] text-xs font-semibold rounded-full shadow-md flex items-center gap-1">
+              <i class="fa-solid fa-star text-amber-500 text-[0.65rem]"></i> {{ prop.rating }}
+            </div>
           </div>
-          <h3 class="font-display text-lg font-medium text-[#181614] leading-snug"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
-          <p class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60 mt-1"><i class="fa-solid fa-location-dot text-amber-600"></i> {{ prop.location_display_name }}</p>
+
+          <div class="flex items-center gap-1.5 text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1">
+            <i class="fa-solid fa-location-dot text-amber-600"></i> {{ prop.location_display_name }}
+          </div>
+          
+          <h3 class="font-display text-2xl font-medium theme-ink leading-snug group-hover:text-amber-600 transition-colors">
+            <a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a>
+          </h3>
+
+          <p class="text-xs theme-muted mt-2 leading-relaxed line-clamp-2">
+            {{ prop.short_description }}
+          </p>
         </div>
 
-        <div class="flex items-center justify-between mt-4 pt-3 border-t border-[#181614]/10">
-          <span class="font-bold text-sm text-[#181614]">₹{{ prop.price_per_night|floatformat:0 }} / night</span>
-          <a href="{% url 'property_detail' prop.slug %}" class="px-3 py-1.5 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest rounded-md font-semibold">View Stay</a>
+        <div class="flex items-center justify-between pt-4 mt-4 border-t theme-line">
+          <div>
+            <span class="font-display font-bold text-xl theme-ink">₹{{ prop.price_per_night|floatformat:0 }}</span>
+            <span class="text-[0.65rem] uppercase tracking-widest theme-muted">/ night</span>
+          </div>
+          <a href="{% url 'property_detail' prop.slug %}" class="px-4 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-700 transition flex items-center gap-1.5 shadow-md">
+            Explore <i class="fa-solid fa-chevron-right text-[0.6rem]"></i>
+          </a>
         </div>
       </article>
       {% endfor %}
     </div>
-  </div>
+  </section>
   {% endif %}
 
 </div>
