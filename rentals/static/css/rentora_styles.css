@@ -14,21 +14,21 @@
   --gold-accent: #b38b4d;
 }
 
-/* Night Mode Theme Overrides */
+/* Night Mode Theme Overrides — Obsidian Sand & Warm Slate */
 body.night-mode {
-  --ink: #e8f3ee;
-  --ink-muted: #8faea6;
-  --paper: #081718;
-  --stay-bg: #081718;
-  --card-bg: rgba(14, 34, 36, 0.85);
-  --card-border: rgba(52, 133, 124, 0.28);
-  --btn-bg: #164043;
-  --btn-text: #e8f3ee;
-  --tab-active-bg: #1a494d;
-  --tab-active-text: #e8f3ee;
-  --gold-accent: #e2c082;
-  background-color: #081718 !important;
-  color: #e8f3ee !important;
+  --ink: #f4f1ea;
+  --ink-muted: #a8a29e;
+  --paper: #121110;
+  --stay-bg: #121110;
+  --card-bg: rgba(26, 24, 22, 0.85);
+  --card-border: rgba(244, 241, 234, 0.12);
+  --btn-bg: #f4f1ea;
+  --btn-text: #121110;
+  --tab-active-bg: #282522;
+  --tab-active-text: #f4f1ea;
+  --gold-accent: #d4af37;
+  background-color: #121110 !important;
+  color: #f4f1ea !important;
 }
 
 body {
@@ -43,7 +43,7 @@ body {
 }
 
 body.night-mode #scroll-bg {
-  background-color: #081718 !important;
+  background-color: #121110 !important;
 }
 
 /* Night Mode Global Element Overrides */
@@ -52,9 +52,9 @@ body.night-mode .bg-white\/70,
 body.night-mode .bg-white\/60,
 body.night-mode .bg-white\/50,
 body.night-mode .bg-white {
-  background-color: rgba(14, 34, 36, 0.85) !important;
-  color: #e8f3ee !important;
-  border-color: rgba(52, 133, 124, 0.3) !important;
+  background-color: rgba(26, 24, 22, 0.85) !important;
+  color: #f4f1ea !important;
+  border-color: rgba(244, 241, 234, 0.12) !important;
 }
 
 body.night-mode #contact .bg-white {
@@ -68,45 +68,45 @@ body.night-mode #contact .text-\[\#181614\] {
 
 body.night-mode .text-\[\#181614\],
 body.night-mode .font-display.text-\[\#181614\] {
-  color: #e8f3ee !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .text-\[\#181614\]\/80,
 body.night-mode .text-\[\#181614\]\/75,
 body.night-mode .text-\[\#181614\]\/70,
 body.night-mode .text-\[\#181614\]\/60 {
-  color: #8faea6 !important;
+  color: #a8a29e !important;
 }
 
 body.night-mode .border-\[\#181614\]\/15,
 body.night-mode .border-\[\#181614\]\/10,
 body.night-mode .border-\[\#181614\]\/20 {
-  border-color: rgba(52, 133, 124, 0.28) !important;
+  border-color: rgba(244, 241, 234, 0.12) !important;
 }
 
 body.night-mode .divide-\[\#181614\]\/10 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(52, 133, 124, 0.2) !important;
+  border-color: rgba(244, 241, 234, 0.1) !important;
 }
 
 body.night-mode input:not([type="submit"]),
 body.night-mode select,
 body.night-mode textarea {
-  background-color: rgba(8, 23, 24, 0.9) !important;
-  color: #e8f3ee !important;
-  border-color: rgba(52, 133, 124, 0.4) !important;
+  background-color: rgba(18, 17, 16, 0.9) !important;
+  color: #f4f1ea !important;
+  border-color: rgba(244, 241, 234, 0.18) !important;
 }
 
 body.night-mode table tbody tr {
-  background-color: rgba(14, 34, 36, 0.7) !important;
+  background-color: rgba(26, 24, 22, 0.7) !important;
 }
 
 body.night-mode table tbody tr:hover {
-  background-color: rgba(22, 64, 67, 0.8) !important;
+  background-color: rgba(36, 33, 30, 0.8) !important;
 }
 
 body.night-mode .bg-slate-200 {
-  background-color: rgba(22, 64, 67, 0.8) !important;
-  color: #e8f3ee !important;
+  background-color: rgba(36, 33, 30, 0.8) !important;
+  color: #f4f1ea !important;
 }
 
 /* Typography Font Families */
@@ -218,44 +218,44 @@ body.night-mode .bg-slate-200 {
 /* ==================== NIGHT MODE HEADER & FOOTER OVERRIDES ==================== */
 
 body.night-mode .theme-header {
-  background-color: rgba(8, 23, 24, 0.92) !important;
-  border-bottom: 1px solid rgba(52, 133, 124, 0.28) !important;
-  color: #e8f3ee !important;
+  background-color: rgba(18, 17, 16, 0.95) !important;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.12) !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-logo-title {
-  color: #e8f3ee !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-logo-sub {
-  color: #8faea6 !important;
+  color: rgba(244, 241, 234, 0.5) !important;
 }
 
 body.night-mode .theme-nav-link {
-  color: #8faea6 !important;
+  color: rgba(244, 241, 234, 0.7) !important;
 }
 
 body.night-mode .theme-nav-link:hover,
 body.night-mode .theme-nav-link.active-link {
-  color: #e8f3ee !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-switch-pill {
-  background-color: rgba(14, 34, 36, 0.85) !important;
-  border: 1px solid rgba(52, 133, 124, 0.28) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(244, 241, 234, 0.15) !important;
 }
 
 body.night-mode .theme-switch-btn-inactive {
-  color: #8faea6 !important;
+  color: rgba(244, 241, 234, 0.6) !important;
 }
 
 body.night-mode .theme-switch-btn-inactive:hover {
-  color: #e8f3ee !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-cta-btn {
-  background-color: #e8f3ee !important;
-  color: #081718 !important;
+  background-color: #f4f1ea !important;
+  color: #121110 !important;
 }
 
 body.night-mode .theme-cta-btn:hover {
@@ -263,37 +263,37 @@ body.night-mode .theme-cta-btn:hover {
 }
 
 body.night-mode .theme-footer {
-  background-color: #061314 !important;
-  border-top: 1px solid rgba(52, 133, 124, 0.28) !important;
-  color: #e8f3ee !important;
+  background-color: #0d0c0b !important;
+  border-top: 1px solid rgba(244, 241, 234, 0.1) !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-footer-divider {
-  border-color: rgba(52, 133, 124, 0.25) !important;
+  border-color: rgba(244, 241, 234, 0.1) !important;
 }
 
 body.night-mode .theme-footer-heading {
-  color: #e8f3ee !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-footer-muted {
-  color: #8faea6 !important;
+  color: #a8a29e !important;
 }
 
 body.night-mode .theme-footer-link {
-  color: #8faea6 !important;
+  color: #a8a29e !important;
 }
 
 body.night-mode .theme-footer-link:hover {
-  color: #e8f3ee !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-footer-input {
-  color: #e8f3ee !important;
+  color: #f4f1ea !important;
 }
 
 body.night-mode .theme-footer-input::placeholder {
-  color: rgba(143, 174, 166, 0.5) !important;
+  color: rgba(244, 241, 234, 0.4) !important;
 }
 
 /* Theme Utility Classes */
