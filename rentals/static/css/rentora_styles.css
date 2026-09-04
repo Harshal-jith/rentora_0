@@ -46,8 +46,17 @@ body.night-mode #scroll-bg {
   background-color: #121110 !important;
 }
 
+/* Base Theme Card Styling */
+.theme-card {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  color: #181614 !important;
+  border-color: rgba(24, 22, 20, 0.12) !important;
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
 /* Night Mode Global Element Overrides */
 body.night-mode .theme-card,
+html.night-mode .theme-card,
 body.night-mode .bg-white,
 body.night-mode .bg-white\/95,
 body.night-mode .bg-white\/90,
@@ -57,7 +66,7 @@ body.night-mode .bg-white\/75,
 body.night-mode .bg-white\/70,
 body.night-mode .bg-white\/60,
 body.night-mode .bg-white\/50 {
-  background-color: rgba(26, 24, 22, 0.92) !important;
+  background-color: rgba(26, 24, 22, 0.95) !important;
   color: #f4f1ea !important;
   border-color: rgba(244, 241, 234, 0.15) !important;
 }

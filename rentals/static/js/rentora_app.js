@@ -30,15 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const nightBtn = document.getElementById('night-btn');
   const daySlides = document.querySelectorAll('.day-slide');
   const nightSlides = document.querySelectorAll('.night-slide');
-  const isHeroPage = document.getElementById('hero-slides') !== null;
+  const isHeroPage = document.getElementById('hero-loader') !== null ||
+                     document.getElementById('imagery') !== null ||
+                     document.querySelector('section[aria-label="Hero"]') !== null ||
+                     window.location.pathname === '/' ||
+                     window.location.pathname.endsWith('/home/');
   let isNightMode = localStorage.getItem('rentora_theme') === 'night';
 
   function setLightingMode(night) {
-    if (isHeroPage) return; // Completely isolate hero page from theme switching
+    if (isHeroPage) {
+      document.documentElement.classList.remove('night-mode', 'light-mode');
+      document.body.classList.remove('night-mode', 'light-mode');
+      return; // Completely isolate hero page from theme switching
+    }
     isNightMode = night;
     localStorage.setItem('rentora_theme', night ? 'night' : 'day');
     
     if (night) {
+      document.documentElement.classList.add('night-mode');
       document.body.classList.add('night-mode');
       document.body.classList.remove('light-mode');
       if (nightBtn) {
@@ -51,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       daySlides.forEach(slide => slide.style.opacity = '0');
       if (nightSlides[0]) nightSlides[0].style.opacity = '1';
     } else {
+      document.documentElement.classList.remove('night-mode');
       document.body.classList.remove('night-mode');
       document.body.classList.add('light-mode');
       if (dayBtn) {
@@ -67,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // If on hero page, completely strip night-mode/light-mode body classes
   if (isHeroPage) {
+    document.documentElement.classList.remove('night-mode', 'light-mode');
     document.body.classList.remove('night-mode', 'light-mode');
   } else {
     // Initialize saved theme preference for interior & post-login pages
