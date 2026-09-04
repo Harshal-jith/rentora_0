@@ -905,9 +905,9 @@ def edit_profile_view(request):
         # Validation
         if not username:
             messages.error(request, "Username cannot be blank.")
-        elif User.objects.filter(username__iexact=username).exclude(pk=user.pk).exists():
+        elif username.lower() != user.username.lower() and User.objects.filter(username__iexact=username).exclude(pk=user.pk).exists():
             messages.error(request, "This username is already taken by another member.")
-        elif email and User.objects.filter(email__iexact=email).exclude(pk=user.pk).exists():
+        elif email and email.lower() != (user.email or '').lower() and User.objects.filter(email__iexact=email).exclude(pk=user.pk).exists():
             messages.error(request, "This email address is already registered to another member.")
         else:
             user.first_name = first_name
