@@ -177,6 +177,54 @@ body.night-mode .bg-slate-200 {
   }
 }
 
+/* Hero Intro Loader Pure CSS + GPU Acceleration */
+#hero-loader {
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+  will-change: opacity, visibility;
+  transform: translate3d(0, 0, 0);
+  z-index: 99999 !important;
+}
+
+.hero-loader__box {
+  animation: heroBoxExpand 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: width, opacity, margin;
+  transform: translate3d(0, 0, 0);
+}
+
+.hero-loader__growing-image {
+  animation: heroImgFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  will-change: opacity;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes heroBoxExpand {
+  0% {
+    width: 0px;
+    opacity: 0;
+    margin: 0 0;
+  }
+  35% {
+    width: 4px;
+    opacity: 1;
+    margin: 0 0.2rem;
+  }
+  100% {
+    width: clamp(76px, 14vw, 140px);
+    opacity: 1;
+    margin: 0 0.45rem;
+    border-radius: 6px;
+  }
+}
+
+@keyframes heroImgFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* ==================== THEME HEADER & FOOTER OVERRIDES (FOR BASE LAYOUT / LOGGED IN PAGES) ==================== */
 
 /* Default / Light Mode Header */
