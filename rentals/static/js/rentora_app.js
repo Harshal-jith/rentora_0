@@ -64,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initialize saved theme preference
-  if (isNightMode) {
-    setLightingMode(true);
-  }
+  setLightingMode(isNightMode);
 
   if (dayBtn && nightBtn) {
     dayBtn.addEventListener('click', () => setLightingMode(false));

@@ -218,82 +218,82 @@ body.night-mode .bg-slate-200 {
 /* ==================== NIGHT MODE HEADER & FOOTER OVERRIDES ==================== */
 
 body.night-mode .theme-header {
-  background-color: rgba(24, 22, 20, 0.95) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #ffffff !important;
+  background-color: rgba(8, 23, 24, 0.92) !important;
+  border-bottom: 1px solid rgba(52, 133, 124, 0.28) !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-logo-title {
-  color: #ffffff !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-logo-sub {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: #8faea6 !important;
 }
 
 body.night-mode .theme-nav-link {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: #8faea6 !important;
 }
 
 body.night-mode .theme-nav-link:hover,
 body.night-mode .theme-nav-link.active-link {
-  color: #ffffff !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-switch-pill {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(14, 34, 36, 0.85) !important;
+  border: 1px solid rgba(52, 133, 124, 0.28) !important;
 }
 
 body.night-mode .theme-switch-btn-inactive {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: #8faea6 !important;
 }
 
 body.night-mode .theme-switch-btn-inactive:hover {
-  color: #ffffff !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-cta-btn {
-  background-color: #ffffff !important;
-  color: #181614 !important;
+  background-color: #e8f3ee !important;
+  color: #081718 !important;
 }
 
 body.night-mode .theme-cta-btn:hover {
-  background-color: #f1f5f9 !important;
+  background-color: #ffffff !important;
 }
 
 body.night-mode .theme-footer {
-  background-color: #0e0d0c !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
+  background-color: #061314 !important;
+  border-top: 1px solid rgba(52, 133, 124, 0.28) !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-footer-divider {
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(52, 133, 124, 0.25) !important;
 }
 
 body.night-mode .theme-footer-heading {
-  color: #ffffff !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-footer-muted {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: #8faea6 !important;
 }
 
 body.night-mode .theme-footer-link {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: #8faea6 !important;
 }
 
 body.night-mode .theme-footer-link:hover {
-  color: #ffffff !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-footer-input {
-  color: #ffffff !important;
+  color: #e8f3ee !important;
 }
 
 body.night-mode .theme-footer-input::placeholder {
-  color: rgba(255, 255, 255, 0.4) !important;
+  color: rgba(143, 174, 166, 0.5) !important;
 }
 
 /* Theme Utility Classes */
