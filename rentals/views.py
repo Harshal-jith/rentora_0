@@ -495,9 +495,19 @@ def home_view(request):
                 messages.error(request, "An unexpected error occurred while creating your account. Please try again or contact concierge support.")
                     
         elif action == 'login':
-            form = AuthenticationForm(request, data=request.POST)
-            if form.is_valid():
-                user = form.get_user()
+            username_input = request.POST.get('username', '').strip()
+            password_input = request.POST.get('password', '')
+            
+            user = authenticate(request, username=username_input, password=password_input)
+            if user is None and '@' in username_input:
+                try:
+                    user_obj = User.objects.filter(email__iexact=username_input).first()
+                    if user_obj:
+                        user = authenticate(request, username=user_obj.username, password=password_input)
+                except Exception:
+                    user = None
+
+            if user is not None and user.is_active:
                 login(request, user)
                 messages.success(request, f"Welcome back, {user.username}!")
                 return redirect('dashboard')
