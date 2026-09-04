@@ -467,51 +467,62 @@ body.night-mode .theme-card {
 }
 
 /* Botanical Sway Animations */
+/* Botanical Sway Animations (iGPU Hardware-Accelerated 3D Transforms) */
 @keyframes wind-sway-left {
   0%, 100% {
-    transform: rotate(0deg) translateY(0px) scale(1);
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
   }
   50% {
-    transform: rotate(2.5deg) translateY(-8px) scale(1.03);
+    transform: translate3d(0, -8px, 0) rotate(2.5deg) scale(1.03);
   }
 }
 
 @keyframes wind-sway-right {
   0%, 100% {
-    transform: rotate(0deg) translateY(0px) scale(1);
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
   }
   50% {
-    transform: rotate(-3deg) translateY(10px) scale(0.97);
+    transform: translate3d(0, 10px, 0) rotate(-3deg) scale(0.97);
   }
 }
 
 .botanical-sway-left {
   animation: wind-sway-left 7.5s ease-in-out infinite;
   transform-origin: top left;
+  will-change: transform;
 }
 
 .botanical-sway-right {
   animation: wind-sway-right 9.5s ease-in-out infinite;
   transform-origin: top right;
+  will-change: transform;
 }
 
-/* Botanical Canopy Blend Modes */
+/* Botanical Canopy Blend Modes (Hardware Promoted for 0% iGPU Stutter) */
 .flower-container {
   pointer-events: none;
   mix-blend-mode: multiply;
   isolation: isolate;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .flower-container video {
   mix-blend-mode: multiply;
-  filter: contrast(1.18) brightness(0.93);
-  -webkit-filter: contrast(1.18) brightness(0.93);
+  filter: contrast(1.15) brightness(0.95);
+  -webkit-filter: contrast(1.15) brightness(0.95);
   object-fit: cover;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .top-left-canopy video {
-  filter: contrast(1.22) brightness(0.92);
-  -webkit-filter: contrast(1.22) brightness(0.92);
+  filter: contrast(1.18) brightness(0.94);
+  -webkit-filter: contrast(1.18) brightness(0.94);
 }
 
 /* Panel 1 Content Alignment */
@@ -522,10 +533,10 @@ body.night-mode .theme-card {
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;
-  transform: translateY(28px);
+  transform: translate3d(0, 28px, 0);
 }
 
-/* GPU Hardware Acceleration */
+/* iGPU GPU Hardware Acceleration Layer Promotions */
 .horizontal-section,
 .horizontal-pin,
 .horizontal-track,
@@ -537,7 +548,10 @@ body.night-mode .theme-card {
 .panel-2-text,
 .panel-2-image,
 .panel-3-text,
-.rentora-pillar {
+.rentora-pillar,
+.apt-card,
+.theme-card,
+video {
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
