@@ -879,6 +879,15 @@ def custom_404_view(request, exception=None):
     return render(request, 'rentals/404.html', status=404)
 
 @login_required
+def profile_detail_view(request):
+    log_visitor(request)
+    user = request.user
+    profile, _ = UserProfile.objects.get_or_create(user=user)
+    return render(request, 'rentals/profile_detail.html', {
+        'profile': profile
+    })
+
+@login_required
 def edit_profile_view(request):
     log_visitor(request)
     user = request.user
@@ -913,7 +922,7 @@ def edit_profile_view(request):
             profile.save()
 
             messages.success(request, "Your profile details have been updated successfully.")
-            return redirect('edit_profile')
+            return redirect('profile_detail')
 
     return render(request, 'rentals/profile_edit.html', {
         'profile': profile,

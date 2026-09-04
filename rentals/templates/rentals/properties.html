@@ -131,7 +131,7 @@
           <!-- Price & Action CTA -->
           <div class="flex items-center justify-between pt-4 mt-2">
             <div>
-              <span class="font-display font-bold text-xl theme-ink">₹{{ prop.price_per_night|floatformat:0 }}</span>
+              <span class="font-display font-bold text-xl theme-ink rentora-price" data-price-inr="{{ prop.price_per_night|floatformat:0 }}">₹{{ prop.price_per_night|floatformat:0 }}</span>
               <span class="text-[0.65rem] uppercase tracking-widest theme-muted">/ night</span>
             </div>
             <a href="{% url 'property_detail' prop.slug %}" class="px-4 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-amber-600 transition flex items-center gap-1.5 shadow-md">

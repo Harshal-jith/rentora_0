@@ -759,6 +759,48 @@ document.addEventListener('DOMContentLoaded', () => {
   playAllVideos();
   window.addEventListener('scroll', playAllVideos, { passive: true });
   document.addEventListener('click', playAllVideos, { once: true });
+
+  // ----------------------------------------------------
+  // 12. MULTI-CURRENCY CONVERSION MANAGER
+  // ----------------------------------------------------
+  const currencySelect = document.getElementById('currency-select');
+  const currencyRates = {
+    INR: { rate: 1.0, symbol: '₹', prefix: true },
+    USD: { rate: 0.01156, symbol: '$', prefix: true },
+    EUR: { rate: 0.01109, symbol: '€', prefix: true },
+    GBP: { rate: 0.00921, symbol: '£', prefix: true },
+    AED: { rate: 0.04255, symbol: 'AED', prefix: false }
+  };
+
+  function formatCurrencyValue(inrValue, currencyCode) {
+    const config = currencyRates[currencyCode] || currencyRates.INR;
+    const converted = Math.round(inrValue * config.rate);
+    const formattedNum = converted.toLocaleString('en-US');
+    return config.prefix ? `${config.symbol}${formattedNum}` : `${formattedNum} ${config.symbol}`;
+  }
+
+  function applyGlobalCurrency(currencyCode) {
+    const priceElements = document.querySelectorAll('.rentora-price[data-price-inr]');
+    priceElements.forEach(el => {
+      const rawInr = parseFloat(el.getAttribute('data-price-inr'));
+      if (!isNaN(rawInr)) {
+        el.textContent = formatCurrencyValue(rawInr, currencyCode);
+      }
+    });
+    localStorage.setItem('rentora_currency', currencyCode);
+    if (currencySelect) {
+      currencySelect.value = currencyCode;
+    }
+  }
+
+  const savedCurrency = localStorage.getItem('rentora_currency') || 'INR';
+  applyGlobalCurrency(savedCurrency);
+
+  if (currencySelect) {
+    currencySelect.addEventListener('change', (e) => {
+      applyGlobalCurrency(e.target.value);
+    });
+  }
 });
 
 
