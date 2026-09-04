@@ -764,31 +764,54 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements.forEach(el => revealObserver.observe(el));
 
   // ----------------------------------------------------
-  // 11. GLOBAL VIDEO AUTOPLAY & LOOP ENFORCER
+  // 11. GLOBAL VIDEO AUTOPLAY & LAPTOP PERFORMANCE ENGINE
   // ----------------------------------------------------
   const allVideos = document.querySelectorAll('video');
-  function playAllVideos() {
-    allVideos.forEach(v => {
-      v.muted = true;
-      v.defaultMuted = true;
-      v.playsInline = true;
-      v.setAttribute('muted', '');
-      v.setAttribute('playsinline', '');
-      v.setAttribute('webkit-playsinline', '');
-      if (v.paused) {
-        const p = v.play();
-        if (p !== undefined) {
-          p.catch(() => {
-            // Low-power mode or battery saver prevented autoplay; user interaction will trigger play
-          });
+
+  function initVideoPlayback(v) {
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+
+    // Handle low-end laptop GPU decode errors on WebM by forcing fallback
+    const sources = v.querySelectorAll('source');
+    sources.forEach(src => {
+      src.onerror = () => {
+        // If a WebM source fails to decode on low-end GPUs, force load next available fallback (e.g. MP4)
+        if (src.type === 'video/webm' && sources.length > 1) {
+          v.removeAttribute('src');
+          v.load();
+          v.play().catch(() => {});
         }
-      }
+      };
     });
+
+    if (v.paused) {
+      const p = v.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // Low-power mode, battery saver, or browser energy saver suspended playback
+        });
+      }
+    }
+  }
+
+  function playAllVideos() {
+    allVideos.forEach(v => initVideoPlayback(v));
   }
 
   playAllVideos();
-  ['touchstart', 'touchmove', 'scroll', 'click', 'pointerdown'].forEach(evt => {
+
+  // Laptop & Mobile Wake Hooks (triggers on mouse movement, scroll, tab switch, or click)
+  ['touchstart', 'touchmove', 'mousemove', 'pointermove', 'scroll', 'click', 'pointerdown', 'focus'].forEach(evt => {
     window.addEventListener(evt, playAllVideos, { passive: true });
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) playAllVideos();
   });
 
   // ----------------------------------------------------
