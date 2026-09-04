@@ -340,30 +340,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 400);
     }
 
-    // Display loader animation for 1.4s minimum so user experiences the portal expansion, then dismiss smoothly
-    setTimeout(dismissLoader, 1400);
+    // Display loader animation for 1.2s minimum so user experiences the portal expansion, then dismiss smoothly
+    setTimeout(dismissLoader, 1200);
   } else {
     playHeroEntrance();
-  }
-
-  // Step 5: Smooth Cinematic Zoom to Full Viewport
-  introTl.to([loaderStartWord, loaderEndWord], {
-    width: 0,
-    opacity: 0,
-    margin: 0,
-    padding: 0,
-    duration: 0.65,
-    ease: 'power4.inOut'
-  }, '+=0.1');
-
-  introTl.to(loaderBox, {
-    width: '100vw',
-    height: '100vh',
-    borderRadius: '0px',
-    margin: 0,
-    duration: 0.7,
-    ease: 'power4.inOut'
-  }, '<');
   }
 
 
