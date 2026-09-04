@@ -89,6 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  window.addEventListener('pageshow', () => {
+    if (isHeroPage) {
+      document.documentElement.classList.remove('night-mode', 'light-mode');
+      document.body.classList.remove('night-mode', 'light-mode');
+    }
+  });
+
   // ----------------------------------------------------
   // 2. APARTMENT SPECS FILTER TABS
   // ----------------------------------------------------

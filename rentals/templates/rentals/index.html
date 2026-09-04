@@ -24,7 +24,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Custom Styles -->
   <link rel="stylesheet" href="{% static 'css/rentora_styles.css' %}" />
-
+  <script>
+    document.documentElement.classList.remove('night-mode', 'light-mode');
+    if (document.body) document.body.classList.remove('night-mode', 'light-mode');
+    window.addEventListener('pageshow', function() {
+      document.documentElement.classList.remove('night-mode', 'light-mode');
+      if (document.body) document.body.classList.remove('night-mode', 'light-mode');
+    });
+  </script>
 </head>
 <body class="font-body bg-[#f4f1ea] text-[#181614] antialiased selection:bg-[#181614] selection:text-white overflow-x-hidden">
   {% if messages %}
