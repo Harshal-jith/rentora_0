@@ -297,7 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. ULTRA-SMOOTH CINEMATIC INTRO HERO LOADER
   // ----------------------------------------------------
   const loaderEl = document.getElementById('hero-loader');
-  const loaderPlayed = sessionStorage.getItem('rentora_loader_played');
   const hasMessagesOrForm = document.querySelector('.bg-red-950\\/80') || window.location.hash || window.location.search;
 
   function playHeroEntrance() {
@@ -319,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (loaderEl && (loaderPlayed || hasMessagesOrForm)) {
+  if (loaderEl && hasMessagesOrForm) {
     loaderEl.style.display = 'none';
     loaderEl.style.pointerEvents = 'none';
     playHeroEntrance();
@@ -329,28 +328,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 100);
   } else if (loaderEl) {
-    sessionStorage.setItem('rentora_loader_played', 'true');
-
     const loaderBox = document.querySelector('.hero-loader__box');
     const growingImgBox = document.querySelector('.hero-loader__growing-image');
     const loaderStartWord = document.querySelector('.hero-loader__word--start');
     const loaderEndWord = document.querySelector('.hero-loader__word--end');
     const loaderSlides = Array.from(document.querySelectorAll('.loader-img-slide'));
     
-    // Preload loader images immediately for 0ms lag-free GPU rendering
-    const preloadUrls = [
-      'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85'
-    ];
-    preloadUrls.forEach(url => {
-      const img = new Image();
-      img.src = url;
+    // Ensure all loader images are preloaded into browser cache immediately for 0ms rendering
+    loaderSlides.forEach(slide => {
+      const img = slide.querySelector('img');
+      if (img && img.src) {
+        const pImg = new Image();
+        pImg.src = img.src;
+      }
     });
 
     const isMobile = window.innerWidth < 640;
-    const targetWidth = isMobile ? '76px' : '150px';
+    const targetWidth = isMobile ? '80px' : '160px';
 
     // Initial setup: Slide 0 visible with gentle scale, other slides ready with 0 opacity
     loaderSlides.forEach((slide, i) => {
