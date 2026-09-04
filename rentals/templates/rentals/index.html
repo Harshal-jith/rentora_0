@@ -1102,9 +1102,9 @@
             <button type="button" class="open-signup-btn text-white font-semibold hover:text-amber-300 transition"><i class="fa-solid fa-user-plus me-1"></i> Register</button>
             {% endif %}
             <span class="text-white/20">•</span>
-            <a href="#" onclick="event.preventDefault(); alert('Rentora Private Estate Privacy Policy: We uphold the strictest global guest confidentiality and data security.');" class="hover:text-white transition">Privacy Policy</a>
+            <a href="{% url 'privacy_policy' %}" class="hover:text-white transition">Privacy Policy</a>
             <span class="text-white/20">•</span>
-            <a href="#" onclick="event.preventDefault(); alert('Terms of Residence: All bookings include full estate staffing and 24/7 dedicated concierge care.');" class="hover:text-white transition">Terms of Residence</a>
+            <a href="{% url 'terms_of_residence' %}" class="hover:text-white transition">Terms of Residence</a>
             <span class="text-white/20">•</span>
             <a href="#" class="hover:text-white transition">Back to Top ↑</a>
           </div>

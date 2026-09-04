@@ -929,4 +929,13 @@ def edit_profile_view(request):
         'locations': LOCATION_CHOICES
     })
 
+def privacy_policy_view(request):
+    log_visitor(request)
+    return render(request, 'rentals/privacy_policy.html')
+
+def terms_of_residence_view(request):
+    log_visitor(request)
+    return render(request, 'rentals/terms_of_residence.html')
+
+
 

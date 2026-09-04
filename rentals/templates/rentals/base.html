@@ -268,9 +268,9 @@
           <a href="{% url 'register' %}" class="theme-footer-heading font-semibold hover:text-amber-500 transition"><i class="fa-solid fa-user-plus me-1"></i> Register</a>
           {% endif %}
           <span class="opacity-30">•</span>
-          <a href="#" onclick="event.preventDefault(); alert('Rentora Private Estate Privacy Policy: We uphold the strictest global guest confidentiality and data security.');" class="theme-footer-link transition">Privacy Policy</a>
+          <a href="{% url 'privacy_policy' %}" class="theme-footer-link transition">Privacy Policy</a>
           <span class="opacity-30">•</span>
-          <a href="#" onclick="event.preventDefault(); alert('Terms of Residence: All bookings include full estate staffing and 24/7 dedicated concierge care.');" class="theme-footer-link transition">Terms of Residence</a>
+          <a href="{% url 'terms_of_residence' %}" class="theme-footer-link transition">Terms of Residence</a>
           <span class="opacity-30">•</span>
           <a href="#" class="theme-footer-link transition">Back to Top ↑</a>
         </div>

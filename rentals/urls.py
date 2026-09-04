@@ -14,4 +14,7 @@ urlpatterns = [
     path('resend-verification/', views.resend_verification_view, name='resend_verification'),
     path('profile/', views.profile_detail_view, name='profile_detail'),
     path('profile/edit/', views.edit_profile_view, name='edit_profile'),
+    path('privacy-policy/', views.privacy_policy_view, name='privacy_policy'),
+    path('terms-of-residence/', views.terms_of_residence_view, name='terms_of_residence'),
 ]
+
