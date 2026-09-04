@@ -321,10 +321,20 @@ document.addEventListener('DOMContentLoaded', () => {
           onComplete: () => {
             loaderEl.style.display = 'none';
             playHeroEntrance();
+            setTimeout(() => {
+              if (typeof ScrollTrigger !== 'undefined') {
+                ScrollTrigger.refresh();
+              }
+            }, 100);
           }
         });
       } else {
         playHeroEntrance();
+        setTimeout(() => {
+          if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+          }
+        }, 100);
       }
     }
   });
@@ -554,40 +564,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (horizontalSection && horizontalTrack && horizontalPanels.length > 0) {
     const totalPanels = horizontalPanels.length;
-    const isDesktop = window.innerWidth >= 768;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
 
     if (isDesktop) {
-      // Set track width explicitly to totalPanels * 100vw
+      // Ensure track width is 300vw and panels do not shrink
       horizontalTrack.style.width = `${totalPanels * 100}vw`;
+      horizontalTrack.style.display = 'flex';
+      horizontalTrack.style.flexWrap = 'nowrap';
+      horizontalPanels.forEach(panel => {
+        panel.style.width = '100vw';
+        panel.style.minWidth = '100vw';
+        panel.style.flexShrink = '0';
+      });
 
       // Master Horizontal Scroll Timeline with Rock-Solid Screen Pinning
       const hTl = gsap.timeline({
         scrollTrigger: {
           trigger: horizontalSection,
-          pin: true,              // Pin the full section so it stays 100% locked in viewport center
+          pin: true,
           pinSpacing: true,
           anticipatePin: 1,
           fastScrollEnd: true,
           preventOverlaps: true,
-          scrub: 1,               // Smooth 1s scrub for continuous momentum
+          scrub: 1,
           start: 'top top',
-          end: () => `+=${Math.round(horizontalTrack.scrollWidth - window.innerWidth)}`,
+          end: () => `+=${Math.max(100, Math.round(horizontalTrack.scrollWidth - window.innerWidth))}`,
           invalidateOnRefresh: true,
 
           onUpdate: (self) => {
             const progress = self.progress;
             
-            // Fill bottom horizontal progress bar
             if (horizontalProgressFill) {
               horizontalProgressFill.style.transform = `scaleX(${progress})`;
             }
 
-            // Fill left vertical progress bar
             if (verticalScrollBar) {
               verticalScrollBar.style.transform = `scaleY(${progress})`;
             }
 
-            // Update 01 / 03 slide number dynamically
             const currentIdx = Math.min(
               totalPanels,
               Math.floor(progress * totalPanels + 0.05) + 1
@@ -599,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // 1. Horizontal Track Translation with GPU acceleration & no subpixel rounding
+      // 1. Horizontal Track Translation
       hTl.to(horizontalTrack, {
         x: () => -(horizontalTrack.scrollWidth - window.innerWidth),
         ease: 'none',
@@ -608,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
         autoRound: false
       }, 0);
 
-      // 2. Multi-Plane Botanical Canopy Parallax (Subtle depth without hiding any text)
+      // 2. Multi-Plane Botanical Canopy Parallax
       hTl.to('.top-left-canopy', {
         x: -60,
         ease: 'none',
@@ -626,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
         autoRound: false
       }, 0);
 
-      // 4. Slide 2 Image Parallax (Subtle inner image zoom for luxury polish)
+      // 4. Slide 2 Image Parallax
       hTl.fromTo('.panel-2-image img', 
         { scale: 1.08 },
         {
@@ -637,14 +651,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0
       );
 
-
-
-
-
-
-
+      // Refresh ScrollTrigger when window finishes loading
+      window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+      });
     } else {
-      // Mobile fallback: Enable touch swipe horizontal scrolling
       horizontalTrack.style.width = '100%';
       horizontalTrack.style.flexDirection = 'column';
       horizontalPanels.forEach(panel => {
