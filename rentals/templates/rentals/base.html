@@ -103,7 +103,7 @@
         </div>
 
         {% if user.is_authenticated %}
-        <a href="{% url 'dashboard' %}" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 theme-nav-link border border-current/20 font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:opacity-80 transition">
+        <a href="{% url 'edit_profile' %}" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 theme-nav-link border border-current/20 font-display text-xs uppercase tracking-widest rounded-xl font-semibold hover:opacity-80 transition">
           <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
           <span>{{ user.first_name|default:user.username }}</span>
         </a>

@@ -7,7 +7,8 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.conf import settings
-from .models import Property, Inquiry, VisitorLog, EmailVerificationToken, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
+from django.contrib.auth.decorators import login_required
+from .models import Property, Inquiry, VisitorLog, EmailVerificationToken, UserProfile, LOCATION_CHOICES, PROPERTY_TYPE_CHOICES
 from .forms import CustomUserRegistrationForm
 
 import os
@@ -876,4 +877,47 @@ def logout_view(request):
 
 def custom_404_view(request, exception=None):
     return render(request, 'rentals/404.html', status=404)
+
+@login_required
+def edit_profile_view(request):
+    log_visitor(request)
+    user = request.user
+    profile, _ = UserProfile.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name', '').strip()
+        last_name = request.POST.get('last_name', '').strip()
+        email = request.POST.get('email', '').strip()
+        username = request.POST.get('username', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        preferred_location = request.POST.get('preferred_location', '').strip()
+        bio = request.POST.get('bio', '').strip()
+
+        # Validation
+        if not username:
+            messages.error(request, "Username cannot be blank.")
+        elif User.objects.filter(username__iexact=username).exclude(pk=user.pk).exists():
+            messages.error(request, "This username is already taken by another member.")
+        elif email and User.objects.filter(email__iexact=email).exclude(pk=user.pk).exists():
+            messages.error(request, "This email address is already registered to another member.")
+        else:
+            user.first_name = first_name
+            user.last_name = last_name
+            user.username = username
+            user.email = email
+            user.save()
+
+            profile.phone = phone
+            profile.preferred_location = preferred_location
+            profile.bio = bio
+            profile.save()
+
+            messages.success(request, "Your profile details have been updated successfully.")
+            return redirect('edit_profile')
+
+    return render(request, 'rentals/profile_edit.html', {
+        'profile': profile,
+        'locations': LOCATION_CHOICES
+    })
+
 
