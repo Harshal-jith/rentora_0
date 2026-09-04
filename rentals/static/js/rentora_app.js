@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Register GSAP Plugins
   gsap.registerPlugin(ScrollTrigger);
 
-  // Global Lenis Smooth Scroll Initialization
-  if (typeof Lenis !== 'undefined') {
+  // Global Lenis Smooth Scroll Initialization (Desktop / Fine-Pointer Only)
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+  if (typeof Lenis !== 'undefined' && !isTouchDevice) {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -11,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
       infinite: false,
     });
 
@@ -769,14 +769,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const allVideos = document.querySelectorAll('video');
   function playAllVideos() {
     allVideos.forEach(v => {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
       if (v.paused) {
-        v.play().catch(() => {});
+        const p = v.play();
+        if (p !== undefined) {
+          p.catch(() => {
+            // Low-power mode or battery saver prevented autoplay; user interaction will trigger play
+          });
+        }
       }
     });
   }
+
   playAllVideos();
-  window.addEventListener('scroll', playAllVideos, { passive: true });
-  document.addEventListener('click', playAllVideos, { once: true });
+  ['touchstart', 'touchmove', 'scroll', 'click', 'pointerdown'].forEach(evt => {
+    window.addEventListener(evt, playAllVideos, { passive: true });
+  });
 
   // ----------------------------------------------------
   // 12. MULTI-CURRENCY CONVERSION MANAGER
