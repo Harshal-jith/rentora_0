@@ -691,21 +691,21 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (pillarsSection && pillars.length > 0) {
     const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-    // Prominent Stagger: Card 1 starts +280px down, Card 2 starts +140px down, Card 3 at 0px
-    const initialOffsets = isDesktop ? [280, 140, 0] : [120, 60, 0];
+    // Refined Stagger: Card 1 starts +160px down, Card 2 starts +80px down, Card 3 at 0px
+    const initialOffsets = isDesktop ? [160, 80, 0] : [80, 40, 0];
 
     gsap.set(pillars, { 
       y: i => initialOffsets[i] ?? 0,
       force3D: true
     });
 
-    // Master ScrollTrigger for the 3 Pillar Cards aligning as user scrolls
+    // Master ScrollTrigger for the 3 Pillar Cards aligning early as user enters section
     const pTl = gsap.timeline({
       scrollTrigger: {
         trigger: pillarsSection,
-        start: 'top 80%',
-        end: 'bottom 85%',
-        scrub: 1.0, // Smooth, highly noticeable momentum-rich parallax
+        start: 'top 85%',
+        end: 'top 20%', // Completes alignment early while section is in full view
+        scrub: 0.5,
         invalidateOnRefresh: true
       }
     });
@@ -713,17 +713,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animate the cards to y: 0 (aligning together seamlessly)
     pTl.to(pillars, {
       y: 0,
-      ease: 'none',
+      ease: 'power1.out',
       force3D: true
     }, 0);
 
     // Inner Image Parallax (shifts images smoothly inside the cards for 3D depth)
     if (pillarImgs.length > 0) {
       pTl.fromTo(pillarImgs, {
-        y: '-10%'
+        y: '-8%'
       }, {
-        y: '10%',
-        ease: 'none',
+        y: '8%',
+        ease: 'power1.out',
         force3D: true
       }, 0);
     }
