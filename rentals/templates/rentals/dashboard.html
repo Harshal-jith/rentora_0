@@ -4,11 +4,10 @@
 {% block title %}Member Portal | RENTORA Kerala{% endblock %}
 
 {% block content %}
-<!-- Full-Bleed Architectural Dark Hero Header for Member Portal -->
-<section class="relative bg-[#181614] text-white py-16 sm:py-24 border-b border-white/10 overflow-hidden">
+<!-- Theme-Adaptive Architectural Hero Header for Member Portal -->
+<section class="relative py-16 sm:py-24 border-b theme-line overflow-hidden transition-colors duration-500">
   <!-- Subtle Kerala Heritage Image Overlay -->
-  <div class="absolute inset-0 bg-cover bg-center opacity-[0.06] pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85')"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-[#181614] via-transparent to-[#181614]"></div>
+  <div class="absolute inset-0 bg-cover bg-center opacity-[0.04] pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=2000&q=85')"></div>
 
   <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
     <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
@@ -16,44 +15,44 @@
       <!-- Left Narrative Header -->
       <div class="max-w-2xl space-y-4">
         <div class="flex items-center gap-3">
-          <span class="h-1.5 w-1.5 rounded-full bg-white/60"></span>
-          <span class="text-[0.65rem] uppercase tracking-[0.3em] text-white/60 font-semibold">Rentora Private Circle</span>
-          <span class="text-white/30">•</span>
-          <span class="text-[0.65rem] uppercase tracking-[0.2em] text-emerald-400 font-semibold flex items-center gap-1.5">
-            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Active Member
+          <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+          <span class="text-[0.65rem] uppercase tracking-[0.3em] theme-muted font-semibold">Rentora Private Circle</span>
+          <span class="theme-muted opacity-40">•</span>
+          <span class="text-[0.65rem] uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-700/10 dark:bg-emerald-400/10 border border-emerald-700/20 dark:border-emerald-400/20">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> Active Member
           </span>
         </div>
 
-        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-white leading-[1.08]">
-          Welcome to Rentora, <span class="font-serif italic font-normal text-white/90">{{ user.first_name|default:user.username }}</span>.
+        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium theme-ink leading-[1.08]">
+          Welcome to Rentora, <span class="font-serif italic font-normal text-amber-600 dark:text-amber-400">{{ user.first_name|default:user.username }}</span>.
         </h1>
 
-        <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light max-w-xl">
+        <p class="text-xs sm:text-sm theme-muted leading-relaxed font-light max-w-xl">
           Your confidential portal to Kerala’s finest private architectural sanctuaries. Review your active estate reservations, manage date inquiries, and access your 24/7 personal butler dispatch.
         </p>
 
         <div class="flex flex-wrap items-center gap-4 pt-4">
-          <a href="{% url 'properties' %}" class="px-6 py-3 bg-white text-[#181614] font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold hover:bg-slate-200 transition shadow-lg inline-flex items-center gap-2">
+          <a href="{% url 'properties' %}" class="px-6 py-3 theme-cta-btn font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold transition shadow-lg inline-flex items-center gap-2">
             Explore Sanctuaries <i class="fa-solid fa-arrow-right text-[0.65rem]"></i>
           </a>
-          <a href="#my-bookings" class="px-6 py-3 bg-white/10 text-white hover:bg-white/20 border border-white/20 font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold transition inline-flex items-center gap-2">
+          <a href="#my-bookings" class="px-6 py-3 bg-[#181614]/5 dark:bg-white/10 theme-ink hover:bg-[#181614]/10 dark:hover:bg-white/20 border theme-line font-display text-xs uppercase tracking-[0.2em] rounded-xl font-semibold transition inline-flex items-center gap-2">
             My Reservations
           </a>
         </div>
       </div>
 
       <!-- Right Key Metrics (Clean Architectural Spec Counters) -->
-      <div class="grid grid-cols-2 gap-4 w-full lg:w-auto shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/10">
-        <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-left min-w-[140px] sm:min-w-[170px]">
-          <span class="font-display text-xs tracking-widest text-white/40 block mb-1">01</span>
-          <p class="font-display font-medium text-3xl sm:text-4xl text-white">{{ user_inquiries.count }}</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-white/60 block mt-1 font-semibold">Active Stays</span>
+      <div class="grid grid-cols-2 gap-4 w-full lg:w-auto shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 theme-line">
+        <div class="theme-card backdrop-blur-md border theme-line p-6 rounded-2xl text-left min-w-[140px] sm:min-w-[170px] shadow-sm">
+          <span class="font-display text-xs tracking-widest theme-muted font-semibold block mb-1">01</span>
+          <p class="font-display font-medium text-3xl sm:text-4xl theme-ink">{{ user_inquiries.count }}</p>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-muted block mt-1 font-semibold">Active Stays</span>
         </div>
 
-        <div class="bg-white/5 border border-white/10 p-6 rounded-2xl text-left min-w-[140px] sm:min-w-[170px]">
-          <span class="font-display text-xs tracking-widest text-white/40 block mb-1">02</span>
-          <p class="font-display font-medium text-3xl sm:text-4xl text-white">24/7</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-white/60 block mt-1 font-semibold">Butler Coverage</span>
+        <div class="theme-card backdrop-blur-md border theme-line p-6 rounded-2xl text-left min-w-[140px] sm:min-w-[170px] shadow-sm">
+          <span class="font-display text-xs tracking-widest theme-muted font-semibold block mb-1">02</span>
+          <p class="font-display font-medium text-3xl sm:text-4xl theme-ink">24/7</p>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-muted block mt-1 font-semibold">Butler Coverage</span>
         </div>
       </div>
 
