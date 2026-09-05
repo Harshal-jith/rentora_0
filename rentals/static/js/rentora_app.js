@@ -421,49 +421,37 @@ document.addEventListener('DOMContentLoaded', () => {
     ease: 'power1.out'
   }, '<');
 
-  // Smooth Crossfade to Slide 1 (Munnar Highlands)
+  // Smooth Crossfade to Slide 1 (Munnar Tea Highlands)
   if (loaderSlides[1]) {
-    introTl.to(loaderSlides[0], {
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.inOut'
-    }, '+=0.05')
-    .to(loaderSlides[1], {
-      opacity: 1,
-      scale: 1.0,
-      duration: 0.75,
-      ease: 'power1.out'
-    }, '<');
-  }
-
-  // Smooth Crossfade to Slide 2 (Kerala Coast)
-  if (loaderSlides[2]) {
     introTl.to(loaderSlides[1], {
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.inOut'
-    }, '+=0.05')
-    .to(loaderSlides[2], {
       opacity: 1,
       scale: 1.0,
-      duration: 0.75,
-      ease: 'power1.out'
-    }, '<');
+      duration: 0.65,
+      ease: 'power1.inOut'
+    }, '+=0.08')
+    .set(loaderSlides[0], { opacity: 0 });
   }
 
-  // Smooth Crossfade to Final Slide 3 (Matches Hero Slide 1)
-  if (loaderSlides[3]) {
+  // Smooth Crossfade to Slide 2 (Varkala Cliffside Ocean Residence)
+  if (loaderSlides[2]) {
     introTl.to(loaderSlides[2], {
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.inOut'
-    }, '+=0.05')
-    .to(loaderSlides[3], {
       opacity: 1,
       scale: 1.0,
-      duration: 0.75,
-      ease: 'power1.out'
-    }, '<');
+      duration: 0.65,
+      ease: 'power1.inOut'
+    }, '+=0.08')
+    .set(loaderSlides[1], { opacity: 0 });
+  }
+
+  // Smooth Crossfade to Final Slide 3 (Kumarakom Water Pavilion - matches Hero Slide 1)
+  if (loaderSlides[3]) {
+    introTl.to(loaderSlides[3], {
+      opacity: 1,
+      scale: 1.0,
+      duration: 0.65,
+      ease: 'power1.inOut'
+    }, '+=0.08')
+    .set(loaderSlides[2], { opacity: 0 });
   }
 
   // Step 5: Smooth Cinematic Zoom to Full Viewport
