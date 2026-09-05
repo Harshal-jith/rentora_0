@@ -43,18 +43,18 @@
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
     <!-- Main Gallery Feature -->
     <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border border-[#181614]/15">
-      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" onerror="this.onerror=null; this.src='{% static 'images/architectural_digest_villa_foliage.jpg' %}';" class="w-full h-full object-cover transition-opacity duration-500" />
+      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" class="w-full h-full object-cover transition-opacity duration-500" />
     </div>
 
     <!-- Thumbnails Grid -->
     <div class="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-4">
       {% for img in property.gallery_json %}
       <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 {% if forloop.first %}border-[#181614] ring-2 ring-[#181614]/20{% else %}border-transparent hover:border-[#181614]{% endif %} transition-all thumb-item" onclick="changeMainImage('{{ img }}', this)">
-        <img src="{{ img }}" alt="Gallery View {{ forloop.counter }}" onerror="this.onerror=null; this.src='{% static 'images/architectural_digest_villa_foliage.jpg' %}';" class="w-full h-full object-cover hover:scale-105 transition-transform" />
+        <img src="{{ img }}" alt="Gallery View {{ forloop.counter }}" class="w-full h-full object-cover hover:scale-105 transition-transform" />
       </div>
       {% empty %}
       <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 border-[#181614] ring-2 ring-[#181614]/20 thumb-item" onclick="changeMainImage('{{ property.main_image }}', this)">
-        <img src="{{ property.main_image }}" alt="Main View" onerror="this.onerror=null; this.src='{% static 'images/architectural_digest_villa_foliage.jpg' %}';" class="w-full h-full object-cover hover:scale-105 transition-transform" />
+        <img src="{{ property.main_image }}" alt="Main View" class="w-full h-full object-cover hover:scale-105 transition-transform" />
       </div>
       {% endfor %}
     </div>
