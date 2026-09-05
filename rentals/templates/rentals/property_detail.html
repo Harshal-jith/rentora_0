@@ -7,34 +7,34 @@
 <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-10">
   
   <!-- Back Link -->
-  <a href="{% url 'properties' %}" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#181614]/75 hover:text-[#181614] font-semibold transition mb-6">
+  <a href="{% url 'properties' %}" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest theme-ink/75 hover:theme-ink font-semibold transition mb-6">
     <i class="fa-solid fa-arrow-left text-xs"></i> Back to Kerala Estates
   </a>
 
   <!-- Header Section -->
-  <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-[#181614]/15 mb-8">
+  <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b theme-line mb-8">
     <div>
       <div class="flex items-center gap-3 mb-2">
         <span class="px-3 py-1 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest font-semibold rounded-full shadow-sm">
           {{ property.get_property_type_display }}
         </span>
-        <span class="text-xs uppercase tracking-widest text-[#181614]/60 font-semibold flex items-center gap-1">
+        <span class="text-xs uppercase tracking-widest theme-ink/60 font-semibold flex items-center gap-1">
           <i class="fa-solid fa-location-dot theme-ink"></i> {{ property.location_display_name }}
         </span>
       </div>
-      <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-[#181614] leading-tight">
+      <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium theme-ink leading-tight">
         {{ property.title }}
       </h1>
     </div>
 
     <!-- Rating Badge -->
-    <div class="flex items-center gap-3 bg-white/80 backdrop-blur-md p-3.5 rounded-2xl border border-[#181614]/15 shadow-md shrink-0">
-      <div class="w-10 h-10 bg-[#181614]/10 text-[#181614] rounded-xl flex items-center justify-center font-bold text-base">
+    <div class="flex items-center gap-3 bg-white/80 backdrop-blur-md p-3.5 rounded-2xl border theme-line shadow-md shrink-0">
+      <div class="w-10 h-10 bg-[#181614]/10 theme-ink rounded-xl flex items-center justify-center font-bold text-base">
         <i class="fa-solid fa-star text-slate-700"></i>
       </div>
       <div>
-        <div class="font-display font-semibold text-base text-[#181614]">{{ property.rating }} / 5.0</div>
-        <div class="text-[0.65rem] uppercase tracking-widest text-[#181614]/60 font-semibold">{{ property.reviews_count }} Verified Guest Reviews</div>
+        <div class="font-display font-semibold text-base theme-ink">{{ property.rating }} / 5.0</div>
+        <div class="text-[0.65rem] uppercase tracking-widest theme-ink/60 font-semibold">{{ property.reviews_count }} Verified Guest Reviews</div>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
   <!-- Image Gallery -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-12">
     <!-- Main Gallery Feature -->
-    <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border border-[#181614]/15 group bg-[#181614]">
+    <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border theme-line group bg-[#181614]">
       <!-- Primary Main Image -->
       <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-transform duration-700 hover:scale-105" onclick="openLightboxCurrent()" />
       
@@ -83,34 +83,34 @@
         <div>
           <i class="fa-solid fa-bed text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base theme-ink mt-0.5">{{ property.bedrooms }} Bedrooms</p>
-          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">Luxury En-suite</span>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-ink/60">Luxury En-suite</span>
         </div>
         <div>
           <i class="fa-solid fa-bath text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base theme-ink mt-0.5">{{ property.bathrooms }} Bathrooms</p>
-          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">Rain Showers</span>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-ink/60">Rain Showers</span>
         </div>
         <div>
           <i class="fa-solid fa-users text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base theme-ink mt-0.5">Up to {{ property.max_guests }} Guests</p>
-          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">Full Privacy</span>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-ink/60">Full Privacy</span>
         </div>
         <div>
           <i class="fa-solid fa-user-shield text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base theme-ink mt-0.5">Estate Butler</p>
-          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">24/7 Service</span>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-ink/60">24/7 Service</span>
         </div>
       </div>
 
       <!-- Description Block -->
       <div class="space-y-4 pt-2">
         <h2 class="font-display text-2xl font-medium theme-ink">About This Sanctuary</h2>
-        <p class="text-sm sm:text-base theme-muted leading-relaxed font-light">
+        <p class="text-sm sm:text-base theme-ink/80 leading-relaxed font-light">
           {{ property.description }}
         </p>
       </div>
 
-      <!-- Bespoke Estate Amenities Grid -->
+      <!-- Bespoke Amenities Grid -->
       <div class="space-y-4 pt-4 border-t theme-line">
         <h2 class="font-display text-2xl font-medium theme-ink">Bespoke Estate Amenities</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -197,7 +197,7 @@
             <textarea name="message" rows="2" placeholder="Private chef preferences, dietary needs..." class="w-full bg-white/5 border border-white/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-white/50 transition"></textarea>
           </div>
 
-          <button type="submit" class="mt-4 w-full py-3.5 bg-white text-[#181614] font-display text-xs uppercase tracking-widest rounded-xl font-bold hover:bg-slate-200 transition shadow-lg flex items-center justify-center gap-2">
+          <button type="submit" class="mt-4 w-full py-3.5 bg-white theme-ink font-display text-xs uppercase tracking-widest rounded-xl font-bold hover:bg-slate-200 transition shadow-lg flex items-center justify-center gap-2">
             <i class="fa-solid fa-calendar-check text-xs"></i> Submit Booking Inquiry
           </button>
           
@@ -213,21 +213,21 @@
 
   <!-- Similar Estates -->
   {% if similar_properties %}
-  <div class="mt-20 pt-10 border-t border-[#181614]/15">
+  <div class="mt-20 pt-10 border-t theme-line">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="font-display text-2xl sm:text-3xl font-medium text-[#181614]">Similar Stays in {{ property.get_location_display }}</h2>
+      <h2 class="font-display text-2xl sm:text-3xl font-medium theme-ink">Similar Stays in {{ property.get_location_display }}</h2>
       <a href="{% url 'properties' %}" class="text-xs uppercase tracking-widest font-semibold theme-ink hover:underline transition">View All →</a>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
       {% for prop in similar_properties %}
-      <article class="bg-white/80 backdrop-blur-md rounded-2xl p-4 border border-[#181614]/15 shadow-lg hover:-translate-y-1 transition-all duration-300">
+      <article class="theme-card backdrop-blur-md rounded-2xl p-4 border theme-line shadow-lg hover:-translate-y-1 transition-all duration-300">
         <div class="aspect-[4/3] w-full rounded-xl overflow-hidden mb-3">
           <img src="{{ prop.main_image }}" alt="{{ prop.title }}" class="w-full h-full object-cover" />
         </div>
-        <h3 class="font-display text-lg font-medium text-[#181614] leading-snug"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
+        <h3 class="font-display text-lg font-medium theme-ink leading-snug"><a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a></h3>
         <div class="flex items-center justify-between mt-3">
-          <span class="font-bold text-sm text-[#181614]">₹{{ prop.price_per_night|floatformat:0 }} / night</span>
+          <span class="font-bold text-sm theme-ink">₹{{ prop.price_per_night|floatformat:0 }} / night</span>
           <a href="{% url 'property_detail' prop.slug %}" class="px-3 py-1.5 bg-[#181614] text-white text-[0.65rem] uppercase tracking-widest rounded-md font-semibold">Explore</a>
         </div>
       </article>
