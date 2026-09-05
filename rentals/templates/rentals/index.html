@@ -327,11 +327,11 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li>
-                  <a class="font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-emerald-400 font-semibold" href="{% url 'dashboard' %}">Member Portal</a>
+                  <a class="font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-emerald-400 font-semibold" href="{% url 'dashboard' %}">Dashboard</a>
                 </li>
                 {% else %}
                 <li>
-                  <button type="button" class="open-login-btn font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-white/70 text-left">Member Access</button>
+                  <button type="button" class="open-login-btn font-display text-xs uppercase tracking-[0.12em] transition hover:text-white/60 text-white/70 text-left">Dashboard</button>
                 </li>
                 {% endif %}
               </ul>

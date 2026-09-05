@@ -108,11 +108,11 @@
           </li>
           {% if user.is_authenticated %}
           <li>
-            <a class="font-display text-xs uppercase tracking-[0.12em] transition theme-nav-link {% if request.resolver_match.url_name == 'dashboard' %}active-link font-semibold{% endif %}" href="{% url 'dashboard' %}">Member Portal</a>
+            <a class="font-display text-xs uppercase tracking-[0.12em] transition theme-nav-link {% if request.resolver_match.url_name == 'dashboard' %}active-link font-semibold{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
           </li>
           {% else %}
           <li>
-            <a class="font-display text-xs uppercase tracking-[0.12em] transition theme-nav-link {% if request.resolver_match.url_name == 'login' %}active-link font-semibold{% endif %}" href="{% url 'login' %}">Member Access</a>
+            <a class="font-display text-xs uppercase tracking-[0.12em] transition theme-nav-link {% if request.resolver_match.url_name == 'login' %}active-link font-semibold{% endif %}" href="{% url 'login' %}">Dashboard</a>
           </li>
           {% endif %}
         </ul>
