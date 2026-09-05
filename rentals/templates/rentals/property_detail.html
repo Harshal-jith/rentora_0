@@ -124,13 +124,13 @@
       </div>
 
       <!-- Concierge Host Card -->
-      <div class="p-6 bg-[#181614] text-white rounded-2xl shadow-xl flex items-center gap-5 border border-white/10">
-        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-white text-2xl shrink-0">
+      <div class="p-6 theme-card rounded-2xl shadow-xl flex items-center gap-5 border theme-line">
+        <div class="w-14 h-14 bg-[#181614]/5 dark:bg-white/10 rounded-2xl flex items-center justify-center theme-ink text-2xl shrink-0">
           <i class="fa-solid fa-crown"></i>
         </div>
         <div>
-          <h3 class="font-display text-xl font-medium text-white">Managed by Rentora Private Concierge</h3>
-          <p class="text-xs text-white/70 mt-1 leading-relaxed">
+          <h3 class="font-display text-xl font-medium theme-ink">Managed by Rentora Private Concierge</h3>
+          <p class="text-xs theme-ink/70 mt-1 leading-relaxed">
             Verified luxury host. Every booking includes dedicated estate staffing, daily maid service, and personalized itinerary curation.
           </p>
         </div>
@@ -140,51 +140,51 @@
 
     <!-- Right Sticky Reservation Sidebar (4 Cols) -->
     <aside class="lg:col-span-4 sticky top-28">
-      <div class="bg-[#181614] text-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-white/10">
+      <div class="theme-card p-6 sm:p-8 rounded-2xl shadow-2xl border theme-line">
         
-        <div class="flex items-center justify-between pb-6 border-b border-white/15 mb-6">
+        <div class="flex items-center justify-between pb-6 border-b theme-line mb-6">
           <div>
-            <span class="font-display text-3xl font-bold text-white rentora-price" data-price-inr="{{ property.price_per_night|floatformat:0 }}">₹{{ property.price_per_night|floatformat:0 }}</span>
-            <span class="text-xs uppercase tracking-widest text-white/60">/ night</span>
+            <span class="font-display text-3xl font-bold theme-ink rentora-price" data-price-inr="{{ property.price_per_night|floatformat:0 }}">₹{{ property.price_per_night|floatformat:0 }}</span>
+            <span class="text-xs uppercase tracking-widest theme-ink/60">/ night</span>
           </div>
-          <div class="flex items-center gap-1.5 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold">
-            <i class="fa-solid fa-star text-white/80 text-xs"></i> {{ property.rating }}
+          <div class="flex items-center gap-1.5 px-3 py-1 bg-[#181614]/5 dark:bg-white/10 rounded-full text-xs font-semibold theme-ink">
+            <i class="fa-solid fa-star theme-ink/80 text-xs"></i> {{ property.rating }}
           </div>
         </div>
 
         <form method="POST" action="{% url 'property_detail' property.slug %}" class="space-y-4">
           {% csrf_token %}
-          <h3 class="font-display text-xl font-medium text-white mb-2">Reserve or Inquire</h3>
+          <h3 class="font-display text-xl font-medium theme-ink mb-2">Reserve or Inquire</h3>
 
           <div>
-            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Your Full Name</label>
-            <input required type="text" name="name" value="{% if user.is_authenticated %}{{ user.first_name|default:user.username }}{% endif %}" placeholder="e.g. Alexander Wright" class="w-full bg-white/5 border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-white/50 transition" />
+            <label class="block text-[0.65rem] uppercase tracking-widest theme-ink/60 mb-1 font-semibold">Your Full Name</label>
+            <input required type="text" name="name" value="{% if user.is_authenticated %}{{ user.first_name|default:user.username }}{% endif %}" placeholder="e.g. Alexander Wright" class="w-full bg-[#181614]/5 dark:bg-white/5 border theme-line rounded-xl px-3.5 py-2.5 text-xs theme-ink outline-none focus:border-[#181614]/30 dark:focus:border-white/50 transition" />
           </div>
 
           <div>
-            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Email Address</label>
-            <input required type="email" name="email" value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" placeholder="alexander@example.com" class="w-full bg-white/5 border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-white/50 transition" />
+            <label class="block text-[0.65rem] uppercase tracking-widest theme-ink/60 mb-1 font-semibold">Email Address</label>
+            <input required type="email" name="email" value="{% if user.is_authenticated %}{{ user.email }}{% endif %}" placeholder="alexander@example.com" class="w-full bg-[#181614]/5 dark:bg-white/5 border theme-line rounded-xl px-3.5 py-2.5 text-xs theme-ink outline-none focus:border-[#181614]/30 dark:focus:border-white/50 transition" />
           </div>
 
           <div>
-            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Phone / WhatsApp</label>
-            <input required type="tel" name="phone" placeholder="+91 98765 43210" class="w-full bg-white/5 border border-white/20 rounded-xl px-3.5 py-2.5 text-xs text-white outline-none focus:border-white/50 transition" />
+            <label class="block text-[0.65rem] uppercase tracking-widest theme-ink/60 mb-1 font-semibold">Phone / WhatsApp</label>
+            <input required type="tel" name="phone" placeholder="+91 98765 43210" class="w-full bg-[#181614]/5 dark:bg-white/5 border theme-line rounded-xl px-3.5 py-2.5 text-xs theme-ink outline-none focus:border-[#181614]/30 dark:focus:border-white/50 transition" />
           </div>
 
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Check-In</label>
-              <input required type="date" name="check_in" class="w-full bg-white/5 border border-white/20 rounded-xl px-2.5 py-2 text-xs text-white outline-none focus:border-white/50 transition" />
+              <label class="block text-[0.65rem] uppercase tracking-widest theme-ink/60 mb-1 font-semibold">Check-In</label>
+              <input required type="date" name="check_in" class="w-full bg-[#181614]/5 dark:bg-white/5 border theme-line rounded-xl px-2.5 py-2 text-xs theme-ink outline-none focus:border-[#181614]/30 dark:focus:border-white/50 transition" />
             </div>
             <div>
-              <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Check-Out</label>
-              <input required type="date" name="check_out" class="w-full bg-white/5 border border-white/20 rounded-xl px-2.5 py-2 text-xs text-white outline-none focus:border-white/50 transition" />
+              <label class="block text-[0.65rem] uppercase tracking-widest theme-ink/60 mb-1 font-semibold">Check-Out</label>
+              <input required type="date" name="check_out" class="w-full bg-[#181614]/5 dark:bg-white/5 border theme-line rounded-xl px-2.5 py-2 text-xs theme-ink outline-none focus:border-[#181614]/30 dark:focus:border-white/50 transition" />
             </div>
           </div>
 
           <div>
-            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Guests</label>
-            <select name="guests" class="w-full bg-[#181614] border border-white/20 rounded-xl px-3 py-2.5 text-xs text-white focus:border-white/50 transition">
+            <label class="block text-[0.65rem] uppercase tracking-widest theme-ink/60 mb-1 font-semibold">Guests</label>
+            <select name="guests" class="w-full bg-transparent border theme-line rounded-xl px-3 py-2.5 text-xs theme-ink focus:border-[#181614]/30 dark:focus:border-white/50 transition">
               <option value="1">1 Guest</option>
               <option value="2" selected>2 Guests</option>
               <option value="4">4 Guests</option>
@@ -193,16 +193,16 @@
           </div>
 
           <div>
-            <label class="block text-[0.65rem] uppercase tracking-widest text-white/60 mb-1 font-semibold">Special Requests</label>
-            <textarea name="message" rows="2" placeholder="Private chef preferences, dietary needs..." class="w-full bg-white/5 border border-white/20 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-white/50 transition"></textarea>
+            <label class="block text-[0.65rem] uppercase tracking-widest theme-ink/60 mb-1 font-semibold">Special Requests</label>
+            <textarea name="message" rows="2" placeholder="Private chef preferences, dietary needs..." class="w-full bg-[#181614]/5 dark:bg-white/5 border theme-line rounded-xl px-3 py-2 text-xs theme-ink outline-none focus:border-[#181614]/30 dark:focus:border-white/50 transition"></textarea>
           </div>
 
-          <button type="submit" class="mt-4 w-full py-3.5 bg-white theme-ink font-display text-xs uppercase tracking-widest rounded-xl font-bold hover:bg-slate-200 transition shadow-lg flex items-center justify-center gap-2">
+          <button type="submit" class="mt-4 w-full py-3.5 bg-[#181614] text-white font-display text-xs uppercase tracking-widest rounded-xl font-bold transition shadow-lg flex items-center justify-center gap-2">
             <i class="fa-solid fa-calendar-check text-xs"></i> Submit Booking Inquiry
           </button>
           
-          <p class="text-[0.65rem] uppercase tracking-wider text-white/50 text-center mt-2">
-            <i class="fa-solid fa-lock text-white/70"></i> Instant Concierge Confirmation
+          <p class="text-[0.65rem] uppercase tracking-wider theme-ink/50 text-center mt-2">
+            <i class="fa-solid fa-lock theme-ink/70"></i> Instant Concierge Confirmation
           </p>
         </form>
 
