@@ -134,9 +134,9 @@ def _async_send_mail_worker(to_email, subject, message, from_email, html_message
         success, msg = send_email_via_resend(to_email, subject, html_message, message)
         if success:
             return
-        if 'harshaljith1@gmail.com' not in to_email.lower():
-            print(f"Retrying Resend delivery to authorized test recipient harshaljith1@gmail.com (Original target: {to_email})")
-            send_email_via_resend('harshaljith1@gmail.com', f"[Fwd to {to_email}] {subject}", html_message, message)
+        if 'project.propertyrentals@gmail.com' not in to_email.lower():
+            print(f"Retrying Resend delivery to authorized test recipient project.propertyrentals@gmail.com (Original target: {to_email})")
+            send_email_via_resend('project.propertyrentals@gmail.com', f"[Fwd to {to_email}] {subject}", html_message, message)
             return
 
     # 3. Fallback to standard SMTP
