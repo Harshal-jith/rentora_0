@@ -39,7 +39,7 @@ class Property(models.Model):
     max_guests = models.PositiveIntegerField(default=4)
     short_description = models.CharField(max_length=300)
     description = models.TextField()
-    main_image = models.URLField(max_length=500)
+    main_image = models.CharField(max_length=500)
     gallery_json = models.JSONField(default=list, blank=True)
     amenities_json = models.JSONField(default=list, blank=True)
     rating = models.FloatField(default=4.9)
