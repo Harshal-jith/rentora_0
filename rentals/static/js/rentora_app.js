@@ -639,33 +639,74 @@ document.addEventListener('DOMContentLoaded', () => {
         autoRound: false
       }, 0);
 
-      // 2. Multi-Plane Botanical Canopy Parallax
+      // 2. Multi-Plane Botanical Canopy Parallax (ERA Residence Multi-Layer Motion)
       hTl.to('.top-left-canopy', {
-        x: -60,
+        x: -220,
+        rotate: -3,
         ease: 'none',
         duration: 3,
-        force3D: true,
-        autoRound: false
+        force3D: true
       }, 0);
 
-      // 3. Ground Bush Multi-Plane Float
+      hTl.to('.top-right-canopy', {
+        x: -160,
+        rotate: 3,
+        ease: 'none',
+        duration: 3,
+        force3D: true
+      }, 0);
+
       hTl.to('.panel-ground-bush', {
-        x: -150,
+        x: -320,
+        y: -15,
         ease: 'none',
         duration: 3,
-        force3D: true,
-        autoRound: false
+        force3D: true
       }, 0);
 
-      // 4. Slide 2 Image Parallax
-      hTl.fromTo('.panel-2-image img', 
-        { scale: 1.08 },
-        {
-          scale: 1.0,
-          ease: 'none',
-          duration: 3,
-          force3D: true
-        }, 0
+      // 3. Panel 1 (THE CONCEPT) Content Scale & Fade Out as Panel 2 Enters
+      hTl.fromTo('.panel-1-content',
+        { opacity: 1, scale: 1, y: 0 },
+        { opacity: 0.15, scale: 0.94, y: -25, ease: 'power1.in', duration: 0.8 },
+        0.2
+      );
+
+      // 4. Panel 2 (RESIDENCES / EMERALD WATERS) Entrance & Parallax Scaling
+      hTl.fromTo('.panel-2-text',
+        { opacity: 0.1, y: 40, x: 70 },
+        { opacity: 1, y: 0, x: 0, ease: 'power2.out', duration: 0.75 },
+        0.7
+      );
+
+      hTl.fromTo('.panel-2-image',
+        { opacity: 0.2, scale: 0.88, x: 90 },
+        { opacity: 1, scale: 1.0, x: 0, ease: 'power2.out', duration: 0.75 },
+        0.7
+      );
+
+      hTl.fromTo('.panel-2-image img',
+        { scale: 1.25, x: 60 },
+        { scale: 1.0, x: 0, ease: 'none', duration: 1.2 },
+        0.7
+      );
+
+      // Panel 2 Exit
+      hTl.to(['.panel-2-text', '.panel-2-image'],
+        { opacity: 0.2, y: -30, ease: 'power1.in', duration: 0.7 },
+        1.7
+      );
+
+      // 5. Panel 3 (WELLBEING & CONCIERGE) Entrance & Staggered Feature Cascade
+      hTl.fromTo('.panel-3-text',
+        { opacity: 0.1, y: 45, x: 85 },
+        { opacity: 1, y: 0, x: 0, ease: 'power2.out', duration: 0.8 },
+        1.9
+      );
+
+      hTl.fromTo('.panel-3-features > div',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.12, ease: 'power2.out', duration: 0.6 },
+        2.2
       );
 
       // Refresh ScrollTrigger when window finishes loading
