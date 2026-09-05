@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('night-mode');
       document.body.classList.remove('light-mode');
       if (nightBtn) {
-        nightBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-white text-[#181614] font-semibold shadow-sm";
+        nightBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 theme-switch-btn-active font-semibold shadow-sm";
       }
       if (dayBtn) {
         dayBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 theme-switch-btn-inactive";
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('night-mode');
       document.body.classList.add('light-mode');
       if (dayBtn) {
-        dayBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 bg-[#181614] text-white font-semibold shadow-sm";
+        dayBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 theme-switch-btn-active font-semibold shadow-sm";
       }
       if (nightBtn) {
         nightBtn.className = "px-2.5 py-1 text-[0.65rem] uppercase tracking-widest rounded-full transition-all duration-300 theme-switch-btn-inactive";
@@ -107,12 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const type = tab.getAttribute('data-type');
 
       aptTabs.forEach(t => {
-        t.classList.remove('bg-[var(--ink)]', 'text-white', 'shadow-md', 'active');
-        t.classList.add('text-[var(--ink)]/70');
+        t.classList.remove('active');
       });
 
-      tab.classList.add('bg-[var(--ink)]', 'text-white', 'shadow-md', 'active');
-      tab.classList.remove('text-[var(--ink)]/70');
+      tab.classList.add('active');
 
       aptCards.forEach(card => {
         const category = card.getAttribute('data-category');
@@ -171,23 +169,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (loginForm) loginForm.classList.remove('hidden');
       if (signupForm) signupForm.classList.add('hidden');
       if (tabLogin) {
-        tabLogin.classList.add('bg-white', 'text-[#181614]', 'shadow-md');
-        tabLogin.classList.remove('text-white/70');
+        tabLogin.classList.add('active');
+        tabLogin.classList.remove('inactive');
       }
       if (tabSignup) {
-        tabSignup.classList.remove('bg-white', 'text-[#181614]', 'shadow-md');
-        tabSignup.classList.add('text-white/70');
+        tabSignup.classList.remove('active');
+        tabSignup.classList.add('inactive');
       }
     } else {
       if (signupForm) signupForm.classList.remove('hidden');
       if (loginForm) loginForm.classList.add('hidden');
       if (tabSignup) {
-        tabSignup.classList.add('bg-white', 'text-[#181614]', 'shadow-md');
-        tabSignup.classList.remove('text-white/70');
+        tabSignup.classList.add('active');
+        tabSignup.classList.remove('inactive');
       }
       if (tabLogin) {
-        tabLogin.classList.remove('bg-white', 'text-[#181614]', 'shadow-md');
-        tabLogin.classList.add('text-white/70');
+        tabLogin.classList.remove('active');
+        tabLogin.classList.add('inactive');
       }
     }
   }
@@ -240,23 +238,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (inlineLoginForm) inlineLoginForm.classList.remove('hidden');
       if (inlineSignupForm) inlineSignupForm.classList.add('hidden');
       if (inlineTabLogin) {
-        inlineTabLogin.classList.add('bg-white', 'text-[#181614]', 'shadow-md');
-        inlineTabLogin.classList.remove('text-white/70');
+        inlineTabLogin.classList.add('active');
+        inlineTabLogin.classList.remove('inactive');
       }
       if (inlineTabSignup) {
-        inlineTabSignup.classList.remove('bg-white', 'text-[#181614]', 'shadow-md');
-        inlineTabSignup.classList.add('text-white/70');
+        inlineTabSignup.classList.remove('active');
+        inlineTabSignup.classList.add('inactive');
       }
     } else {
       if (inlineSignupForm) inlineSignupForm.classList.remove('hidden');
       if (inlineLoginForm) inlineLoginForm.classList.add('hidden');
       if (inlineTabSignup) {
-        inlineTabSignup.classList.add('bg-white', 'text-[#181614]', 'shadow-md');
-        inlineTabSignup.classList.remove('text-white/70');
+        inlineTabSignup.classList.add('active');
+        inlineTabSignup.classList.remove('inactive');
       }
       if (inlineTabLogin) {
-        inlineTabLogin.classList.remove('bg-white', 'text-[#181614]', 'shadow-md');
-        inlineTabLogin.classList.add('text-white/70');
+        inlineTabLogin.classList.remove('active');
+        inlineTabLogin.classList.add('inactive');
       }
     }
   }

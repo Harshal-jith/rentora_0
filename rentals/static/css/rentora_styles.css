@@ -291,11 +291,102 @@ body.night-mode .theme-switch-pill {
   border: 1px solid rgba(244, 241, 234, 0.15) !important;
 }
 
+.theme-switch-btn-active {
+  background-color: #181614 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.night-mode .theme-switch-btn-active {
+  background-color: #f4f1ea !important;
+  color: #121110 !important;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.2) !important;
+}
+
 body.night-mode .theme-switch-btn-inactive {
   color: rgba(244, 241, 234, 0.6) !important;
 }
 
 body.night-mode .theme-switch-btn-inactive:hover {
+  color: #f4f1ea !important;
+}
+
+/* ==================== HIGH PRIORITY TAB SYSTEM FOR LIGHT & NIGHT MODES ==================== */
+
+/* Category Filter Tabs (.apartment-tab) */
+.apartment-tab {
+  transition: all 0.25s ease-in-out !important;
+  background-color: transparent !important;
+  color: rgba(24, 22, 20, 0.7) !important;
+}
+
+.apartment-tab:hover {
+  color: #181614 !important;
+}
+
+.apartment-tab.active,
+button.apartment-tab.active {
+  background-color: #181614 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18) !important;
+}
+
+body.night-mode .apartment-tab,
+body.night-mode button.apartment-tab {
+  background-color: transparent !important;
+  color: rgba(244, 241, 234, 0.65) !important;
+}
+
+body.night-mode .apartment-tab:hover,
+body.night-mode button.apartment-tab:hover {
+  color: #f4f1ea !important;
+}
+
+body.night-mode .apartment-tab.active,
+body.night-mode button.apartment-tab.active {
+  background-color: #f4f1ea !important;
+  color: #121110 !important;
+  box-shadow: 0 4px 14px rgba(244, 241, 234, 0.2) !important;
+}
+
+/* Auth Modal & Inline Auth Tabs (.auth-tab-btn) */
+.auth-tab-btn {
+  transition: all 0.25s ease-in-out !important;
+}
+
+.auth-tab-btn.active,
+button.auth-tab-btn.active {
+  background-color: #ffffff !important;
+  color: #181614 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.auth-tab-btn.inactive,
+button.auth-tab-btn.inactive {
+  background-color: transparent !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.auth-tab-btn.inactive:hover,
+button.auth-tab-btn.inactive:hover {
+  color: #ffffff !important;
+}
+
+body.night-mode .auth-tab-btn.active,
+body.night-mode button.auth-tab-btn.active {
+  background-color: #f4f1ea !important;
+  color: #121110 !important;
+  box-shadow: 0 2px 10px rgba(244, 241, 234, 0.25) !important;
+}
+
+body.night-mode .auth-tab-btn.inactive,
+body.night-mode button.auth-tab-btn.inactive {
+  background-color: transparent !important;
+  color: rgba(244, 241, 234, 0.65) !important;
+}
+
+body.night-mode .auth-tab-btn.inactive:hover,
+body.night-mode button.auth-tab-btn.inactive:hover {
   color: #f4f1ea !important;
 }
 

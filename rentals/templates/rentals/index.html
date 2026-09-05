@@ -212,10 +212,10 @@
 
       <!-- Auth Tab Switcher -->
       <div class="grid grid-cols-2 p-1 bg-white/10 rounded-xl mb-6 border border-white/10">
-        <button id="tab-login" type="button" class="py-2 text-xs uppercase tracking-widest font-semibold rounded-lg transition-all bg-white text-[#181614] shadow-md">
+        <button id="tab-login" type="button" class="auth-tab-btn active py-2 text-xs uppercase tracking-widest font-semibold rounded-lg">
           Log In
         </button>
-        <button id="tab-signup" type="button" class="py-2 text-xs uppercase tracking-widest font-semibold rounded-lg transition-all text-white/70 hover:text-white">
+        <button id="tab-signup" type="button" class="auth-tab-btn inactive py-2 text-xs uppercase tracking-widest font-semibold rounded-lg">
           Sign Up
         </button>
       </div>
@@ -440,17 +440,17 @@
 
 
           <!-- Category Filter Tabs -->
-          <div class="flex flex-wrap gap-2 p-1.5 bg-black/5 rounded-xl backdrop-blur-md">
-            <button class="apartment-tab active px-4 py-2 text-xs uppercase tracking-widest rounded-lg font-semibold transition-all bg-[var(--ink)] text-white shadow-md" data-type="all">
+          <div class="flex flex-wrap gap-2 p-1.5 bg-black/5 dark:bg-white/10 rounded-xl backdrop-blur-md">
+            <button class="apartment-tab active px-4 py-2 text-xs uppercase tracking-widest rounded-lg font-semibold" data-type="all">
               All Estates
             </button>
-            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg transition-all text-[var(--ink)]/70 hover:text-[var(--ink)]" data-type="backwater">
+            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg font-semibold" data-type="backwater">
               Backwater Villas
             </button>
-            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg transition-all text-[var(--ink)]/70 hover:text-[var(--ink)]" data-type="hills">
+            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg font-semibold" data-type="hills">
               Munnar Highlands
             </button>
-            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg transition-all text-[var(--ink)]/70 hover:text-[var(--ink)]" data-type="coastal">
+            <button class="apartment-tab px-4 py-2 text-xs uppercase tracking-widest rounded-lg font-semibold" data-type="coastal">
               Coastal &amp; Heritage
             </button>
           </div>
@@ -931,10 +931,10 @@
               
               <!-- Tab Switcher (Log In / Sign Up) -->
               <div class="grid grid-cols-2 p-1 bg-white/5 rounded-2xl mb-7 border border-white/10">
-                <button id="inline-tab-login" type="button" class="py-2.5 text-xs uppercase tracking-widest font-semibold rounded-xl transition-all bg-white text-[#181614] shadow-md font-display">
+                <button id="inline-tab-login" type="button" class="auth-tab-btn active py-2.5 text-xs uppercase tracking-widest font-semibold rounded-xl font-display">
                   Log In
                 </button>
-                <button id="inline-tab-signup" type="button" class="py-2.5 text-xs uppercase tracking-widest font-semibold rounded-xl transition-all text-white/70 hover:text-white font-display">
+                <button id="inline-tab-signup" type="button" class="auth-tab-btn inactive py-2.5 text-xs uppercase tracking-widest font-semibold rounded-xl font-display">
                   Sign Up
                 </button>
               </div>

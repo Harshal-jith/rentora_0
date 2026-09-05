@@ -79,43 +79,43 @@
     <div class="lg:col-span-8 space-y-10">
       
       <!-- Quick Specs Bar -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-[#181614]/15 shadow-lg text-center">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 theme-card backdrop-blur-md rounded-2xl border theme-line shadow-lg text-center">
         <div>
           <i class="fa-solid fa-bed text-lg theme-ink mb-1"></i>
-          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">{{ property.bedrooms }} Bedrooms</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Luxury En-suite</span>
+          <p class="font-display font-semibold text-base theme-ink mt-0.5">{{ property.bedrooms }} Bedrooms</p>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">Luxury En-suite</span>
         </div>
         <div>
           <i class="fa-solid fa-bath text-lg theme-ink mb-1"></i>
-          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">{{ property.bathrooms }} Bathrooms</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Rain Showers</span>
+          <p class="font-display font-semibold text-base theme-ink mt-0.5">{{ property.bathrooms }} Bathrooms</p>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">Rain Showers</span>
         </div>
         <div>
           <i class="fa-solid fa-users text-lg theme-ink mb-1"></i>
-          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">Up to {{ property.max_guests }} Guests</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Full Privacy</span>
+          <p class="font-display font-semibold text-base theme-ink mt-0.5">Up to {{ property.max_guests }} Guests</p>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">Full Privacy</span>
         </div>
         <div>
           <i class="fa-solid fa-user-shield text-lg theme-ink mb-1"></i>
-          <p class="font-display font-semibold text-base text-[#181614] mt-0.5">Estate Butler</p>
-          <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">24/7 Service</span>
+          <p class="font-display font-semibold text-base theme-ink mt-0.5">Estate Butler</p>
+          <span class="text-[0.6rem] uppercase tracking-widest theme-muted">24/7 Service</span>
         </div>
       </div>
 
       <!-- Description Block -->
       <div class="space-y-4 pt-2">
-        <h2 class="font-display text-2xl font-medium text-[#181614]">About This Sanctuary</h2>
-        <p class="text-sm sm:text-base text-[#181614]/80 leading-relaxed font-light">
+        <h2 class="font-display text-2xl font-medium theme-ink">About This Sanctuary</h2>
+        <p class="text-sm sm:text-base theme-muted leading-relaxed font-light">
           {{ property.description }}
         </p>
       </div>
 
-      <!-- Bespoke Amenities Grid -->
-      <div class="space-y-4 pt-4 border-t border-[#181614]/15">
-        <h2 class="font-display text-2xl font-medium text-[#181614]">Bespoke Estate Amenities</h2>
+      <!-- Bespoke Estate Amenities Grid -->
+      <div class="space-y-4 pt-4 border-t theme-line">
+        <h2 class="font-display text-2xl font-medium theme-ink">Bespoke Estate Amenities</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {% for amenity in property.amenities_json %}
-          <div class="flex items-center gap-3 p-3 bg-white/60 rounded-xl border border-[#181614]/10 text-xs font-semibold uppercase tracking-wider text-[#181614]">
+          <div class="flex items-center gap-3 p-3 bg-white/60 dark:bg-white/5 rounded-xl border border-[#181614]/10 dark:border-white/10 text-xs font-semibold uppercase tracking-wider theme-ink">
             <i class="fa-solid fa-circle-check theme-ink text-sm"></i>
             <span>{{ amenity }}</span>
           </div>
