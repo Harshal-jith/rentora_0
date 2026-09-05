@@ -651,6 +651,7 @@ def dashboard_view(request):
     }
     return render(request, 'rentals/dashboard.html', context)
 
+@login_required
 def properties_view(request):
     log_visitor(request)
     properties = Property.objects.all()
@@ -692,6 +693,7 @@ def properties_view(request):
     }
     return render(request, 'rentals/properties.html', context)
 
+@login_required
 def property_detail_view(request, slug):
     property_obj = get_object_or_404(Property, slug=slug)
     log_visitor(request, property_obj=property_obj)
