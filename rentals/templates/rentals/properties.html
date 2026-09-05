@@ -103,10 +103,10 @@
 
             <!-- Meta & Title -->
             <div class="flex items-center gap-1.5 text-[0.65rem] uppercase tracking-widest theme-muted font-semibold mb-1">
-              <i class="fa-solid fa-location-dot text-amber-600"></i> {{ prop.location_display_name }}
+              <i class="fa-solid fa-location-dot text-emerald-700 dark:text-emerald-400"></i> {{ prop.location_display_name }}
             </div>
             
-            <h3 class="font-display text-2xl font-medium theme-ink leading-snug group-hover:text-amber-600 transition-colors">
+            <h3 class="font-display text-2xl font-medium theme-ink leading-snug group-hover:text-slate-100 dark:group-hover:text-white transition-colors">
               <a href="{% url 'property_detail' prop.slug %}">{{ prop.title }}</a>
             </h3>
 
@@ -134,7 +134,7 @@
               <span class="font-display font-bold text-xl theme-ink rentora-price" data-price-inr="{{ prop.price_per_night|floatformat:0 }}">₹{{ prop.price_per_night|floatformat:0 }}</span>
               <span class="text-[0.65rem] uppercase tracking-widest theme-muted">/ night</span>
             </div>
-            <a href="{% url 'property_detail' prop.slug %}" class="px-4 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-amber-600 transition flex items-center gap-1.5 shadow-md">
+            <a href="{% url 'property_detail' prop.slug %}" class="px-4 py-2 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-800 dark:hover:bg-stone-800 transition flex items-center gap-1.5 shadow-md">
               Explore <i class="fa-solid fa-chevron-right text-[0.6rem]"></i>
             </a>
           </div>
@@ -146,7 +146,7 @@
         <i class="fa-solid fa-compass text-amber-500 text-4xl mb-4 block"></i>
         <h3 class="font-display text-2xl font-medium theme-ink">No Estates Found</h3>
         <p class="text-sm theme-muted mt-2">Try adjusting your filter search criteria or destination region.</p>
-        <a href="{% url 'properties' %}" class="inline-block mt-4 px-6 py-2.5 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-amber-600 transition">
+        <a href="{% url 'properties' %}" class="inline-block mt-4 px-6 py-2.5 bg-[#181614] text-white text-xs uppercase tracking-widest rounded-xl font-semibold hover:bg-slate-800 dark:hover:bg-stone-800 transition">
           Reset Filter Search
         </a>
       </div>
