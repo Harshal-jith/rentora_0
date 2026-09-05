@@ -19,7 +19,7 @@
           {{ property.get_property_type_display }}
         </span>
         <span class="text-xs uppercase tracking-widest text-[#181614]/60 font-semibold flex items-center gap-1">
-          <i class="fa-solid fa-location-dot text-emerald-700 dark:text-emerald-400"></i> {{ property.location_display_name }}
+          <i class="fa-solid fa-location-dot theme-ink"></i> {{ property.location_display_name }}
         </span>
       </div>
       <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-medium text-[#181614] leading-tight">
@@ -81,22 +81,22 @@
       <!-- Quick Specs Bar -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-[#181614]/15 shadow-lg text-center">
         <div>
-          <i class="fa-solid fa-bed text-lg text-emerald-700 dark:text-emerald-400 mb-1"></i>
+          <i class="fa-solid fa-bed text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base text-[#181614] mt-0.5">{{ property.bedrooms }} Bedrooms</p>
           <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Luxury En-suite</span>
         </div>
         <div>
-          <i class="fa-solid fa-bath text-lg text-emerald-700 dark:text-emerald-400 mb-1"></i>
+          <i class="fa-solid fa-bath text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base text-[#181614] mt-0.5">{{ property.bathrooms }} Bathrooms</p>
           <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Rain Showers</span>
         </div>
         <div>
-          <i class="fa-solid fa-users text-lg text-emerald-700 dark:text-emerald-400 mb-1"></i>
+          <i class="fa-solid fa-users text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base text-[#181614] mt-0.5">Up to {{ property.max_guests }} Guests</p>
           <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">Full Privacy</span>
         </div>
         <div>
-          <i class="fa-solid fa-user-shield text-lg text-emerald-700 dark:text-emerald-400 mb-1"></i>
+          <i class="fa-solid fa-user-shield text-lg theme-ink mb-1"></i>
           <p class="font-display font-semibold text-base text-[#181614] mt-0.5">Estate Butler</p>
           <span class="text-[0.6rem] uppercase tracking-widest text-[#181614]/60">24/7 Service</span>
         </div>
@@ -116,7 +116,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {% for amenity in property.amenities_json %}
           <div class="flex items-center gap-3 p-3 bg-white/60 rounded-xl border border-[#181614]/10 text-xs font-semibold uppercase tracking-wider text-[#181614]">
-            <i class="fa-solid fa-circle-check text-emerald-700 dark:text-emerald-400 text-sm"></i>
+            <i class="fa-solid fa-circle-check theme-ink text-sm"></i>
             <span>{{ amenity }}</span>
           </div>
           {% endfor %}

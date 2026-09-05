@@ -184,7 +184,7 @@
       <a href="{% url 'properties' %}" class="mobile-nav-link hover:text-slate-300">Estates</a>
       <a href="{% url 'properties' %}?location=alleppey" class="mobile-nav-link hover:text-slate-300">Destinations</a>
       {% if user.is_authenticated %}
-      <a href="{% url 'dashboard' %}" class="mobile-nav-link text-emerald-400 font-bold flex items-center gap-2">
+      <a href="{% url 'dashboard' %}" class="mobile-nav-link text-[#f4f1ea] font-bold flex items-center gap-2">
         <i class="fa-solid fa-user-check text-base"></i> Member Portal ({{ user.username }})
       </a>
       <a href="{% url 'logout' %}" class="mobile-nav-link text-red-400">Logout</a>
