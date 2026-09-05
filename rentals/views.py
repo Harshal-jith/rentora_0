@@ -60,9 +60,9 @@ def send_email_via_brevo(to_email, subject, html_message, text_message=""):
     if not brevo_api_key:
         return False, "BREVO_API_KEY not configured"
         
-    sender_email = getattr(settings, 'EMAIL_HOST_USER', '') or os.environ.get('EMAIL_HOST_USER', '') or 'no-reply@rentora.com'
+    sender_email = getattr(settings, 'EMAIL_HOST_USER', '') or os.environ.get('EMAIL_HOST_USER', '') or 'project.propertyrentals@gmail.com'
     if '@' not in sender_email:
-        sender_email = 'no-reply@rentora.com'
+        sender_email = 'project.propertyrentals@gmail.com'
 
     payload = {
         'sender': {'name': 'Rentora Luxury Concierge', 'email': sender_email},
@@ -228,7 +228,7 @@ Fort Kochi, Kerala, India
                     <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
                         <p style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0;">
                             Rentora Luxury Rentals • Fort Kochi, Kerala, India<br>
-                            Need help? Contact <a href="mailto:support@rentorakerala.com" style="color: #475569; text-decoration: underline;">support@rentorakerala.com</a>
+                            Need help? Contact <a href="mailto:project.propertyrentals@gmail.com" style="color: #475569; text-decoration: underline;">project.propertyrentals@gmail.com</a>
                         </p>
                     </div>
 
@@ -335,7 +335,7 @@ https://rentora-7gdf.onrender.com
 </html>
 """
 
-    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com'))
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'project.propertyrentals@gmail.com'))
 
     t = threading.Thread(
         target=_async_send_mail_worker,
@@ -472,7 +472,7 @@ Fort Kochi, Kerala, India
 </html>
 """
 
-    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'no-reply@rentora.com'))
+    from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'project.propertyrentals@gmail.com'))
 
     t = threading.Thread(
         target=_async_send_mail_worker,

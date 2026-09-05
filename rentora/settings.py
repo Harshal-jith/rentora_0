@@ -108,7 +108,7 @@ LOGIN_URL = '/login/'
 
 # Email, Resend & Brevo API Configuration
 RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '')
-RESEND_FROM_EMAIL = os.environ.get('RESEND_FROM_EMAIL', 'Rentora Luxury Concierge <onboarding@resend.dev>')
+RESEND_FROM_EMAIL = os.environ.get('RESEND_FROM_EMAIL', 'Rentora Luxury Concierge <project.propertyrentals@gmail.com>')
 
 BREVO_API_KEY = os.environ.get('BREVO_API_KEY', '')
 
@@ -123,6 +123,6 @@ else:
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Rentora Luxury Concierge <no-reply@rentora.com>')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Rentora Luxury Concierge <project.propertyrentals@gmail.com>')
 
 
