@@ -40,28 +40,32 @@
   </div>
 
   <!-- Image Gallery -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-12">
     <!-- Main Gallery Feature -->
-    <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border border-[#181614]/15 group">
-      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" class="w-full h-full object-cover transition-opacity duration-300 cursor-pointer" onclick="openLightboxCurrent()" />
+    <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border border-[#181614]/15 group bg-[#181614]">
+      <!-- Primary Main Image -->
+      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" class="absolute inset-0 w-full h-full object-cover cursor-pointer transition-transform duration-700 hover:scale-105" onclick="openLightboxCurrent()" />
       
+      <!-- Smooth Cross-fade Overlay Image -->
+      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImageNext" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-400 ease-in-out cursor-pointer pointer-events-none" />
+
       <!-- Fullscreen Button Overlay -->
-      <button onclick="openLightboxCurrent()" class="absolute bottom-4 right-4 bg-[#181614]/80 backdrop-blur-md text-white text-xs font-semibold px-3.5 py-2 rounded-xl flex items-center gap-2 hover:bg-[#181614] transition shadow-lg border border-white/10">
-        <i class="fa-solid fa-expand"></i> View Fullscreen
+      <button onclick="openLightboxCurrent()" class="absolute bottom-4 right-4 bg-[#181614]/80 backdrop-blur-md text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 hover:bg-[#181614] transition-all duration-300 shadow-xl border border-white/15 hover:scale-105">
+        <i class="fa-solid fa-expand text-xs"></i> View Fullscreen
       </button>
     </div>
 
-    <!-- Thumbnails Grid -->
-    <div class="lg:col-span-4 grid grid-cols-2 gap-3.5 max-h-[500px] overflow-y-auto pr-1">
+    <!-- Thumbnails Column Grid (Seamless Gap-Free Stack) -->
+    <div class="lg:col-span-4 flex flex-col justify-between gap-3.5 h-full">
       {% for img in all_gallery_images %}
-      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 {% if forloop.first %}border-[#181614] ring-2 ring-[#181614]/20{% else %}border-transparent hover:border-[#181614]/60{% endif %} transition-all thumb-item relative group" onclick="selectGalleryImage('{{ img }}', {{ forloop.counter0 }}, this)">
-        <img src="{{ img }}" alt="Gallery View {{ forloop.counter }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+      <div class="flex-1 min-h-[110px] aspect-[16/10] lg:aspect-auto w-full rounded-2xl overflow-hidden shadow-md cursor-pointer border-2 {% if forloop.first %}border-[#181614] ring-2 ring-[#181614]/30{% else %}border-transparent hover:border-[#181614]/60{% endif %} transition-all duration-300 thumb-item relative group" onclick="selectGalleryImage('{{ img }}', {{ forloop.counter0 }}, this)">
+        <img src="{{ img }}" alt="Gallery View {{ forloop.counter }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
         {% if forloop.first %}
-        <span class="absolute top-2 left-2 bg-[#181614]/85 backdrop-blur-sm text-white text-[0.6rem] uppercase tracking-wider px-2 py-0.5 rounded font-semibold shadow">Cover</span>
+        <span class="absolute top-2.5 left-2.5 bg-[#181614]/85 backdrop-blur-md text-white text-[0.6rem] uppercase tracking-widest px-2.5 py-1 rounded-md font-semibold shadow">Cover</span>
         {% endif %}
       </div>
       {% empty %}
-      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 border-[#181614] ring-2 ring-[#181614]/20 thumb-item" onclick="selectGalleryImage('{{ property.main_image }}', 0, this)">
+      <div class="flex-1 min-h-[110px] aspect-[16/10] lg:aspect-auto w-full rounded-2xl overflow-hidden shadow-md cursor-pointer border-2 border-[#181614] ring-2 ring-[#181614]/30 thumb-item" onclick="selectGalleryImage('{{ property.main_image }}', 0, this)">
         <img src="{{ property.main_image }}" alt="Main View" class="w-full h-full object-cover hover:scale-105 transition-transform" />
       </div>
       {% endfor %}
@@ -285,22 +289,27 @@
 
   function selectGalleryImage(src, index, element) {
     currentGalleryIndex = index;
-    const mainImg = document.getElementById('mainGalleryImage');
-    if (mainImg) {
-      mainImg.style.opacity = '0';
-      setTimeout(() => {
-        mainImg.src = src;
-        mainImg.style.opacity = '1';
-      }, 150);
+    const currentImg = document.getElementById('mainGalleryImage');
+    const nextImg = document.getElementById('mainGalleryImageNext');
+
+    if (currentImg && nextImg) {
+      if (currentImg.src !== src) {
+        nextImg.src = src;
+        nextImg.style.opacity = '1';
+        setTimeout(() => {
+          currentImg.src = src;
+          nextImg.style.opacity = '0';
+        }, 400);
+      }
     }
     
     // Highlight active thumbnail
     document.querySelectorAll('.thumb-item').forEach((el, idx) => {
-      el.classList.remove('border-[#181614]', 'ring-2', 'ring-[#181614]/20');
+      el.classList.remove('border-[#181614]', 'ring-2', 'ring-[#181614]/30', 'scale-[0.98]');
       el.classList.add('border-transparent');
       if (idx === index) {
         el.classList.remove('border-transparent');
-        el.classList.add('border-[#181614]', 'ring-2', 'ring-[#181614]/20');
+        el.classList.add('border-[#181614]', 'ring-2', 'ring-[#181614]/30', 'scale-[0.98]');
       }
     });
   }
