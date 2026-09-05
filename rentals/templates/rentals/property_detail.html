@@ -42,18 +42,26 @@
   <!-- Image Gallery -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
     <!-- Main Gallery Feature -->
-    <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border border-[#181614]/15">
-      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" class="w-full h-full object-cover transition-opacity duration-500" />
+    <div class="lg:col-span-8 aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-2xl relative border border-[#181614]/15 group">
+      <img src="{{ property.main_image }}" alt="{{ property.title }}" id="mainGalleryImage" class="w-full h-full object-cover transition-opacity duration-300 cursor-pointer" onclick="openLightboxCurrent()" />
+      
+      <!-- Fullscreen Button Overlay -->
+      <button onclick="openLightboxCurrent()" class="absolute bottom-4 right-4 bg-[#181614]/80 backdrop-blur-md text-white text-xs font-semibold px-3.5 py-2 rounded-xl flex items-center gap-2 hover:bg-[#181614] transition shadow-lg border border-white/10">
+        <i class="fa-solid fa-expand"></i> View Fullscreen
+      </button>
     </div>
 
     <!-- Thumbnails Grid -->
-    <div class="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-4">
-      {% for img in property.gallery_json %}
-      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 {% if forloop.first %}border-[#181614] ring-2 ring-[#181614]/20{% else %}border-transparent hover:border-[#181614]{% endif %} transition-all thumb-item" onclick="changeMainImage('{{ img }}', this)">
-        <img src="{{ img }}" alt="Gallery View {{ forloop.counter }}" class="w-full h-full object-cover hover:scale-105 transition-transform" />
+    <div class="lg:col-span-4 grid grid-cols-2 gap-3.5 max-h-[500px] overflow-y-auto pr-1">
+      {% for img in all_gallery_images %}
+      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 {% if forloop.first %}border-[#181614] ring-2 ring-[#181614]/20{% else %}border-transparent hover:border-[#181614]/60{% endif %} transition-all thumb-item relative group" onclick="selectGalleryImage('{{ img }}', {{ forloop.counter0 }}, this)">
+        <img src="{{ img }}" alt="Gallery View {{ forloop.counter }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        {% if forloop.first %}
+        <span class="absolute top-2 left-2 bg-[#181614]/85 backdrop-blur-sm text-white text-[0.6rem] uppercase tracking-wider px-2 py-0.5 rounded font-semibold shadow">Cover</span>
+        {% endif %}
       </div>
       {% empty %}
-      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 border-[#181614] ring-2 ring-[#181614]/20 thumb-item" onclick="changeMainImage('{{ property.main_image }}', this)">
+      <div class="aspect-[16/10] w-full rounded-xl overflow-hidden shadow-md cursor-pointer border-2 border-[#181614] ring-2 ring-[#181614]/20 thumb-item" onclick="selectGalleryImage('{{ property.main_image }}', 0, this)">
         <img src="{{ property.main_image }}" alt="Main View" class="w-full h-full object-cover hover:scale-105 transition-transform" />
       </div>
       {% endfor %}
@@ -226,24 +234,146 @@
 
 </div>
 
+<!-- Fullscreen Lightbox Modal -->
+<div id="galleryLightbox" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8 transition-opacity duration-300">
+  
+  <!-- Lightbox Header Bar -->
+  <div class="flex items-center justify-between text-white border-b border-white/10 pb-4">
+    <div class="flex items-center gap-3">
+      <span class="font-display font-medium text-lg text-white">{{ property.title }}</span>
+      <span id="lightboxCounter" class="bg-white/10 text-white/80 text-xs px-3 py-1 rounded-full font-semibold">1 / 1</span>
+    </div>
+    <button onclick="closeLightbox()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition" title="Close (Esc)">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+  </div>
+
+  <!-- Lightbox Main Display -->
+  <div class="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
+    <button onclick="prevLightboxImage()" class="absolute left-2 sm:left-6 z-10 w-12 h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition border border-white/20 shadow-2xl" title="Previous (Left Arrow)">
+      <i class="fa-solid fa-chevron-left text-lg"></i>
+    </button>
+
+    <img id="lightboxImage" src="" alt="Full Resolution View" class="max-h-[80vh] max-w-[90vw] object-contain rounded-xl shadow-2xl transition-all duration-300" />
+
+    <button onclick="nextLightboxImage()" class="absolute right-2 sm:right-6 z-10 w-12 h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition border border-white/20 shadow-2xl" title="Next (Right Arrow)">
+      <i class="fa-solid fa-chevron-right text-lg"></i>
+    </button>
+  </div>
+
+  <!-- Lightbox Bottom Thumbnails -->
+  <div class="flex items-center justify-center gap-3 overflow-x-auto pt-4 border-t border-white/10 max-w-4xl mx-auto w-full">
+    {% for img in all_gallery_images %}
+    <button onclick="setLightboxIndex({{ forloop.counter0 }})" class="w-16 h-12 rounded-lg overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition shrink-0 lightbox-thumb" id="lightboxThumb-{{ forloop.counter0 }}">
+      <img src="{{ img }}" alt="Thumb {{ forloop.counter }}" class="w-full h-full object-cover" />
+    </button>
+    {% endfor %}
+  </div>
+</div>
+
 {% block extra_js %}
 <script>
-  function changeMainImage(src, element) {
+  const galleryImages = [
+    {% for img in all_gallery_images %}
+    "{{ img }}"{% if not forloop.last %},{% endif %}
+    {% empty %}
+    "{{ property.main_image }}"
+    {% endfor %}
+  ];
+
+  let currentGalleryIndex = 0;
+
+  function selectGalleryImage(src, index, element) {
+    currentGalleryIndex = index;
     const mainImg = document.getElementById('mainGalleryImage');
     if (mainImg) {
       mainImg.style.opacity = '0';
       setTimeout(() => {
         mainImg.src = src;
         mainImg.style.opacity = '1';
-      }, 200);
+      }, 150);
     }
-    document.querySelectorAll('.thumb-item').forEach(el => {
+    
+    // Highlight active thumbnail
+    document.querySelectorAll('.thumb-item').forEach((el, idx) => {
       el.classList.remove('border-[#181614]', 'ring-2', 'ring-[#181614]/20');
       el.classList.add('border-transparent');
+      if (idx === index) {
+        el.classList.remove('border-transparent');
+        el.classList.add('border-[#181614]', 'ring-2', 'ring-[#181614]/20');
+      }
     });
-    element.classList.remove('border-transparent');
-    element.classList.add('border-[#181614]', 'ring-2', 'ring-[#181614]/20');
   }
+
+  function openLightboxCurrent() {
+    openLightbox(currentGalleryIndex);
+  }
+
+  function openLightbox(index = 0) {
+    currentGalleryIndex = index;
+    const modal = document.getElementById('galleryLightbox');
+    if (modal) {
+      modal.classList.remove('hidden');
+      updateLightboxDisplay();
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeLightbox() {
+    const modal = document.getElementById('galleryLightbox');
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  function updateLightboxDisplay() {
+    const imgEl = document.getElementById('lightboxImage');
+    const counterEl = document.getElementById('lightboxCounter');
+    if (imgEl && galleryImages.length > 0) {
+      imgEl.src = galleryImages[currentGalleryIndex];
+      if (counterEl) {
+        counterEl.textContent = `${currentGalleryIndex + 1} / ${galleryImages.length}`;
+      }
+      
+      document.querySelectorAll('.lightbox-thumb').forEach((thumb, idx) => {
+        if (idx === currentGalleryIndex) {
+          thumb.classList.remove('border-transparent', 'opacity-60');
+          thumb.classList.add('border-white', 'opacity-100');
+        } else {
+          thumb.classList.remove('border-white', 'opacity-100');
+          thumb.classList.add('border-transparent', 'opacity-60');
+        }
+      });
+    }
+  }
+
+  function setLightboxIndex(index) {
+    currentGalleryIndex = index;
+    updateLightboxDisplay();
+  }
+
+  function prevLightboxImage() {
+    if (galleryImages.length === 0) return;
+    currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateLightboxDisplay();
+  }
+
+  function nextLightboxImage() {
+    if (galleryImages.length === 0) return;
+    currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+    updateLightboxDisplay();
+  }
+
+  // Keyboard controls
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('galleryLightbox');
+    if (modal && !modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevLightboxImage();
+      if (e.key === 'ArrowRight') nextLightboxImage();
+    }
+  });
 </script>
 {% endblock %}
 {% endblock %}

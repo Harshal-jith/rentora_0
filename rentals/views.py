@@ -729,8 +729,17 @@ def property_detail_view(request, slug):
         messages.success(request, f"Your booking inquiry for '{property_obj.title}' has been submitted! A confirmation email has been sent to {email}.")
         return redirect('property_detail', slug=property_obj.slug)
 
+    gallery_list = list(property_obj.gallery_json) if property_obj.gallery_json else []
+    all_gallery_images = []
+    if property_obj.main_image:
+        all_gallery_images.append(property_obj.main_image)
+    for img in gallery_list:
+        if img and img not in all_gallery_images:
+            all_gallery_images.append(img)
+
     context = {
         'property': property_obj,
+        'all_gallery_images': all_gallery_images,
         'similar_properties': similar_properties,
     }
     return render(request, 'rentals/property_detail.html', context)
