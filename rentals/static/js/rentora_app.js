@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ----------------------------------------------------
-  // 8. ERA RESIDENCE SIGNATURE HORIZONTAL SCROLL SHOWCASE (GSAP MULTI-LAYER PARALLAX TIMELINE)
+  // 8. SIGNATURE HORIZONTAL SCROLL SHOWCASE (GSAP MULTI-LAYER PARALLAX TIMELINE)
   // ----------------------------------------------------
   const horizontalSection = document.getElementById('stay');
   const horizontalTrack = document.querySelector('.horizontal-track');
@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
         autoRound: false
       }, 0);
 
-      // 2. Multi-Plane Botanical Canopy Parallax (ERA Residence Multi-Layer Motion)
+      // 2. Multi-Plane Botanical Canopy Parallax (Multi-Layer Motion)
       hTl.to('.top-left-canopy', {
         x: -220,
         rotate: -3,
