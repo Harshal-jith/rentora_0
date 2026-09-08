@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    RENTORA LUXURY REAL ESTATE - SYSTEM CSS (ANIMATION REFINEMENT V1.2)
    ========================================================================== */
 
@@ -2145,7 +2145,7 @@ body.hero-animate-active .hero-stats-glass-bar {
     background: rgba(214, 181, 108, 0.25);
 }
 
-/* SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE (ANTIGRAVITY GLASS CARDS) */
+/* SECTION 3: PREMIUM LUXURY FACILITIES SHOWCASE  */
 .facilities-section {
     padding: 110px 0 130px;
     background: var(--bg-dark);
@@ -4795,3 +4795,4 @@ body.light-theme .cta-trust-badges i,
     .dash-search-inputs { grid-template-columns: 1fr; }
     .dashboard-headline { font-size: 2.1rem; }
 }
+

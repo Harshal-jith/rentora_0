@@ -1,4 +1,4 @@
-/* Rentora Custom Styles System */
+﻿/* Rentora Custom Styles System */
 
 :root {
   --ink: #181614;
@@ -14,7 +14,7 @@
   --gold-accent: #b38b4d;
 }
 
-/* Night Mode Theme Overrides — Obsidian Sand & Warm Slate */
+/* Night Mode Theme Overrides â€” Obsidian Sand & Warm Slate */
 body.night-mode {
   --ink: #f4f1ea;
   --ink-muted: #a8a29e;
@@ -669,5 +669,6 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
 
 
