@@ -1,4 +1,4 @@
-"""
+﻿"""
 Django settings for rentora project.
 Kerala Premium Property Rentals.
 """
@@ -13,9 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-vbv^sli#gr1mz^yo=gen%*2+ib@=x^5gm@+s&d(xt3$iva20eg')
 
 # DEBUG mode: False on Render/Production, True for local development
-DEBUG = os.environ.get('DEBUG', 'False') == 'True' if os.environ.get('RENDER') else True
-if not DEBUG and os.environ.get('RENDER'):
-    DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com', 'https://rentora-7gdf.onrender.com']
@@ -124,5 +123,6 @@ EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Rentora Luxury Concierge <project.propertyrentals@gmail.com>')
+
 
 
