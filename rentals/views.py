@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+﻿from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -194,7 +194,7 @@ Fort Kochi, Kerala, India
                     <!-- Header Logo -->
                     <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 20px; margin-bottom: 24px;">
                         <div style="font-size: 18px; font-weight: 700; color: #0f172a; letter-spacing: 2.5px; text-transform: uppercase;">RENTORA</div>
-                        <div style="font-size: 11px; color: #64748b; letter-spacing: 1px; margin-top: 2px; text-transform: uppercase;">Luxury Estates • Kerala</div>
+                        <div style="font-size: 11px; color: #64748b; letter-spacing: 1px; margin-top: 2px; text-transform: uppercase;">Luxury Estates â€¢ Kerala</div>
                     </div>
 
                     <!-- Main Heading -->
@@ -227,7 +227,7 @@ Fort Kochi, Kerala, India
                     <!-- Footer -->
                     <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
                         <p style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0;">
-                            Rentora Luxury Rentals • Fort Kochi, Kerala, India<br>
+                            Rentora Luxury Rentals â€¢ Fort Kochi, Kerala, India<br>
                             Need help? Contact <a href="mailto:project.propertyrentals@gmail.com" style="color: #475569; text-decoration: underline;">project.propertyrentals@gmail.com</a>
                         </p>
                     </div>
@@ -242,13 +242,7 @@ Fort Kochi, Kerala, India
 
     from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'Rentora <onboarding@resend.dev>'))
 
-    t = threading.Thread(
-        target=_async_send_mail_worker,
-        args=(user.email, subject, message, from_email, html_message),
-        daemon=False
-    )
-    t.start()
-    t.join(timeout=3.0)
+    _async_send_mail_worker(user.email, subject, message, from_email, html_message)
 
 def send_verification_email(request, user, token_obj):
     if request:
@@ -262,7 +256,7 @@ def send_verification_email(request, user, token_obj):
         verify_url = f"https://rentora-7gdf.onrender.com/verify-email/{token_obj.token}/"
     
     user_name = user.first_name if user.first_name else user.username
-    subject = "Verify Your Email Address — Rentora"
+    subject = "Verify Your Email Address â€” Rentora"
     
     message = f"""Dear {user_name},
 
@@ -323,7 +317,7 @@ https://rentora-7gdf.onrender.com
                     <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
                         <p style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0;">
                             If you did not request this email, no further action is required.<br>
-                            Rentora Luxury Rentals • Fort Kochi, Kerala, India
+                            Rentora Luxury Rentals â€¢ Fort Kochi, Kerala, India
                         </p>
                     </div>
 
@@ -337,20 +331,14 @@ https://rentora-7gdf.onrender.com
 
     from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'project.propertyrentals@gmail.com'))
 
-    t = threading.Thread(
-        target=_async_send_mail_worker,
-        args=(user.email, subject, message, from_email, html_message),
-        daemon=False
-    )
-    t.start()
-    t.join(timeout=3.0)
+    _async_send_mail_worker(user.email, subject, message, from_email, html_message)
 
 def send_booking_inquiry_email(request, inquiry):
     domain_url = "https://rentora-7gdf.onrender.com"
     property_title = inquiry.property.title if inquiry.property else "Kerala Private Estate"
     property_location = inquiry.property.location_display_name if inquiry.property else "Kerala"
     
-    subject = f"Booking Inquiry Received — {property_title}"
+    subject = f"Booking Inquiry Received â€” {property_title}"
     
     if hasattr(inquiry.check_in, 'strftime'):
         check_in_str = inquiry.check_in.strftime('%B %d, %Y')
@@ -373,13 +361,13 @@ Thank you for your booking inquiry with Rentora.
 We have received your inquiry for {property_title} ({property_location}).
 
 Inquiry Details:
-• Property: {property_title} ({property_location})
-• Guest Name: {inquiry.name}
-• Contact Phone: {inquiry.phone}
-• Check-In: {check_in_str}
-• Check-Out: {check_out_str}
-• Guests: {inquiry.guests}
-• Special Requests: {inquiry.message if inquiry.message else 'None'}
+â€¢ Property: {property_title} ({property_location})
+â€¢ Guest Name: {inquiry.name}
+â€¢ Contact Phone: {inquiry.phone}
+â€¢ Check-In: {check_in_str}
+â€¢ Check-Out: {check_out_str}
+â€¢ Guests: {inquiry.guests}
+â€¢ Special Requests: {inquiry.message if inquiry.message else 'None'}
 
 Our reservations team will review property availability and contact you shortly to confirm your booking.
 
@@ -459,7 +447,7 @@ Fort Kochi, Kerala, India
                     <!-- Footer -->
                     <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
                         <p style="font-size: 12px; color: #94a3b8; line-height: 1.5; margin: 0;">
-                            Rentora Luxury Rentals • Fort Kochi, Kerala, India<br>
+                            Rentora Luxury Rentals â€¢ Fort Kochi, Kerala, India<br>
                             If you have immediate questions, reply directly to this email.
                         </p>
                     </div>
@@ -474,13 +462,7 @@ Fort Kochi, Kerala, India
 
     from_email = getattr(settings, 'RESEND_FROM_EMAIL', getattr(settings, 'DEFAULT_FROM_EMAIL', 'project.propertyrentals@gmail.com'))
 
-    t = threading.Thread(
-        target=_async_send_mail_worker,
-        args=(inquiry.email, subject, message, from_email, html_message),
-        daemon=False
-    )
-    t.start()
-    t.join(timeout=3.0)
+    _async_send_mail_worker(inquiry.email, subject, message, from_email, html_message)
 
     return True
 
@@ -947,6 +929,7 @@ def privacy_policy_view(request):
 def terms_of_residence_view(request):
     log_visitor(request)
     return render(request, 'rentals/terms_of_residence.html')
+
 
 
 
